@@ -7,13 +7,21 @@ public class Ship : MonoBehaviour {
 	Transform target;
 	[SerializeField]
 	Transform gun;
+	[SerializeField]
+	Transform burst;
 	int hp = 1;
 	public Bullet[] bulletPool;
+	private int width=Screen.width;
+	private int height=Screen.height;
+	private Vector3 moveto;
+	[SerializeField]
+	private Vector3 offset;
+
 	public static float speed;
 	public static bool paused;
 	void Start()
 	{
-		speed=0.2f;
+		speed=5f;
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
@@ -22,13 +30,29 @@ public class Ship : MonoBehaviour {
 	void Update()
 	{
 		//if(shoottimer<=0)shoottimer=3;
-		paused=true;
+		moveto.Set(Input.mousePosition.x/width*5f,Input.mousePosition.y/height*10f,0);
+
+		if(Input.GetMouseButtonDown(0))
+		{
+			if(Mathf.Abs(moveto.x-transform.position.x)>1 || Mathf.Abs(moveto.y-transform.position.y)>1)
+				offset.Set(0,0,0);
+			else offset=transform.position-moveto;
+		}
 		if(Input.GetMouseButton(0))
 		{
-			paused=false;
-			transform.position=new Vector3(Input.mousePosition.x,Input.mousePosition.y,0);
+			float f= moveto.y+offset.y-transform.position.y;
+			Vector3 v= burst.localScale;
+			v.Set(1,f>0.1?5:f<-0.1?1:3,1);
+			burst.localScale=v;
+			f = moveto.x+offset.x-transform.position.x;
+			v = transform.localEulerAngles;
+			v.Set(0,f>0.5 ? -35f : f<-0.5 ? 35f : 0,0);
+			transform.localEulerAngles=v;
+			if(Mathf.Abs(moveto.x+offset.x-transform.position.x)>0.1f || Mathf.Abs(moveto.y+offset.y-transform.position.y)>0.1f)
+			 transform.Translate((moveto+offset-transform.position).normalized*speed*Time.deltaTime);
+			if(offset==Vector3.zero && !(Mathf.Abs(moveto.x-transform.position.x)>1 || Mathf.Abs(moveto.y-transform.position.y)>1))
+				offset=transform.position-moveto;
 		}
-		if(paused) return;
 		if(shoottimer>0) shoottimer-=Time.deltaTime;
 		if(target)
 		{
