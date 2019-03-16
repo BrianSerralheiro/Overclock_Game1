@@ -8,6 +8,8 @@ public class Ship : MonoBehaviour {
 	[SerializeField]
 	Transform gun;
 	[SerializeField]
+	private Gun[] guns;
+	[SerializeField]
 	Transform burst;
 	int hp = 1;
 	public Bullet[] bulletPool;
@@ -22,6 +24,7 @@ public class Ship : MonoBehaviour {
 	void Start()
 	{
 		speed=5f;
+		OnLevel(0);
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
@@ -30,6 +33,9 @@ public class Ship : MonoBehaviour {
 	void Update()
 	{
 		//if(shoottimer<=0)shoottimer=3;
+		if(Input.GetKeyDown(KeyCode.Alpha1))OnLevel(1);
+		if(Input.GetKeyDown(KeyCode.Alpha2))OnLevel(2);
+		if(Input.GetKeyDown(KeyCode.Alpha3))OnLevel(3);
 		moveto.Set(Input.mousePosition.x/width*5f,Input.mousePosition.y/height*10f,0);
 
 		if(Input.GetMouseButtonDown(0))
@@ -38,8 +44,17 @@ public class Ship : MonoBehaviour {
 				offset.Set(0,0,0);
 			else offset=transform.position-moveto;
 		}
+		if(shoottimer>0) shoottimer-=Time.deltaTime;
 		if(Input.GetMouseButton(0))
 		{
+			if(shoottimer<=0)
+			{
+				shoottimer=0.5f;
+				foreach(Gun gun in guns)
+				{
+					gun.Shoot();
+				}
+			}
 			float f= moveto.y+offset.y-transform.position.y;
 			Vector3 v= burst.localScale;
 			v.Set(1,f>0.1?5:f<-0.1?1:3,1);
@@ -53,7 +68,7 @@ public class Ship : MonoBehaviour {
 			if(offset==Vector3.zero && !(Mathf.Abs(moveto.x-transform.position.x)>1 || Mathf.Abs(moveto.y-transform.position.y)>1))
 				offset=transform.position-moveto;
 		}
-		if(shoottimer>0) shoottimer-=Time.deltaTime;
+		
 		if(target)
 		{
 			if(!target.gameObject.activeSelf) target=null;
@@ -63,15 +78,18 @@ public class Ship : MonoBehaviour {
 	}
 	void LateUpdate()
 	{
-		if(shoottimer<=0 && target)
-		{
-			shoottimer=0.5f;
-			Shoot();
-		}
+		
 	}
 	void OnTriggerExit2D(Collider2D col)
 	{
 		if(target==col.transform) target=null;
+	}
+	void OnLevel(int i)
+	{
+		foreach(Gun gun in guns)
+		{
+			gun.Level(i);
+		}
 	}
 	void OnTriggerStay2D(Collider2D col)
 	{
