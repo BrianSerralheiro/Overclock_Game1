@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour {
 	[SerializeField]
-	private int level;
+	protected int level;
 	[SerializeField]
-	private Sprite sprite;
+	protected Sprite sprite;
 
-	public void Shoot()
+	public virtual void Shoot()
 	{
 		if(!enabled)return;
 		GameObject go=new GameObject("playerbullet");
@@ -18,7 +18,7 @@ public class Gun : MonoBehaviour {
 		go.transform.position=transform.position;
 		go.transform.rotation=transform.rotation;
 	}
-	public void Level(int i)
+	public virtual void Level(int i)
 	{
 		if(level<=i)enabled=true;
 		else enabled=false;

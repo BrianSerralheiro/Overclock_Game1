@@ -11,6 +11,8 @@ public class Ship : MonoBehaviour {
 	private Gun[] guns;
 	[SerializeField]
 	Transform burst;
+	[SerializeField]
+	private float firerate=0.5f;
 	int hp = 1;
 	public Bullet[] bulletPool;
 	private int width=Screen.width;
@@ -24,7 +26,7 @@ public class Ship : MonoBehaviour {
 	void Start()
 	{
 		speed=5f;
-		OnLevel(0);
+		OnLevel(1);
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
@@ -49,7 +51,7 @@ public class Ship : MonoBehaviour {
 		{
 			if(shoottimer<=0)
 			{
-				shoottimer=0.5f;
+				shoottimer=firerate;
 				foreach(Gun gun in guns)
 				{
 					gun.Shoot();

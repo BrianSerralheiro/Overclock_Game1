@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SuaperTest : MonoBehaviour {
 	public GameObject red;
+	public GameObject green;
 	public GameObject blue;
-	public bool flag;
+	public int id;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,9 +16,10 @@ public class SuaperTest : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Space))
 		{
-			flag=!flag;
-			red.SetActive(!flag);
-			blue.SetActive(flag);
+			if(++id>2)id=0;
+			red.SetActive(id==0);
+			green.SetActive(id==1);
+			blue.SetActive(id==2);
 		}
 	}
 }
