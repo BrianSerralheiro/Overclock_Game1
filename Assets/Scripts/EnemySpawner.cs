@@ -45,6 +45,7 @@ public class EnemySpawner : MonoBehaviour {
 		bg.uvRect=rect;
 
 	}
+
 	void Chose(string s)
 	{
 		EnemyBase en=null;

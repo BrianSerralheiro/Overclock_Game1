@@ -24,18 +24,30 @@ public class Ship : MonoBehaviour {
 
 	public static float speed;
 	public static bool paused;
+
+	private float damageTimer;
+
+	private SpriteRenderer _renderer;
+
 	void Start()
 	{
 		speed=5f;
 		OnLevel(1);
+		_renderer = GetComponent<SpriteRenderer>();
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
 		if(col.gameObject.name=="playerbullet") return;
 		if(--hp<=0) gameObject.SetActive(false);
+		damageTimer = 1;
 	}
 	void Update()
 	{
+		if(damageTimer > 0)
+		{
+			damageTimer -= Time.deltaTime;
+			_renderer.color = Color.Lerp(Color.white,Color.red,damageTimer);
+		}
 		//if(shoottimer<=0)shoottimer=3;
 		if(Input.GetKeyDown(KeyCode.Alpha1))OnLevel(1);
 		if(Input.GetKeyDown(KeyCode.Alpha2))OnLevel(2);
