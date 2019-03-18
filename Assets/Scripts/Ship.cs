@@ -33,6 +33,7 @@ public class Ship : MonoBehaviour {
 	{
 		if(col.gameObject.name=="playerbullet") return;
 		if(--hp<=0) gameObject.SetActive(false);
+		EnemySpawner.spawnDamage(col.transform.position);
 	}
 	void Update()
 	{

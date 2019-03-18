@@ -15,6 +15,11 @@ public class EnemySpawner : MonoBehaviour {
 	private int counter;
 	public float timer;
 
+	[SerializeField]
+	private GameObject damage;
+
+	private static GameObject _damage;
+
 //A0A1A2t5B8B3t5C0C1C2t8A0t1A1t1A2t1A4t1A6t1A8t5D0D2
 	void Start()
 	{
@@ -22,6 +27,7 @@ public class EnemySpawner : MonoBehaviour {
 		Shooter.bulletPool=bulletPool;
 		Shooter.player=player;
 		Diver.player=player;
+		_damage=damage;
 	}
 
 	void Update()
@@ -44,6 +50,11 @@ public class EnemySpawner : MonoBehaviour {
 		if(bg.uvRect.y>1) rect.y-=1;
 		bg.uvRect=rect;
 
+	}
+
+	public static void spawnDamage (Vector3 damagePosition)
+	{
+		Instantiate(_damage,damagePosition, Quaternion.identity);
 	}
 	void Chose(string s)
 	{
