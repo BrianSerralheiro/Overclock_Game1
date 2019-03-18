@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour {
 	public Sprite diver;
 	public Sprite wall;
 	public Transform player;
-	public UnityEngine.UI.RawImage bg;
+	public Material bg;
 	public string wave;
 	public static int points;
 	private int counter;
@@ -39,10 +39,10 @@ public class EnemySpawner : MonoBehaviour {
 		while(timer<=0 && counter<wave.Length);
 		if(counter==wave.Length) Application.Quit();
 		if(timer>0) timer-=Time.deltaTime;
-		Rect rect= bg.uvRect;
-		rect.y+=Ship.speed*Time.deltaTime;
-		if(bg.uvRect.y>1) rect.y-=1;
-		bg.uvRect=rect;
+		Vector2 v= bg.mainTextureOffset;
+		v.y+=Time.deltaTime;
+		if(v.y>1) v.y-=1;
+		bg.mainTextureOffset=v;
 
 	}
 
@@ -69,13 +69,14 @@ public class EnemySpawner : MonoBehaviour {
 		}
 		if(en) en.Position(s[1]-48);
 	}
-	EnemyBase Reuse<t>(Sprite sp)where t :EnemyBase{
-	GameObject go=new GameObject("enemy");
-	go.AddComponent<SpriteRenderer>().sprite=sp;
-	go.AddComponent<BoxCollider2D>();
-	Rigidbody2D r= go.AddComponent<Rigidbody2D>();
-	r.isKinematic=true;
-	r.useFullKinematicContacts=true;
-	return go.AddComponent<t>();
-}
+	EnemyBase Reuse<t>(Sprite sp)where t :EnemyBase
+	{
+		GameObject go=new GameObject("enemy");
+		go.AddComponent<SpriteRenderer>().sprite=sp;
+		go.AddComponent<BoxCollider2D>();
+		Rigidbody2D r= go.AddComponent<Rigidbody2D>();
+		r.isKinematic=true;
+		r.useFullKinematicContacts=true;
+		return go.AddComponent<t>();
+	}
 }

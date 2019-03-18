@@ -6,14 +6,11 @@ public class EnemyBase : MonoBehaviour {
 	int points;
 	protected int hp=1;
 	public static int count;
-
 	private float damageTimer;
-
 	private SpriteRenderer _renderer;
 
 	void Start()
 	{
-		//Position(count++);
 		_renderer = GetComponent<SpriteRenderer>();
 	}
 
@@ -29,7 +26,7 @@ public class EnemyBase : MonoBehaviour {
 	{
 		if(col.gameObject.name=="enemybullet") return;
 		if(col.gameObject.name=="enemy") return;
-		if(--hp<=0)gameObject.SetActive(false);
+		if(--hp<=0)Destroy(gameObject);
 		damageTimer = 1;
 	}
 	public virtual void Position(int i)
@@ -47,6 +44,6 @@ public class EnemyBase : MonoBehaviour {
 	}
 	void OnDestroy()
 	{
-		if(hp<=0) EnemySpawner.points+=points;
+		if(hp<=0)EnemySpawner.points+=points;
 	}
 }

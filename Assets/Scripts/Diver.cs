@@ -7,8 +7,6 @@ public class Diver : EnemyBase
 public static Transform player;
 private Vector3 rotation=Vector3.zero;
 
-
-
 public override void Position(int i)
 {
 	base.Position(i);
