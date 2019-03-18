@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
-	public Bullet[] bulletPool;
+	public Sprite bullet;
 	public Sprite shooter;
 	public Sprite shooter2;
 	public Sprite diver;
@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour {
 	void Start()
 	{
 		points=0;
-		Shooter.bulletPool=bulletPool;
+		Shooter.bullet=bullet;
 		Shooter.player=player;
 		Diver.player=player;
 	}
@@ -72,7 +72,9 @@ public class EnemySpawner : MonoBehaviour {
 	GameObject go=new GameObject("enemy");
 	go.AddComponent<SpriteRenderer>().sprite=sp;
 	go.AddComponent<BoxCollider2D>();
-	go.AddComponent<Rigidbody2D>().gravityScale=0;
-		return go.AddComponent<t>();
+	Rigidbody2D r= go.AddComponent<Rigidbody2D>();
+	r.isKinematic=true;
+	r.useFullKinematicContacts=true;
+	return go.AddComponent<t>();
 }
 }

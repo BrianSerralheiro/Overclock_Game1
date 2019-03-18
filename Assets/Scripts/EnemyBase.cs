@@ -12,6 +12,7 @@ public class EnemyBase : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
+		if(col.gameObject.name=="enemybullet") return;
 		if(col.gameObject.name=="enemy") return;
 		if(--hp<=0)gameObject.SetActive(false);
 	}
