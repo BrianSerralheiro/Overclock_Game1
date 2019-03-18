@@ -13,8 +13,8 @@ public class Gun : MonoBehaviour {
 		if(!enabled)return;
 		GameObject go=new GameObject("playerbullet");
 		go.AddComponent<SpriteRenderer>().sprite=sprite;
-		go.AddComponent<BoxCollider2D>().isTrigger=true;
-		go.AddComponent<Bullet>().time=1;
+		go.AddComponent<BoxCollider2D>();
+		go.AddComponent<Bullet>().owner=transform.parent.name;
 		go.transform.position=transform.position;
 		go.transform.rotation=transform.rotation;
 	}

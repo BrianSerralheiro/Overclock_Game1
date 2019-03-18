@@ -20,6 +20,9 @@ public class SuaperTest : MonoBehaviour {
 			red.SetActive(id==0);
 			green.SetActive(id==1);
 			blue.SetActive(id==2);
+			if(id==0)Diver.player=red.transform;
+			if(id==1)Diver.player=green.transform;
+			if(id==2)Diver.player=blue.transform;
 		}
 	}
 }

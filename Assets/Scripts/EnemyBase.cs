@@ -12,7 +12,8 @@ public class EnemyBase : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
-		if(--hp<=0) gameObject.SetActive(false);
+		if(col.gameObject.name=="enemy") return;
+		if(--hp<=0)gameObject.SetActive(false);
 	}
 	public virtual void Position(int i)
 	{
@@ -20,14 +21,14 @@ public class EnemyBase : MonoBehaviour {
 		gameObject.SetActive(true);
 		if(i<3)
 		{
-			transform.position=new Vector3(i*128,550,0);
+			transform.position=new Vector3(i*2.5f,11,0);
 		}
 		else
 		{
-			transform.position=new Vector3(i%2>0 ? -64 : 320,(512-(i-1)/2*128),0);
+			transform.position=new Vector3(i%2>0 ? -1 : 6,(10-(i-1)/2*2.5f),0);
 		}
 	}
-	void OnDisable()
+	void OnDestroy()
 	{
 		if(hp<=0) EnemySpawner.points+=points;
 	}

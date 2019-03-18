@@ -37,5 +37,6 @@ public class LaserGun : Gun {
 	void Update () {
 		laser.localScale=scale;
 		if(scale.x>0)scale.x-=Time.deltaTime*10;
+		if(scale.x<0)scale.x=0;
 	}
 }

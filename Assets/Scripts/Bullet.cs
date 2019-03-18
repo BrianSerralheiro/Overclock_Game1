@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour {
 
 	private float timer;
 	public int time=1;
+	public string owner;
 	public void Position(Transform t)
 	{
 		gameObject.SetActive(true);
@@ -15,7 +16,7 @@ public class Bullet : MonoBehaviour {
 	}
 	private void Start()
 	{
-		timer=time;
+		timer=1;
 	}
 	void Update()
 	{
@@ -26,7 +27,7 @@ public class Bullet : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
-		gameObject.SetActive(false);
+		if(col.gameObject.name!=owner)Destroy(gameObject);
 	}
 	
 }

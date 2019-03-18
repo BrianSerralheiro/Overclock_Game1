@@ -13,7 +13,8 @@ public class Ship : MonoBehaviour {
 	Transform burst;
 	[SerializeField]
 	private float firerate=0.5f;
-	int hp = 1;
+	[SerializeField]
+	private int hp = 1;
 	public Bullet[] bulletPool;
 	private int width=Screen.width;
 	private int height=Screen.height;
@@ -30,6 +31,7 @@ public class Ship : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
+		if(col.gameObject.name=="playerbullet") return;
 		if(--hp<=0) gameObject.SetActive(false);
 	}
 	void Update()
@@ -95,7 +97,6 @@ public class Ship : MonoBehaviour {
 	}
 	void OnTriggerStay2D(Collider2D col)
 	{
-		if(col.gameObject.CompareTag("bullet")) return;
 		if(!target ||
 		(col.transform.position-transform.position).sqrMagnitude<(target.position-transform.position).sqrMagnitude)
 			target=col.transform;
