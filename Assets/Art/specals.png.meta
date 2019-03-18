@@ -1,22 +1,15 @@
 fileFormatVersion: 2
-guid: c8e6c79c4548ebe4485883169037997f
-timeCreated: 1552744687
+guid: b96ac33dbe37a7a4da80912fe28b96a2
+timeCreated: 1552750584
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Shot_Red
-    21300002: Shot_Orange
-    21300004: Shot_Green2
-    21300006: Sprites_naves_principais_T_3
-    21300008: Shot_Green1
-    21300010: Ship_Red
-    21300012: Shot_Blue
-    21300014: Ship_Blue
-    21300016: Ship_Green
-    21300018: Sprites_naves_principais_T_9
-    21300020: Burst_Green
-    21300022: Burst_Red
-    21300024: Burst_Blue
+    21300000: special_blue
+    21300002: special_red
+    21300004: special_gree-base
+    21300006: special_burst
+    21300008: special_green-begin
+    21300010: special_green-body
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -91,145 +84,80 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Shot_Red
+      name: special_blue
       rect:
         serializedVersion: 2
-        x: 228
-        y: 2121
-        width: 32
-        height: 101
+        x: 25
+        y: 480
+        width: 483
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: special_red
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 114
+        width: 39
+        height: 72
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Shot_Orange
+      name: special_gree-base
       rect:
         serializedVersion: 2
-        x: 329
-        y: 2125
-        width: 30
-        height: 45
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Shot_Green2
-      rect:
-        serializedVersion: 2
-        x: 889
-        y: 2160
-        width: 68
-        height: 121
+        x: 303
+        y: 7
+        width: 328
+        height: 370
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Shot_Green1
+      name: special_burst
       rect:
         serializedVersion: 2
-        x: 889
-        y: 2023
-        width: 69
-        height: 89
+        x: 69
+        y: 78
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: special_green-begin
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 6
+        width: 63
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: special_green-body
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 377
+        width: 328
+        height: 72
       alignment: 7
       pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Ship_Red
-      rect:
-        serializedVersion: 2
-        x: 127
-        y: 1749
-        width: 230
-        height: 298
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Shot_Blue
-      rect:
-        serializedVersion: 2
-        x: 559
-        y: 2042
-        width: 35
-        height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Ship_Blue
-      rect:
-        serializedVersion: 2
-        x: 496
-        y: 1749
-        width: 166
-        height: 207
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Ship_Green
-      rect:
-        serializedVersion: 2
-        x: 795
-        y: 1747
-        width: 261
-        height: 260
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Burst_Green
-      rect:
-        serializedVersion: 2
-        x: 908
-        y: 1705
-        width: 31
-        height: 38
-      alignment: 2
-      pivot: {x: 0.5, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Burst_Red
-      rect:
-        serializedVersion: 2
-        x: 228
-        y: 1695
-        width: 28
-        height: 33
-      alignment: 2
-      pivot: {x: 0.5, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Burst_Blue
-      rect:
-        serializedVersion: 2
-        x: 530
-        y: 1699
-        width: 100
-        height: 28
-      alignment: 2
-      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

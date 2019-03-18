@@ -5,6 +5,7 @@ using UnityEngine;
 public class Diver : EnemyBase
 {
 public static Transform player;
+private Vector3 rotation=Vector3.zero;
 
 
 
@@ -17,8 +18,9 @@ public override void Position(int i)
 void Update()
 {
 	if(Ship.paused) return;
-	transform.eulerAngles=new Vector3(0,0,Mathf.Atan2(transform.position.x-player.position.x,player.position.y-transform.position.y)*Mathf.Rad2Deg);
-	transform.Translate(0,50*Time.deltaTime,0);
+	rotation.z=Mathf.Atan2(transform.position.x-player.position.x,player.position.y-transform.position.y)*Mathf.Rad2Deg;
+	transform.eulerAngles=rotation;
+	transform.Translate(0,3*Time.deltaTime,0);
 
 }
 }

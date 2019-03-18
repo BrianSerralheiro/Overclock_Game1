@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 	public Bullet[] bulletPool;
-	public Shooter[] shooter;
-	public Shooter2[] shooter2;
-	public Diver[] diver;
-	public Wall[] wall;
+	public Sprite shooter;
+	public Sprite shooter2;
+	public Sprite diver;
+	public Sprite wall;
 	public Transform player;
 	public UnityEngine.UI.RawImage bg;
 	public string wave;
@@ -51,16 +51,16 @@ public class EnemySpawner : MonoBehaviour {
 		switch(s[0])
 		{
 			case 'A':
-				en=Reuse(shooter);
+				en=Reuse<Shooter>(shooter);
 				break;
 			case 'B':
-				en=Reuse(diver);
+				en=Reuse<Diver>(diver);
 				break;
 			case 'C':
-				en=Reuse(wall);
+				en=Reuse<Wall>(wall);
 				break;
 			case 'D':
-				en=Reuse(shooter2);
+				en=Reuse<Shooter2>(shooter2);
 				break;
 			default :
 				timer=s[1]-48;
@@ -68,14 +68,11 @@ public class EnemySpawner : MonoBehaviour {
 		}
 		if(en) en.Position(s[1]-48);
 	}
-	EnemyBase Reuse(EnemyBase[]  en){
-	for(int i=0;i<en.Length;i++){
-		if(!en[i].gameObject.activeSelf){
-			en[i].gameObject.SetActive(true);
-			return en[i];
-		}
-	}
-	Debug.Log("not enough enemies on the pool");
-	return null;
+	EnemyBase Reuse<t>(Sprite sp)where t :EnemyBase{
+	GameObject go=new GameObject("enemy");
+	go.AddComponent<SpriteRenderer>().sprite=sp;
+	go.AddComponent<BoxCollider2D>();
+	go.AddComponent<Rigidbody2D>().gravityScale=0;
+		return go.AddComponent<t>();
 }
 }

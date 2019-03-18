@@ -17,11 +17,11 @@ public override void Position(int i)
 	position=i;
 	if(i<3)
 	{
-		finalpoint=new Vector3(64+i*64,512-32,0);
+		finalpoint=new Vector3((i+1)*1.25f,9.5f,0);
 	}
 	else
 	{
-		finalpoint=new Vector3(i%2>0 ? 64 : 192,(512-(i-1)/2*128),0);
+		finalpoint=new Vector3(i%2>0 ? 1 : 4, 9,0);
 	}
 }
 void Update()
@@ -29,9 +29,9 @@ void Update()
 	if(Ship.paused) return;
 	if(position>=0)
 	{
-		transform.Translate((finalpoint-transform.position)*Time.deltaTime,Space.World);
+		transform.Translate((finalpoint-transform.position).normalized*Time.deltaTime,Space.World);
 		transform.up=finalpoint-transform.position;
-		if((finalpoint-transform.position).sqrMagnitude<2)
+		if((finalpoint-transform.position).sqrMagnitude<0.005f)
 		{
 			transform.position=finalpoint;
 			position=-1;
