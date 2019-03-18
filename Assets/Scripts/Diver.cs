@@ -17,6 +17,7 @@ public override void Position(int i)
 }
 void Update()
 {
+	base.Update();
 	if(Ship.paused) return;
 	rotation.z=Mathf.Atan2(transform.position.x-player.position.x,player.position.y-transform.position.y)*Mathf.Rad2Deg;
 	transform.eulerAngles=rotation;
