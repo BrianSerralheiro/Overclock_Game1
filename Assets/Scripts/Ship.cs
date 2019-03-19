@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour {
 	float shoottimer;
-	Transform target;
 	[SerializeField]
 	Transform gun;
 	[SerializeField]
@@ -38,6 +37,7 @@ public class Ship : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col)
 	{
 		if(col.gameObject.name=="playerbullet") return;
+		if(col.otherCollider.name=="laserbody") return;
 		if(--hp<=0) gameObject.SetActive(false);
 		damageTimer = 1;
 	}
@@ -48,7 +48,6 @@ public class Ship : MonoBehaviour {
 			damageTimer -= Time.deltaTime;
 			_renderer.color = Color.Lerp(Color.white,Color.red,damageTimer);
 		}
-		//if(shoottimer<=0)shoottimer=3;
 		if(Input.GetKeyDown(KeyCode.Alpha1))OnLevel(1);
 		if(Input.GetKeyDown(KeyCode.Alpha2))OnLevel(2);
 		if(Input.GetKeyDown(KeyCode.Alpha3))OnLevel(3);
@@ -84,21 +83,6 @@ public class Ship : MonoBehaviour {
 			if(offset==Vector3.zero && !(Mathf.Abs(moveto.x-transform.position.x)>1 || Mathf.Abs(moveto.y-transform.position.y)>1))
 				offset=transform.position-moveto;
 		}
-		
-		if(target)
-		{
-			if(!target.gameObject.activeSelf) target=null;
-			else gun.eulerAngles=new Vector3(0,0,Mathf.Atan2(gun.position.x-target.position.x,target.position.y-gun.position.y)*Mathf.Rad2Deg);
-
-		}
-	}
-	void LateUpdate()
-	{
-		
-	}
-	void OnTriggerExit2D(Collider2D col)
-	{
-		if(target==col.transform) target=null;
 	}
 	void OnLevel(int i)
 	{
@@ -106,12 +90,6 @@ public class Ship : MonoBehaviour {
 		{
 			gun.Level(i);
 		}
-	}
-	void OnTriggerStay2D(Collider2D col)
-	{
-		if(!target ||
-		(col.transform.position-transform.position).sqrMagnitude<(target.position-transform.position).sqrMagnitude)
-			target=col.transform;
 	}
 	void Shoot()
 	{

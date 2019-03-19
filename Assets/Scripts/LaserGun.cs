@@ -9,6 +9,7 @@ public class LaserGun : Gun {
 	private Sprite lasersprite;
 	private Transform laser;
 	private Vector3 scale;
+	private Collider2D col;
 	// Use this for initialization
 	void Start () {
 		GameObject go=new GameObject("laserbase");
@@ -20,6 +21,7 @@ public class LaserGun : Gun {
 		SpriteRenderer sr= go.AddComponent<SpriteRenderer>();
 		sr.material=lasermat;
 		sr.sprite=lasersprite;
+		col=go.AddComponent<BoxCollider2D>();
 		go.transform.position=transform.position+Vector3.up*0.335f;
 		go.transform.localScale=Vector3.one+Vector3.up*29f;
 		go.transform.parent=laser;
@@ -27,6 +29,7 @@ public class LaserGun : Gun {
 	}
 	public override void Shoot()
 	{
+		col.enabled=!col.enabled;
 		if(scale.x<level)scale.x+=1f;
 		if(scale.x>level)scale.x=level;
 	}
