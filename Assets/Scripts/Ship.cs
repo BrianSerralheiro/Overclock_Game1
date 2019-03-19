@@ -12,8 +12,7 @@ public class Ship : MonoBehaviour {
 	Transform burst;
 	[SerializeField]
 	private float firerate=0.5f;
-	[SerializeField]
-	private int hp = 1;
+	public int hp = 1;
 	public Bullet[] bulletPool;
 	private int width=Screen.width;
 	private int height=Screen.height;
@@ -27,6 +26,8 @@ public class Ship : MonoBehaviour {
 	private float damageTimer;
 
 	private SpriteRenderer _renderer;
+
+	private int Level = 1;
 
 	void Start()
 	{
@@ -90,6 +91,11 @@ public class Ship : MonoBehaviour {
 		{
 			gun.Level(i);
 		}
+	}
+
+	public void OnLevel()
+	{
+		OnLevel(++Level);
 	}
 	void Shoot()
 	{
