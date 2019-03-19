@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Shooter : EnemyBase
 {
-	public static Sprite bullet;
 	private int position;
 	private Vector3 finalpoint;
 	float shoottimer=1;
@@ -54,7 +53,7 @@ void LateUpdate()
 void Shoot()
 {
 		GameObject go = new GameObject("enemybullet");
-		go.AddComponent<SpriteRenderer>().sprite=bullet;
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bullet;
 		go.AddComponent<BoxCollider2D>();
 		go.AddComponent<Bullet>().owner=transform.name;
 		go.transform.position=transform.position;

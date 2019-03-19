@@ -25,7 +25,7 @@ public class ItemDrop : MonoBehaviour
 		{
 			if(health)
 			{
-				s.hp += 1;
+				s.Heal(1);
 			}
 			else
 			{

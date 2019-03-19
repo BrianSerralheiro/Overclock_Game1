@@ -50,7 +50,7 @@ public class EnemyBase : MonoBehaviour {
 			if(Random.value <= 0.5)
 			{
 				GameObject go = new GameObject("ItemDrop");
-				go.AddComponent<SpriteRenderer>();
+				go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.item;
 				go.AddComponent<BoxCollider2D>().isTrigger = true;
 				go.AddComponent<ItemDrop>();
 				go.transform.position = transform.position;

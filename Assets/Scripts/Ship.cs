@@ -12,7 +12,9 @@ public class Ship : MonoBehaviour {
 	Transform burst;
 	[SerializeField]
 	private float firerate=0.5f;
-	public int hp = 1;
+	[SerializeField]
+	private int maxhp = 1;
+	private int hp;
 	public Bullet[] bulletPool;
 	private int width=Screen.width;
 	private int height=Screen.height;
@@ -33,6 +35,7 @@ public class Ship : MonoBehaviour {
 	{
 		speed=5f;
 		OnLevel(1);
+		hp=maxhp;
 		_renderer = GetComponent<SpriteRenderer>();
 	}
 	void OnCollisionEnter2D(Collision2D col)
@@ -41,6 +44,11 @@ public class Ship : MonoBehaviour {
 		if(col.otherCollider.name=="laserbody") return;
 		if(--hp<=0) gameObject.SetActive(false);
 		damageTimer = 1;
+	}
+	public void Heal(int i)
+	{
+		hp+=i;
+		if(hp>maxhp)hp=maxhp;
 	}
 	void Update()
 	{

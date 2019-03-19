@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
-	public Sprite bullet;
-	public Sprite shooter;
-	public Sprite shooter2;
-	public Sprite diver;
-	public Sprite wall;
 	public Transform player;
 	public Material bg;
 	public string wave;
@@ -19,7 +14,6 @@ public class EnemySpawner : MonoBehaviour {
 	void Start()
 	{
 		points=0;
-		Shooter.bullet=bullet;
 		Shooter.player=player;
 		Diver.player=player;
 	}
@@ -52,16 +46,16 @@ public class EnemySpawner : MonoBehaviour {
 		switch(s[0])
 		{
 			case 'A':
-				en=Reuse<Shooter>(shooter);
+				en=Reuse<Shooter>(SpriteBase.I.shooter);
 				break;
 			case 'B':
-				en=Reuse<Diver>(diver);
+				en=Reuse<Diver>(SpriteBase.I.diver);
 				break;
 			case 'C':
-				en=Reuse<Wall>(wall);
+				en=Reuse<Wall>(SpriteBase.I.wall);
 				break;
 			case 'D':
-				en=Reuse<Shooter2>(shooter2);
+				en=Reuse<Shooter2>(SpriteBase.I.shooter2);
 				break;
 			default :
 				timer=s[1]-48;
