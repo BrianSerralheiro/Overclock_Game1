@@ -7,9 +7,9 @@ public class EnemyBase : MonoBehaviour {
 	protected int hp=1;
 	public static int count;
 	private float damageTimer;
-	private SpriteRenderer _renderer;
+	protected SpriteRenderer _renderer;
 
-	void Start()
+	protected void Start()
 	{
 		_renderer = GetComponent<SpriteRenderer>();
 	}

@@ -10,6 +10,8 @@ public class SpriteBase : MonoBehaviour {
 	public Sprite diver;
 	public Sprite wall;
 	public Sprite item;
+	public Sprite[] legs;
+	public Sprite[] mouth;
 	void Start () {
 		I=this;
 	}

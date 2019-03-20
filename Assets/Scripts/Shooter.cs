@@ -9,8 +9,13 @@ public class Shooter : EnemyBase
 	float shoottimer=1;
 	float lifetimer;
 	public static Transform player;
+	protected void Start()
+	{
+		base.Start();
+		_renderer.flipY=true;
+	}
 
-public override void Position(int i)
+	public override void Position(int i)
 {
 	base.Position(i);
 	position=i;
