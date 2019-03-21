@@ -7,10 +7,32 @@ public class Carrier : EnemyBase {
 	private float timer=-2f;
 	private Diver diver;
 
+	private Transform[] legs;
+	private Vector3 vector = new Vector3();
+
+	public void Start()
+	{
+		base.Start();
+		hp=100;
+		legs=new Transform[6];
+		for(int i = 0; i<6; i++)
+		{
+			GameObject go = new GameObject("leg"+i);
+			go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.carrierlegs[i];
+			legs[i]=go.transform;
+			go.transform.parent=transform;
+			go.transform.rotation=transform.rotation;
+		}
+		legs[0].localPosition=new Vector3(0.45f,-1.7f,0.1f);
+		legs[1].localPosition=new Vector3(-0.45f,-1.7f,0.1f);
+		legs[2].localPosition=new Vector3(0.7f,-0.3f,0.1f);
+		legs[3].localPosition=new Vector3(-0.7f,-0.3f,0.1f);
+		legs[4].localPosition=new Vector3(0.9f,0.9f,0.1f);
+		legs[5].localPosition=new Vector3(-0.9f,0.9f,0.1f);
+	}
 	public override void Position(int i)
 	{
 		base.Position(i);
-		hp=100;
 		if(i<3)
 		{
 			finaalposition=new Vector3(i*2.5f,-12,0);
@@ -39,6 +61,14 @@ public class Carrier : EnemyBase {
 			diver=null;
 			timer =-1;
 		}
+		vector.Set(0,0,Mathf.PingPong(Time.time*50,45f));
+		legs[0].localEulerAngles=vector;
+		legs[1].localEulerAngles=-vector;
+		legs[2].localEulerAngles=-vector;
+		legs[3].localEulerAngles=vector;
+		legs[4].localEulerAngles=vector;
+		legs[5].localEulerAngles=-vector;
+
 		if(transform.position.x<-2 || transform.position.x>7 || transform.position.y<-2 || transform.position.y>12)Destroy(gameObject);
 	}
 	void Spawn()

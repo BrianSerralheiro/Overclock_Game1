@@ -35,7 +35,7 @@ public class LaserGun : Gun {
 	}
 	public override void Level(int i)
 	{
-		level=i;
+		if(i<4)level=i;
 	}
 	void Update () {
 		laser.localScale=scale;

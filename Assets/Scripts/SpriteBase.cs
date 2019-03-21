@@ -12,6 +12,9 @@ public class SpriteBase : MonoBehaviour {
 	public Sprite item;
 	public Sprite[] legs;
 	public Sprite[] mouth;
+	public Sprite[] shooterarms;
+	public Sprite[] shooterlegs;
+	public Sprite[] carrierlegs;
 	void Start () {
 		I=this;
 	}

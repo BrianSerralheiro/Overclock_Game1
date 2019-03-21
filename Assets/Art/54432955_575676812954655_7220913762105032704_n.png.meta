@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: db06c2c3a740ea94089d748677918c44
-timeCreated: 1553112954
+timeCreated: 1553182914
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -11,25 +11,25 @@ TextureImporter:
     21300008: 54432955_575676812954655_7220913762105032704_n_4
     21300010: mouth_R
     21300012: mouth_L
-    21300014: 54432955_575676812954655_7220913762105032704_n_7
+    21300014: back_legR
     21300016: carrier_bod
-    21300018: 54432955_575676812954655_7220913762105032704_n_9
-    21300020: 54432955_575676812954655_7220913762105032704_n_10
-    21300022: 54432955_575676812954655_7220913762105032704_n_11
+    21300018: back_legL
+    21300020: mid_legR
+    21300022: mid_legL
     21300024: 54432955_575676812954655_7220913762105032704_n_12
-    21300026: 54432955_575676812954655_7220913762105032704_n_13
+    21300026: front_legR
     21300028: 54432955_575676812954655_7220913762105032704_n_14
-    21300030: 54432955_575676812954655_7220913762105032704_n_15
+    21300030: front_legL
     21300032: 54432955_575676812954655_7220913762105032704_n_16
     21300034: 54432955_575676812954655_7220913762105032704_n_17
     21300036: 54432955_575676812954655_7220913762105032704_n_18
-    21300038: 54432955_575676812954655_7220913762105032704_n_19
+    21300038: shooter_legR
     21300040: 54432955_575676812954655_7220913762105032704_n_20
     21300042: shooter_bod
     21300044: 54432955_575676812954655_7220913762105032704_n_22
-    21300046: 54432955_575676812954655_7220913762105032704_n_23
-    21300048: shooter_legR
-    21300050: shooter_legL
+    21300046: shooter_legL
+    21300048: shooter_armR
+    21300050: shooter_armL
     21300052: enemy_shot
     21300054: shooter_crystal
   serializedVersion: 4
@@ -197,15 +197,15 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 54432955_575676812954655_7220913762105032704_n_7
+      name: back_legR
       rect:
         serializedVersion: 2
         x: 173
         y: 1251
         width: 118
         height: 161
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.9, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -223,41 +223,41 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 54432955_575676812954655_7220913762105032704_n_9
+      name: back_legL
       rect:
         serializedVersion: 2
         x: 699
         y: 1293
         width: 113
         height: 157
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.1, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 54432955_575676812954655_7220913762105032704_n_10
+      name: mid_legR
       rect:
         serializedVersion: 2
         x: 76
         y: 991
         width: 197
         height: 133
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.9, y: 0.45}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 54432955_575676812954655_7220913762105032704_n_11
+      name: mid_legL
       rect:
         serializedVersion: 2
         x: 670
         y: 1046
         width: 189
         height: 129
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.1, y: 0.45}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -275,15 +275,15 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 54432955_575676812954655_7220913762105032704_n_13
+      name: front_legR
       rect:
         serializedVersion: 2
         x: 210
         y: 659
         width: 110
         height: 196
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.8, y: 0.9}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -301,15 +301,15 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 54432955_575676812954655_7220913762105032704_n_15
+      name: front_legL
       rect:
         serializedVersion: 2
         x: 599
         y: 661
         width: 118
         height: 193
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.2, y: 0.9}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -353,15 +353,15 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 54432955_575676812954655_7220913762105032704_n_19
+      name: shooter_legR
       rect:
         serializedVersion: 2
         x: 916
-        y: 347
-        width: 39
-        height: 61
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 351
+        width: 37
+        height: 57
+      alignment: 9
+      pivot: {x: 0.9, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -405,41 +405,41 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 54432955_575676812954655_7220913762105032704_n_23
+      name: shooter_legL
       rect:
         serializedVersion: 2
         x: 1078
         y: 357
         width: 40
         height: 59
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.1, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_legR
+      name: shooter_armR
       rect:
         serializedVersion: 2
         x: 848
         y: 242
         width: 66
         height: 86
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.8, y: 0.7}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_legL
+      name: shooter_armL
       rect:
         serializedVersion: 2
         x: 1094
         y: 236
         width: 76
         height: 89
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.2, y: 0.7}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
