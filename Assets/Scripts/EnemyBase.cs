@@ -26,7 +26,7 @@ public class EnemyBase : MonoBehaviour {
 	{
 		if(col.gameObject.name=="enemybullet") return;
 		if(col.gameObject.name=="enemy") return;
-		int i=0;
+		int i=1;
 		Bullet bull=col.gameObject.GetComponent<Bullet>();
 		if(bull)i=bull.damage;
 		hp-=i;
