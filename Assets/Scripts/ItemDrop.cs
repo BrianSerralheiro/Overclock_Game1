@@ -15,7 +15,7 @@ public class ItemDrop : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		
+		transform.Translate(0,-Time.deltaTime,0);
 	}
 
 	void OnTriggerEnter2D (Collider2D other)

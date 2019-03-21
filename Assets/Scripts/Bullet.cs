@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour {
 	private float timer;
 	public int time=1;
 	public string owner;
+	public int damage;
 	public void Position(Transform t)
 	{
 		gameObject.SetActive(true);

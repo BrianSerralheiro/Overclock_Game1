@@ -52,7 +52,7 @@ public class EnemySpawner : MonoBehaviour {
 				en=Reuse<Diver>(SpriteBase.I.diver);
 				break;
 			case 'C':
-				en=Reuse<Wall>(SpriteBase.I.wall);
+				en=Reuse<Carrier>(SpriteBase.I.carrier);
 				break;
 			case 'D':
 				en=Reuse<Shooter2>(SpriteBase.I.shooter2);

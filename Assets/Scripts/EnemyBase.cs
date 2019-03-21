@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour {
 	int points;
-	protected int hp=1;
+	protected int hp=10;
 	public static int count;
 	private float damageTimer;
 	protected SpriteRenderer _renderer;
@@ -26,13 +26,15 @@ public class EnemyBase : MonoBehaviour {
 	{
 		if(col.gameObject.name=="enemybullet") return;
 		if(col.gameObject.name=="enemy") return;
-		if(--hp<=0)Destroy(gameObject);
+		int i=0;
+		Bullet bull=col.gameObject.GetComponent<Bullet>();
+		if(bull)i=bull.damage;
+		hp-=i;
+		if(hp<=0)Destroy(gameObject);
 		damageTimer = 1;
 	}
 	public virtual void Position(int i)
 	{
-		hp=1;
-		gameObject.SetActive(true);
 		if(i<3)
 		{
 			transform.position=new Vector3(i*2.5f,11,0);
