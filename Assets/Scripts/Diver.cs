@@ -9,7 +9,7 @@ private Vector3 rotation=Vector3.zero;
 	public void Start()
 	{
 		base.Start();
-		hp=20;
+		hp=12;
 		gameObject.AddComponent<BugMouth>();
 		gameObject.AddComponent<BugLegs>();
 	}

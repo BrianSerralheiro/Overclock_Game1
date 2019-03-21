@@ -21,8 +21,8 @@ public class Ship : MonoBehaviour {
 	private Vector3 moveto;
 	[SerializeField]
 	private Vector3 offset;
-
-	public static float speed;
+	[SerializeField]
+	private float speed=5f;
 	public static bool paused;
 
 	private float damageTimer;
@@ -33,7 +33,7 @@ public class Ship : MonoBehaviour {
 
 	void Start()
 	{
-		speed=5f;
+		//speed=5f;
 		OnLevel(1);
 		hp=maxhp;
 		_renderer = GetComponent<SpriteRenderer>();

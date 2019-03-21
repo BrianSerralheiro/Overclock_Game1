@@ -13,7 +13,7 @@ public class Wall : EnemyBase
 
 	void Update(){
 		if(Ship.paused) return;
-		transform.Translate(0,-Ship.speed*512*Time.deltaTime,0);
+		//transform.Translate(0,-Ship.speed*512*Time.deltaTime,0);
 		if(transform.position.y<-100) gameObject.SetActive(false);
 
 	}
