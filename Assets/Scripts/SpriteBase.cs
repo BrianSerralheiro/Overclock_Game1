@@ -15,8 +15,10 @@ public class SpriteBase : MonoBehaviour {
 	public Sprite[] shooterarms;
 	public Sprite[] shooterlegs;
 	public Sprite[] carrierlegs;
+	public Sprite[] boss1;
 	void Start () {
 		I=this;
+		Destroy(this);
 	}
 	
 	// Update is called once per frame

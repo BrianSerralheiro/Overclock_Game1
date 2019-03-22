@@ -55,7 +55,7 @@ public class EnemySpawner : MonoBehaviour {
 				en=Reuse<Carrier>(SpriteBase.I.carrier);
 				break;
 			case 'D':
-				en=Reuse<Shooter2>(SpriteBase.I.shooter2);
+				en=Reuse<Boss1>(SpriteBase.I.boss1[0]);
 				break;
 			default :
 				timer=s[1]-48;

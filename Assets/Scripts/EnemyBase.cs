@@ -22,7 +22,7 @@ public class EnemyBase : MonoBehaviour {
 			_renderer.color = Color.Lerp(Color.white,Color.red,damageTimer);
 		}
 	}
-	void OnCollisionEnter2D(Collision2D col)
+	public void OnCollisionEnter2D(Collision2D col)
 	{
 		if(col.gameObject.name=="enemybullet") return;
 		if(col.gameObject.name=="enemy") return;
