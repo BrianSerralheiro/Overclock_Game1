@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBase : MonoBehaviour {
-	int points;
+	private int points;
 	protected int hp=8;
 	public static int count;
 	private float damageTimer;

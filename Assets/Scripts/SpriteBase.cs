@@ -9,6 +9,7 @@ public class SpriteBase : MonoBehaviour {
 	public Sprite shooter2;
 	public Sprite diver;
 	public Sprite carrier;
+	public Sprite[] grabber;
 	public Sprite item;
 	public Sprite[] legs;
 	public Sprite[] mouth;

@@ -21,7 +21,7 @@ public class Boss1 : EnemyBase {
 	public void Start()
 	{
 		base.Start();
-		hp=1200;
+		hp=600;
 		GameObject go = new GameObject("wingL");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss1[1];
 		wingL=go.transform;
@@ -52,16 +52,16 @@ public class Boss1 : EnemyBase {
 		}
 		else if(state==State.charging)
 		{
-			if(vector.z>45)transform.Translate(0,Time.deltaTime*4,0);
-			if(transform.position.y>11){
+			if(vector.z>45)transform.Translate(0,Time.deltaTime*(hp<200?6:4),0);
+			if(transform.position.y>12){
 				state=State.moving;
-				float f=Random.value*2;
+				float f=Random.value*(hp<200?4:2);
 				dir.y=Mathf.Max(f,2f-f);
 				dir.x=2f-dir.y;
 			}
 		}
 		if(state==State.charging && vector.z<45)vector.z+=Time.deltaTime*90;
-		if(state!=State.charging && vector.z>0)vector.z-=Time.deltaTime*35;
+		if(state!=State.charging && vector.z>0)vector.z-=Time.deltaTime*20;
 		wingL.localEulerAngles=vector;
 		wingR.localEulerAngles=-vector;
 	}

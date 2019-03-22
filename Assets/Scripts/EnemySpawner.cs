@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour {
 		points=0;
 		Shooter.player=player;
 		Diver.player=player;
+		Grabber.player=player;
 	}
 
 	void Update()
@@ -56,6 +57,9 @@ public class EnemySpawner : MonoBehaviour {
 				break;
 			case 'D':
 				en=Reuse<Boss1>(SpriteBase.I.boss1[0]);
+				break;
+			case 'E':
+				en=Reuse<Grabber>(SpriteBase.I.grabber[0]);
 				break;
 			default :
 				timer=s[1]-48;
