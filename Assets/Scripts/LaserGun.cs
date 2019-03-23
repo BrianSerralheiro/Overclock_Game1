@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class LaserGun : Gun {
 	[SerializeField]
-	private Material lasermat;
-	[SerializeField]
 	private Sprite lasersprite;
 	private Transform laser;
 	private Vector3 scale;
@@ -16,13 +14,14 @@ public class LaserGun : Gun {
 		laser=go.transform;
 		laser.position=transform.position;
 		laser.parent=transform;
+		laser.localScale=new Vector3();
 		go.AddComponent<SpriteRenderer>().sprite=sprite;
 		go=new GameObject("laserbody");
 		SpriteRenderer sr= go.AddComponent<SpriteRenderer>();
-		sr.material=lasermat;
 		sr.sprite=lasersprite;
 		col=go.AddComponent<BoxCollider2D>();
-		go.transform.position=transform.position+Vector3.up*0.335f;
+		col.enabled=false;
+		go.transform.position=transform.position+Vector3.up*0.2f;
 		go.transform.localScale=Vector3.one+Vector3.up*29f;
 		go.transform.parent=laser;
 		scale=Vector3.up;
