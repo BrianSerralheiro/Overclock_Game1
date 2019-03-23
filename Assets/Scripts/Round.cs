@@ -36,7 +36,7 @@ public class Round : EnemyBase
 	void Shoot(int i)
 	{
 		GameObject go = new GameObject("enemybullet");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.Round[1];
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.round[1];
 		go.AddComponent<BoxCollider2D>();
 		go.AddComponent<Bullet>().owner=transform.name;
 		Vector3 v= new Vector3(i%2,i/2,0)-Vector3.one*0.5f;
