@@ -37,7 +37,7 @@ public class EnemyBase : MonoBehaviour {
 	{
 		if(i<3)
 		{
-			transform.position=new Vector3(i*2.5f,11,0);
+			transform.position=new Vector3(1+i*1.5f,11,0);
 		}
 		else
 		{

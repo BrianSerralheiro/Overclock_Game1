@@ -85,8 +85,8 @@ void LateUpdate()
 		Shoot();
 	}
 }
-void Shoot()
-{
+	void Shoot()
+	{
 		GameObject go = new GameObject("enemybullet");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bullet;
 		go.AddComponent<BoxCollider2D>();
