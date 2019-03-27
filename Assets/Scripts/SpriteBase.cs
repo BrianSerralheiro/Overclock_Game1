@@ -18,6 +18,8 @@ public class SpriteBase : MonoBehaviour {
 	public Sprite[] shooterlegs;
 	public Sprite[] carrierlegs;
 	public Sprite[] boss1;
+	public Sprite[] boss2;
+	public Material shock;
 	void Start () {
 		I=this;
 		Destroy(this);

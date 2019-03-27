@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b91db77fc0b7d514ca34e8a5999b8930
-timeCreated: 1553367183
+timeCreated: 1553462555
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -15,13 +15,13 @@ TextureImporter:
     21300016: orange_shot
     21300018: enemies2_9
     21300020: enemies2_10
-    21300022: enemies2_11
+    21300022: missile
     21300024: enemies2_12
-    21300026: enemies2_13
+    21300026: missile_burst
     21300028: enemies2_14
     21300030: enemies2_15
-    21300032: enemies2_16
-    21300034: enemies2_17
+    21300032: launcher_core
+    21300034: launcher_bod
     21300036: enemies2_18
     21300038: lasor_light
     21300040: enemies2_20
@@ -247,7 +247,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies2_11
+      name: missile
       rect:
         serializedVersion: 2
         x: 384
@@ -273,7 +273,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies2_13
+      name: missile_burst
       rect:
         serializedVersion: 2
         x: 381
@@ -312,7 +312,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies2_16
+      name: launcher_core
       rect:
         serializedVersion: 2
         x: 460
@@ -325,7 +325,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies2_17
+      name: launcher_bod
       rect:
         serializedVersion: 2
         x: 340

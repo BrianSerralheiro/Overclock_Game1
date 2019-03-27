@@ -13,7 +13,10 @@ public class EnemyBase : MonoBehaviour {
 	{
 		_renderer = GetComponent<SpriteRenderer>();
 	}
-
+	public void SetHP(int i)
+	{
+		hp=i;
+	}
 	public void Update()
 	{
 		if(damageTimer > 0)

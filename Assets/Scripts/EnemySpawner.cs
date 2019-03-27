@@ -67,6 +67,9 @@ public class EnemySpawner : MonoBehaviour {
 			case 'G':
 				en=Reuse<Lasor>(SpriteBase.I.Lasor[0]);
 				break;
+			case 'I':
+				en=Reuse<Boss2>(SpriteBase.I.boss2[0]);
+				break;
 			default :
 				timer=s[1]-48;
 				break;
