@@ -31,6 +31,8 @@ public class Ship : MonoBehaviour {
 
 	private int Level = 1;
 
+	private bool playerSpecial;
+
 	void Start()
 	{
 		//speed=5f;
@@ -116,5 +118,10 @@ public class Ship : MonoBehaviour {
 				break;
 			}
 		}
+	}
+
+	public void Special()
+	{
+		playerSpecial = true;
 	}
 }

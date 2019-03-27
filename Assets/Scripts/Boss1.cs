@@ -22,6 +22,7 @@ public class Boss1 : EnemyBase {
 	{
 		base.Start();
 		hp=600;
+		points = 1000;
 		GameObject go = new GameObject("wingL");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss1[1];
 		wingL=go.transform;

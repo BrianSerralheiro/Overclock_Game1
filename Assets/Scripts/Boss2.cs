@@ -16,6 +16,7 @@ public class Boss2 : EnemyBase {
 	new void Start () {
 		base.Start();
 		hp=500;
+		points = 1000;
 		GameObject go = new GameObject("clawL");
 		go.AddComponent<EnemyBase>().SetHP(50);
 		lineclawL=go.AddComponent<LineRenderer>();

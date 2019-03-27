@@ -11,6 +11,7 @@ public class Round : EnemyBase
 	{
 		base.Start();
 		hp=15;
+		points = 150;
 	}
 
 	public override void Position(int i)

@@ -16,6 +16,7 @@ public class Diver : EnemyBase
 	{
 		base.Start();
 		hp=12;
+		points = 50;
 		if(legL)return;
 		GameObject go = new GameObject("legL");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.legs[0];

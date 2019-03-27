@@ -18,6 +18,7 @@ public class Shooter : EnemyBase
 	protected void Start()
 	{
 		base.Start();
+		points = 100;
 		_renderer.flipY=true;
 		lifetimer=5;
 		if(legL) return;

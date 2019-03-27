@@ -6,10 +6,12 @@ public class ItemDrop : MonoBehaviour
 {
 	private bool health;
 
+	private int id;
+
 	// Use this for initialization
 	void Start () 
 	{
-		health = Random.value <= 0.5;
+		id = Random.Range(0 , 1);
 	}
 	
 	// Update is called once per frame
@@ -23,13 +25,17 @@ public class ItemDrop : MonoBehaviour
 		Ship s = other.GetComponent<Ship>();
 		if (s != null)
 		{
-			if(health)
+			if(id == 0)
 			{
 				s.Heal(1);
 			}
-			else
+			else if(id == 1)
 			{
 				s.OnLevel();
+			}
+			else if(id == 2)
+			{
+				s.Special();
 			}
 			Destroy(gameObject);
 		}

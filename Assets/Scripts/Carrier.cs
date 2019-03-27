@@ -14,6 +14,7 @@ public class Carrier : EnemyBase {
 	{
 		base.Start();
 		hp=100;
+		points = 150;
 		legs=new Transform[6];
 		for(int i = 0; i<6; i++)
 		{

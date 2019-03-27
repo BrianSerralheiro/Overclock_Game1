@@ -19,6 +19,12 @@ public class EnemySpawner : MonoBehaviour {
 		Grabber.player=player;
 	}
 
+	void OnDestroy()
+	{
+		Cash.totalCash += points/100;
+		PlayerPrefs.SetInt("cash", Cash.totalCash);
+	}
+
 	void Update()
 	{
 		if(!player.gameObject.activeSelf) Application.Quit();
