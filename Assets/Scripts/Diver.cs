@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Diver : EnemyBase
 {
-	public static Transform player;
 	private Vector3 rotation=Vector3.zero;
 	private Transform mouthL;
 	private Transform mouthR;

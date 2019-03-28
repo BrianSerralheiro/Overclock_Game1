@@ -14,9 +14,7 @@ public class EnemySpawner : MonoBehaviour {
 	void Start()
 	{
 		points=0;
-		Shooter.player=player;
-		Diver.player=player;
-		Grabber.player=player;
+		EnemyBase.player=player;
 	}
 
 	void OnDestroy()

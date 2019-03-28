@@ -13,8 +13,7 @@ public class Shooter : EnemyBase
 	private Transform armR;
 	private Transform legL;
 	private Transform legR;
-	private Vector3 vector = new Vector3(); 
-	public static Transform player;
+	private Vector3 vector = new Vector3();
 	protected void Start()
 	{
 		base.Start();

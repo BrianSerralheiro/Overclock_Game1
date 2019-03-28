@@ -21,16 +21,13 @@ public class SuaperTest : MonoBehaviour {
 			green.SetActive(id==1);
 			blue.SetActive(id==2);
 			if(id==0){
-				Diver.player=red.transform;
-				Shooter.player=red.transform;
+				EnemyBase.player=red.transform;
 			}
 			if(id==1){
-				Diver.player=green.transform;
-				Shooter.player=green.transform;
+				EnemyBase.player=green.transform;
 			}
 			if(id==2){
-				Diver.player=blue.transform;
-				Shooter.player=blue.transform;
+				EnemyBase.player=blue.transform;
 			}
 		}
 	}

@@ -6,8 +6,6 @@ public class Boss1 : EnemyBase {
 
 	private Transform wingL;
 	private Transform wingR;
-	[SerializeField]
-	private float timer;
 	private Vector3 dir=Vector3.right+Vector3.up;
 	enum State
 	{
@@ -18,7 +16,7 @@ public class Boss1 : EnemyBase {
 	[SerializeField]
 	State state;
 	private Vector3 vector = new Vector3();
-	public void Start()
+	public new void Start()
 	{
 		base.Start();
 		hp=600;
@@ -35,14 +33,13 @@ public class Boss1 : EnemyBase {
 	}
 
 
-	void Update()
+	new void Update()
 	{
 		base.Update();
 		if(state==State.intro)
 		{
 			transform.Translate(0,-Time.deltaTime,0);
 			if(transform.position.y<7)state=State.moving;
-			timer=5;
 		}else if(state==State.moving)
 		{
 			if(transform.position.y>9)dir.y=-Mathf.Abs(dir.y);
@@ -70,7 +67,7 @@ public class Boss1 : EnemyBase {
 	{
 		transform.position=new Vector3(2.5f,14,0);
 	}
-	private void OnCollisionEnter2D(Collision2D col)
+	private new void OnCollisionEnter2D(Collision2D col)
 	{
 		if(vector.z>5)base.OnCollisionEnter2D(col);
 	}

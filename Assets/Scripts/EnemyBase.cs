@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour {
 	protected int points;
 	protected int hp=8;
-	public static int count;
+	public static Transform player;
 	private float damageTimer;
 	protected SpriteRenderer _renderer;
 
@@ -47,7 +47,7 @@ public class EnemyBase : MonoBehaviour {
 			transform.position=new Vector3(i%2>0 ? -1 : 6,(10-(i-1)/2*2.5f),0);
 		}
 	}
-	void OnDestroy()
+	protected void OnDestroy()
 	{
 		if(hp<=0)
 		{

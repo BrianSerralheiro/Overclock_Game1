@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Grabber : EnemyBase {
-	public static Transform player;
 	private Vector3 rotation = Vector3.zero;
 	private Transform armL;
 	private Transform armR;
