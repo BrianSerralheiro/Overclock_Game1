@@ -15,6 +15,7 @@ public class Boss2 : EnemyBase {
 	private LineRenderer lineelbowR;
 	private LineRenderer lineclawL;
 	private LineRenderer lineclawR;
+	private Vector3[] pos={new Vector3(-0.5f,0),new Vector3(-0.15f,-0.06f),new Vector3(0.15f,-0.06f), new Vector3(0.5f,0)};
 	private Vector3 target;
 	private float timer;
 	private Transform moving;
@@ -104,15 +105,53 @@ public class Boss2 : EnemyBase {
 		else if(state==State.waiting)
 		{
 			timer-=Time.deltaTime;
-			if(timer<0)state=State.punching;
+			//if(moving)moving.position=Vector3.MoveTowards(moving.position,)
+			if(timer<0){
+				if(clawL || clawR){
+					state=State.punching;
+					target=player.position;
+					if(clawL && clawR)moving=Random.value<0.5f?clawR:clawL;
+					else
+					{
+						if(clawL)moving=clawL;
+						if(clawR)moving=clawR;
+					}
+				}
+				else
+				{
+					state=State.shooting;
+					timer=3;
+				}
+			}
 		}
 		else if(state==State.shooting)
 		{
-
+			timer-=Time.deltaTime;
+			if(timer<0)
+			{
+				for(int i = 0; i<4; i++)
+				{
+					Shoot(i);
+				}
+				timer=0.6f;
+			}
 		}
 		else if(state==State.punching)
 		{
-
+			if(moving)
+			{
+				moving.position=Vector3.MoveTowards(moving.position,target,3*Time.deltaTime);
+				if((target-moving.position).sqrMagnitude<1f)
+				{
+					state=State.waiting;
+					timer=1;
+				}
+			}
+			else
+			{
+				state=State.waiting;
+				timer=2;
+			}
 		}
 
 		if(clawL){
@@ -150,6 +189,15 @@ public class Boss2 : EnemyBase {
 			v3.z=0.1f;
 			render.SetPosition(i,v3);
 		}
+	}
+	void Shoot(int i)
+	{
+		GameObject go = new GameObject("enemybullet");
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss2[7];
+		go.AddComponent<BoxCollider2D>();
+		go.AddComponent<Bullet>().owner=name;
+		go.transform.position=eyes.position+pos[i];
+		go.transform.up=Vector3.down;
 	}
 	protected new void OnDestroy()
 	{
