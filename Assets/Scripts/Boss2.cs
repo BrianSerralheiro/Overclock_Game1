@@ -19,6 +19,8 @@ public class Boss2 : EnemyBase {
 	private Vector3 target;
 	private float timer;
 	private Transform moving;
+	private Vector3 vectorB=new Vector3(0,-0.6f,0.1f);
+	private Vector3 vectorT=new Vector3(0,-0.1f,0.1f);
 	private Vector3 left=new Vector3(1.1f,-1,0);
 	private Vector3 right = new Vector3(-1.1f,-1,0);
 	enum State
@@ -34,7 +36,7 @@ public class Boss2 : EnemyBase {
 		base.Start();
 		hp=500;
 		points = 1000;
-		GameObject go = new GameObject("clawL");
+		GameObject go = new GameObject("enemy");
 		go.AddComponent<EnemyBase>().SetHP(50);
 		lineclawL=go.AddComponent<LineRenderer>();
 		Config(lineclawL);
@@ -49,7 +51,7 @@ public class Boss2 : EnemyBase {
 		Config(lineelbowL);
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss2[2];
 		elbowL=go.transform;
-		go = new GameObject("clawR");
+		go = new GameObject("enemy");
 		lineclawR=go.AddComponent<LineRenderer>();
 		Config(lineclawR);
 		go.AddComponent<EnemyBase>().SetHP(50);
@@ -68,10 +70,8 @@ public class Boss2 : EnemyBase {
 		sr.sprite=SpriteBase.I.boss2[2];
 		sr.flipX=true;
 		elbowR=go.transform;
-		Vector3 v=new Vector3(2,-4,0);
-		clawL.position=transform.position+v;
-		v.x=-2;
-		clawR.position=transform.position+v;
+		clawL.position=transform.position+left;
+		clawR.position=transform.position+right;
 		go = new GameObject("lidB");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss2[3];
 		lidB=go.transform;
@@ -79,8 +79,8 @@ public class Boss2 : EnemyBase {
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss2[4];
 		lidT=go.transform;
 		lidB.parent=lidT.parent=transform;
-		lidT.localPosition=new Vector3(0,-0.1f,0.1f);
-		lidB.localPosition=new Vector3(0,-0.6f,0.1f);
+		lidT.localPosition=vectorT;
+		lidB.localPosition=vectorB;
 		go = new GameObject("eye");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss2[5];
 		eye=go.transform;
@@ -99,15 +99,23 @@ public class Boss2 : EnemyBase {
 		if(state==State.intro)
 		{
 			transform.Translate(0,-Time.deltaTime,0);
-			if(transform.position.y<8) state=State.waiting;
-			timer=5;
+			clawL.position=transform.position+left;
+			clawR.position=transform.position+right;
+			if(transform.position.y<8){state=State.waiting;
+			timer=5; }
 		}
 		else if(state==State.waiting)
 		{
 			timer-=Time.deltaTime;
-			//if(moving)moving.position=Vector3.MoveTowards(moving.position,)
+			if(vectorB.y<-0.6f) vectorB.y+=Time.deltaTime/10;
+			if(clawL && (clawL.position-transform.position).sqrMagnitude>5)clawL.position=Vector3.MoveTowards(clawL.position,transform.position+left,5*Time.deltaTime);
+			if(clawR && (clawR.position-transform.position).sqrMagnitude>5) clawR.position=Vector3.MoveTowards(clawR.position,transform.position+right,5*Time.deltaTime);
 			if(timer<0){
 				if(clawL || clawR){
+					if(Random.value<=0.3f){
+						state=State.shooting;
+						timer=2;
+					}else{
 					state=State.punching;
 					target=player.position;
 					if(clawL && clawR)moving=Random.value<0.5f?clawR:clawL;
@@ -115,6 +123,7 @@ public class Boss2 : EnemyBase {
 					{
 						if(clawL)moving=clawL;
 						if(clawR)moving=clawR;
+					}
 					}
 				}
 				else
@@ -127,6 +136,7 @@ public class Boss2 : EnemyBase {
 		else if(state==State.shooting)
 		{
 			timer-=Time.deltaTime;
+			if(vectorB.y>=-1f)vectorB.y-=Time.deltaTime/10;
 			if(timer<0)
 			{
 				for(int i = 0; i<4; i++)
@@ -134,6 +144,7 @@ public class Boss2 : EnemyBase {
 					Shoot(i);
 				}
 				timer=0.6f;
+				if(clawL || clawR)state=State.waiting;
 			}
 		}
 		else if(state==State.punching)
@@ -144,16 +155,19 @@ public class Boss2 : EnemyBase {
 				if((target-moving.position).sqrMagnitude<1f)
 				{
 					state=State.waiting;
-					timer=1;
+					timer=3;
 				}
 			}
 			else
 			{
 				state=State.waiting;
-				timer=2;
+				timer=1;
 			}
 		}
 
+		lidB.localPosition=vectorB;
+		vectorT.y=-(lidB.localPosition.y+0.6f+0.1f);
+		lidT.localPosition=vectorT;
 		if(clawL){
 			MoveElbow(elbowL,transform.position+left,clawL.position,true);
 			Chock(lineclawL,elbowL.position,clawL.position);
@@ -174,7 +188,6 @@ public class Boss2 : EnemyBase {
 		l.positionCount=10;
 		l.widthMultiplier=0.1f;
 		l.material=SpriteBase.I.shock;
-		//l.material=Material.
 	}
 	private void Chock(LineRenderer render,Vector3 v1,Vector3 v2)
 	{
@@ -196,7 +209,7 @@ public class Boss2 : EnemyBase {
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss2[7];
 		go.AddComponent<BoxCollider2D>();
 		go.AddComponent<Bullet>().owner=name;
-		go.transform.position=eyes.position+pos[i];
+		go.transform.position=eyes.position+pos[i]+Vector3.back*0.5f;
 		go.transform.up=Vector3.down;
 	}
 	protected new void OnDestroy()
@@ -225,5 +238,9 @@ public class Boss2 : EnemyBase {
 			if(b)f*=-1;
 			t.position=mid-f*(5-d)/2;
 		}
+	}
+	private new void OnCollisionEnter2D(Collision2D col)
+	{
+		if(vectorB.y<-0.7f) base.OnCollisionEnter2D(col);
 	}
 }
