@@ -102,7 +102,7 @@ public class Boss2 : EnemyBase {
 			clawL.position=transform.position+left;
 			clawR.position=transform.position+right;
 			if(transform.position.y<8){state=State.waiting;
-			timer=5; }
+			timer=5;}
 		}
 		else if(state==State.waiting)
 		{
@@ -137,6 +137,7 @@ public class Boss2 : EnemyBase {
 		{
 			timer-=Time.deltaTime;
 			if(vectorB.y>=-1f)vectorB.y-=Time.deltaTime/10;
+			if(!clawL && !clawR)transform.Translate(Mathf.Sin(Time.time)*Time.deltaTime,0,0);
 			if(timer<0)
 			{
 				for(int i = 0; i<4; i++)
