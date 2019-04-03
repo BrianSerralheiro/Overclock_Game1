@@ -244,4 +244,8 @@ public class Boss2 : EnemyBase {
 	{
 		if(vectorB.y<-0.7f) base.OnCollisionEnter2D(col);
 	}
+	public override void Position(int i)
+	{
+		transform.position=new Vector3(2.5f,14,0);
+	}
 }
