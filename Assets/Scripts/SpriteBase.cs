@@ -11,6 +11,7 @@ public class SpriteBase : MonoBehaviour {
 	public Sprite diver;
 	public Sprite carrier;
 	public Sprite[] grabber;
+	public Sprite[] bat;
 	public Sprite item;
 	public Sprite[] legs;
 	public Sprite[] mouth;
