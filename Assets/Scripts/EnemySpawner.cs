@@ -80,6 +80,9 @@ public class EnemySpawner : MonoBehaviour {
 			case 'K':
 				en=Reuse<BatGirl>(SpriteBase.I.batgirl[0]);
 				break;
+			case 'L':
+				en=Reuse<Header>(SpriteBase.I.header[0]);
+				break;
 			default :
 				timer=s[1]-48;
 				break;
