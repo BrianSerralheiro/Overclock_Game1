@@ -213,9 +213,8 @@ public class Boss2 : EnemyBase {
 		go.transform.position=eyes.position+pos[i]+Vector3.back*0.5f;
 		go.transform.up=Vector3.down;
 	}
-	protected new void OnDestroy()
+	protected override void Die()
 	{
-		base.OnDestroy();
 		Destroy(elbowL.gameObject);
 		Destroy(elbowR.gameObject);
 	}

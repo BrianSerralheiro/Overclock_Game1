@@ -33,8 +33,12 @@ public class EnemyBase : MonoBehaviour {
 		Bullet bull=col.gameObject.GetComponent<Bullet>();
 		if(bull)i=bull.damage;
 		hp-=i;
-		if(hp<=0)Destroy(gameObject);
+		if(hp<=0)Die();
 		damageTimer = 1;
+	}
+	protected virtual void Die()
+	{
+		Destroy(gameObject);
 	}
 	public virtual void Position(int i)
 	{
@@ -47,7 +51,7 @@ public class EnemyBase : MonoBehaviour {
 			transform.position=new Vector3(i%2>0 ? -1 : 6,(10-(i-1)/2*2.5f),0);
 		}
 	}
-	protected void OnDestroy()
+	private void OnDestroy()
 	{
 		if(hp<=0)
 		{
