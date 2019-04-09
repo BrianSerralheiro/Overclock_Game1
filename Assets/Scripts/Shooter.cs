@@ -14,7 +14,7 @@ public class Shooter : EnemyBase
 	private Transform legL;
 	private Transform legR;
 	private Vector3 vector = new Vector3();
-	protected void Start()
+	protected new void Start()
 	{
 		base.Start();
 		points = 100;
@@ -53,7 +53,7 @@ public class Shooter : EnemyBase
 		finalpoint=new Vector3(i%2>0 ? 1 : 4, 9,0);
 	}
 }
-void Update()
+new void Update()
 {
 	if(Ship.paused) return;
 	if(position>=0)
