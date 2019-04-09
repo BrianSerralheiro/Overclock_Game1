@@ -62,7 +62,7 @@ public class Ship : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Alpha1))OnLevel(1);
 		if(Input.GetKeyDown(KeyCode.Alpha2))OnLevel(2);
 		if(Input.GetKeyDown(KeyCode.Alpha3))OnLevel(3);
-		moveto.Set(Input.mousePosition.x/width*5f,Input.mousePosition.y/height*10f,0);
+		moveto.Set(Input.mousePosition.x/width*5f,Input.mousePosition.y/height*10f,-0.1f);
 
 		if(Input.GetMouseButtonDown(0))
 		{
@@ -93,6 +93,9 @@ public class Ship : MonoBehaviour {
 			 transform.Translate((moveto+offset-transform.position).normalized*speed*Time.deltaTime);
 			if(offset==Vector3.zero && !(Mathf.Abs(moveto.x-transform.position.x)>1 || Mathf.Abs(moveto.y-transform.position.y)>1))
 				offset=transform.position-moveto;
+			v=transform.position;
+			v.z=-0.1f;
+			transform.position=v;
 		}
 	}
 	void OnLevel(int i)
