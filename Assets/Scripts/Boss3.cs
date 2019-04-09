@@ -40,6 +40,10 @@ public class Boss3 : EnemyBase {
 		henderer.sprite=SpriteBase.I.boss3[2];
 		head=go.transform;
 		body.parent=head.parent=transform;
+		go=new GameObject("eyes");
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss3[5];
+		go.transform.parent=body.parent=head.parent=transform;
+		go.transform.localPosition=new Vector3(0,0.66f,-0.1f);
 		body.localPosition=new Vector3(0,-0.44f,-0.01f);
 		head.localPosition=new Vector3(0,0.8f,-0.02f);
 
@@ -53,10 +57,13 @@ public class Boss3 : EnemyBase {
 
 		go=new GameObject("dark");
 		darkhren=go.AddComponent<SpriteRenderer>();
-		darkhren.sprite=Sprite.Create(new Texture2D(2,2),new Rect(0,0,2,2),new Vector2(0,0));
+		Texture2D t=new Texture2D(1,1);
+		t.SetPixels(new Color[]{Color.black});
+		t.Apply(false);
+		darkhren.sprite=Sprite.Create(t,new Rect(0,0,1,1),new Vector2(0,0));
 		//darkcol.a=0;
 		darkhren.color=darkcol;
-		go.transform.localScale=new Vector3(250,500);
+		go.transform.localScale=new Vector3(500,1000);
 		go.transform.position=new Vector3(0,0,-0.09f);
 	}
 	
@@ -107,7 +114,7 @@ public class Boss3 : EnemyBase {
 			}
 			else if(timer>0.5f)
 			{
-				slashscl.y=(1-timer)*200;
+				slashscl.y=(1-timer)*100;
 			}
 			else if(timer>0)
 			{
@@ -142,7 +149,7 @@ public class Boss3 : EnemyBase {
 		go.AddComponent<Bullet>().owner=name;
 		go.transform.position=transform.position+v;
 		go.transform.up=-transform.up;
-		go.transform.localScale=Vector3.one*5;
+		go.transform.localScale=Vector3.one*2;
 	}
 	void Bat()
 	{
@@ -154,5 +161,9 @@ public class Boss3 : EnemyBase {
 		r.isKinematic=true;
 		r.useFullKinematicContacts=true;
 		go.transform.position=head.position;
+	}
+	public override void Position(int i)
+	{
+		transform.position=new Vector3(2.5f,14,0);
 	}
 }
