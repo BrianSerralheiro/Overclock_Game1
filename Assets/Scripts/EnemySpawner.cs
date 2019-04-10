@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour {
 	private int counter;
 	public float timer;
 
-//A0A1A2t5B8B3t5C0C1C2t8A0t1A1t1A2t1A4t1A6t1A8t5D0D2
+	//J1T1J0T1J2T3K1T9L1T6J1J0J2T9M1
 	void Start()
 	{
 		points=0;
@@ -70,6 +70,9 @@ public class EnemySpawner : MonoBehaviour {
 				break;
 			case 'G':
 				en=Reuse<Lasor>(SpriteBase.I.Lasor[0]);
+				break;
+			case 'H':
+				en=Reuse<Launcher>(SpriteBase.I.launcher[0]);
 				break;
 			case 'I':
 				en=Reuse<Boss2>(SpriteBase.I.boss2[0]);
