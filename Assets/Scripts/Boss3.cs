@@ -141,6 +141,12 @@ public class Boss3 : EnemyBase {
 			timer=1;
 		}
 	}
+	protected override void Die()
+	{
+		Destroy(gameObject);
+		Destroy(slash.gameObject);
+		Destroy(darkhren.gameObject);
+	}
 	void Shoot(Vector3 v)
 	{
 		GameObject go = new GameObject("enemybullet");
