@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ItemDrop : MonoBehaviour 
 {
-	private bool health;
-
 	private int id;
 
 	// Use this for initialization
 	void Start () 
 	{
-		id = Random.Range(0 , 1);
+		id = Random.Range(0 , 2);
+		GetComponent<SpriteRenderer>().sprite = SpriteBase.I.item[id];
+		gameObject.AddComponent<BoxCollider2D>().isTrigger = true;
 	}
 	
 	// Update is called once per frame
