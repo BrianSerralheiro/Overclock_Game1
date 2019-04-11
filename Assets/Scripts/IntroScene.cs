@@ -16,6 +16,7 @@ public class IntroScene : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		SoundManager.Play(0);
 		introColor = studioLogo.color;
 		Timer = 5f;
 	}
