@@ -89,6 +89,9 @@ public class EnemySpawner : MonoBehaviour {
 			case 'M':
 				en=Reuse<Boss3>(SpriteBase.I.boss3[0]);
 				break;
+			case 'S':
+				en=Reuse<Drone>(SpriteBase.I.drone[SuaperTest.id]);
+				break;
 			default :
 				timer=s[1]-48;
 				break;

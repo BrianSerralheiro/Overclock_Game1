@@ -21,6 +21,7 @@ public class SpriteBase : MonoBehaviour {
 	public Sprite[] shooterarms;
 	public Sprite[] shooterlegs;
 	public Sprite[] carrierlegs;
+	public Sprite[] drone;
 	public Sprite[] boss1;
 	public Sprite[] boss2;
 	public Sprite[] boss3;

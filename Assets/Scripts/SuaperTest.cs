@@ -6,7 +6,7 @@ public class SuaperTest : MonoBehaviour {
 	public GameObject red;
 	public GameObject green;
 	public GameObject blue;
-	public int id;
+	public static int id;
 	// Use this for initialization
 	void Start () {
 		

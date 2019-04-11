@@ -39,6 +39,17 @@ public class EnemyBase : MonoBehaviour {
 	protected virtual void Die()
 	{
 		Destroy(gameObject);
+		if(hp<=0)
+		{
+			EnemySpawner.points+=points;
+			if(Random.value <= 0.5)
+			{
+				GameObject go = new GameObject("ItemDrop");
+				go.AddComponent<SpriteRenderer>();
+				go.AddComponent<ItemDrop>();
+				go.transform.position = transform.position;
+			}
+		}
 	}
 	public virtual void Position(int i)
 	{
@@ -53,16 +64,6 @@ public class EnemyBase : MonoBehaviour {
 	}
 	private void OnDestroy()
 	{
-		if(hp<=0)
-		{
-			EnemySpawner.points+=points;
-			if(Random.value <= 0.5)
-			{
-				GameObject go = new GameObject("ItemDrop");
-				go.AddComponent<SpriteRenderer>();
-				go.AddComponent<ItemDrop>();
-				go.transform.position = transform.position;
-			}
-		}
+		
 	}
 }

@@ -5,16 +5,20 @@ using UnityEngine;
 public class ItemDrop : MonoBehaviour 
 {
 	private int id;
+	private bool set;
 
-	// Use this for initialization
 	void Start () 
 	{
-		id = Random.Range(0 , 2);
+		Set(Random.Range(0 , 2));
+	}
+	public void Set(int i)
+	{
+		if(set)return;
+		set=true;
+		id = i;
 		GetComponent<SpriteRenderer>().sprite = SpriteBase.I.item[id];
 		gameObject.AddComponent<BoxCollider2D>().isTrigger = true;
 	}
-	
-	// Update is called once per frame
 	void Update () 
 	{
 		transform.Translate(0,-Time.deltaTime,0);
