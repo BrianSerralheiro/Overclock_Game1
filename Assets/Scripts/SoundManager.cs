@@ -20,6 +20,7 @@ public class SoundManager : MonoBehaviour
 		soundPlayer = go.AddComponent<AudioSource>();
 		soundPlayer.loop = true;
 		DontDestroyOnLoad(go);
+		DontDestroyOnLoad(gameObject);
 		_soundManager = this;
 		//Destroy(this);
 	}

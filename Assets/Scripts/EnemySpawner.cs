@@ -13,6 +13,7 @@ public class EnemySpawner : MonoBehaviour {
 	//J1T1J0T1J2T3K1T9L1T6J1J0J2T9M1
 	void Start()
 	{
+		SoundManager.Play(1);
 		points=0;
 		EnemyBase.player=player;
 	}
