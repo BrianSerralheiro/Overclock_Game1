@@ -1,21 +1,21 @@
 fileFormatVersion: 2
 guid: 309bdccd010749543aa9bbcbfce54533
-timeCreated: 1554243496
+timeCreated: 1554908150
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: final boss_0
-    21300002: final boss_1
-    21300004: final boss_2
-    21300006: final boss_3
-    21300008: final boss_4
-    21300010: final boss_5
-    21300012: final boss_6
-    21300014: final boss_7
-    21300016: final boss_8
+    21300000: final boss
+    21300002: boss_aser
+    21300004: boss_shot
+    21300006: subboss
+    21300008: bossrange
+    21300010: boss_o.o
+    21300012: boss_fill
+    21300014: boss_XD
+    21300016: boss_Xd
     21300018: final boss_9
-    21300020: final boss_10
-    21300022: final boss_11
+    21300020: bossa_8I
+    21300022: "bossa_\xAC\xAC"
     21300024: final boss_12
     21300026: overlay
   serializedVersion: 4
@@ -92,7 +92,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: final boss_0
+      name: final boss
       rect:
         serializedVersion: 2
         x: 0
@@ -105,7 +105,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: final boss_1
+      name: boss_aser
       rect:
         serializedVersion: 2
         x: 108
@@ -118,7 +118,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: final boss_2
+      name: boss_shot
       rect:
         serializedVersion: 2
         x: 395
@@ -131,12 +131,12 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: final boss_3
+      name: subboss
       rect:
         serializedVersion: 2
-        x: 846
+        x: 883
         y: 813
-        width: 713
+        width: 676
         height: 718
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -144,7 +144,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: final boss_4
+      name: bossrange
       rect:
         serializedVersion: 2
         x: 556
@@ -157,7 +157,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: final boss_5
+      name: boss_o.o
       rect:
         serializedVersion: 2
         x: 164
@@ -170,7 +170,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: final boss_6
+      name: boss_fill
       rect:
         serializedVersion: 2
         x: 891
@@ -183,7 +183,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: final boss_7
+      name: boss_XD
       rect:
         serializedVersion: 2
         x: 163
@@ -196,7 +196,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: final boss_8
+      name: boss_Xd
       rect:
         serializedVersion: 2
         x: 164
@@ -222,7 +222,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: final boss_10
+      name: bossa_8I
       rect:
         serializedVersion: 2
         x: 169
@@ -235,7 +235,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: final boss_11
+      name: "bossa_\xAC\xAC"
       rect:
         serializedVersion: 2
         x: 615
