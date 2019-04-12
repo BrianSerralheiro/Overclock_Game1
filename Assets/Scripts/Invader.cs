@@ -32,6 +32,6 @@ public class Invader : EnemyBase {
 		}
 		if(player.position.x<transform.position.x)transform.Translate(-Time.deltaTime/2,0,0);
 		else transform.Translate(Time.deltaTime/2,0,0);
-		if(transform.position.y>8)transform.Translate(0,-Time.deltaTime,0);
+		if(transform.position.y>9)transform.Translate(0,-Time.deltaTime,0);
 	}
 }
