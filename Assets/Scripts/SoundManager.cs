@@ -36,4 +36,15 @@ public class SoundManager : MonoBehaviour
 		_soundManager.soundPlayer.Play();
 	}
 
+	public static void PlayEffects (int i)
+	{
+		if(_soundManager == null)
+		{
+			Debug.LogWarning("SoundEffects nao inicializado");
+			return;
+		}
+		_soundManager.soundPlayer.PlayOneShot(_soundManager._sounds[i],1);
+
+	}
+
 }
