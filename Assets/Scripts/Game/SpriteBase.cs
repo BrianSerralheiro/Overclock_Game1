@@ -17,6 +17,7 @@ public class SpriteBase : MonoBehaviour {
 	public Sprite[] header;
 	public Sprite[] invader;
 	public Sprite[] slasher;
+	public Sprite[] bomber;
 	public Sprite[] item;
 	public Sprite[] legs;
 	public Sprite[] mouth;

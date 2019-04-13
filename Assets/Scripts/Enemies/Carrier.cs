@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Carrier : EnemyBase {
-	private Vector3 finaalposition;
 	private float timer=-2f;
 	private Diver diver;
 
 	private Transform[] legs;
 	private Vector3 vector = new Vector3();
 
-	public void Start()
+	public new void Start()
 	{
 		base.Start();
 		hp=100;
@@ -34,18 +33,13 @@ public class Carrier : EnemyBase {
 	public override void Position(int i)
 	{
 		base.Position(i);
-		if(i<3)
+		if(i>=3)
 		{
-			finaalposition=new Vector3(i*2.5f,-12,0);
-		}
-		else
-		{
-			finaalposition=new Vector3(i%2>0 ? 6 : -1,10-(i-1)/2*2.5f,0);
 			transform.Rotate(0,0,i%2==0?-90:90);
 		}
 	}
 
-	void Update()
+	new void Update()
 	{
 		base.Update();
 		transform.Translate(0,-Time.deltaTime,0);
@@ -70,7 +64,7 @@ public class Carrier : EnemyBase {
 		legs[4].localEulerAngles=vector;
 		legs[5].localEulerAngles=-vector;
 
-		if(transform.position.x<-2 || transform.position.x>7 || transform.position.y<-2 || transform.position.y>12)Destroy(gameObject);
+		if(transform.position.x<-2 || transform.position.x>7 || transform.position.y<-2 || transform.position.y>12)Die();
 	}
 	void Spawn()
 	{

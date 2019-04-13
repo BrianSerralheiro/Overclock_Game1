@@ -96,6 +96,9 @@ public class EnemySpawner : MonoBehaviour {
 			case 'O':
 				en=Reuse<Slasher>(SpriteBase.I.slasher[0]);
 				break;
+			case 'P':
+				en=Reuse<Bomber>(SpriteBase.I.bomber[0]);
+				break;
 			case 'S':
 				en=Reuse<Drone>(SpriteBase.I.drone[SuaperTest.id]);
 				break;
