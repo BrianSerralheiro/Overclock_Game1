@@ -8,8 +8,8 @@ public class Lasor : EnemyBase
 	private Vector3 dir=Vector3.right;
 	private Transform laser;
 	private SpriteRenderer charge;
-	private BoxCollider2D collider;
-	protected void Start()
+	private new BoxCollider2D collider;
+	protected new void Start()
 	{
 		base.Start();
 		hp=40;
@@ -38,12 +38,12 @@ public class Lasor : EnemyBase
 		base.Position(i%3);
 	}
 
-	void OnCollisionEnter2D(Collision2D col)
+	new void OnCollisionEnter2D(Collision2D col)
 	{
 		if(col.otherCollider.name=="laserbody") return;
 		base.OnCollisionEnter2D(col);
 	}
-		void Update(){
+	new void Update(){
 		base.Update();
 		if(transform.position.y>8)transform.Translate(0,-Time.deltaTime,0);
 		else 

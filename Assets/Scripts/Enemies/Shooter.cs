@@ -14,6 +14,7 @@ public class Shooter : EnemyBase
 	private Transform legL;
 	private Transform legR;
 	private Vector3 vector = new Vector3();
+	private Vector3 rot = new Vector3();
 	protected new void Start()
 	{
 		base.Start();
@@ -68,7 +69,8 @@ new void Update()
 	}
 	else
 	{
-		transform.eulerAngles=new Vector3(0,0,Mathf.Atan2(transform.position.x-player.position.x,player.position.y-transform.position.y)*Mathf.Rad2Deg);
+		rot.Set(0,0,Mathf.Atan2(transform.position.x-player.position.x,player.position.y-transform.position.y)*Mathf.Rad2Deg);
+		transform.eulerAngles=rot;
 		if(shoottimer>0) shoottimer-=Time.deltaTime;
 	}
 		vector.Set(0,0,180+Mathf.PingPong(Time.time*100,35f));
