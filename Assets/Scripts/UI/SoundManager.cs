@@ -13,6 +13,8 @@ public class SoundManager : MonoBehaviour
 
 	private static SoundManager _soundManager;
 
+	private static float volumeSFX = 1;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -43,8 +45,22 @@ public class SoundManager : MonoBehaviour
 			Debug.LogWarning("SoundEffects nao inicializado");
 			return;
 		}
-		_soundManager.soundPlayer.PlayOneShot(_soundManager._sounds[i],1);
+		float f = _soundManager.soundPlayer.volume;
+		_soundManager.soundPlayer.volume = 1;
+		_soundManager.soundPlayer.PlayOneShot(_soundManager._sounds[i],volumeSFX);
+		_soundManager.soundPlayer.volume = f;
 
+	}
+
+	public static void VolumeMusic(float i)
+	{
+		_soundManager.soundPlayer.volume = i;
+	}
+
+	public static void VolumeSFX(float i)
+	{
+
+		volumeSFX = i;
 	}
 
 }
