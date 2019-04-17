@@ -6,7 +6,7 @@ public class EnemyBase : MonoBehaviour {
 	protected int points;
 	protected int hp=8;
 	public static Transform player;
-	private float damageTimer;
+	protected float damageTimer;
 	protected SpriteRenderer _renderer;
 
 	protected void Start()

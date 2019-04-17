@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 309bdccd010749543aa9bbcbfce54533
-timeCreated: 1554908150
+timeCreated: 1555458732
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -16,7 +16,7 @@ TextureImporter:
     21300018: final boss_9
     21300020: bossa_8I
     21300022: "bossa_\xAC\xAC"
-    21300024: final boss_12
+    21300024: static
     21300026: overlay
   serializedVersion: 4
   mipmaps:
@@ -248,7 +248,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: final boss_12
+      name: static
       rect:
         serializedVersion: 2
         x: 1142

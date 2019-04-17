@@ -29,6 +29,8 @@ public class SpriteBase : MonoBehaviour {
 	public Sprite[] boss1;
 	public Sprite[] boss2;
 	public Sprite[] boss3;
+	public Sprite[] boss4;
+	public Sprite[] screens;
 	public Material shock;
 	void Start () {
 		I=this;
