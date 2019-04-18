@@ -42,6 +42,7 @@ public class EnemyBase : MonoBehaviour {
 		if(hp<=0)
 		{
 			EnemySpawner.points+=points;
+			InGame_HUD._special += 0.01f;
 			if(Random.value <= 0.5)
 			{
 				GameObject go = new GameObject("ItemDrop");
