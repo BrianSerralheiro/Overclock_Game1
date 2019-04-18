@@ -8,6 +8,11 @@ public class InGame_HUD : MonoBehaviour
 	[SerializeField]
 	private Text scoreHUD;
 
+	public static float shipHealth = 1;
+
+	[SerializeField]
+	private RectTransform lifeFill;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -17,6 +22,7 @@ public class InGame_HUD : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		lifeFill.localScale = Vector3.right * shipHealth + Vector3.up;
 		scoreHUD.text = EnemySpawner.points.ToString();
 	}
 }

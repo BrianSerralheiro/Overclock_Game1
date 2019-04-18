@@ -45,6 +45,7 @@ public class Ship : MonoBehaviour {
 		if(col.gameObject.name=="playerbullet") return;
 		if(col.otherCollider.name=="laserbody") return;
 		if(--hp<=0) gameObject.SetActive(false);
+		InGame_HUD.shipHealth = (float)hp / (float)maxhp;
 		damageTimer = 1;
 	}
 	public void Heal(int i)
