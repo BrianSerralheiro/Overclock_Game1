@@ -14,7 +14,8 @@ public class Boss4 : EnemyBase {
 	}
 	[SerializeField]
 	State state;
-	private float timer=5;
+	private float timer=0.2f;
+	private float time=0;
 	private float ap=1f;
 	private State prev;
 	private bool left;
@@ -37,7 +38,7 @@ public class Boss4 : EnemyBase {
 		GameObject go=new GameObject("screen");
 		screenren=go.AddComponent<SpriteRenderer>();
 		go.transform.parent=transform;
-		go.transform.position=transform.position;
+		go.transform.localPosition=new Vector3(0.01f,-0.05f,-0.01f);
 		go=new GameObject("energy");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.zapper[1];
 		zap=go.transform;
@@ -55,12 +56,12 @@ public class Boss4 : EnemyBase {
 		go.transform.parent=zap;
 		go.transform.localPosition=new Vector3();
 		go.SetActive(false);
-		Screen(4,2.5f);
+		//Screen(1,2.5f);
 	}
 	new void OnCollisionEnter2D(Collision2D col)
 	{
 		if(col.otherCollider.name=="zap") return;
-		base.OnCollisionEnter2D(col);
+		if(state!=State.intro)base.OnCollisionEnter2D(col);
 		if(damageTimer>0)Screen(1,0.5f);
 	}
 	new void Update () {
@@ -76,8 +77,16 @@ public class Boss4 : EnemyBase {
 		if(state==State.intro)
 		{
 			transform.Translate(0,-Time.deltaTime,0);
-			if(transform.position.y<8)state=State.waiting;
-			timer=1;
+			if(timer<=0)
+			{
+				timer=0.2f;
+				screenren.sprite=screenren.sprite==screens[3] ? screens[2] : screens[3];
+			}
+			if(transform.position.y<8){
+				state=State.waiting;
+				timer=1;
+				Screen(0,0.1f);
+			}
 		}
 		else if(state==State.waiting)
 		{
@@ -86,8 +95,9 @@ public class Boss4 : EnemyBase {
 			if(transform.position.y<8f) transform.Translate(0,Time.deltaTime*2,0);
 			if(timer<=0)
 			{
-				while(state==prev)
+				do
 					state=(State)Random.Range(2,6);
+				while(state==prev);
 				prev=state;
 				if(state==State.zap)timer=4;
 			}
@@ -110,8 +120,6 @@ public class Boss4 : EnemyBase {
 		}
 		else if(state==State.slash)
 		{
-			if(player.position.x<transform.position.x) transform.Translate(-Time.deltaTime/2,0,0);
-			else transform.Translate(Time.deltaTime/2,0,0);
 			if(timer<=0)
 			{
 				Slash();
@@ -126,6 +134,8 @@ public class Boss4 : EnemyBase {
 		}
 		else if(state==State.bomb)
 		{
+			transform.Translate(Mathf.Cos(time)*Time.deltaTime*2,0,0);
+			time+=Time.deltaTime;
 			if(timer<=0)
 			{
 				Bomb();
@@ -136,6 +146,8 @@ public class Boss4 : EnemyBase {
 			{
 				state=State.waiting;
 				ap=1;
+				time=0;
+				timer=3;
 			}
 		}
 		else if(state==State.zap)
@@ -189,7 +201,7 @@ public class Boss4 : EnemyBase {
 		go.transform.up=-transform.up;
 		go.transform.localScale=Vector3.one*4f;
 		left=!left;
-		Screen(5,1);
+		Screen(5,0.8f);
 
 	}
 	void Slash()
@@ -219,7 +231,7 @@ public class Boss4 : EnemyBase {
 		go.transform.localPosition=vec*(left ? 1 : -1)+mod;
 		go.transform.parent=null;
 		left=!left;
-		Screen(2,2);
+		Screen(5,1);
 
 	}
 	private void Screen(int i,float f)
