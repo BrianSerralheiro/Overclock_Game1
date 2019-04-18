@@ -18,6 +18,7 @@ public class Boss2 : EnemyBase {
 	private Vector3[] pos={new Vector3(-0.5f,0),new Vector3(-0.15f,-0.06f),new Vector3(0.15f,-0.06f), new Vector3(0.5f,0)};
 	private Vector3 target;
 	private float timer;
+	private float time;
 	private Transform moving;
 	private Vector3 vectorB=new Vector3(0,-0.6f,0.1f);
 	private Vector3 vectorT=new Vector3(0,-0.1f,0.1f);
@@ -137,7 +138,10 @@ public class Boss2 : EnemyBase {
 		{
 			timer-=Time.deltaTime;
 			if(vectorB.y>=-1f)vectorB.y-=Time.deltaTime/10;
-			if(!clawL && !clawR)transform.Translate(Mathf.Sin(Time.time)*Time.deltaTime,0,0);
+			if(!clawL && !clawR){
+				transform.Translate(Mathf.Cos(time)*Time.deltaTime*2,0,0);
+				time+=Time.deltaTime;
+			}
 			if(timer<0)
 			{
 				for(int i = 0; i<4; i++)
