@@ -1,13 +1,13 @@
 fileFormatVersion: 2
 guid: c8e6c79c4548ebe4485883169037997f
-timeCreated: 1553366560
+timeCreated: 1555773048
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Shot_Red
     21300002: Shot_Orange
     21300004: Shot_Green2
-    21300006: Sprites_naves_principais_T_3
+    21300006: Burst_Yellow
     21300008: Shot_Green1
     21300010: Ship_Red
     21300012: Shot_Blue
@@ -17,6 +17,9 @@ TextureImporter:
     21300020: Burst_Green
     21300022: Burst_Red
     21300024: Burst_Blue
+    21300026: Shot_Yellow
+    21300028: Ship_Yellow
+    21300030: Sprites_naves_principais_T_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -230,6 +233,58 @@ TextureImporter:
         height: 28
       alignment: 2
       pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Shot_Yellow
+      rect:
+        serializedVersion: 2
+        x: 1202
+        y: 2051
+        width: 134
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Ship_Yellow
+      rect:
+        serializedVersion: 2
+        x: 1186
+        y: 1747
+        width: 169
+        height: 236
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprites_naves_principais_T_2
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 1731
+        width: 4
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Burst_Yellow
+      rect:
+        serializedVersion: 2
+        x: 1247
+        y: 1677
+        width: 43
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
