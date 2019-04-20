@@ -8,13 +8,7 @@ public class Bullet : MonoBehaviour {
 	public int time=1;
 	public string owner;
 	public int damage;
-	public void Position(Transform t)
-	{
-		gameObject.SetActive(true);
-		transform.position=t.position+t.up*30;
-		transform.up=t.up;
-		timer=time;
-	}
+	public bool pierce;
 	private void Start()
 	{
 		timer=1;
@@ -28,7 +22,7 @@ public class Bullet : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
-		if(col.gameObject.name!=owner)Destroy(gameObject);
+		if(col.gameObject.name!=owner && !pierce)Destroy(gameObject);
 	}
 	
 }

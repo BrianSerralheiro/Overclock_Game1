@@ -15,7 +15,6 @@ public class Ship : MonoBehaviour {
 	[SerializeField]
 	private int maxhp = 1;
 	private int hp;
-	public Bullet[] bulletPool;
 	private int width=Screen.width;
 	private int height=Screen.height;
 	private Vector3 moveto;
@@ -36,7 +35,7 @@ public class Ship : MonoBehaviour {
 	void Start()
 	{
 		//speed=5f;
-		OnLevel(1);
+		//OnLevel(1);
 		hp=maxhp;
 		_renderer = GetComponent<SpriteRenderer>();
 	}
@@ -111,18 +110,7 @@ public class Ship : MonoBehaviour {
 	{
 		OnLevel(++Level);
 	}
-	void Shoot()
-	{
-		for(int i = 0; i<bulletPool.Length; i++)
-		{
-			if(!bulletPool[i].gameObject.activeSelf)
-			{
-				bulletPool[i].Position(gun);
 
-				break;
-			}
-		}
-	}
 
 	public void Special()
 	{

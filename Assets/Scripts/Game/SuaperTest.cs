@@ -6,6 +6,7 @@ public class SuaperTest : MonoBehaviour {
 	public GameObject red;
 	public GameObject green;
 	public GameObject blue;
+	public GameObject yellow;
 	public static int id;
 	// Use this for initialization
 	void Start () {
@@ -16,10 +17,11 @@ public class SuaperTest : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Space))
 		{
-			if(++id>2)id=0;
+			if(++id>3)id=0;
 			red.SetActive(id==0);
 			green.SetActive(id==1);
 			blue.SetActive(id==2);
+			yellow.SetActive(id==3);
 			if(id==0){
 				EnemyBase.player=red.transform;
 			}
@@ -28,6 +30,10 @@ public class SuaperTest : MonoBehaviour {
 			}
 			if(id==2){
 				EnemyBase.player=blue.transform;
+			}
+			if(id==3)
+			{
+				EnemyBase.player=yellow.transform;
 			}
 		}
 	}
