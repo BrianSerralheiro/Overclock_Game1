@@ -1,11 +1,9 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Ship : MonoBehaviour {
 	float shoottimer;
-	[SerializeField]
-	Transform gun;
 	[SerializeField]
 	private Gun[] guns;
 	[SerializeField]
@@ -15,8 +13,9 @@ public class Ship : MonoBehaviour {
 	[SerializeField]
 	private int maxhp = 1;
 	private int hp;
-	private int width=Screen.width;
-	private int height=Screen.height;
+	private float width=Screen.width;
+	private float height=Screen.height;
+	[SerializeField]
 	private Vector3 moveto;
 	[SerializeField]
 	private Vector3 offset;
@@ -25,6 +24,7 @@ public class Ship : MonoBehaviour {
 	public static bool paused;
 
 	private float damageTimer;
+	private float size;
 
 	private SpriteRenderer _renderer;
 
@@ -54,6 +54,7 @@ public class Ship : MonoBehaviour {
 	}
 	void Update()
 	{
+		size=Scaler.size;
 		if(damageTimer > 0)
 		{
 			damageTimer -= Time.deltaTime;
@@ -62,7 +63,7 @@ public class Ship : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Alpha1))OnLevel(1);
 		if(Input.GetKeyDown(KeyCode.Alpha2))OnLevel(2);
 		if(Input.GetKeyDown(KeyCode.Alpha3))OnLevel(3);
-		moveto.Set(Input.mousePosition.x/width*5f,Input.mousePosition.y/height*10f,-0.1f);
+		moveto.Set(Input.mousePosition.x/width*Scaler.sizeX-Scaler.x,Input.mousePosition.y/height*Scaler.size*2f-Scaler.size,-0.1f);
 
 		if(Input.GetMouseButtonDown(0))
 		{
