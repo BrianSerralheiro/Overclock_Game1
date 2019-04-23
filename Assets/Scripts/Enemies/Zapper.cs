@@ -17,8 +17,8 @@ public class Zapper : EnemyBase {
 		line.positionCount=5;
 		line.widthMultiplier=0.1f;
 		BoxCollider2D col= go.AddComponent<BoxCollider2D>();
-		col.size=new Vector2(1,4);
-		col.offset=new Vector2(0,2f);
+		col.size=new Vector2(1,12);
+		col.offset=new Vector2(0,6f);
 		go.transform.parent=transform;
 		go.transform.localPosition=new Vector3(0,1,0.1f);
 		go.SetActive(false);
@@ -51,7 +51,7 @@ public class Zapper : EnemyBase {
 			if(!line.gameObject.activeSelf){
 				line.gameObject.SetActive(true);
 				Vector3 v=zap.position;
-				Vector3 f=transform.up;
+				Vector3 f=transform.up*3;
 				line.SetPosition(0,v);
 				for(int i = 1; i<4; i++)
 				{

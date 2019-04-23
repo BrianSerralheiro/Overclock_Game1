@@ -54,13 +54,13 @@ public class EnemyBase : MonoBehaviour {
 	}
 	public virtual void Position(int i)
 	{
-		if(i<3)
+		if(i<8)
 		{
-			transform.position=new Vector3(1+i*1.5f,11,0);
+			transform.position=new Vector3(i-3.5f,Scaler.sizeY+2,0);
 		}
 		else
 		{
-			transform.position=new Vector3(i%2>0 ? -1 : 6,(10-(i-1)/2*2.5f),0);
+			transform.position=new Vector3(i==8 ? -Scaler.sizeX/2f-1 : Scaler.sizeX/2+1,Scaler.sizeY-2,0);
 		}
 	}
 	private void OnDestroy()

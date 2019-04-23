@@ -45,13 +45,13 @@ public class Shooter : EnemyBase
 {
 	base.Position(i);
 	position=i;
-	if(i<3)
+	if(i<8)
 	{
-		finalpoint=new Vector3((i+1)*1.25f,9.5f,0);
+		finalpoint=new Vector3((i/7f*Scaler.sizeX-Scaler.sizeX/2f)*0.9f,Scaler.sizeY*0.9f,0);
 	}
 	else
 	{
-		finalpoint=new Vector3(i%2>0 ? 1 : 4, 9,0);
+		finalpoint=new Vector3(i==8 ? -Scaler.sizeX/2f*0.9f : Scaler.sizeX/2f*0.9f,Scaler.sizeY*0.6f,0);
 	}
 }
 new void Update()

@@ -18,7 +18,6 @@ public class Header : EnemyBase {
 		go.transform.localEulerAngles=new Vector3(0f,90,0);
 	}
 	
-	// Update is called once per frame
 	new void Update () {
 		base.Update();
 		timer+=Time.deltaTime;
@@ -35,8 +34,8 @@ public class Header : EnemyBase {
 		}
 		rot.Set(0,90*timer,0);
 		transform.eulerAngles=rot;
-		transform.Translate(dir[prev]*Time.deltaTime*2);
-		if(transform.position.x<-2 || transform.position.x>7 || transform.position.y<-2)Destroy(gameObject);
+		transform.Translate(dir[prev]*Time.deltaTime*3);
+		if(transform.position.x<-Scaler.sizeX/2f-2 || transform.position.x>Scaler.sizeX/2f+2 || transform.position.y<-Scaler.sizeY)Destroy(gameObject);
 	}
 	void Shoot()
 	{
@@ -45,8 +44,7 @@ public class Header : EnemyBase {
 		go.AddComponent<BoxCollider2D>();
 		go.AddComponent<Bullet>().owner=transform.name;
 		go.transform.position=transform.position;
-		Vector3 rotation = new Vector3(0,0,0);
-		rotation.z=Mathf.Atan2(transform.position.x-player.position.x,player.position.y-transform.position.y)*Mathf.Rad2Deg;
+		Vector3 rotation = new Vector3(0,0,Mathf.Atan2(transform.position.x-player.position.x,player.position.y-transform.position.y)*Mathf.Rad2Deg);
 		go.transform.eulerAngles=rotation;
 	}
 

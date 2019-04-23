@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour {
 	public Transform player;
 	public Material bg;
+	[TextArea]
 	public string wave;
 	public static int points;
 	private int counter;
@@ -52,61 +53,61 @@ public class EnemySpawner : MonoBehaviour {
 		switch(s[0])
 		{
 			case 'A':
-				en=Reuse<Shooter>(SpriteBase.I.shooter);
+				en=Spawn<Shooter>(SpriteBase.I.shooter);
 				break;
 			case 'B':
-				en=Reuse<Diver>(SpriteBase.I.diver);
+				en=Spawn<Diver>(SpriteBase.I.diver);
 				break;
 			case 'C':
-				en=Reuse<Carrier>(SpriteBase.I.carrier);
+				en=Spawn<Carrier>(SpriteBase.I.carrier);
 				break;
 			case 'D':
-				en=Reuse<Boss1>(SpriteBase.I.boss1[0]);
+				en=Spawn<Boss1>(SpriteBase.I.boss1[0]);
 				break;
 			case 'E':
-				en=Reuse<Grabber>(SpriteBase.I.grabber[0]);
+				en=Spawn<Grabber>(SpriteBase.I.grabber[0]);
 				break;
 			case 'F':
-				en=Reuse<Round>(SpriteBase.I.round[0]);
+				en=Spawn<Round>(SpriteBase.I.round[0]);
 				break;
 			case 'G':
-				en=Reuse<Lasor>(SpriteBase.I.Lasor[0]);
+				en=Spawn<Lasor>(SpriteBase.I.Lasor[0]);
 				break;
 			case 'H':
-				en=Reuse<Launcher>(SpriteBase.I.launcher[0]);
+				en=Spawn<Launcher>(SpriteBase.I.launcher[0]);
 				break;
 			case 'I':
-				en=Reuse<Boss2>(SpriteBase.I.boss2[0]);
+				en=Spawn<Boss2>(SpriteBase.I.boss2[0]);
 				break;
 			case 'J':
-				en=Reuse<Bat>(SpriteBase.I.bat[0]);
+				en=Spawn<Bat>(SpriteBase.I.bat[0]);
 				break;
 			case 'K':
-				en=Reuse<BatGirl>(SpriteBase.I.batgirl[0]);
+				en=Spawn<BatGirl>(SpriteBase.I.batgirl[0]);
 				break;
 			case 'L':
-				en=Reuse<Header>(SpriteBase.I.header[0]);
+				en=Spawn<Header>(SpriteBase.I.header[0]);
 				break;
 			case 'M':
-				en=Reuse<Boss3>(SpriteBase.I.boss3[0]);
+				en=Spawn<Boss3>(SpriteBase.I.boss3[0]);
 				break;
 			case 'N':
-				en=Reuse<Invader>(SpriteBase.I.invader[0]);
+				en=Spawn<Invader>(SpriteBase.I.invader[0]);
 				break;
 			case 'O':
-				en=Reuse<Slasher>(SpriteBase.I.slasher[0]);
+				en=Spawn<Slasher>(SpriteBase.I.slasher[0]);
 				break;
 			case 'P':
-				en=Reuse<Bomber>(SpriteBase.I.bomber[0]);
+				en=Spawn<Bomber>(SpriteBase.I.bomber[0]);
 				break;
 			case 'Q':
-				en=Reuse<Zapper>(SpriteBase.I.zapper[0]);
+				en=Spawn<Zapper>(SpriteBase.I.zapper[0]);
 				break;
 			case 'R':
-				en=Reuse<Boss4>(SpriteBase.I.boss4[0]);
+				en=Spawn<Boss4>(SpriteBase.I.boss4[0]);
 				break;
 			case 'S':
-				en=Reuse<Drone>(SpriteBase.I.drone[SuaperTest.id]);
+				en=Spawn<Drone>(SpriteBase.I.drone[SuaperTest.id]);
 				break;
 			default :
 				timer=s[1]-48;
@@ -114,7 +115,7 @@ public class EnemySpawner : MonoBehaviour {
 		}
 		if(en) en.Position(s[1]-48);
 	}
-	EnemyBase Reuse<t>(Sprite sp)where t :EnemyBase
+	EnemyBase Spawn<t>(Sprite sp)where t :EnemyBase
 	{
 		GameObject go=new GameObject("enemy");
 		go.AddComponent<SpriteRenderer>().sprite=sp;

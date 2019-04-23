@@ -24,13 +24,13 @@ public class Bat : EnemyBase {
 	public override void Position(int i)
 	{
 		base.Position(i);
-		if(i<3)
+		if(i<8)
 		{
-			target.Set(1+i*1.5f,5,0);
+			target.Set(transform.position.x,transform.position.y-5,0);
 		}
 		else
 		{
-			target.Set(i%2>0 ? 6 : -1,(8-(i-1)/2*2.5f),0);
+			target.Set(transform.position.x+(i==8 ? 5: -5),transform.position.y,0);
 		}
 	}
 	new void Update () {
@@ -40,7 +40,7 @@ public class Bat : EnemyBase {
 		wingR.localEulerAngles=-vector;
 		Vector3 pos=transform.position;
 		pos=Vector3.MoveTowards(pos,target,Time.deltaTime*3);
-		if((target-pos).sqrMagnitude<0.2f)target=pos+(player.position-pos).normalized*5;
+		if((target-pos).sqrMagnitude<0.2f)target=pos+(player.position-pos).normalized*8;
 		transform.position=pos;
 	}
 }

@@ -31,11 +31,11 @@ public class Lasor : EnemyBase
 		collider.enabled=false;
 		go.transform.parent=laser;
 		go.transform.localPosition=new Vector3(0,-0.55f,0);
-		go.transform.localScale=Vector3.right+Vector3.up*30;
+		go.transform.localScale=Vector3.right+Vector3.up*35;
 	}
 	public override void Position(int i)
 	{
-		base.Position(i%3);
+		base.Position(i%8);
 	}
 
 	new void OnCollisionEnter2D(Collision2D col)
@@ -45,7 +45,7 @@ public class Lasor : EnemyBase
 	}
 	new void Update(){
 		base.Update();
-		if(transform.position.y>8)transform.Translate(0,-Time.deltaTime,0);
+		if(transform.position.y>Scaler.sizeY*0.7f)transform.Translate(0,-Time.deltaTime*2,0);
 		else 
 		timer-=Time.deltaTime;
 		if(timer<=0){
@@ -71,9 +71,9 @@ public class Lasor : EnemyBase
 		{
 			dir.z=dir.y=0;
 			laser.localScale=charge.transform.localScale=laser.localPosition;
-			transform.Translate(dir*Time.deltaTime*2.5f);
-			if(transform.position.x<1)dir.x=1;
-			if(transform.position.x>4)dir.x=-1;
+			transform.Translate(dir*Time.deltaTime*3.5f);
+			if(transform.position.x<-Scaler.sizeX/2f+1)dir.x=1;
+			if(transform.position.x>Scaler.sizeX/2f-1)dir.x=-1;
 		}
 	}
 }

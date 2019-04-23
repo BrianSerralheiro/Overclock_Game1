@@ -7,7 +7,7 @@ public class Round : EnemyBase
 
 	private float shoottimer = 2;
 	private Vector3 vector=new Vector3();
-	protected void Start()
+	protected new void Start()
 	{
 		base.Start();
 		hp=15;
@@ -16,14 +16,14 @@ public class Round : EnemyBase
 
 	public override void Position(int i)
 	{
-		base.Position(i%3);
+		base.Position(i%8);
 	}
-	void Update()
+	new void Update()
 	{
 		base.Update();
 		shoottimer-=Time.deltaTime;
 		transform.Translate(0,-Time.deltaTime/2,0,Space.World);
-		if(transform.position.y<-1)Destroy(gameObject);
+		if(transform.position.y<-Scaler.sizeY-1)Destroy(gameObject);
 		vector.z=shoottimer/0.2f*90f;
 		transform.eulerAngles=vector;
 		if(shoottimer<=0)

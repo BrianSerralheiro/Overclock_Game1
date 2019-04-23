@@ -13,14 +13,14 @@ public class Bomber : EnemyBase {
 	public override void Position(int i)
 	{
 		base.Position(i);
-		if(i<3)
+		if(i<8)
 		{
 			transform.Rotate(0,0,-90f);
 
 		}
 		else 
 		{
-			transform.Rotate(0,0,(i+1)%2*180f);
+			transform.Rotate(0,0,i==8?0:180);
 		}
 	}
 	new void Update () {
@@ -28,7 +28,7 @@ public class Bomber : EnemyBase {
 		transform.Translate(Time.deltaTime,0,0);
 		timer-=Time.deltaTime;
 		if(timer<0)Bomb();
-		if(transform.position.x<-4 || transform.position.x>10 || transform.position.y<-4.5)Die();
+		if(transform.position.x<-Scaler.sizeX/2f-4.2F || transform.position.x>Scaler.sizeX/2f+4.2F || transform.position.y<-Scaler.sizeY-4.2F) Die();
 
 	}
 	void Bomb()

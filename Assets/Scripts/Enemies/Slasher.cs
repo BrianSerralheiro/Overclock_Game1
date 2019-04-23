@@ -19,7 +19,7 @@ public class Slasher : EnemyBase {
 			if(player.position.x<transform.position.x) transform.Translate(-Time.deltaTime,0,0);
 			else transform.Translate(Time.deltaTime,0,0);
 		}
-		if(transform.position.y>7) transform.Translate(0,-Time.deltaTime,0);
+		if(transform.position.y>Scaler.sizeY*0.6f) transform.Translate(0,-Time.deltaTime,0);
 		if(timer<=0)
 		{
 			timer=1.5f;

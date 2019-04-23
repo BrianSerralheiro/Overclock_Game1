@@ -23,19 +23,19 @@ public class Carrier : EnemyBase {
 			go.transform.parent=transform;
 			go.transform.rotation=transform.rotation;
 		}
-		legs[0].localPosition=new Vector3(0.45f,-1.7f,0.1f);
-		legs[1].localPosition=new Vector3(-0.45f,-1.7f,0.1f);
-		legs[2].localPosition=new Vector3(0.7f,-0.3f,0.1f);
-		legs[3].localPosition=new Vector3(-0.7f,-0.3f,0.1f);
-		legs[4].localPosition=new Vector3(0.9f,0.9f,0.1f);
-		legs[5].localPosition=new Vector3(-0.9f,0.9f,0.1f);
+		legs[0].localPosition=new Vector3(0.45f,0.3f,0.1f);
+		legs[1].localPosition=new Vector3(-0.45f,0.3f,0.1f);
+		legs[2].localPosition=new Vector3(0.7f,1.7f,0.1f);
+		legs[3].localPosition=new Vector3(-0.7f,1.7f,0.1f);
+		legs[4].localPosition=new Vector3(0.9f,2.9f,0.1f);
+		legs[5].localPosition=new Vector3(-0.9f,2.9f,0.1f);
 	}
 	public override void Position(int i)
 	{
 		base.Position(i);
-		if(i>=3)
+		if(i>=8)
 		{
-			transform.Rotate(0,0,i%2==0?-90:90);
+			transform.Rotate(0,0,i==8?90:-90);
 		}
 	}
 
@@ -64,7 +64,7 @@ public class Carrier : EnemyBase {
 		legs[4].localEulerAngles=vector;
 		legs[5].localEulerAngles=-vector;
 
-		if(transform.position.x<-2 || transform.position.x>7 || transform.position.y<-2 || transform.position.y>12)Die();
+		if(transform.position.x<-Scaler.sizeX/2f-4.2F || transform.position.x>Scaler.sizeX/2f+4.2F || transform.position.y<-Scaler.sizeY-4.2F) Die();
 	}
 	void Spawn()
 	{

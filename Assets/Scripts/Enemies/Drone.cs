@@ -14,9 +14,13 @@ public class Drone : EnemyBase {
 	// Update is called once per frame
 	new void Update () {
 		base.Update();
-		if(transform.position.y>7)transform.Translate(0,-Time.deltaTime,0);
+		if(transform.position.y>Scaler.sizeY/2)transform.Translate(0,-Time.deltaTime,0);
 		else transform.Translate(dir*(id==1?-1:1)*Time.deltaTime);
-		if(transform.position.x<-1 || transform.position.x>6)Die();
+		if(transform.position.x<-Scaler.sizeX/2f-1 || transform.position.x>Scaler.sizeX/2f+1)Die();
+	}
+	public override void Position(int i)
+	{
+		base.Position(i%8);
 	}
 	protected override void Die()
 	{

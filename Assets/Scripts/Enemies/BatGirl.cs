@@ -33,12 +33,15 @@ public class BatGirl : EnemyBase {
 		go.transform.parent=transform;
 		go.transform.localPosition=new Vector3(0f,0.9f,-0.1f);
 	}
-
+	public override void Position(int i)
+	{
+		base.Position(i%8);
+	}
 	new void Update(){
 		base.Update();
 		timer-=Time.deltaTime;
 		vector.Set(0,0,Mathf.PingPong(Time.time*300,-45f)+60f);
-		if(transform.position.y>8)transform.Translate(0,-Time.deltaTime*2,0);
+		if(transform.position.y>Scaler.sizeY*0.8f)transform.Translate(0,-Time.deltaTime*2,0);
 		if(timer<2)
 		{
 			render.sprite=closed;
@@ -55,7 +58,7 @@ public class BatGirl : EnemyBase {
 			{
 				Bat(i);
 			}
-			timer=5;
+			timer=10;
 		}
 		wingL.localPosition=pos;
 		wingL.localEulerAngles=vector;

@@ -38,7 +38,7 @@ public class Launcher : EnemyBase {
 	new void Update () {
 		base.Update();
 		timer-=Time.deltaTime;
-		if(transform.position.y>-1)transform.Translate(0,-Time.deltaTime/2,0);
+		if(transform.position.y>-Scaler.sizeY-1)transform.Translate(0,-Time.deltaTime/2,0);
 		else Die();
 		if(timer>0 && rocket)
 		{
@@ -61,7 +61,7 @@ public class Launcher : EnemyBase {
 	}
 	protected override void Die()
 	{
-		Destroy(gameObject);
+		base.Die();
 		Destroy(rocket.gameObject);
 	}
 }
