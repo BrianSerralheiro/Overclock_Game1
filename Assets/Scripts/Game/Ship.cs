@@ -24,7 +24,6 @@ public class Ship : MonoBehaviour {
 	public static bool paused;
 
 	private float damageTimer;
-	private float size;
 
 	private SpriteRenderer _renderer;
 
@@ -54,7 +53,6 @@ public class Ship : MonoBehaviour {
 	}
 	void Update()
 	{
-		size=Scaler.size;
 		if(damageTimer > 0)
 		{
 			damageTimer -= Time.deltaTime;
@@ -63,7 +61,7 @@ public class Ship : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Alpha1))OnLevel(1);
 		if(Input.GetKeyDown(KeyCode.Alpha2))OnLevel(2);
 		if(Input.GetKeyDown(KeyCode.Alpha3))OnLevel(3);
-		moveto.Set(Input.mousePosition.x/width*Scaler.sizeX-Scaler.x,Input.mousePosition.y/height*Scaler.size*2f-Scaler.size,-0.1f);
+		moveto.Set(Input.mousePosition.x/width*Scaler.sizeX-Scaler.x,Input.mousePosition.y/height*Scaler.sizeY*2f-Scaler.sizeY,-0.1f);
 
 		if(Input.GetMouseButtonDown(0))
 		{
