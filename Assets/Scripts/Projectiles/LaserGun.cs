@@ -8,7 +8,6 @@ public class LaserGun : Gun {
 	private Transform laser;
 	private Vector3 scale;
 	private Collider2D col;
-	// Use this for initialization
 	void Start () {
 		GameObject go=new GameObject("laserbase");
 		laser=go.transform;
@@ -22,7 +21,7 @@ public class LaserGun : Gun {
 		col=go.AddComponent<BoxCollider2D>();
 		col.enabled=false;
 		go.transform.position=transform.position+Vector3.up*0.2f;
-		go.transform.localScale=Vector3.one+Vector3.up*29f;
+		go.transform.localScale=Vector3.one+Vector3.up*39f;
 		go.transform.parent=laser;
 		scale=Vector3.up;
 	}

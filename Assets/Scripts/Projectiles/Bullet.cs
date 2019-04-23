@@ -5,13 +5,12 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
 
 	private float timer;
-	public int time=1;
 	public string owner;
 	public int damage;
 	public bool pierce;
 	private void Start()
 	{
-		timer=1;
+		timer=2;
 	}
 	void Update()
 	{

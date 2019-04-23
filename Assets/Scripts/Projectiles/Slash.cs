@@ -7,7 +7,7 @@ public class Slash : MonoBehaviour {
 	
 	void Update () {
 		transform.Translate(0,-Time.deltaTime*5,0);
-		if(transform.position.y<-4) Destroy(gameObject);
+		if(transform.position.y<-Scaler.sizeY) Destroy(gameObject);
 	}
 	public void OnCollisionEnter2D(Collision2D col)
 	{
