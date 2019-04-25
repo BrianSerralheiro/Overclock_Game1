@@ -15,7 +15,7 @@ public class Bomb : EnemyBase {
 		base.Update();
 		pos=Vector3.MoveTowards(pos,player.position,Time.deltaTime*speed);
 		speed+=Time.deltaTime;
-		if(speed>5)speed=5;
+		if(speed>8)speed=5;
 		transform.position=pos;
 		transform.Rotate(0,0,Time.deltaTime*90);
 	}

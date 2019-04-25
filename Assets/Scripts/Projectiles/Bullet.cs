@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour {
 	void Update()
 	{
 		if(Ship.paused) return;
-		transform.Translate(0,Time.deltaTime*10,0);
+		transform.Translate(0,Time.deltaTime*14,0);
 		timer-=Time.deltaTime;
 		if(timer<=0) Destroy(gameObject);
 	}
