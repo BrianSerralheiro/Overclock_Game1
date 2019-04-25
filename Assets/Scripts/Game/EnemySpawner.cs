@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour {
 	[TextArea]
 	public string wave;
 	public static int points;
+	public static bool boss;
 	private int counter;
 	public float timer;
 
@@ -27,7 +28,6 @@ public class EnemySpawner : MonoBehaviour {
 
 	void Update()
 	{
-		if(!player.gameObject.activeSelf) Application.Quit();
 		if(Ship.paused) return;
 		do
 		{
@@ -39,7 +39,7 @@ public class EnemySpawner : MonoBehaviour {
 		}
 		while(timer<=0 && counter<wave.Length);
 		if(counter==wave.Length) Application.Quit();
-		if(timer>0) timer-=Time.deltaTime;
+		if(timer>0 && !boss) timer-=Time.deltaTime;
 		Vector2 v= bg.mainTextureOffset;
 		v.y+=Time.deltaTime;
 		if(v.y>1) v.y-=1;
