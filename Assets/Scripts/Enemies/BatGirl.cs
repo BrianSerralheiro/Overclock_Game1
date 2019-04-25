@@ -41,7 +41,7 @@ public class BatGirl : EnemyBase {
 		base.Update();
 		timer-=Time.deltaTime;
 		vector.Set(0,0,Mathf.PingPong(Time.time*300,-45f)+60f);
-		if(transform.position.y>Scaler.sizeY*0.8f)transform.Translate(0,-Time.deltaTime*2,0);
+		if(transform.position.y>0)transform.Translate(0,-Time.deltaTime*2,0);
 		if(timer<2)
 		{
 			render.sprite=closed;

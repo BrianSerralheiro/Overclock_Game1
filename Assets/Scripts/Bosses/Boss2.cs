@@ -29,16 +29,18 @@ public class Boss2 : EnemyBase {
 		intro,
 		waiting,
 		punching,
-		shooting
+		shooting,
+		dead
 	}
 	[SerializeField]
 	State state;
 	new void Start () {
 		base.Start();
+		EnemySpawner.boss=true;
 		hp=500;
 		points = 1000;
 		GameObject go = new GameObject("enemy");
-		go.AddComponent<EnemyBase>().SetHP(50);
+		go.AddComponent<EnemyBase>().SetHP(150);
 		lineclawL=go.AddComponent<LineRenderer>();
 		Config(lineclawL);
 		Rigidbody2D r = go.AddComponent<Rigidbody2D>();
@@ -55,7 +57,7 @@ public class Boss2 : EnemyBase {
 		go = new GameObject("enemy");
 		lineclawR=go.AddComponent<LineRenderer>();
 		Config(lineclawR);
-		go.AddComponent<EnemyBase>().SetHP(50);
+		go.AddComponent<EnemyBase>().SetHP(150);
 		r = go.AddComponent<Rigidbody2D>();
 		r.isKinematic=true;
 		r.useFullKinematicContacts=true;
@@ -97,17 +99,17 @@ public class Boss2 : EnemyBase {
 	// Update is called once per frame
 	protected new void Update(){
 		base.Update();
+		timer-=Time.deltaTime;
 		if(state==State.intro)
 		{
-			transform.Translate(0,-Time.deltaTime,0);
+			transform.Translate(0,-Time.deltaTime*2,0);
 			clawL.position=transform.position+left;
 			clawR.position=transform.position+right;
-			if(transform.position.y<8){state=State.waiting;
-			timer=5;}
+			if(transform.position.y<Scaler.sizeY/2f){state=State.waiting;
+			timer=3;}
 		}
 		else if(state==State.waiting)
 		{
-			timer-=Time.deltaTime;
 			if(vectorB.y<-0.6f) vectorB.y+=Time.deltaTime/10;
 			if(clawL && (clawL.position-transform.position).sqrMagnitude>5)clawL.position=Vector3.MoveTowards(clawL.position,transform.position+left,5*Time.deltaTime);
 			if(clawR && (clawR.position-transform.position).sqrMagnitude>5) clawR.position=Vector3.MoveTowards(clawR.position,transform.position+right,5*Time.deltaTime);
@@ -136,10 +138,9 @@ public class Boss2 : EnemyBase {
 		}
 		else if(state==State.shooting)
 		{
-			timer-=Time.deltaTime;
 			if(vectorB.y>=-1f)vectorB.y-=Time.deltaTime/10;
 			if(!clawL && !clawR){
-				transform.Translate(Mathf.Cos(time)*Time.deltaTime*2,0,0);
+				transform.Translate(Mathf.Cos(time)*Time.deltaTime*4,0,0);
 				time+=Time.deltaTime;
 			}
 			if(timer<0)
@@ -169,9 +170,19 @@ public class Boss2 : EnemyBase {
 				timer=1;
 			}
 		}
+		else if(state==State.dead)
+		{
+			if(timer<0)
+			{
+				EnemySpawner.boss=false;
+				Destroy(gameObject);
+				Destroy(elbowL.gameObject);
+				Destroy(elbowR.gameObject);
+			}
+		}
 
 		lidB.localPosition=vectorB;
-		vectorT.y=-(lidB.localPosition.y+0.6f+0.1f);
+		vectorT.y=-(lidB.localPosition.y+0.7f);
 		lidT.localPosition=vectorT;
 		if(clawL){
 			MoveElbow(elbowL,transform.position+left,clawL.position,true);
@@ -219,8 +230,9 @@ public class Boss2 : EnemyBase {
 	}
 	protected override void Die()
 	{
-		Destroy(elbowL.gameObject);
-		Destroy(elbowR.gameObject);
+		state=State.dead;
+		timer=3;
+		EnemySpawner.points+=1000;
 	}
 	private void MoveElbow(Transform t,Vector3 v1,Vector3 v2,bool b)
 	{
@@ -245,10 +257,11 @@ public class Boss2 : EnemyBase {
 	}
 	private new void OnCollisionEnter2D(Collision2D col)
 	{
+		if(state==State.dead) return;
 		if(vectorB.y<-0.7f) base.OnCollisionEnter2D(col);
 	}
 	public override void Position(int i)
 	{
-		transform.position=new Vector3(2.5f,14,0);
+		transform.position=new Vector3(0,Scaler.sizeY+5,0);
 	}
 }

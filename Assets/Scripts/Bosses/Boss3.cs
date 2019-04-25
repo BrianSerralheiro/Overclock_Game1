@@ -24,13 +24,15 @@ public class Boss3 : EnemyBase {
 		wating,
 		shooting,
 		calling,
-		slashing
+		slashing,
+		dead
 	}
 	[SerializeField]
 	State state;
 	new void Start () {
 		base.Start();
-		hp=2000;
+		EnemySpawner.boss=true;
+		hp=100;
 		GameObject go=new GameObject("body");
 		_renderer=go.AddComponent<SpriteRenderer>();
 		_renderer.sprite=SpriteBase.I.boss3[1];
@@ -42,10 +44,11 @@ public class Boss3 : EnemyBase {
 		body.parent=head.parent=transform;
 		go=new GameObject("eyes");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss3[5];
-		go.transform.parent=body.parent=head.parent=transform;
-		go.transform.localPosition=new Vector3(0,0.66f,-0.1f);
-		body.localPosition=new Vector3(0,-0.44f,-0.01f);
-		head.localPosition=new Vector3(0,0.8f,-0.02f);
+		go.transform.parent=head;
+		body.parent=head.parent=transform;
+		go.transform.localPosition=new Vector3(0,-0.29f,-0.1f);
+		body.localPosition=new Vector3(0,-0.9f,-0.01f);
+		head.localPosition=new Vector3(0,1.5f,-0.02f);
 
 		go=new GameObject("slash");
 		slash=go.transform;
@@ -60,21 +63,21 @@ public class Boss3 : EnemyBase {
 		Texture2D t=new Texture2D(1,1);
 		t.SetPixels(new Color[]{Color.black});
 		t.Apply(false);
-		darkhren.sprite=Sprite.Create(t,new Rect(0,0,1,1),new Vector2(0,0));
+		darkhren.sprite=Sprite.Create(t,new Rect(0,0,1,1),new Vector2(0.5f,0.5f));
 		//darkcol.a=0;
 		darkhren.color=darkcol;
-		go.transform.localScale=new Vector3(500,1000);
+		go.transform.localScale=new Vector3(1600,1600);
 		go.transform.position=new Vector3(0,0,-0.09f);
 	}
 	
 	new void Update () {
 		base.Update();
-		henderer.color=_renderer.color;
+		if(head)henderer.color=_renderer.color;
 		timer-=Time.deltaTime;
 		if(state==State.intro)
 		{
 			transform.Translate(0,-Time.deltaTime,0);
-			if(transform.position.y<8){
+			if(transform.position.y<Scaler.sizeY/2f){
 				state=State.slashing;
 				timer=1.5f;
 				slash.position=player.position;
@@ -85,7 +88,7 @@ public class Boss3 : EnemyBase {
 		else if(state==State.wating)
 		{
 			time+=Time.deltaTime;
-			transform.Translate(Mathf.Cos(time)*Time.deltaTime,0,0);
+			transform.Translate(Mathf.Cos(time)*Time.deltaTime*2,0,0);
 			if(timer<=0)
 			{
 				float f=Random.value;
@@ -114,7 +117,7 @@ public class Boss3 : EnemyBase {
 			}
 			else if(timer>0.5f)
 			{
-				slashscl.y=(1-timer)*100;
+				slashscl.y=(1-timer)*200;
 			}
 			else if(timer>0)
 			{
@@ -140,12 +143,33 @@ public class Boss3 : EnemyBase {
 			Bat();
 			timer=1;
 		}
+		else if(state==State.dead)
+		{
+			if(timer>0)
+			{
+				//explosions
+			}
+			else
+			{
+				if(body)Destroy(body.gameObject);
+				transform.Translate(0,-Time.deltaTime*4,0,Space.World);
+				transform.Rotate(0,0,Time.deltaTime*4);
+				if(transform.position.y<-Scaler.sizeY-2)
+				{
+					Destroy(gameObject);
+					EnemySpawner.boss=false;
+				}
+			}
+		}
 	}
 	protected override void Die()
 	{
-		Destroy(gameObject);
+		Destroy(head.gameObject);
 		Destroy(slash.gameObject);
 		Destroy(darkhren.gameObject);
+		state=State.dead;
+		EnemySpawner.points+=1000;
+		timer=1;
 	}
 	void Shoot(Vector3 v)
 	{
@@ -157,10 +181,15 @@ public class Boss3 : EnemyBase {
 		go.transform.up=-transform.up;
 		go.transform.localScale=Vector3.one*2;
 	}
+
+	private new void OnCollisionEnter2D(Collision2D col)
+	{
+		if(state!=State.slashing && state!=State.dead && state!=State.intro) base.OnCollisionEnter2D(col);
+	}
 	void Bat()
 	{
 		GameObject go = new GameObject("enemy");
-		go.AddComponent<Bat>().target=head.position+(player.position-head.position)*3f;
+		go.AddComponent<Bat>().target=head.position+(player.position-head.position)*5f;
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bat[0];
 		go.AddComponent<BoxCollider2D>();
 		Rigidbody2D r = go.AddComponent<Rigidbody2D>();
@@ -170,6 +199,6 @@ public class Boss3 : EnemyBase {
 	}
 	public override void Position(int i)
 	{
-		transform.position=new Vector3(2.5f,14,0);
+		transform.position=new Vector3(0,Scaler.sizeY+4,0);
 	}
 }

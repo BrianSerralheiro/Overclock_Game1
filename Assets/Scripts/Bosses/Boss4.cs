@@ -12,6 +12,7 @@ public class Boss4 : EnemyBase {
 		bomb=4,
 		zap=5,
 		evolve=6,
+		dead
 	}
 	[SerializeField]
 	State state;
@@ -21,12 +22,12 @@ public class Boss4 : EnemyBase {
 	private State prev;
 	private bool left;
 	private bool last;
-	private Vector3 vec = Vector3.left/2;
+	private Vector3 vec = Vector3.left;
 	private Vector3 mod = Vector3.forward/10;
 	private Vector3 pos = new Vector3();
 	private Vector3 rot = new Vector3();
 	private Vector3 scale = Vector3.one;
-	private Vector3 local =new Vector3(0,1,-0.1f);
+	private Vector3 local =new Vector3(0,2f,-0.1f);
 	private Transform zap;
 	private Transform final;
 	private LineRenderer line;
@@ -37,6 +38,7 @@ public class Boss4 : EnemyBase {
 	private float screentimer;
 	new void Start(){
 		base.Start();
+		EnemySpawner.boss=true;
 		hp=100;
 		screens=SpriteBase.I.screens;
 		GameObject go=new GameObject("screen");
@@ -68,6 +70,10 @@ public class Boss4 : EnemyBase {
 		if(state!=State.intro && state!=State.evolve) base.OnCollisionEnter2D(col);
 		if(damageTimer>0)Screen(1,0.5f);
 	}
+	public override void Position(int i)
+	{
+		transform.position=new Vector3(0,Scaler.sizeY+4,0);
+	}
 	protected override void Die()
 	{
 		if(last){
@@ -76,26 +82,26 @@ public class Boss4 : EnemyBase {
 		}
 		state=State.evolve;
 		timer=5;
-		local.Set(2.5f,-1,-0.1f);
+		local.Set(5f,-2,-0.1f);
 		screenren.sprite=screens[4];
 		screen=null;
 		GameObject go=new GameObject("enemy");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss4[1];
 		BoxCollider2D c=go.AddComponent<BoxCollider2D>();
-		c.size=new Vector2(5,1);
-		c.offset=new Vector2(0,-0.5f);
+		c.size=new Vector2(11,2);
+		c.offset=new Vector2(0,-1f);
 		final=go.transform;
-		final.position=new Vector3(2.5f,14,0.1f);
+		final.position=new Vector3(0,Scaler.sizeY+5,0.1f);
 		go=new GameObject("overlay");
 		overlay=go.AddComponent<SpriteRenderer>();
 		overlay.sprite=SpriteBase.I.boss4[2];
 		go.transform.parent=final;
-		go.transform.position=new Vector3(2.5f,14,-0.1f);
+		go.transform.localPosition=new Vector3(0,0,-0.12f);
 		go=new GameObject("fill");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss4[3];
 		go.transform.parent=final;
-		go.transform.localPosition=new Vector3(0,-0.68f);
-
+		go.transform.localPosition=new Vector3(0,-1.5f);
+		zap.localScale=Vector3.zero;
 	}
 	new void Update () {
 		base.Update();
@@ -126,7 +132,7 @@ public class Boss4 : EnemyBase {
 				timer=0.2f;
 				screenren.sprite=screenren.sprite==screens[3] ? screens[2] : screens[3];
 			}
-			if(transform.position.y<8){
+			if(transform.position.y<Scaler.sizeY/2){
 				state=State.waiting;
 				timer=1;
 				Screen(0,0.1f);
@@ -136,9 +142,9 @@ public class Boss4 : EnemyBase {
 		else if(state==State.waiting)
 		{
 			if(!last){
-				if(transform.position.x<2.4f)transform.Translate(Time.deltaTime*2,0,0);
-				else if(transform.position.x>2.6f)transform.Translate(-Time.deltaTime*2,0,0);
-				if(transform.position.y<8f) transform.Translate(0,Time.deltaTime*2,0);
+				if(transform.position.x<-0.1f)transform.Translate(Time.deltaTime*2,0,0);
+				else if(transform.position.x>0.1f)transform.Translate(-Time.deltaTime*2,0,0);
+				if(transform.position.y<Scaler.sizeY/2) transform.Translate(0,Time.deltaTime*2,0);
 			}
 			if(timer<=0)
 			{
@@ -152,8 +158,8 @@ public class Boss4 : EnemyBase {
 		else if(state==State.shot)
 		{
 			if(!last){
-				if(player.position.x<transform.position.x) transform.Translate(-Time.deltaTime/2,0,0);
-				else transform.Translate(Time.deltaTime/2,0,0);
+				if(player.position.x<transform.position.x) transform.Translate(-Time.deltaTime,0,0);
+				else transform.Translate(Time.deltaTime,0,0);
 			}
 			if(timer<=0)
 			{
@@ -206,7 +212,8 @@ public class Boss4 : EnemyBase {
 			if(timer>1)
 			{
 				if(!last){
-					pos=Vector3.MoveTowards(transform.position,player.position,Time.deltaTime);
+					pos=Vector3.MoveTowards(transform.position,player.position,Time.deltaTime*2);
+					pos.z=0;
 					transform.position=pos;
 				}
 				zap.localPosition=local;
@@ -246,18 +253,19 @@ public class Boss4 : EnemyBase {
 		}
 		else if(state==State.evolve)
 		{
-			if(final.position.y==14)
+			if(final.position.y==Scaler.sizeY+5)
 			{
 				//EXPLOSIONS
+				screenren.sprite=screens[4];
 				if(timer<=0)
 				{
 					final.Translate(0,-Time.deltaTime,0);
 				}
 			}
-			else if(final.position.y>10)
+			else if(final.position.y>Scaler.sizeY)
 			{
 				//transform.Translate(0,Time.deltaTime,0);
-				transform.Translate((2.5f-transform.position.x)*Time.deltaTime,0,0);
+				transform.Translate(-transform.position.x*Time.deltaTime,0,0);
 				final.Translate(0,-Time.deltaTime,0);
 				if(timer<=0)
 				{
@@ -268,8 +276,13 @@ public class Boss4 : EnemyBase {
 			}
 			else
 			{
-				final.Translate(0,10-final.position.y,0);
-				if(transform.position.y<10)transform.Translate(0,Time.deltaTime,0);
+				final.Translate(0,Scaler.sizeY-final.position.y,0);
+				if(timer<=0)
+				{
+					timer=0.2f;
+					screenren.sprite=screenren.sprite==screens[3] ? screens[2] : screens[3];
+				}
+				if(transform.position.y<Scaler.sizeY)transform.Translate(0,Time.deltaTime,0);
 				else
 				{
 					transform.position=final.position;
@@ -308,8 +321,11 @@ public class Boss4 : EnemyBase {
 		r.isKinematic=true;
 		r.useFullKinematicContacts=true;
 		go.transform.position=transform.position+local;
-		if(last)local.x*=-1f;
-		go.transform.localScale=Vector3.one*2;
+		if(last){
+			go.transform.up=Vector3.right*local.x/10+Vector3.up;
+			local.x*=-1f;
+		}
+		go.transform.localScale=Vector3.one*(last?3:2);
 		Screen(5,1);
 
 	}
