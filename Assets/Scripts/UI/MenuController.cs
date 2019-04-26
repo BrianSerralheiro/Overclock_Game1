@@ -9,11 +9,11 @@ public class MenuController : MonoBehaviour
 	[SerializeField]
 	RectTransform SettingsMenuUI;
 	[SerializeField]
-	RectTransform CreditsUI;
-	[SerializeField]
 	GameObject EventSystem;
-
 	[SerializeField]
+	GameObject SettingsGroup;
+	[SerializeField]
+	GameObject CreditsGroup;
 	private float MenuPositionX;
 
 	//Help positioning
@@ -35,13 +35,10 @@ public class MenuController : MonoBehaviour
 			EventSystem.SetActive(true);
 			MainMenuUI.gameObject.SetActive(MenuPositionX == 0);
 			SettingsMenuUI.gameObject.SetActive(MenuPositionX == -6.67f);
-			CreditsUI.gameObject.SetActive(MenuPositionX == -13.34f);
 			pos.x=MenuPositionX;
 		    MainMenuUI.position = pos;
 			pos.x += 6.67f;
 			SettingsMenuUI.position = pos;
-			pos.x += 6.67f;
-			CreditsUI.position = pos;
 			}
 			else
 			{
@@ -51,8 +48,6 @@ public class MenuController : MonoBehaviour
 			MainMenuUI.position = pos;
 			pos.x += 6.67f;
 			SettingsMenuUI.position = pos;
-			pos.x += 6.67f;
-			CreditsUI.position = pos;
 			}
 		}
 	}
@@ -72,5 +67,12 @@ public class MenuController : MonoBehaviour
 			SettingsMenuUI.gameObject.SetActive(true);
 			EventSystem.SetActive(false);
 		}
+	}
+
+	public void CreditsSwitch(int i)
+	{
+		SettingsGroup.SetActive(i==0);
+		CreditsGroup.SetActive(i==1);
+		SoundManager.PlayEffects(0);
 	}
 }
