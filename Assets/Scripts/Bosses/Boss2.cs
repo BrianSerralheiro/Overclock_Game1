@@ -35,6 +35,7 @@ public class Boss2 : EnemyBase {
 	[SerializeField]
 	State state;
 	new void Start () {
+		damageEffect = true;
 		base.Start();
 		EnemySpawner.boss=true;
 		hp=500;

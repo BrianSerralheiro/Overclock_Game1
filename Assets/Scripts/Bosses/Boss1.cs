@@ -20,6 +20,7 @@ public class Boss1 : EnemyBase {
 	private Vector3 vector = new Vector3();
 	public new void Start()
 	{
+		damageEffect = true;
 		base.Start();
 		EnemySpawner.boss=true;
 		hp=600;

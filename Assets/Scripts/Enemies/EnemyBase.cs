@@ -9,6 +9,8 @@ public class EnemyBase : MonoBehaviour {
 	protected float damageTimer;
 	protected SpriteRenderer _renderer;
 
+	protected bool damageEffect;
+
 	protected void Start()
 	{
 		_renderer = GetComponent<SpriteRenderer>();
@@ -34,7 +36,10 @@ public class EnemyBase : MonoBehaviour {
 		if(bull)i=bull.damage;
 		hp-=i;
 		if(hp<=0)Die();
-		damageTimer = 1;
+		if(!damageEffect || damageTimer <= 0)
+		{
+			damageTimer = 1;
+		}
 	}
 	protected virtual void Die()
 	{

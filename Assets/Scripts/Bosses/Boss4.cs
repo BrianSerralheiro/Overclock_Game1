@@ -9,7 +9,7 @@ public class Boss4 : EnemyBase {
 		waiting=1,
 		shot=2,
 		slash=3,
-		bomb=4,
+		bomb=4,	
 		zap=5,
 		evolve=6,
 		dead
@@ -37,6 +37,7 @@ public class Boss4 : EnemyBase {
 	private SpriteRenderer overlay;
 	private float screentimer;
 	new void Start(){
+		damageEffect = true;
 		base.Start();
 		EnemySpawner.boss=true;
 		hp=100;
