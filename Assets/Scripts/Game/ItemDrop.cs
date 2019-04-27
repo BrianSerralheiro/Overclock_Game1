@@ -31,7 +31,7 @@ public class ItemDrop : MonoBehaviour
 		{
 			if(id == 0)
 			{
-				s.Heal(1);
+				s.Shield();
 			}
 			else if(id == 1)
 			{

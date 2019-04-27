@@ -31,6 +31,7 @@ public class SpriteBase : MonoBehaviour {
 	public Sprite[] boss3;
 	public Sprite[] boss4;
 	public Sprite[] screens;
+	public Sprite shield;
 	public Material shock;
 	void Start () {
 		I=this;

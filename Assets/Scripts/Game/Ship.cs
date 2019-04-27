@@ -22,6 +22,7 @@ public class Ship : MonoBehaviour {
 	[SerializeField]
 	private float speed=5f;
 	public static bool paused;
+	private GameObject shield;
 
 	private float damageTimer;
 
@@ -42,14 +43,28 @@ public class Ship : MonoBehaviour {
 	{
 		if(col.gameObject.name=="playerbullet") return;
 		if(col.otherCollider.name=="laserbody") return;
+		if(shield)
+		{
+			Destroy(shield);
+			return;
+		}
 		if(--hp<=0) gameObject.SetActive(false);
 		InGame_HUD.shipHealth = (float)hp / (float)maxhp;
 		damageTimer = 1;
 	}
-	public void Heal(int i)
+	public void Heal()
 	{
-		hp+=i;
-		if(hp>maxhp)hp=maxhp;
+		hp=maxhp;
+		InGame_HUD.shipHealth =1;
+	}
+	public void Shield()
+	{
+		if(shield)return;
+		GameObject go=new GameObject("shield");
+		shield=go;
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.shield;
+		go.transform.parent=transform;
+		go.transform.localPosition=new Vector3(0,0,-0.1f);
 	}
 	void Update()
 	{
