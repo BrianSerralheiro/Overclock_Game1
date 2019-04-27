@@ -66,6 +66,7 @@ public class Boss1 : EnemyBase {
 		{
 			transform.Translate(0,-Time.deltaTime*3,0,Space.World);
 			transform.Rotate(0,0,Time.deltaTime*3);
+			ParticleManager.Emit(0,(Vector3)Random.insideUnitCircle*2+transform.position,5);
 			if(transform.position.y<-Scaler.sizeY-4){
 				Destroy(gameObject);
 				EnemySpawner.boss=false;
@@ -82,6 +83,7 @@ public class Boss1 : EnemyBase {
 	{
 		state=State.dead;
 		EnemySpawner.points+=1000;
+		ParticleManager.Emit(0,transform,50);
 	}
 	public override void Position(int i)
 	{
