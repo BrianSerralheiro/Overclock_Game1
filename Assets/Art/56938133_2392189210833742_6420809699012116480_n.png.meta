@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d3f905e817e76124987e365390dfa6c6
-timeCreated: 1555019478
+timeCreated: 1556373140
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -96,97 +96,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 1, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Store
-      rect:
-        serializedVersion: 2
-        x: 1405
-        y: 3597
-        width: 426
-        height: 403
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Settings
-      rect:
-        serializedVersion: 2
-        x: 1944
-        y: 3598
-        width: 427
-        height: 403
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Video
-      rect:
-        serializedVersion: 2
-        x: 868
-        y: 1880
-        width: 1539
-        height: 1518
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Characters_Status
-      rect:
-        serializedVersion: 2
-        x: 44
-        y: 1880
-        width: 772
-        height: 1518
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Start_Button
-      rect:
-        serializedVersion: 2
-        x: 420
-        y: 47
-        width: 1617
-        height: 398
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Header_Slice1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 3454
-        width: 1389
-        height: 220
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Header_Slice2
-      rect:
-        serializedVersion: 2
-        x: 1389
-        y: 3454
-        width: 1068
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     outline: []
