@@ -35,6 +35,7 @@ public class SuaperTest : MonoBehaviour {
 			{
 				EnemyBase.player=yellow.transform;
 			}
+			EnemyBase.player.GetComponent<Ship>().Heal();
 		}
 	}
 }
