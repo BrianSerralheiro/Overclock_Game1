@@ -13,7 +13,7 @@ public class FollowMenu : MonoBehaviour
 	void Start () 
 	{
 		rect = GetComponent<RectTransform>();
-		offset = toFollow.localPosition.x - rect.localPosition.x;
+		offset = rect.localPosition.x -toFollow.localPosition.x;
 	}
 	
 	// Update is called once per frame
