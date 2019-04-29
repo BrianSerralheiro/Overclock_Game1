@@ -11,7 +11,8 @@ public class Lasor : EnemyBase
 	private new BoxCollider2D collider;
 	protected new void Start()
 	{
-		base.Start();
+		base.Start();		
+		explosionID = 1;
 		hp=40;
 		GameObject go = new GameObject("charge");
 		go.transform.localScale=new Vector3();

@@ -9,6 +9,7 @@ public class Header : EnemyBase {
 	private float timer;
 	new void Start () {
 		base.Start();
+		explosionID = 3;
 		hp=50;
 		points=180;
 		GameObject go = new GameObject("head");

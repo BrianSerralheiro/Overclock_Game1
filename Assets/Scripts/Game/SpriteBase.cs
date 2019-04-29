@@ -33,6 +33,7 @@ public class SpriteBase : MonoBehaviour {
 	public Sprite[] screens;
 	public Sprite shield;
 	public Material shock;
+	public GameObject explosion;
 	void Start () {
 		I=this;
 		Destroy(this);

@@ -11,6 +11,7 @@ public class Launcher : EnemyBase {
 	private Vector3 pos=new Vector3(0,0.4f,0.1f);
 	new void Start () {
 		base.Start();
+		explosionID = 1;
 		hp=40;
 		Create();
 		timer=5;

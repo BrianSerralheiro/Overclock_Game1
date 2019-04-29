@@ -7,6 +7,7 @@ public class Bomber : EnemyBase {
 	private Vector3 local=new Vector3(-3.5f,-0.2f);
 	new void Start () {
 		base.Start();
+		explosionID = 3;
 		hp=200;
 	}
 

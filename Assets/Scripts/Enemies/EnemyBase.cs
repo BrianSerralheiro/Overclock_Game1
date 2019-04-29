@@ -11,6 +11,8 @@ public class EnemyBase : MonoBehaviour {
 
 	protected bool damageEffect;
 
+	protected int explosionID;
+
 	protected void Start()
 	{
 		_renderer = GetComponent<SpriteRenderer>();
@@ -48,7 +50,7 @@ public class EnemyBase : MonoBehaviour {
 		{
 			EnemySpawner.points+=points;
 			InGame_HUD._special += 0.01f;
-			ParticleManager.Emit(0,transform,20);
+			ParticleManager.InstantiatePrefab(explosionID, transform.position,1);
 			if(Random.value <= 0.5)
 			{
 				GameObject go = new GameObject("ItemDrop");
