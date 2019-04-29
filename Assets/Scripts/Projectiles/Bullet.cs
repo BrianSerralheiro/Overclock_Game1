@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour {
 	public string owner;
 	public int damage;
 	public bool pierce;
+
+	public int particleID = 2;
 	private void Start()
 	{
 		timer=2;
@@ -15,7 +17,7 @@ public class Bullet : MonoBehaviour {
 	void Update()
 	{
 		if(Ship.paused) return;
-		ParticleManager.Emit(2,transform.position,1);
+		ParticleManager.Emit(particleID,transform.position,1);
 		transform.Translate(0,Time.deltaTime*14,0);
 		timer-=Time.deltaTime;
 		if(timer<=0) Destroy(gameObject);

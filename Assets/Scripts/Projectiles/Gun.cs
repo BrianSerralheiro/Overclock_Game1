@@ -12,6 +12,9 @@ public class Gun : MonoBehaviour {
 	[SerializeField]
 	private bool pierce;
 
+	[SerializeField]
+	private int particleID;
+
 	public virtual void Shoot()
 	{
 		if(!gameObject.activeSelf)return;
@@ -22,6 +25,7 @@ public class Gun : MonoBehaviour {
 		bull.owner=transform.parent.name;
 		bull.damage=damage;
 		bull.pierce=pierce;
+		bull.particleID=particleID;
 		go.transform.position=transform.position;
 		go.transform.rotation=transform.rotation;
 	}
