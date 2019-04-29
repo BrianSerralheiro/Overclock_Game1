@@ -85,6 +85,6 @@ public class MenuController : MonoBehaviour
 			characterIDButton[j].SetActive(i == j);
 		}
 		Ship.playerID = i;
-		Debug.Log(Ship.playerID);
+		SoundManager.PlayEffects(0);
 	}
 }
