@@ -15,6 +15,8 @@ public class MenuController : MonoBehaviour
 	[SerializeField]
 	GameObject CreditsGroup;
 	private float MenuPositionX;
+	[SerializeField]
+	GameObject[] characterIDButton;
 
 	//Help positioning
 	Vector3 pos;
@@ -74,5 +76,15 @@ public class MenuController : MonoBehaviour
 		SettingsGroup.SetActive(i==0);
 		CreditsGroup.SetActive(i==1);
 		SoundManager.PlayEffects(0);
+	}
+
+	public void SwitchCharacter(int i)
+	{
+		for (int j = 0;j < 4; j++)
+		{
+			characterIDButton[j].SetActive(i == j);
+		}
+		Ship.playerID = i;
+		Debug.Log(Ship.playerID);
 	}
 }

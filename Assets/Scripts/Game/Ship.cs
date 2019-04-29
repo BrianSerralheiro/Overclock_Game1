@@ -32,10 +32,19 @@ public class Ship : MonoBehaviour {
 
 	private bool playerSpecial;
 
+	[SerializeField]
+	private int id;
+	public static int playerID;
+
 	void Start()
 	{
 		//speed=5f;
 		//OnLevel(1);
+		if(playerID != id)
+		{
+			gameObject.SetActive(false);
+		}
+		Debug.Log(playerID);
 		hp=maxhp;
 		_renderer = GetComponent<SpriteRenderer>();
 	}
