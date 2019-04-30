@@ -80,9 +80,9 @@ public class MenuController : MonoBehaviour
 
 	public void SwitchCharacter(int i)
 	{
-		for (int j = 0;j < 4; j++)
+		for (int j = 0;j < 8; j++)
 		{
-			characterIDButton[j].SetActive(i == j);
+			characterIDButton[j].SetActive(i == j%4);
 		}
 		Ship.playerID = i;
 		SoundManager.PlayEffects(0);
