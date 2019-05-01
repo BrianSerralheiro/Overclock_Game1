@@ -80,7 +80,7 @@ public class MenuController : MonoBehaviour
 
 	public void SwitchCharacter(int i)
 	{
-		for (int j = 0;j < 8; j++)
+		for (int j = 0;j < 12; j++)
 		{
 			characterIDButton[j].SetActive(i == j%4);
 		}
