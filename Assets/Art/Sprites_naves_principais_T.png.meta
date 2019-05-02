@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c8e6c79c4548ebe4485883169037997f
-timeCreated: 1556816109
+timeCreated: 1556830895
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -24,6 +24,8 @@ TextureImporter:
     21300034: Sprites_naves_principais_T_1
     21300036: Sprites_naves_principais_T_3
     21300038: Sprites_naves_principais_T_4
+    21300040: Shot_red2
+    21300042: freeze_particle
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -301,7 +303,7 @@ TextureImporter:
         width: 51
         height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -314,7 +316,7 @@ TextureImporter:
         width: 31
         height: 116
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -327,7 +329,7 @@ TextureImporter:
         width: 124
         height: 632
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -339,6 +341,32 @@ TextureImporter:
         y: 279
         width: 132
         height: 628
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Shot_red2
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 2162
+        width: 58
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: freeze_particle
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 2104
+        width: 82
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

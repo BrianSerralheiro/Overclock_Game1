@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 6b40168de1e437b498753af30f520367
-timeCreated: 1556832593
+guid: df5c38ce6ec300044a492e6ad97b5725
+timeCreated: 1556833767
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: player_green
-    21300002: player_red
-    21300004: player_blue
-    21300006: player_yellow
+    21300000: circle_pic
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -82,52 +79,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_green
+      name: circle_pic
       rect:
         serializedVersion: 2
-        x: 169
-        y: 1250
-        width: 514
-        height: 486
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: player_red
-      rect:
-        serializedVersion: 2
-        x: 982
-        y: 1250
-        width: 514
-        height: 485
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: player_blue
-      rect:
-        serializedVersion: 2
-        x: 1793
-        y: 1249
-        width: 515
-        height: 487
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: player_yellow
-      rect:
-        serializedVersion: 2
-        x: 981
-        y: 665
-        width: 514
-        height: 488
+        x: 539
+        y: 1070
+        width: 593
+        height: 587
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
