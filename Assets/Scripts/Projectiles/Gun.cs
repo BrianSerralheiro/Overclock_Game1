@@ -6,7 +6,7 @@ public class Gun : MonoBehaviour {
 	[SerializeField]
 	protected int level;
 	[SerializeField]
-	protected Sprite sprite;
+	protected int spriteID;
 	[SerializeField]
 	private int damage=1;
 	[SerializeField]
@@ -19,13 +19,14 @@ public class Gun : MonoBehaviour {
 	{
 		if(!gameObject.activeSelf)return;
 		GameObject go=new GameObject("playerbullet");
-		go.AddComponent<SpriteRenderer>().sprite=sprite;
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bullets[spriteID+(Bullet.blink ? 0 : 1)];
 		go.AddComponent<BoxCollider2D>();
 		Bullet bull= go.AddComponent<Bullet>();
 		bull.owner=transform.parent.name;
 		bull.damage=damage;
 		bull.pierce=pierce;
 		bull.particleID=particleID;
+		bull.spriteID=spriteID;
 		go.transform.position=transform.position;
 		go.transform.rotation=transform.rotation;
 	}

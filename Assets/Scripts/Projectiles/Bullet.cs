@@ -8,10 +8,14 @@ public class Bullet : MonoBehaviour {
 	public string owner;
 	public int damage;
 	public bool pierce;
-
+	public static float bulletTime;
+	public static bool blink;
+	public int spriteID;
 	public int particleID = 2;
+	new private SpriteRenderer renderer;
 	private void Start()
 	{
+		renderer=GetComponent<SpriteRenderer>();
 		timer=2;
 	}
 	void Update()
@@ -19,6 +23,7 @@ public class Bullet : MonoBehaviour {
 		if(Ship.paused) return;
 		ParticleManager.Emit(particleID,transform.position,1);
 		transform.Translate(0,Time.deltaTime*14,0);
+		if(bulletTime<=0)renderer.sprite=SpriteBase.I.bullets[spriteID+(blink?0:1)];
 		timer-=Time.deltaTime;
 		if(timer<=0) Destroy(gameObject);
 	}

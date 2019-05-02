@@ -77,6 +77,12 @@ public class Ship : MonoBehaviour {
 	}
 	void Update()
 	{
+		if(Bullet.bulletTime<=0)
+		{
+			Bullet.bulletTime=0.5f;
+			Bullet.blink=!Bullet.blink;
+		}
+		Bullet.bulletTime-=Time.deltaTime;
 		if(damageTimer > 0)
 		{
 			damageTimer -= Time.deltaTime;

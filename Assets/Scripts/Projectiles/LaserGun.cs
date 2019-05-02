@@ -18,7 +18,7 @@ public class LaserGun : Gun {
 		laser.position=transform.position;
 		laser.parent=transform;
 		laser.localScale=new Vector3();
-		go.AddComponent<SpriteRenderer>().sprite=sprite;
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bullets[spriteID+(Bullet.blink ? 0 : 1)]; ;
 		go=new GameObject("laserbody");
 		SpriteRenderer sr= go.AddComponent<SpriteRenderer>();
 		sr.sprite=lasersprite;
