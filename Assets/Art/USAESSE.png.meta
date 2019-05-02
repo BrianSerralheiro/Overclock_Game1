@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6b40168de1e437b498753af30f520367
-timeCreated: 1556832593
+timeCreated: 1556834397
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,6 +8,7 @@ TextureImporter:
     21300002: player_red
     21300004: player_blue
     21300006: player_yellow
+    21300008: USAESSE_0
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -90,7 +91,7 @@ TextureImporter:
         width: 514
         height: 486
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -103,7 +104,7 @@ TextureImporter:
         width: 514
         height: 485
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -116,7 +117,7 @@ TextureImporter:
         width: 515
         height: 487
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -128,6 +129,19 @@ TextureImporter:
         y: 665
         width: 514
         height: 488
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: USAESSE_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 2457
+        height: 4096
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
