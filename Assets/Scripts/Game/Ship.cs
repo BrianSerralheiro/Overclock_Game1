@@ -51,7 +51,7 @@ public class Ship : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col)
 	{
 		if(col.gameObject.name=="playerbullet") return;
-		if(col.otherCollider.name=="laserbody") return;
+		if(col.otherCollider.name=="laser") return;
 		if(shield)
 		{
 			Destroy(shield);
@@ -79,7 +79,7 @@ public class Ship : MonoBehaviour {
 	{
 		if(Bullet.bulletTime<=0)
 		{
-			Bullet.bulletTime=0.5f;
+			Bullet.bulletTime=0.3f;
 			Bullet.blink=!Bullet.blink;
 		}
 		Bullet.bulletTime-=Time.deltaTime;
