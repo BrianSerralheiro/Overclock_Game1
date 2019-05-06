@@ -25,6 +25,7 @@ public class Bomber : EnemyBase {
 		}
 	}
 	new void Update () {
+		if(Ship.paused) return;
 		base.Update();
 		transform.Translate(Time.deltaTime,0,0);
 		timer-=Time.deltaTime;

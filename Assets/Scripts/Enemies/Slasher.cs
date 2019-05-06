@@ -8,11 +8,13 @@ public class Slasher : EnemyBase {
 	private Vector3 mod =new Vector3(0,-0.5f,0.1f);
 	new void Start () {
 		base.Start();
+		explosionID = 3;
 		hp=40;
 	}
 
 	new void Update()
 	{
+		if(Ship.paused) return;
 		base.Update();
 		timer-=Time.deltaTime;
 		if(timer>1){

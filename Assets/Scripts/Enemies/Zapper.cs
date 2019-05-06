@@ -36,6 +36,7 @@ public class Zapper : EnemyBase {
 		base.OnCollisionEnter2D(col);
 	}
 	new void Update () {
+		if(Ship.paused) return;
 		base.Update();
 		timer-=Time.deltaTime;
 		if(timer>1){

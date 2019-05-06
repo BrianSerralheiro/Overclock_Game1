@@ -45,6 +45,7 @@ public class Lasor : EnemyBase
 		base.OnCollisionEnter2D(col);
 	}
 	new void Update(){
+		if(Ship.paused) return;
 		base.Update();
 		if(transform.position.y>Scaler.sizeY*0.7f)transform.Translate(0,-Time.deltaTime*2,0);
 		else 

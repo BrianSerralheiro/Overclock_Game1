@@ -12,6 +12,7 @@ public class Bomb : EnemyBase {
 	}
 	
 	new void Update () {
+		if(Ship.paused) return;
 		base.Update();
 		pos=Vector3.MoveTowards(pos,player.position,Time.deltaTime*speed);
 		speed+=Time.deltaTime;

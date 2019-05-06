@@ -99,6 +99,7 @@ public class Boss2 : EnemyBase {
 
 	// Update is called once per frame
 	protected new void Update(){
+		if(Ship.paused) return;
 		base.Update();
 		timer-=Time.deltaTime;
 		if(state==State.intro)

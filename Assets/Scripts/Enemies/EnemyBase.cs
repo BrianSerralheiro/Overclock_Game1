@@ -23,6 +23,7 @@ public class EnemyBase : MonoBehaviour {
 	}
 	public void Update()
 	{
+		if(Ship.paused) return;
 		if(damageTimer > 0)
 		{
 			damageTimer -= Time.deltaTime;

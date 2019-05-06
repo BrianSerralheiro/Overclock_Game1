@@ -24,6 +24,7 @@ public class Invader : EnemyBase {
 		left=!left;
 	}
 	new void Update () {
+		if(Ship.paused) return;
 		base.Update();
 		shoottimer-=Time.deltaTime;
 		if(shoottimer<=0)

@@ -41,6 +41,7 @@ public class Carrier : EnemyBase {
 
 	new void Update()
 	{
+		if(Ship.paused) return;
 		base.Update();
 		transform.Translate(0,-Time.deltaTime,0);
 		timer+=Time.deltaTime;

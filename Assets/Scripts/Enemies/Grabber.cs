@@ -25,6 +25,7 @@ public class Grabber : EnemyBase {
 	}
 	
 	void Update(){
+		if(Ship.paused) return;
 		base.Update();
 		rotation.z=Mathf.Atan2(transform.position.x-player.position.x,player.position.y-transform.position.y)*Mathf.Rad2Deg+180;
 		transform.eulerAngles=rotation;

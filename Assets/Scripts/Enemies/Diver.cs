@@ -13,6 +13,7 @@ public class Diver : EnemyBase
 
 	public void Start()
 	{
+		if(Ship.paused) return;
 		base.Start();
 		hp=12;
 		points = 50;

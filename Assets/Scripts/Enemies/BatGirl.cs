@@ -39,6 +39,7 @@ public class BatGirl : EnemyBase {
 		base.Position(i%8);
 	}
 	new void Update(){
+		if(Ship.paused) return;
 		base.Update();
 		timer-=Time.deltaTime;
 		vector.Set(0,0,Mathf.PingPong(Time.time*300,-45f)+60f);

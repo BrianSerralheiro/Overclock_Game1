@@ -77,6 +77,10 @@ public class Ship : MonoBehaviour {
 	}
 	void Update()
 	{
+		if(paused)
+		{
+			return;
+		}
 		if(Bullet.bulletTime<=0)
 		{
 			Bullet.bulletTime=0.3f;

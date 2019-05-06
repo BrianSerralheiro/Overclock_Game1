@@ -21,6 +21,7 @@ public class ItemDrop : MonoBehaviour
 	}
 	void Update () 
 	{
+		if(Ship.paused) return;
 		transform.Translate(0,-Time.deltaTime,0);
 	}
 

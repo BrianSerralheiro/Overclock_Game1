@@ -21,6 +21,7 @@ public class Round : EnemyBase
 	}
 	new void Update()
 	{
+		if(Ship.paused) return;
 		base.Update();
 		shoottimer-=Time.deltaTime;
 		transform.Translate(0,-Time.deltaTime/2,0,Space.World);

@@ -105,6 +105,7 @@ public class Boss4 : EnemyBase {
 		zap.localScale=Vector3.zero;
 	}
 	new void Update () {
+		if(Ship.paused) return;
 		base.Update();
 		timer-=Time.deltaTime;
 		if(last)overlay.color=screenren.color=_renderer.color;

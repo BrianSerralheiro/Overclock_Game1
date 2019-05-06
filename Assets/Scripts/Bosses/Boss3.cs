@@ -72,6 +72,7 @@ public class Boss3 : EnemyBase {
 	}
 	
 	new void Update () {
+		if(Ship.paused) return;
 		base.Update();
 		if(head)henderer.color=_renderer.color;
 		timer-=Time.deltaTime;

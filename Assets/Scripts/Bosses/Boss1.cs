@@ -39,6 +39,7 @@ public class Boss1 : EnemyBase {
 
 	new void Update()
 	{
+		if(Ship.paused) return;
 		base.Update();
 		if(state==State.intro)
 		{

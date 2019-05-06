@@ -14,6 +14,7 @@ public class Drone : EnemyBase {
 	
 	// Update is called once per frame
 	new void Update () {
+		if(Ship.paused) return;
 		base.Update();
 		if(transform.position.y>Scaler.sizeY/2)transform.Translate(0,-Time.deltaTime,0);
 		else transform.Translate(dir*(id==1?-1:1)*Time.deltaTime);

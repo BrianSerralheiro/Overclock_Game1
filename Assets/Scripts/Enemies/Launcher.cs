@@ -37,6 +37,7 @@ public class Launcher : EnemyBase {
 		burst.localScale=scale;
 	}
 	new void Update () {
+		if(Ship.paused) return;
 		base.Update();
 		timer-=Time.deltaTime;
 		if(transform.position.y>-Scaler.sizeY-1)transform.Translate(0,-Time.deltaTime/2,0);

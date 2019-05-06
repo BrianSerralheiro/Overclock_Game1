@@ -6,6 +6,7 @@ public class Slash : MonoBehaviour {
 	
 	
 	void Update () {
+		if(Ship.paused) return;
 		transform.Translate(0,-Time.deltaTime*8,0);
 		if(transform.position.y<-Scaler.sizeY) Destroy(gameObject);
 	}

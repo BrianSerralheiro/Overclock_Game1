@@ -35,6 +35,7 @@ public class Bat : EnemyBase {
 		}
 	}
 	new void Update () {
+		if(Ship.paused) return;
 		base.Update();
 		vector.Set(0,0,Mathf.PingPong(Time.time*300,-45f)+60f);
 		wingL.localEulerAngles=vector;
