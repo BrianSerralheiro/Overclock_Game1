@@ -1,6 +1,7 @@
 ﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour {
 	float shoottimer;
@@ -57,7 +58,7 @@ public class Ship : MonoBehaviour {
 			Destroy(shield);
 			return;
 		}
-		if(--hp<=0) gameObject.SetActive(false);
+		if(--hp<=0) SceneManager.LoadScene("GameOver");
 		InGame_HUD.shipHealth = (float)hp / (float)maxhp;
 		damageTimer = 1;
 	}
