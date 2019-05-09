@@ -37,8 +37,11 @@ public class Ship : MonoBehaviour {
 	private int id;
 	public static int playerID;
 
+	public float immuneTime;
+
 	void Start()
 	{
+		InGame_HUD.shipHealth = 1;
 		//speed=5f;
 		//OnLevel(1);
 		if(playerID != id)
@@ -51,6 +54,7 @@ public class Ship : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
+		if(immuneTime > 0) return;
 		if(col.gameObject.name=="playerbullet") return;
 		if(col.otherCollider.name=="laser") return;
 		if(shield)
@@ -58,12 +62,19 @@ public class Ship : MonoBehaviour {
 			Destroy(shield);
 			return;
 		}
-		if(--hp<=0) SceneManager.LoadScene("GameOver");
+		if(--hp<=0)
+		{
+			paused = true;
+			gameObject.SetActive(false);
+			Continue.Open(this);
+		} 
 		InGame_HUD.shipHealth = (float)hp / (float)maxhp;
 		damageTimer = 1;
 	}
 	public void Heal()
 	{
+		gameObject.SetActive(true);
+		immuneTime = 3;
 		hp=maxhp;
 		InGame_HUD.shipHealth =1;
 	}
@@ -81,6 +92,10 @@ public class Ship : MonoBehaviour {
 		if(paused)
 		{
 			return;
+		}
+		if(immuneTime > 0)
+		{
+			immuneTime -= Time.deltaTime;
 		}
 		if(Bullet.bulletTime<=0)
 		{
