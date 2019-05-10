@@ -1,10 +1,10 @@
 fileFormatVersion: 2
 guid: db06c2c3a740ea94089d748677918c44
-timeCreated: 1555982068
+timeCreated: 1557501291
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: 54432955_575676812954655_7220913762105032704_n_0
+    21300000: enemy_shot2
     21300002: leg_R
     21300004: diver_bod
     21300006: leg_L
@@ -30,7 +30,7 @@ TextureImporter:
     21300046: shooter_legL
     21300048: shooter_armR
     21300050: shooter_armL
-    21300052: enemy_shot
+    21300052: enemy_shot1
     21300054: shooter_crystal
   serializedVersion: 4
   mipmaps:
@@ -106,19 +106,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 54432955_575676812954655_7220913762105032704_n_0
-      rect:
-        serializedVersion: 2
-        x: 333
-        y: 2005
-        width: 101
-        height: 185
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: leg_R
       rect:
         serializedVersion: 2
@@ -154,19 +141,6 @@ TextureImporter:
         height: 61
       alignment: 9
       pivot: {x: 0.25, y: 0.2}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: 54432955_575676812954655_7220913762105032704_n_4
-      rect:
-        serializedVersion: 2
-        x: 854
-        y: 1596
-        width: 535
-        height: 721
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -314,19 +288,6 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 54432955_575676812954655_7220913762105032704_n_16
-      rect:
-        serializedVersion: 2
-        x: 377
-        y: 247
-        width: 187
-        height: 196
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: 54432955_575676812954655_7220913762105032704_n_17
       rect:
         serializedVersion: 2
@@ -444,11 +405,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemy_shot
+      name: enemy_shot1
       rect:
         serializedVersion: 2
-        x: 264
-        y: 120
+        x: 46
+        y: 403
         width: 78
         height: 77
       alignment: 0
@@ -464,6 +425,19 @@ TextureImporter:
         y: 146
         width: 59
         height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemy_shot2
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 394
+        width: 78
+        height: 77
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
