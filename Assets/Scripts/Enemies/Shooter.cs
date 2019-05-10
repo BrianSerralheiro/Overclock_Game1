@@ -91,9 +91,11 @@ void LateUpdate()
 	void Shoot()
 	{
 		GameObject go = new GameObject("enemybullet");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bullet;
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bullets[8];
 		go.AddComponent<BoxCollider2D>();
-		go.AddComponent<Bullet>().owner=transform.name;
+		Bullet bu=go.AddComponent<Bullet>();
+		bu.owner=transform.name;
+		bu.spriteID=8;
 		go.transform.position=transform.position;
 		go.transform.rotation=transform.rotation;
 	}
