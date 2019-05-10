@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c8e6c79c4548ebe4485883169037997f
-timeCreated: 1557156235
+timeCreated: 1557497879
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -27,6 +27,7 @@ TextureImporter:
     21300040: Shot_red2
     21300042: freeze_particle
     21300044: fireparticle
+    21300046: shot_yellow2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -248,9 +249,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 305
-        y: 725
-        width: 134
-        height: 80
+        y: 1098
+        width: 141
+        height: 229
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,6 +382,19 @@ TextureImporter:
         y: 2066
         width: 36
         height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: shot_yellow2
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 847
+        width: 126
+        height: 215
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
