@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour {
 
 	void OnDestroy()
 	{
-		Cash.totalCash += points/100;
+		Cash.totalCash += points/200;
 		PlayerPrefs.SetInt("cash", Cash.totalCash);
 	}
 
