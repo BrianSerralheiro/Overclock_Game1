@@ -19,6 +19,7 @@ public class Shooter : EnemyBase
 	{
 		base.Start();
 		points = 100;
+		explosionID=8;
 		_renderer.flipY=true;
 		lifetimer=5;
 		if(legL) return;

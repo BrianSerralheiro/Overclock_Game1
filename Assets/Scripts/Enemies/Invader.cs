@@ -10,7 +10,7 @@ public class Invader : EnemyBase {
 
 	new void Start () {
 		base.Start();
-		explosionID = 3;
+		explosionID = 10;
 		hp=30;
 	}
 	void Shoot()

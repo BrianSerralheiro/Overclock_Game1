@@ -11,10 +11,11 @@ public class Diver : EnemyBase
 	private Transform legR;
 	private Vector3 vector = new Vector3();
 
-	public void Start()
+	new public void Start()
 	{
 		if(Ship.paused) return;
 		base.Start();
+		explosionID=8;
 		hp=12;
 		points = 50;
 		if(legL)return;
@@ -36,7 +37,7 @@ public class Diver : EnemyBase
 		legL.localPosition=new Vector3(0.05f,0.5f,0.1f);
 		legR.localPosition=new Vector3(-0.05f,0.5f,0.1f);
 	}
-	void Update()
+	new void Update()
 	{
 		base.Update();
 		if(Ship.paused) return;

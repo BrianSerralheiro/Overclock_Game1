@@ -7,7 +7,6 @@ public class Drone : EnemyBase {
 	private Vector3 dir=Vector3.right;
 	new void Start () {
 		base.Start();
-		explosionID = 1;
 		hp=80;
 		id=Random.Range(0,3);
 	}

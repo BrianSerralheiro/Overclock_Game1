@@ -12,6 +12,7 @@ public class Carrier : EnemyBase {
 	public new void Start()
 	{
 		base.Start();
+		explosionID=8;
 		hp=100;
 		points = 150;
 		legs=new Transform[6];

@@ -51,7 +51,8 @@ public class EnemyBase : MonoBehaviour {
 		{
 			EnemySpawner.points+=points;
 			InGame_HUD._special += 0.01f;
-			ParticleManager.InstantiatePrefab(explosionID, transform.position,1);
+			//ParticleManager.InstantiatePrefab(explosionID, transform.position,1);
+			ParticleManager.Emit(explosionID, transform.position,1);
 			if(Random.value <= 0.5)
 			{
 				GameObject go = new GameObject("ItemDrop");

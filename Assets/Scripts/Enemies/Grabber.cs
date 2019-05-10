@@ -10,7 +10,6 @@ public class Grabber : EnemyBase {
 	public void Start()
 	{
 		base.Start();
-		explosionID = 1;
 		hp=20;
 		points = 120;
 		GameObject go = new GameObject("armL");
