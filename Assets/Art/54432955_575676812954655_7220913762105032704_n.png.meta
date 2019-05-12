@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: db06c2c3a740ea94089d748677918c44
-timeCreated: 1557501291
+timeCreated: 1557613782
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -16,7 +16,7 @@ TextureImporter:
     21300018: back_legL
     21300020: mid_legR
     21300022: mid_legL
-    21300024: 54432955_575676812954655_7220913762105032704_n_12
+    21300024: carrier_crystal
     21300026: front_legR
     21300028: 54432955_575676812954655_7220913762105032704_n_14
     21300030: front_legL
@@ -236,7 +236,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 54432955_575676812954655_7220913762105032704_n_12
+      name: carrier_crystal
       rect:
         serializedVersion: 2
         x: 1000
