@@ -7,6 +7,7 @@ public class Carrier : EnemyBase {
 	private Diver diver;
 
 	private Transform[] legs;
+	private Core crystal;
 	private Vector3 vector = new Vector3();
 
 	public new void Start()
@@ -16,11 +17,13 @@ public class Carrier : EnemyBase {
 		hp=100;
 		points = 150;
 		legs=new Transform[6];
-		for(int i = 0; i<6; i++)
+		GameObject go = new GameObject("crystal");
+		crystal=go.AddComponent<Core>().Set(SpriteBase.I.carrier[7],new Color(0.4f,0f,0.4f));
+		for(int i = 1; i<7; i++)
 		{
-			GameObject go = new GameObject("leg"+i);
-			go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.carrierlegs[i];
-			legs[i]=go.transform;
+			go = new GameObject("leg"+i);
+			go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.carrier[i];
+			legs[i-1]=go.transform;
 			go.transform.parent=transform;
 			go.transform.rotation=transform.rotation;
 		}
@@ -30,6 +33,9 @@ public class Carrier : EnemyBase {
 		legs[3].localPosition=new Vector3(-0.7f,1.7f,0.1f);
 		legs[4].localPosition=new Vector3(0.9f,2.9f,0.1f);
 		legs[5].localPosition=new Vector3(-0.9f,2.9f,0.1f);
+		crystal.transform.parent=transform;
+		crystal.transform.rotation=transform.rotation;
+		crystal.transform.localPosition=new Vector3(0,3.1f);
 	}
 	public override void Position(int i)
 	{
@@ -49,7 +55,8 @@ public class Carrier : EnemyBase {
 		if(timer>=1 && !diver)Spawn();
 		if(diver && timer<2)
 		{
-			diver.transform.localPosition=Vector3.up*2.5f*(timer-1)+Vector3.forward*0.1f;
+			diver.transform.localPosition=Vector3.up*4.5f*(timer-1)+Vector3.forward*0.1f;
+			crystal.Set(Mathf.Clamp(timer-1,0,1));
 		}
 		if(timer>2)
 		{
@@ -57,6 +64,7 @@ public class Carrier : EnemyBase {
 			diver.transform.parent=null;
 			diver=null;
 			timer =-1;
+			crystal.Set(0);
 		}
 		vector.Set(0,0,Mathf.PingPong(Time.time*50,45f));
 		legs[0].localEulerAngles=vector;

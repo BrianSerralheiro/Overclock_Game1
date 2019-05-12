@@ -13,6 +13,7 @@ public class Shooter : EnemyBase
 	private Transform armR;
 	private Transform legL;
 	private Transform legR;
+	private Core crystal;
 	private Vector3 vector = new Vector3();
 	private Vector3 rot = new Vector3();
 	protected new void Start()
@@ -24,70 +25,71 @@ public class Shooter : EnemyBase
 		lifetimer=5;
 		if(legL) return;
 		GameObject go = new GameObject("legL");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.shooterlegs[0];
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.shooter[1];
 		legL=go.transform;
 		go=new GameObject("legR");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.shooterlegs[1];
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.shooter[2];
 		legR=go.transform;
 		go=new GameObject("armL");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.shooterarms[0];
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.shooter[3];
 		armL=go.transform;
 		go=new GameObject("armR");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.shooterarms[1];
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.shooter[4];
 		armR=go.transform;
-		armL.parent=armR.parent=legL.parent=legR.parent=transform;
+		go=new GameObject("crystal");
+		crystal=go.AddComponent<Core>().Set(SpriteBase.I.shooter[5],new Color(0.4f,0f,0.4f));
+		crystal.transform.parent=armL.parent=armR.parent=legL.parent=legR.parent=transform;
 		armL.localPosition=new Vector3(-0.2f,0.6f,0.1f);
 		armR.localPosition=new Vector3(0.2f,0.6f,0.1f);
 		legL.localPosition=new Vector3(0,-0.5f,0.1f);
 		legR.localPosition=new Vector3(0,-0.5f,0.1f);
+		crystal.transform.localPosition=new Vector3(0,0.6f);
 	}
 
 	public override void Position(int i)
-{
-	base.Position(i);
-	position=i;
-	if(i<8)
 	{
-		finalpoint=new Vector3((i/7f*Scaler.sizeX-Scaler.sizeX/2f)*0.9f,Scaler.sizeY*0.9f,0);
-	}
-	else
-	{
-		finalpoint=new Vector3(i==8 ? -Scaler.sizeX/2f*0.9f : Scaler.sizeX/2f*0.9f,Scaler.sizeY*0.6f,0);
-	}
-}
-new void Update()
-{
-	if(Ship.paused) return;
-	if(position>=0)
-	{
-		transform.Translate((finalpoint-transform.position).normalized*Time.deltaTime,Space.World);
-		transform.up=finalpoint-transform.position;
-		if((finalpoint-transform.position).sqrMagnitude<0.005f)
+		base.Position(i);
+		position=i;
+		if(i<8)
 		{
-			transform.position=finalpoint;
-			position=-1;
+			finalpoint=new Vector3((i/7f*Scaler.sizeX-Scaler.sizeX/2f)*0.9f,Scaler.sizeY*0.9f,0);
+		}
+		else
+		{
+			finalpoint=new Vector3(i==8 ? -Scaler.sizeX/2f*0.9f : Scaler.sizeX/2f*0.9f,Scaler.sizeY*0.6f,0);
 		}
 	}
-	else
+	new void Update()
 	{
-		rot.Set(0,0,Mathf.Atan2(transform.position.x-player.position.x,player.position.y-transform.position.y)*Mathf.Rad2Deg);
-		transform.eulerAngles=rot;
-		if(shoottimer>0) shoottimer-=Time.deltaTime;
-	}
+		if(Ship.paused) return;
+		if(position>=0)
+		{
+			transform.Translate((finalpoint-transform.position).normalized*Time.deltaTime,Space.World);
+			transform.up=finalpoint-transform.position;
+			if((finalpoint-transform.position).sqrMagnitude<0.005f)
+			{
+				transform.position=finalpoint;
+				position=-1;
+			}
+		}
+		else
+		{
+			rot.Set(0,0,Mathf.Atan2(transform.position.x-player.position.x,player.position.y-transform.position.y)*Mathf.Rad2Deg);
+			transform.eulerAngles=rot;
+			if(shoottimer>0) shoottimer-=Time.deltaTime;
+			else
+			{
+				shoottimer=1.5f;
+				Shoot();
+			}
+			crystal.Set(Mathf.Lerp(0,1,shoottimer-0.5f));
+		}
 		vector.Set(0,0,180+Mathf.PingPong(Time.time*100,35f));
 		armL.localEulerAngles=vector;
 		armR.localEulerAngles=-vector;
 		legL.localEulerAngles=-vector;
 		legR.localEulerAngles=vector;
-}
-void LateUpdate()
-{
-	if(shoottimer<=0)
-	{
-		shoottimer=1.5f;
-		Shoot();
 	}
-}
 	void Shoot()
 	{
 		GameObject go = new GameObject("enemybullet");
@@ -96,7 +98,7 @@ void LateUpdate()
 		Bullet bu=go.AddComponent<Bullet>();
 		bu.owner=transform.name;
 		bu.spriteID=8;
-		go.transform.position=transform.position;
+		go.transform.position=crystal.transform.position;
 		go.transform.rotation=transform.rotation;
 	}
 }

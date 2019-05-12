@@ -6,9 +6,9 @@ public class SpriteBase : MonoBehaviour {
 	public static SpriteBase I;
 	public Sprite bullet;
 	public Sprite[] bullets;
-	public Sprite shooter;
+	public Sprite[] shooter;
 	public Sprite diver;
-	public Sprite carrier;
+	public Sprite[] carrier;
 	public Sprite[] round;
 	public Sprite[] Lasor;
 	public Sprite[] grabber;

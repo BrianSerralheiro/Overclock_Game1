@@ -22,7 +22,8 @@ public class ItemDrop : MonoBehaviour
 	void Update () 
 	{
 		if(Ship.paused) return;
-		transform.Translate(0,-Time.deltaTime,0);
+		transform.Translate(0,-Time.deltaTime*4,0);
+		if(transform.position.y<-Scaler.sizeY)Destroy(gameObject);
 	}
 
 	void OnTriggerEnter2D (Collider2D other)

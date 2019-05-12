@@ -8,6 +8,9 @@ public class Boss1 : EnemyBase {
 	private Transform wingR;
 	private float speed=4;
 	private Vector3 dir=Vector3.right+Vector3.up;
+	private Transform[] legs;
+	private Core crystal;
+	private Vector3 rot = new Vector3();
 	enum State
 	{
 		intro,
@@ -34,6 +37,31 @@ public class Boss1 : EnemyBase {
 		wingL.parent=wingR.parent=transform;
 		wingL.localPosition=new Vector3(0.7f,1.9f,-0.1f);
 		wingR.localPosition=new Vector3(-0.7f,1.9f,-0.1f);
+		legs=new Transform[12];
+		go = new GameObject("crystal");
+		crystal=go.AddComponent<Core>().Set(SpriteBase.I.boss1[15],new Color(0.4f,0f,0.4f));
+		for(int i = 3; i<15; i++)
+		{
+			go = new GameObject("leg"+(i-3));
+			go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss1[i];
+			legs[i-3]=go.transform;
+			go.transform.parent=transform;
+		}
+		legs[0].localPosition=new Vector3(-0.3f,2.5f,0.1f);
+		legs[1].localPosition=new Vector3(0.3f,2.5f,0.1f);
+		legs[2].localPosition=new Vector3(-0.55f,2.1f,0.1f);
+		legs[3].localPosition=new Vector3(0.55f,2.1f,0.1f);
+		legs[4].localPosition=new Vector3(-0.85f,1.5f,0.1f);
+		legs[5].localPosition=new Vector3(0.85f,1.5f,0.1f);
+		legs[6].localPosition=new Vector3(-1,0.65f,0.1f);
+		legs[7].localPosition=new Vector3(1,0.65f,0.1f);
+		legs[8].localPosition=new Vector3(-0.97f,-0.7f,0.1f);
+		legs[9].localPosition=new Vector3(0.97f,-0.7f,0.1f);
+		legs[10].localPosition=new Vector3(-0.4f,-2.4f,0.1f);
+		legs[11].localPosition=new Vector3(0.4f,-2.4f,0.1f);
+
+		crystal.transform.parent=transform;
+		crystal.transform.localPosition=new Vector3(0,0.1f);
 	}
 
 
@@ -51,11 +79,17 @@ public class Boss1 : EnemyBase {
 			if(transform.position.x>Scaler.sizeX/2f-2)dir.x=-Mathf.Abs(dir.x);
 			if(transform.position.x<-Scaler.sizeX/2f+2)dir.x=Mathf.Abs(dir.x);
 			transform.Translate(dir*Time.deltaTime*(speed/4));
-			if(transform.position.y<-Scaler.sizeY+2)state=State.charging;
+			crystal.Min(Time.deltaTime);
+			rot.Set(0,0,Mathf.PingPong(Time.time*50,45f));
+			if(transform.position.y<-Scaler.sizeY+2){
+				state=State.charging;
+				rot.Set(0,0,0);
+			}
 		}
 		else if(state==State.charging)
 		{
 			if(vector.z>45)transform.Translate(0,Time.deltaTime*speed,0);
+			crystal.Add(Time.deltaTime);
 			if(transform.position.y>Scaler.sizeY){
 				state=State.moving;
 				float f=Random.value*(hp<200?4:2);
@@ -65,9 +99,10 @@ public class Boss1 : EnemyBase {
 		}
 		else if(state==State.dead)
 		{
+			crystal.Set(0);
 			transform.Translate(0,-Time.deltaTime*3,0,Space.World);
 			transform.Rotate(0,0,Time.deltaTime*3);
-			ParticleManager.Emit(0,(Vector3)Random.insideUnitCircle*2+transform.position,5);
+			ParticleManager.Emit(8,(Vector3)Random.insideUnitCircle*2+transform.position,1);
 			if(transform.position.y<-Scaler.sizeY-4){
 				Destroy(gameObject);
 				EnemySpawner.boss=false;
@@ -78,6 +113,19 @@ public class Boss1 : EnemyBase {
 		if(state!=State.dead){
 			wingL.localEulerAngles=vector;
 			wingR.localEulerAngles=-vector;
+			
+			legs[0].localEulerAngles=vector/4;
+			legs[1].localEulerAngles=-vector/4;
+			legs[2].localEulerAngles=vector;
+			legs[3].localEulerAngles=-vector;
+			legs[4].localEulerAngles=rot;
+			legs[5].localEulerAngles=-rot;
+			legs[6].localEulerAngles=rot;
+			legs[7].localEulerAngles=-rot;
+			legs[8].localEulerAngles=rot;
+			legs[9].localEulerAngles=-rot;
+			legs[10].localEulerAngles=rot;
+			legs[11].localEulerAngles=-rot;
 		}
 	}
 	protected override void Die()

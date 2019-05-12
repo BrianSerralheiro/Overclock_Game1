@@ -53,13 +53,13 @@ public class EnemySpawner : MonoBehaviour {
 		switch(s[0])
 		{
 			case 'A':
-				en=Spawn<Shooter>(SpriteBase.I.shooter);
+				en=Spawn<Shooter>(SpriteBase.I.shooter[0]);
 				break;
 			case 'B':
 				en=Spawn<Diver>(SpriteBase.I.diver);
 				break;
 			case 'C':
-				en=Spawn<Carrier>(SpriteBase.I.carrier);
+				en=Spawn<Carrier>(SpriteBase.I.carrier[0]);
 				break;
 			case 'D':
 				en=Spawn<Boss1>(SpriteBase.I.boss1[0]);

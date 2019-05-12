@@ -48,7 +48,6 @@ public class Ship : MonoBehaviour {
 		{
 			gameObject.SetActive(false);
 		}
-		Debug.Log(playerID);
 		hp=maxhp;
 		_renderer = GetComponent<SpriteRenderer>();
 	}
