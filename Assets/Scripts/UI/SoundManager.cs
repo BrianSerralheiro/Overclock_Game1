@@ -16,7 +16,7 @@ public class SoundManager : MonoBehaviour
 	private static float volumeSFX = 1;
 
 	// Use this for initialization
-	void Start () 
+	void Awake() 
 	{
 		GameObject go = new GameObject("AudioSource");
 		soundPlayer = go.AddComponent<AudioSource>();

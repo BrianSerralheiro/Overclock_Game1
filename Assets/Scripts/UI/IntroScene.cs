@@ -11,6 +11,15 @@ public class IntroScene : MonoBehaviour
 	[SerializeField]
 	private RawImage studioLogo;
 
+	[SerializeField]
+	private RawImage IntroCharacters;
+	[SerializeField]
+	private Image WhitePanel;
+	[SerializeField]
+	private Text tapStart;
+	[SerializeField]
+	private Text tapStartOutline;
+
 	private Color introColor;
 
 	// Use this for initialization
@@ -24,6 +33,9 @@ public class IntroScene : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		if(Timer > 0)
+	  {
+
 		Timer -= Time.deltaTime;
 		introColor.a = (5 - Timer) / 2;
 		if(introColor.a > 1)
@@ -35,7 +47,24 @@ public class IntroScene : MonoBehaviour
 		
 		if(Timer <= 0)
 		{
-			SceneManager.LoadScene("MainMenu");
+			WhitePanel.gameObject.SetActive(false);
+			IntroCharacters.gameObject.SetActive(true);
 		}
+
+	  }
+	  else
+	  {
+		  introColor = tapStart.color;
+		  introColor.a = Mathf.Abs(Mathf.Cos(Time.time * 2));
+		  tapStart.color = introColor;
+		  introColor = tapStartOutline.color;
+		  introColor.a = Mathf.Abs(Mathf.Cos(Time.time * 2));
+		  tapStartOutline.color = introColor;
+	  }
+	}
+
+	public void OnTap()
+	{
+		SceneManager.LoadScene("MainMenu");		
 	}
 }
