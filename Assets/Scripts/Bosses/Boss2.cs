@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Boss2 : EnemyBase {
-	private Transform clawL;
-	private Transform clawR;
+	private EnemyBase clawL;
+	private EnemyBase clawR;
 	private Transform elbowL;
 	private Transform elbowR;
 	private Transform lidT;
 	private Transform lidB;
 	private Transform eye;
-	private Transform eyes;
+	private Core eyes;
 	private LineRenderer lineelbowL;
 	private LineRenderer lineelbowR;
 	private LineRenderer lineclawL;
@@ -41,7 +41,8 @@ public class Boss2 : EnemyBase {
 		hp=500;
 		points = 1000;
 		GameObject go = new GameObject("enemy");
-		go.AddComponent<EnemyBase>().SetHP(150);
+		clawL=go.AddComponent<EnemyBase>();
+		clawL.SetHP(150);
 		lineclawL=go.AddComponent<LineRenderer>();
 		Config(lineclawL);
 		Rigidbody2D r = go.AddComponent<Rigidbody2D>();
@@ -49,7 +50,6 @@ public class Boss2 : EnemyBase {
 		r.useFullKinematicContacts=true;
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss2[1];
 		go.AddComponent<BoxCollider2D>();
-		clawL=go.transform;
 		go = new GameObject("elbowL");
 		lineelbowL=go.AddComponent<LineRenderer>();
 		Config(lineelbowL);
@@ -58,7 +58,8 @@ public class Boss2 : EnemyBase {
 		go = new GameObject("enemy");
 		lineclawR=go.AddComponent<LineRenderer>();
 		Config(lineclawR);
-		go.AddComponent<EnemyBase>().SetHP(150);
+		clawR=go.AddComponent<EnemyBase>();
+		clawR.SetHP(150);
 		r = go.AddComponent<Rigidbody2D>();
 		r.isKinematic=true;
 		r.useFullKinematicContacts=true;
@@ -66,7 +67,6 @@ public class Boss2 : EnemyBase {
 		sr.sprite=SpriteBase.I.boss2[1];
 		sr.flipX=true;
 		go.AddComponent<BoxCollider2D>();
-		clawR=go.transform;
 		go = new GameObject("elbowR");
 		lineelbowR=go.AddComponent<LineRenderer>();
 		Config(lineelbowR);
@@ -74,8 +74,8 @@ public class Boss2 : EnemyBase {
 		sr.sprite=SpriteBase.I.boss2[2];
 		sr.flipX=true;
 		elbowR=go.transform;
-		clawL.position=transform.position+left;
-		clawR.position=transform.position+right;
+		clawL.transform.position=transform.position+left;
+		clawR.transform.position=transform.position+right;
 		go = new GameObject("lidB");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss2[3];
 		lidB=go.transform;
@@ -91,10 +91,9 @@ public class Boss2 : EnemyBase {
 		eye.parent=transform;
 		eye.localPosition=new Vector3(0,-0.3f,0.2f);
 		go = new GameObject("eyes");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss2[6];
-		eyes=go.transform;
-		eyes.parent=transform;
-		eyes.localPosition=new Vector3(0,0.46f,0);
+		eyes=go.AddComponent<Core>().Set(SpriteBase.I.boss2[6],new Color(0.5f,0.1f,0.05f));
+		go.transform.parent=transform;
+		go.transform.localPosition=new Vector3(0,0.46f,0);
 	}
 
 	// Update is called once per frame
@@ -105,16 +104,22 @@ public class Boss2 : EnemyBase {
 		if(state==State.intro)
 		{
 			transform.Translate(0,-Time.deltaTime*2,0);
-			clawL.position=transform.position+left;
-			clawR.position=transform.position+right;
+			if(clawL){
+				clawL.transform.position=transform.position+left;
+				clawL.SetHP(150);
+			}
+			if(clawR){
+				clawR.transform.position=transform.position+right;
+				clawR.SetHP(150);
+			}
 			if(transform.position.y<Scaler.sizeY/2f){state=State.waiting;
 			timer=3;}
 		}
 		else if(state==State.waiting)
 		{
 			if(vectorB.y<-0.6f) vectorB.y+=Time.deltaTime/10;
-			if(clawL && (clawL.position-transform.position).sqrMagnitude>5)clawL.position=Vector3.MoveTowards(clawL.position,transform.position+left,5*Time.deltaTime);
-			if(clawR && (clawR.position-transform.position).sqrMagnitude>5) clawR.position=Vector3.MoveTowards(clawR.position,transform.position+right,5*Time.deltaTime);
+			if(clawL)clawL.transform.position=Vector3.MoveTowards(clawL.transform.position,transform.position+left,5*Time.deltaTime);
+			if(clawR) clawR.transform.position=Vector3.MoveTowards(clawR.transform.position,transform.position+right,5*Time.deltaTime);
 			if(timer<0){
 				if(clawL || clawR){
 					if(Random.value<=0.3f){
@@ -122,12 +127,12 @@ public class Boss2 : EnemyBase {
 						timer=2;
 					}else{
 					state=State.punching;
-					target=player.position;
-					if(clawL && clawR)moving=Random.value<0.5f?clawR:clawL;
+					target=transform.position+(player.position-transform.position).normalized*10;
+					if(clawL && clawR)moving=Random.value<0.5f?clawR.transform:clawL.transform;
 					else
 					{
-						if(clawL)moving=clawL;
-						if(clawR)moving=clawR;
+						if(clawL)moving=clawL.transform;
+						if(clawR)moving=clawR.transform;
 					}
 					}
 				}
@@ -152,6 +157,7 @@ public class Boss2 : EnemyBase {
 					Shoot(i);
 				}
 				timer=0.6f;
+				eyes.Set(1);
 				if(clawL || clawR)state=State.waiting;
 			}
 		}
@@ -159,7 +165,7 @@ public class Boss2 : EnemyBase {
 		{
 			if(moving)
 			{
-				moving.position=Vector3.MoveTowards(moving.position,target,3*Time.deltaTime);
+				moving.position=Vector3.MoveTowards(moving.position,target,10*Time.deltaTime);
 				if((target-moving.position).sqrMagnitude<1f)
 				{
 					state=State.waiting;
@@ -174,6 +180,7 @@ public class Boss2 : EnemyBase {
 		}
 		else if(state==State.dead)
 		{
+			ParticleManager.Emit(0,(Vector3)Random.insideUnitCircle*1.5f+transform.position,1);
 			if(timer<0)
 			{
 				EnemySpawner.boss=false;
@@ -182,19 +189,19 @@ public class Boss2 : EnemyBase {
 				Destroy(elbowR.gameObject);
 			}
 		}
-
+		eyes.Min(Time.deltaTime*2);
 		lidB.localPosition=vectorB;
 		vectorT.y=-(lidB.localPosition.y+0.7f);
 		lidT.localPosition=vectorT;
 		if(clawL){
-			MoveElbow(elbowL,transform.position+left,clawL.position,true);
-			Chock(lineclawL,elbowL.position,clawL.position);
+			MoveElbow(elbowL,transform.position+left,clawL.transform.position,true);
+			Chock(lineclawL,elbowL.position,clawL.transform.position);
 			Chock(lineelbowL,transform.position+left,elbowL.position);
 		}
 		else elbowL.gameObject.SetActive(false);
 		if(clawR){
-			MoveElbow(elbowR,transform.position+right,clawR.position,false);
-			Chock(lineclawR,elbowR.position,clawR.position);
+			MoveElbow(elbowR,transform.position+right,clawR.transform.position,false);
+			Chock(lineclawR,elbowR.position,clawR.transform.position);
 			Chock(lineelbowR,transform.position+right,elbowR.position);
 		}
 		else elbowR.gameObject.SetActive(false);
@@ -224,10 +231,12 @@ public class Boss2 : EnemyBase {
 	void Shoot(int i)
 	{
 		GameObject go = new GameObject("enemybullet");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss2[7];
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bullets[10];
 		go.AddComponent<BoxCollider2D>();
-		go.AddComponent<Bullet>().owner=name;
-		go.transform.position=eyes.position+pos[i]+Vector3.back*0.5f;
+		Bullet bu=go.AddComponent<Bullet>();
+		bu.owner=name;
+		bu.spriteID=10;
+		go.transform.position=eyes.transform.position+pos[i]+Vector3.back*0.5f;
 		go.transform.up=Vector3.down;
 	}
 	protected override void Die()

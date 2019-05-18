@@ -28,10 +28,11 @@ public class Bomb : EnemyBase {
 	protected override void Die()
 	{
 		Destroy(gameObject);
+		ParticleManager.Emit(10,transform.position,1);
 	}
 	private void Explode()
 	{
 		Destroy(gameObject);
-		Debug.Log("BOOM");
+		ParticleManager.Emit(11,transform.position,1);
 	}
 }

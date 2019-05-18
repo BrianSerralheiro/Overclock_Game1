@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b91db77fc0b7d514ca34e8a5999b8930
-timeCreated: 1557508210
+timeCreated: 1557782915
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,7 +10,7 @@ TextureImporter:
     21300006: clawR
     21300008: clawL
     21300010: enemies2_5
-    21300012: enemies2_6
+    21300012: round
     21300014: enemies2_7
     21300016: orange_shot1
     21300018: enemies2_9
@@ -23,7 +23,7 @@ TextureImporter:
     21300032: launcher_core
     21300034: launcher_bod
     21300036: enemies2_18
-    21300038: lasor_light
+    21300038: lasor_lights
     21300040: enemies2_20
     21300042: lasor_bod
     21300044: enemies2_22
@@ -108,9 +108,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 708
-        y: 1955
-        width: 189
-        height: 334
+        y: 1972
+        width: 193
+        height: 309
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,13 +156,13 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies2_6
+      name: round
       rect:
         serializedVersion: 2
-        x: 458
-        y: 1451
-        width: 283
-        height: 258
+        x: 455
+        y: 1457
+        width: 286
+        height: 259
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,10 +224,10 @@ TextureImporter:
       name: launcher_core
       rect:
         serializedVersion: 2
-        x: 1117
+        x: 1121
         y: 1064
-        width: 46
-        height: 37
+        width: 37
+        height: 36
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,9 +237,9 @@ TextureImporter:
       name: launcher_bod
       rect:
         serializedVersion: 2
-        x: 828
+        x: 830
         y: 816
-        width: 348
+        width: 347
         height: 237
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -247,13 +247,13 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: lasor_light
+      name: lasor_lights
       rect:
         serializedVersion: 2
-        x: 1357
-        y: 711
-        width: 45
-        height: 50
+        x: 1364
+        y: 498
+        width: 255
+        height: 92
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

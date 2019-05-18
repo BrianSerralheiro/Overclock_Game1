@@ -30,9 +30,11 @@ public class Boss1 : EnemyBase {
 		points = 1000;
 		GameObject go = new GameObject("wingL");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss1[1];
+		go.AddComponent<BoxCollider2D>();
 		wingL=go.transform;
 		go = new GameObject("wingR");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss1[2];
+		go.AddComponent<BoxCollider2D>();
 		wingR=go.transform;
 		wingL.parent=wingR.parent=transform;
 		wingL.localPosition=new Vector3(0.7f,1.9f,-0.1f);

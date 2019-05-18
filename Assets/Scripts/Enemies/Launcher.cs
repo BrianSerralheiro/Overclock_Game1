@@ -9,11 +9,16 @@ public class Launcher : EnemyBase {
 	private Vector3 rot;
 	private Vector3 scale=Vector3.one;
 	private Vector3 pos=new Vector3(0,0.4f,0.1f);
+	private Core core;
 	new void Start () {
 		base.Start();
 		hp=40;
 		Create();
 		timer=5;
+		GameObject go=new GameObject("core");
+		core=go.AddComponent<Core>().Set(SpriteBase.I.launcher[3],new Color(0.5f,0.1f,0.05f));
+		core.transform.parent=transform;
+		core.transform.localPosition=new Vector3(0,0.11f);
 	}
 	private void Create()
 	{
@@ -45,9 +50,11 @@ public class Launcher : EnemyBase {
 		{
 			rocket.position=transform.position+pos;
 			scale.y=0;
+			core.Min(Time.deltaTime*2);
 		}
 		if(timer <0)
 		{
+			core.Add(Time.deltaTime*2);
 			if(rocket)
 			{
 				scale.y=1;

@@ -9,6 +9,7 @@ public class Lasor : EnemyBase
 	private Transform laser;
 	private SpriteRenderer charge;
 	private new BoxCollider2D collider;
+	private Core core;
 	protected new void Start()
 	{
 		base.Start();
@@ -31,7 +32,11 @@ public class Lasor : EnemyBase
 		collider.enabled=false;
 		go.transform.parent=laser;
 		go.transform.localPosition=new Vector3(0,-0.55f,0);
-		go.transform.localScale=Vector3.right+Vector3.up*35;
+		go.transform.localScale=Vector3.right+Vector3.up*38;
+		go=new GameObject("core");
+		core=go.AddComponent<Core>().Set(SpriteBase.I.Lasor[4],new Color(0.5f,0.1f,0.05f));
+		core.transform.parent=transform;
+		core.transform.localPosition=new Vector3(0,0.93f);
 	}
 	public override void Position(int i)
 	{
@@ -46,7 +51,7 @@ public class Lasor : EnemyBase
 	new void Update(){
 		if(Ship.paused) return;
 		base.Update();
-		if(transform.position.y>Scaler.sizeY*0.7f)transform.Translate(0,-Time.deltaTime*2,0);
+		if(transform.position.y>Scaler.sizeY/2)transform.Translate(0,-Time.deltaTime*2,0);
 		else 
 		timer-=Time.deltaTime;
 		if(timer<=0){
@@ -57,6 +62,7 @@ public class Lasor : EnemyBase
 		{
 			charge.transform.localScale=laser.localPosition;
 			dir.Set(1-timer,1,1);
+			core.Set(timer);
 			laser.localScale=dir;
 			collider.enabled=!collider.enabled;
 		}else if(timer<2)
@@ -67,6 +73,7 @@ public class Lasor : EnemyBase
 			charge.color=c;
 			dir.Set(1,(timer-1)*5,1);
 			charge.transform.localScale=dir;
+			core.Set(2f-timer);
 		}
 		else
 		{
