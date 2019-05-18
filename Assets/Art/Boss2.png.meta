@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 61bc480fb10ff6240a3749cd0b730ff2
-timeCreated: 1554071575
+timeCreated: 1557793373
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -13,18 +13,18 @@ TextureImporter:
     21300012: Boss2_6
     21300014: Boss2_7
     21300016: Boss2_8
-    21300018: Boss2_9
+    21300018: boss2
     21300020: Boss2_10
     21300022: Boss2_11
-    21300024: Boss2_12
+    21300024: clawL
     21300026: Boss2_13
     21300028: Boss2_14
     21300030: Boss2_15
     21300032: Boss2_16
-    21300034: Boss2_17
+    21300034: clawR
     21300036: boss_eye
-    21300038: Boss2_19
-    21300040: Boss2_20
+    21300038: lightL
+    21300040: lightR
     21300042: eye_lid_top
     21300044: boss_eyes
   serializedVersion: 4
@@ -192,7 +192,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Boss2_9
+      name: boss2
       rect:
         serializedVersion: 2
         x: 653
@@ -231,7 +231,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Boss2_12
+      name: clawL
       rect:
         serializedVersion: 2
         x: 236
@@ -244,7 +244,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Boss2_17
+      name: clawR
       rect:
         serializedVersion: 2
         x: 1282
@@ -270,7 +270,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Boss2_19
+      name: lightL
       rect:
         serializedVersion: 2
         x: 470
@@ -283,7 +283,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Boss2_20
+      name: lightR
       rect:
         serializedVersion: 2
         x: 1326
