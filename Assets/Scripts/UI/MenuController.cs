@@ -39,11 +39,12 @@ public class MenuController : MonoBehaviour
 			EventSystem.SetActive(true);
 			MainMenuUI.gameObject.SetActive(MenuPositionX == 0);
 			SettingsMenuUI.gameObject.SetActive(!ShopMenuUI.gameObject.activeSelf && MenuPositionX == -6.67f);
-			ShopMenuUI.gameObject.SetActive(!SettingsMenuUI.gameObject.activeSelf && MenuPositionX == -6.67f);
+			ShopMenuUI.gameObject.SetActive(!SettingsMenuUI.gameObject.activeSelf && MenuPositionX == 6.67f);
 			pos.x=MenuPositionX;
 		    MainMenuUI.position = pos;
 			pos.x += 6.67f;
 			SettingsMenuUI.position = pos;
+			pos.x -= 6.67f * 2;
 			ShopMenuUI.position = pos;
 			}
 			else
@@ -54,6 +55,7 @@ public class MenuController : MonoBehaviour
 			MainMenuUI.position = pos;
 			pos.x += 6.67f;
 			SettingsMenuUI.position = pos;
+			pos.x -= 6.67f * 2;
 			ShopMenuUI.position = pos;
 			}
 		}
@@ -76,7 +78,7 @@ public class MenuController : MonoBehaviour
 		}
 		else if (i == 2)
 		{
-			MenuPositionX = -6.67f;
+			MenuPositionX = 6.67f;
 			ShopMenuUI.gameObject.SetActive(true);
 			EventSystem.SetActive(false);
 		}
