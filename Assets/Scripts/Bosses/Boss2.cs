@@ -231,6 +231,7 @@ public class Boss2 : EnemyBase {
 		else if(elbowL){
 			ParticleManager.Emit(0,(Vector3)Random.insideUnitCircle*1.5f+elbowL.position,1);
 			Destroy(elbowL.gameObject);
+			Round(new Vector3(Scaler.sizeX/4,Scaler.sizeY+2));
 		}
 		if(clawR){
 			MoveElbow(elbowR,transform.position+right,clawR.transform.position,false);
@@ -241,11 +242,19 @@ public class Boss2 : EnemyBase {
 		{
 			ParticleManager.Emit(0,(Vector3)Random.insideUnitCircle*1.5f+elbowR.position,1);
 			Destroy(elbowR.gameObject);
+			Round(new Vector3(-Scaler.sizeX/4,Scaler.sizeY+2));
 		}
 	}
 	private void Round(Vector3 v)
 	{
-
+		GameObject go = new GameObject("enemy");
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.round[0];
+		go.AddComponent<BoxCollider2D>();
+		Rigidbody2D r = go.AddComponent<Rigidbody2D>();
+		r.isKinematic=true;
+		r.useFullKinematicContacts=true;
+		go.AddComponent<Round>();
+		go.transform.position=v;
 	}
 	private void Config(LineRenderer l)
 	{
