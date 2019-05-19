@@ -28,7 +28,7 @@ public class MenuController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		
+		SoundManager.Play(0);		
 	}
 	
 	// Update is called once per frame
