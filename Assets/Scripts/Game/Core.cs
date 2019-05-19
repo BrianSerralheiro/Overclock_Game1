@@ -15,6 +15,11 @@ public class Core : MonoBehaviour {
 		color=c;
 		return this;
 	}
+	public Core Flip()
+	{
+		render.flipX=true;
+		return this;
+	}
 	public void Add(float f)
 	{
 		if(value<1)
