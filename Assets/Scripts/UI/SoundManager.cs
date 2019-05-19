@@ -18,6 +18,11 @@ public class SoundManager : MonoBehaviour
 	// Use this for initialization
 	void Awake() 
 	{
+		if(_soundManager)
+		{
+			Destroy(gameObject);
+			return;
+		}
 		GameObject go = new GameObject("AudioSource");
 		soundPlayer = go.AddComponent<AudioSource>();
 		soundPlayer.loop = true;

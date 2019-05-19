@@ -21,6 +21,7 @@ public class MenuController : MonoBehaviour
 	private float MenuPositionX;
 	[SerializeField]
 	GameObject[] characterIDButton;
+	private float ratio;
 
 	//Help positioning
 	Vector3 pos;
@@ -28,6 +29,7 @@ public class MenuController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		ratio = (float)Screen.width / (float)Screen.height * 10;
 		SoundManager.Play(0);		
 	}
 	
@@ -40,16 +42,16 @@ public class MenuController : MonoBehaviour
 			{
 			EventSystem.SetActive(true);
 			MainMenuUI.gameObject.SetActive(MenuPositionX == 0);
-			SettingsMenuUI.gameObject.SetActive(MenuPositionX == -6.67f);
-			ShopMenuUI.gameObject.SetActive(SocialMenuUI.gameObject.activeSelf || (!SettingsMenuUI.gameObject.activeSelf && MenuPositionX == 6.67f));
-			SocialMenuUI.gameObject.SetActive(MenuPositionX == 6.67f * 2);
+			SettingsMenuUI.gameObject.SetActive(MenuPositionX == -ratio);
+			ShopMenuUI.gameObject.SetActive(SocialMenuUI.gameObject.activeSelf || (!SettingsMenuUI.gameObject.activeSelf && MenuPositionX == ratio));
+			SocialMenuUI.gameObject.SetActive(MenuPositionX == ratio * 2);
 			pos.x=MenuPositionX;
 		    MainMenuUI.position = pos;
-			pos.x += 6.67f;
+			pos.x += ratio;
 			SettingsMenuUI.position = pos;
-			pos.x -= 6.67f * 2;
+			pos.x -= ratio * 2;
 			ShopMenuUI.position = pos;
-			pos.x -= 6.67f;
+			pos.x -= ratio;
 			SocialMenuUI.position = pos;
 
 			}
@@ -59,11 +61,11 @@ public class MenuController : MonoBehaviour
 			//Move x position based on the menu position
 			pos.x +=(MenuPositionX - pos.x) * Time.deltaTime * 5;
 			MainMenuUI.position = pos;
-			pos.x += 6.67f;
+			pos.x += ratio;
 			SettingsMenuUI.position = pos;
-			pos.x -= 6.67f * 2;
+			pos.x -= ratio * 2;
 			ShopMenuUI.position = pos;
-			pos.x -= 6.67f;
+			pos.x -= ratio;
 			SocialMenuUI.position = pos;
 			}
 		}
@@ -80,19 +82,19 @@ public class MenuController : MonoBehaviour
 		}
 		else if (i == 1)
 		{
-			MenuPositionX = -6.67f;
+			MenuPositionX = -ratio;
 			SettingsMenuUI.gameObject.SetActive(true);
 			EventSystem.SetActive(false);
 		}
 		else if (i == 2)
 		{
-			MenuPositionX = 6.67f;
+			MenuPositionX = ratio;
 			ShopMenuUI.gameObject.SetActive(true);
 			EventSystem.SetActive(false);
 		}
 		else if (i == 3)
 		{
-			MenuPositionX = 6.67f * 2;
+			MenuPositionX = ratio * 2;
 			SocialMenuUI.gameObject.SetActive(true);
 			EventSystem.SetActive(false);
 		}
