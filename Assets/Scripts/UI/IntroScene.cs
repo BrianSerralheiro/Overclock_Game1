@@ -21,11 +21,13 @@ public class IntroScene : MonoBehaviour
 	private Text tapStartOutline;
 
 	private Color introColor;
+	private AsyncOperation loading;
 
 	// Use this for initialization
 	void Start () 
 	{
-		SoundManager.Play(0);
+		loading = SceneManager.LoadSceneAsync("MainMenu");
+		loading.allowSceneActivation = false;
 		introColor = studioLogo.color;
 		Timer = 5f;
 	}
@@ -65,6 +67,6 @@ public class IntroScene : MonoBehaviour
 
 	public void OnTap()
 	{
-		SceneManager.LoadScene("MainMenu");		
+		loading.allowSceneActivation = true;
 	}
 }

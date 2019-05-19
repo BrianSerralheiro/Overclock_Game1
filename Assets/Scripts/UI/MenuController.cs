@@ -11,6 +11,8 @@ public class MenuController : MonoBehaviour
 	[SerializeField]
 	RectTransform ShopMenuUI;
 	[SerializeField]
+	RectTransform SocialMenuUI;
+	[SerializeField]
 	GameObject EventSystem;
 	[SerializeField]
 	GameObject SettingsGroup;
@@ -26,7 +28,7 @@ public class MenuController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		
+		SoundManager.Play(0);		
 	}
 	
 	// Update is called once per frame
@@ -38,13 +40,18 @@ public class MenuController : MonoBehaviour
 			{
 			EventSystem.SetActive(true);
 			MainMenuUI.gameObject.SetActive(MenuPositionX == 0);
-			SettingsMenuUI.gameObject.SetActive(!ShopMenuUI.gameObject.activeSelf && MenuPositionX == -6.67f);
-			ShopMenuUI.gameObject.SetActive(!SettingsMenuUI.gameObject.activeSelf && MenuPositionX == -6.67f);
+			SettingsMenuUI.gameObject.SetActive(MenuPositionX == -6.67f);
+			ShopMenuUI.gameObject.SetActive(SocialMenuUI.gameObject.activeSelf || (!SettingsMenuUI.gameObject.activeSelf && MenuPositionX == 6.67f));
+			SocialMenuUI.gameObject.SetActive(MenuPositionX == 6.67f * 2);
 			pos.x=MenuPositionX;
 		    MainMenuUI.position = pos;
 			pos.x += 6.67f;
 			SettingsMenuUI.position = pos;
+			pos.x -= 6.67f * 2;
 			ShopMenuUI.position = pos;
+			pos.x -= 6.67f;
+			SocialMenuUI.position = pos;
+
 			}
 			else
 			{
@@ -54,7 +61,10 @@ public class MenuController : MonoBehaviour
 			MainMenuUI.position = pos;
 			pos.x += 6.67f;
 			SettingsMenuUI.position = pos;
+			pos.x -= 6.67f * 2;
 			ShopMenuUI.position = pos;
+			pos.x -= 6.67f;
+			SocialMenuUI.position = pos;
 			}
 		}
 	}
@@ -76,8 +86,14 @@ public class MenuController : MonoBehaviour
 		}
 		else if (i == 2)
 		{
-			MenuPositionX = -6.67f;
+			MenuPositionX = 6.67f;
 			ShopMenuUI.gameObject.SetActive(true);
+			EventSystem.SetActive(false);
+		}
+		else if (i == 3)
+		{
+			MenuPositionX = 6.67f * 2;
+			SocialMenuUI.gameObject.SetActive(true);
 			EventSystem.SetActive(false);
 		}
 	}
