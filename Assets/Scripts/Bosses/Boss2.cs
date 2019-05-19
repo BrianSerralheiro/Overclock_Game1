@@ -9,8 +9,10 @@ public class Boss2 : EnemyBase {
 	private Transform elbowR;
 	private Transform lidT;
 	private Transform lidB;
-	private Transform eye;
+	private Core eye;
 	private Core eyes;
+	private Core lightL;
+	private Core lightR;
 	private LineRenderer lineelbowL;
 	private LineRenderer lineelbowR;
 	private LineRenderer lineclawL;
@@ -20,6 +22,7 @@ public class Boss2 : EnemyBase {
 	private float timer;
 	private float time;
 	private Transform moving;
+	private Core light;
 	private Vector3 vectorB=new Vector3(0,-0.6f,0.1f);
 	private Vector3 vectorT=new Vector3(0,-0.1f,0.1f);
 	private Vector3 left=new Vector3(1.1f,-1,0);
@@ -50,6 +53,10 @@ public class Boss2 : EnemyBase {
 		r.useFullKinematicContacts=true;
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss2[1];
 		go.AddComponent<BoxCollider2D>();
+		go=new GameObject("lightL");
+		lightL=go.AddComponent<Core>().Set(SpriteBase.I.boss2[7],new Color(0.5f,0.5f,0.5f));
+		go.transform.parent=clawL.transform;
+		go.transform.localPosition=new Vector3(0.17f,0.06f);
 		go = new GameObject("elbowL");
 		lineelbowL=go.AddComponent<LineRenderer>();
 		Config(lineelbowL);
@@ -67,6 +74,10 @@ public class Boss2 : EnemyBase {
 		sr.sprite=SpriteBase.I.boss2[1];
 		sr.flipX=true;
 		go.AddComponent<BoxCollider2D>();
+		go=new GameObject("lightR");
+		lightR=go.AddComponent<Core>().Set(SpriteBase.I.boss2[7],new Color(0.5f,0.5f,0.5f)).Flip();
+		go.transform.parent=clawR.transform;
+		go.transform.localPosition=new Vector3(-0.17f,0.06f);
 		go = new GameObject("elbowR");
 		lineelbowR=go.AddComponent<LineRenderer>();
 		Config(lineelbowR);
@@ -86,10 +97,9 @@ public class Boss2 : EnemyBase {
 		lidT.localPosition=vectorT;
 		lidB.localPosition=vectorB;
 		go = new GameObject("eye");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss2[5];
-		eye=go.transform;
-		eye.parent=transform;
-		eye.localPosition=new Vector3(0,-0.3f,0.2f);
+		eye=go.AddComponent<Core>().Set(SpriteBase.I.boss2[5],new Color(0.5f,0.5f,0.5f));
+		go.transform.parent=transform;
+		go.transform.localPosition=new Vector3(0,-0.3f,0.2f);
 		go = new GameObject("eyes");
 		eyes=go.AddComponent<Core>().Set(SpriteBase.I.boss2[6],new Color(0.5f,0.1f,0.05f));
 		go.transform.parent=transform;
@@ -118,6 +128,7 @@ public class Boss2 : EnemyBase {
 		else if(state==State.waiting)
 		{
 			if(vectorB.y<-0.6f) vectorB.y+=Time.deltaTime/10;
+			if(light)light.Min(Time.deltaTime/2);
 			if(clawL)clawL.transform.position=Vector3.MoveTowards(clawL.transform.position,transform.position+left,5*Time.deltaTime);
 			if(clawR) clawR.transform.position=Vector3.MoveTowards(clawR.transform.position,transform.position+right,5*Time.deltaTime);
 			if(timer<0){
@@ -128,12 +139,23 @@ public class Boss2 : EnemyBase {
 					}else{
 					state=State.punching;
 					target=transform.position+(player.position-transform.position).normalized*10;
-					if(clawL && clawR)moving=Random.value<0.5f?clawR.transform:clawL.transform;
+					if(clawL && clawR){
+						moving=Random.value<0.5f?clawR.transform:clawL.transform;
+						if(moving==clawR.transform)light=lightR;
+						if(moving==clawL.transform)light=lightL;
+					}
 					else
 					{
-						if(clawL)moving=clawL.transform;
-						if(clawR)moving=clawR.transform;
+						if(clawL){
+							moving=clawL.transform;
+							light=lightL;
+						}
+						if(clawR){
+							moving=clawR.transform;
+							light=lightR;
+						}
 					}
+					if(light)light.Set(1);
 					}
 				}
 				else
@@ -165,7 +187,7 @@ public class Boss2 : EnemyBase {
 		{
 			if(moving)
 			{
-				moving.position=Vector3.MoveTowards(moving.position,target,10*Time.deltaTime);
+				moving.position=Vector3.MoveTowards(moving.position,target,10*Time.deltaTime);;
 				if((target-moving.position).sqrMagnitude<1f)
 				{
 					state=State.waiting;
@@ -185,29 +207,46 @@ public class Boss2 : EnemyBase {
 			{
 				EnemySpawner.boss=false;
 				Destroy(gameObject);
-				Destroy(elbowL.gameObject);
-				Destroy(elbowR.gameObject);
+				if(clawL){
+					Destroy(elbowL.gameObject);
+					Destroy(clawL.gameObject);
+				}
+				if(clawR)
+				{
+					Destroy(elbowR.gameObject);
+					Destroy(clawR.gameObject);
+				}
 			}
 		}
 		eyes.Min(Time.deltaTime*2);
 		lidB.localPosition=vectorB;
 		vectorT.y=-(lidB.localPosition.y+0.7f);
 		lidT.localPosition=vectorT;
+		eye.Set(1-damageTimer);
 		if(clawL){
 			MoveElbow(elbowL,transform.position+left,clawL.transform.position,true);
 			Chock(lineclawL,elbowL.position,clawL.transform.position);
 			Chock(lineelbowL,transform.position+left,elbowL.position);
 		}
-		else elbowL.gameObject.SetActive(false);
+		else if(elbowL){
+			ParticleManager.Emit(0,(Vector3)Random.insideUnitCircle*1.5f+elbowL.position,1);
+			Destroy(elbowL.gameObject);
+		}
 		if(clawR){
 			MoveElbow(elbowR,transform.position+right,clawR.transform.position,false);
 			Chock(lineclawR,elbowR.position,clawR.transform.position);
 			Chock(lineelbowR,transform.position+right,elbowR.position);
 		}
-		else elbowR.gameObject.SetActive(false);
+		else if(elbowR)
+		{
+			ParticleManager.Emit(0,(Vector3)Random.insideUnitCircle*1.5f+elbowR.position,1);
+			Destroy(elbowR.gameObject);
+		}
+	}
+	private void Round(Vector3 v)
+	{
 
 	}
-
 	private void Config(LineRenderer l)
 	{
 		l.positionCount=10;
@@ -242,7 +281,7 @@ public class Boss2 : EnemyBase {
 	protected override void Die()
 	{
 		state=State.dead;
-		timer=3;
+		timer=5;
 		EnemySpawner.points+=1000;
 	}
 	private void MoveElbow(Transform t,Vector3 v1,Vector3 v2,bool b)
