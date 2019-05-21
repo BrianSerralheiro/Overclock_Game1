@@ -42,12 +42,15 @@ public class Ship : MonoBehaviour {
 	void Start()
 	{
 		InGame_HUD.shipHealth = 1;
+		InGame_HUD._special = 0;
 		//speed=5f;
 		//OnLevel(1);
 		if(playerID != id)
 		{
 			gameObject.SetActive(false);
+			return;
 		}
+		EnemyBase.player=transform;
 		hp=maxhp;
 		_renderer = GetComponent<SpriteRenderer>();
 	}
