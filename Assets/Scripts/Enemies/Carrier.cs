@@ -91,4 +91,12 @@ public class Carrier : EnemyBase {
 		diver.transform.rotation=transform.rotation;
 		diver.transform.parent=transform;
 	}
+	protected override void Die()
+	{
+		base.Die();
+		for(int i = 0; i<10; i++)
+		{
+			ParticleManager.Emit(8,(Vector3)Random.insideUnitCircle*1.5f+transform.position,1);
+		}
+	}
 }

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 213434d36bfd7b14a84f865a6fcad07e
-timeCreated: 1554843131
+timeCreated: 1558366018
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,8 @@ TextureImporter:
     21300006: head
     21300008: shot_boss
     21300010: eyes
+    21300012: wingL
+    21300014: wingR
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -87,10 +89,10 @@ TextureImporter:
       name: body
       rect:
         serializedVersion: 2
-        x: 58
-        y: 1302
-        width: 1537
-        height: 1031
+        x: 1697
+        y: 1285
+        width: 513
+        height: 1019
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -113,8 +115,8 @@ TextureImporter:
       name: iron_throne
       rect:
         serializedVersion: 2
-        x: 314
-        y: 393
+        x: 135
+        y: 1023
         width: 861
         height: 883
       alignment: 0
@@ -126,8 +128,8 @@ TextureImporter:
       name: head
       rect:
         serializedVersion: 2
-        x: 1201
-        y: 91
+        x: 3063
+        y: 1453
         width: 423
         height: 462
       alignment: 0
@@ -152,12 +154,38 @@ TextureImporter:
       name: eyes
       rect:
         serializedVersion: 2
-        x: 891
-        y: 152
+        x: 3624
+        y: 1646
         width: 99
         height: 51
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wingL
+      rect:
+        serializedVersion: 2
+        x: 1173
+        y: 456
+        width: 596
+        height: 810
+      alignment: 9
+      pivot: {x: 0.9, y: 0.79}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wingR
+      rect:
+        serializedVersion: 2
+        x: 2154
+        y: 424
+        width: 594
+        height: 808
+      alignment: 9
+      pivot: {x: 0.1, y: 0.79}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

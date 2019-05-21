@@ -5,14 +5,15 @@ using UnityEngine;
 public class Boss3 : EnemyBase {
 	private Transform body;
 	private Transform head;
-	private Transform slash;
+	private Transform wingL;
+	private Transform wingR;
 	private SpriteRenderer henderer;
-	private SpriteRenderer slashren;
-	private SpriteRenderer darkhren;
+	private Core slash;
+	private Core dark;
 	private BoxCollider2D slashcod;
 	private Color slashcol=Color.white;
 	private Color darkcol=Color.black;
-	private Vector3 slashscl=new Vector3(5000,0,0);
+	private Vector3 slashscl=new Vector3(2000,0,0);
 	private Vector3 slashrot=new Vector3(0,0,0);
 	private float timer=1.5f;
 	private float time=0;
@@ -48,25 +49,32 @@ public class Boss3 : EnemyBase {
 		go.transform.parent=head;
 		body.parent=head.parent=transform;
 		go.transform.localPosition=new Vector3(0,-0.29f,-0.1f);
+		go=new GameObject("wingL");
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss3[3];
+		go.transform.parent=transform;
+		wingL=go.transform;
+		go=new GameObject("wingR");
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss3[4];
+		go.transform.parent=transform;
+		wingR=go.transform;
+		wingL.localPosition=new Vector3(-0.95f,1);
+		wingR.localPosition=new Vector3(0.95f,1);
 		body.localPosition=new Vector3(0,-0.9f,-0.01f);
 		head.localPosition=new Vector3(0,1.5f,-0.02f);
 
 		go=new GameObject("slash");
-		slash=go.transform;
-		slashren=go.AddComponent<SpriteRenderer>();
-		slashren.sprite=Sprite.Create(new Texture2D(2,2),new Rect(0,0,2,2),new Vector2(0.5f,0.5f));
-		slash.localScale=slashscl;
+		slash=go.AddComponent<Core>().Set(Sprite.Create(new Texture2D(1,1),new Rect(0,0,1,1),new Vector2(0.5f,0.5f)),new Color(0.6f,0f,0.1f));
+		slash.transform.localScale=slashscl;
+		slash.Set(1);
 		slashcod=go.AddComponent<BoxCollider2D>();
 		slashcod.enabled=false;
 
 		go=new GameObject("dark");
-		darkhren=go.AddComponent<SpriteRenderer>();
 		Texture2D t=new Texture2D(1,1);
 		t.SetPixels(new Color[]{Color.black});
 		t.Apply(false);
-		darkhren.sprite=Sprite.Create(t,new Rect(0,0,1,1),new Vector2(0.5f,0.5f));
-		//darkcol.a=0;
-		darkhren.color=darkcol;
+		dark=go.AddComponent<Core>().Set(Sprite.Create(t,new Rect(0,0,1,1),new Vector2(0.5f,0.5f)),new Color(0f,0f,0f,0f));
+		dark.white=new Color(0f,0f,0f,1f);
 		go.transform.localScale=new Vector3(1600,1600);
 		go.transform.position=new Vector3(0,0,-0.09f);
 	}
@@ -79,12 +87,13 @@ public class Boss3 : EnemyBase {
 		if(state==State.intro)
 		{
 			transform.Translate(0,-Time.deltaTime,0);
+			dark.Add(Time.deltaTime);
 			if(transform.position.y<Scaler.sizeY/2f){
 				state=State.slashing;
 				timer=1.5f;
-				slash.position=player.position;
+				slash.transform.position=player.position;
 				slashrot.z=Random.Range(-45f,45f);
-				slashren.transform.eulerAngles=slashrot;
+				slash.transform.eulerAngles=slashrot;
 			}
 		}
 		else if(state==State.wating)
@@ -98,9 +107,9 @@ public class Boss3 : EnemyBase {
 				else if(f>0.2f)state=State.calling;
 				else state=State.slashing;
 				timer=1.5f;
-				slash.position=player.position;
+				slash.transform.position=player.position;
 				slashrot.z=Random.Range(-45f,45f);
-				slashren.transform.eulerAngles=slashrot;
+				slash.transform.eulerAngles=slashrot;
 			}
 		}
 		else if(state==State.shooting)
@@ -114,8 +123,8 @@ public class Boss3 : EnemyBase {
 		{
 			if(timer>1f)
 			{
-				slashcol.a=(1.5f-timer)*2;
-				darkcol.a=1;
+				//slashcol.a=(1.5f-timer)*2;
+				dark.Add(Time.deltaTime*5);
 			}
 			else if(timer>0.5f)
 			{
@@ -123,21 +132,19 @@ public class Boss3 : EnemyBase {
 			}
 			else if(timer>0)
 			{
-				slashcol=Color.red;
+				slash.Min(Time.deltaTime*10);
 				slashcod.enabled=true;
 			}
 			else
 			{
 				state=State.wating;
 				timer=1;
-				slashcol=Color.white;
-				darkcol.a=0;
+				slash.Set(1);
+				dark.Set(0);
 				slashscl.y=0;
 				slashcod.enabled=false;
 			}
-			slashren.color=slashcol;
-			darkhren.color=darkcol;
-			slash.localScale=slashscl;
+			slash.transform.localScale=slashscl;
 		}
 		else if(state==State.calling)
 		{
@@ -149,11 +156,19 @@ public class Boss3 : EnemyBase {
 		{
 			if(timer>0)
 			{
-				//explosions
+				ParticleManager.Emit(9,(Vector3)Random.insideUnitCircle*1.5f+transform.position,1);
 			}
 			else
 			{
-				if(body)Destroy(body.gameObject);
+				if(body){
+					Destroy(body.gameObject);
+					Destroy(wingL.gameObject);
+					Destroy(wingR.gameObject);
+				}
+				if(timer<-0.2f){
+					ParticleManager.Emit(9,(Vector3)Random.insideUnitCircle*1.5f+transform.position,1);
+					timer=0;
+				}
 				transform.Translate(0,-Time.deltaTime*4,0,Space.World);
 				transform.Rotate(0,0,Time.deltaTime*4);
 				if(transform.position.y<-Scaler.sizeY-2)
@@ -166,9 +181,13 @@ public class Boss3 : EnemyBase {
 	}
 	protected override void Die()
 	{
+		for(int i = 0; i<10; i++)
+		{
+			ParticleManager.Emit(9,(Vector3)Random.insideUnitCircle*1.5f+head.transform.position,1);
+		}
 		Destroy(head.gameObject);
 		Destroy(slash.gameObject);
-		Destroy(darkhren.gameObject);
+		Destroy(dark.gameObject);
 		state=State.dead;
 		EnemySpawner.points+=1000;
 		timer=1;
@@ -176,9 +195,11 @@ public class Boss3 : EnemyBase {
 	void Shoot(Vector3 v)
 	{
 		GameObject go = new GameObject("enemybullet");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss3[3];
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bullets[12];
 		go.AddComponent<BoxCollider2D>();
-		go.AddComponent<Bullet>().owner=name;
+		Bullet b=go.AddComponent<Bullet>();
+		b.owner=name;
+		b.spriteID=12;
 		go.transform.position=transform.position+v;
 		go.transform.up=-transform.up;
 		go.transform.localScale=Vector3.one*2;

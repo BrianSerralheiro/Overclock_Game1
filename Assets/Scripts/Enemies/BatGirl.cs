@@ -77,4 +77,12 @@ public class BatGirl : EnemyBase {
 		r.useFullKinematicContacts=true;
 		go.transform.position=transform.position;
 	}
+	protected override void Die()
+	{
+		base.Die();
+		for(int i = 0; i<10; i++)
+		{
+			ParticleManager.Emit(9,(Vector3)Random.insideUnitCircle*1.5f+transform.position,1);
+		}
+	}
 }

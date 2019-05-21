@@ -1,14 +1,14 @@
 fileFormatVersion: 2
 guid: cac3a3a1c55e38e46a15ed372a4f1be9
-timeCreated: 1554409082
+timeCreated: 1558297443
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: 54436613_271431813789757_987245838403108864_n_0
-    21300002: 54436613_271431813789757_987245838403108864_n_1
+    21300000: shot_1
+    21300002: shot_2
     21300004: header
-    21300006: 54436613_271431813789757_987245838403108864_n_3
-    21300008: 54436613_271431813789757_987245838403108864_n_4
+    21300006: header_light
+    21300008: header_eyes
     21300010: 54436613_271431813789757_987245838403108864_n_5
     21300012: 54436613_271431813789757_987245838403108864_n_6
     21300014: 54436613_271431813789757_987245838403108864_n_7
@@ -101,32 +101,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 54436613_271431813789757_987245838403108864_n_0
-      rect:
-        serializedVersion: 2
-        x: 123
-        y: 1841
-        width: 441
-        height: 340
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: 54436613_271431813789757_987245838403108864_n_1
-      rect:
-        serializedVersion: 2
-        x: 790
-        y: 2076
-        width: 52
-        height: 53
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: header
       rect:
         serializedVersion: 2
@@ -140,7 +114,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 54436613_271431813789757_987245838403108864_n_3
+      name: header_light
       rect:
         serializedVersion: 2
         x: 1540
@@ -153,7 +127,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 54436613_271431813789757_987245838403108864_n_4
+      name: header_eyes
       rect:
         serializedVersion: 2
         x: 1439
@@ -270,19 +244,6 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 54436613_271431813789757_987245838403108864_n_13
-      rect:
-        serializedVersion: 2
-        x: 122
-        y: 1580
-        width: 257
-        height: 110
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: bat
       rect:
         serializedVersion: 2
@@ -290,19 +251,6 @@ TextureImporter:
         y: 1574
         width: 57
         height: 109
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: 54436613_271431813789757_987245838403108864_n_15
-      rect:
-        serializedVersion: 2
-        x: 368
-        y: 1010
-        width: 913
-        height: 457
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -374,28 +322,28 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 54436613_271431813789757_987245838403108864_n_21
+      name: shot_1
       rect:
         serializedVersion: 2
-        x: 1091
-        y: 283
-        width: 10
-        height: 14
+        x: 744
+        y: 1908
+        width: 55
+        height: 55
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 54436613_271431813789757_987245838403108864_n_22
+      name: shot_2
       rect:
         serializedVersion: 2
-        x: 1642
-        y: 282
-        width: 12
-        height: 13
+        x: 834
+        y: 1890
+        width: 55
+        height: 55
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
