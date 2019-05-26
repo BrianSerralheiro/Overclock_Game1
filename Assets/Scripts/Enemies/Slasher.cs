@@ -21,7 +21,7 @@ public class Slasher : EnemyBase {
 			if(player.position.x<transform.position.x) transform.Translate(-Time.deltaTime,0,0);
 			else transform.Translate(Time.deltaTime,0,0);
 		}
-		if(transform.position.y>Scaler.sizeY*0.6f) transform.Translate(0,-Time.deltaTime,0);
+		if(transform.position.y>Scaler.sizeY/3) transform.Translate(0,-Time.deltaTime,0);
 		if(timer<=0)
 		{
 			timer=1.5f;
@@ -31,13 +31,13 @@ public class Slasher : EnemyBase {
 	void Shoot()
 	{
 		GameObject go = new GameObject("enemy");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.slasher[1];
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bullets[16];
 		go.AddComponent<BoxCollider2D>();
-		go.AddComponent<Slash>();
+		go.AddComponent<Slash>().spriteID=16;
 		Rigidbody2D r = go.AddComponent<Rigidbody2D>();
 		r.isKinematic=true;
 		r.useFullKinematicContacts=true;
 		go.transform.position=transform.position+mod;
-		go.transform.localScale=Vector3.one*2;
+		//go.transform.localScale=Vector3.one*2;
 	}
 }

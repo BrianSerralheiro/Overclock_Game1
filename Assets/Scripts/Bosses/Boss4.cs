@@ -28,9 +28,9 @@ public class Boss4 : EnemyBase {
 	private Vector3 rot = new Vector3();
 	private Vector3 scale = Vector3.one;
 	private Vector3 local =new Vector3(0,2f,-0.1f);
-	private Transform zap;
+	private SpriteRenderer energy;
+	private SpriteRenderer zap;
 	private Transform final;
-	private LineRenderer line;
 	private Sprite[] screens;
 	private Sprite screen;
 	private SpriteRenderer screenren;
@@ -40,27 +40,26 @@ public class Boss4 : EnemyBase {
 		damageEffect = true;
 		base.Start();
 		EnemySpawner.boss=true;
-		hp=100;
+		hp=500;
 		screens=SpriteBase.I.screens;
 		GameObject go=new GameObject("screen");
 		screenren=go.AddComponent<SpriteRenderer>();
 		go.transform.parent=transform;
 		go.transform.localPosition=new Vector3(0.01f,-0.05f,-0.01f);
 		go=new GameObject("energy");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.zapper[1];
-		zap=go.transform;
-		zap.parent=transform;
-		zap.localPosition=local;
-		zap.gameObject.SetActive(false);
+		energy=go.AddComponent<SpriteRenderer>();
+		energy.sprite=SpriteBase.I.zapper[3];
+		energy.transform.parent=transform;
+		energy.transform.localPosition=local;
+		energy.gameObject.SetActive(false);
 		go = new GameObject("zap");
-		line=go.AddComponent<LineRenderer>();
-		line.useWorldSpace=true;
-		line.positionCount=10;
-		line.widthMultiplier=0.1f;
+		zap=go.AddComponent<SpriteRenderer>();
+		zap.sprite=SpriteBase.I.zapper[1];
 		BoxCollider2D col = go.AddComponent<BoxCollider2D>();
-		col.size=new Vector2(1,11);
-		col.offset=new Vector2(0,6f);
-		go.transform.parent=zap;
+		col.size=new Vector2(0.7f,4);
+		col.offset=new Vector2(0,2.2f);
+		go.transform.localScale=new Vector3(1,2);
+		go.transform.parent=energy.transform;
 		go.transform.localPosition=new Vector3();
 		go.SetActive(false);
 		//Screen(1,2.5f);
@@ -78,7 +77,7 @@ public class Boss4 : EnemyBase {
 	protected override void Die()
 	{
 		if(last){
-			Application.LoadLevel(0);
+			state=State.dead;
 			return;
 		}
 		state=State.evolve;
@@ -102,7 +101,7 @@ public class Boss4 : EnemyBase {
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss4[3];
 		go.transform.parent=final;
 		go.transform.localPosition=new Vector3(0,-1.5f);
-		zap.localScale=Vector3.zero;
+		energy.transform.localScale=Vector3.zero;
 	}
 	new void Update () {
 		if(Ship.paused) return;
@@ -218,38 +217,29 @@ public class Boss4 : EnemyBase {
 					pos.z=0;
 					transform.position=pos;
 				}
-				zap.localPosition=local;
-				rot.Set(0,0,Mathf.Atan2(zap.position.x-player.position.x,player.position.y-zap.position.y)*Mathf.Rad2Deg);
-				zap.eulerAngles=rot;
+				energy.transform.localPosition=local;
+				rot.Set(0,0,Mathf.Atan2(energy.transform.position.x-player.position.x,player.position.y-energy.transform.position.y)*Mathf.Rad2Deg);
+				energy.transform.eulerAngles=rot;
 			}
 			else if(timer >0.1f)
 			{
-				zap.gameObject.SetActive(true);
+				energy.gameObject.SetActive(true);
+				energy.sprite=Bullet.blink ? SpriteBase.I.zapper[3] : SpriteBase.I.zapper[4];
 				scale.x=scale.y=0.9f-timer;
-				zap.localScale=scale;
+				energy.transform.localScale=scale;
 				Screen(5,1);
 			}
 			else if(timer >0)
 			{
-				if(!line.gameObject.activeSelf)
-				{
-					line.gameObject.SetActive(true);
-					Vector3 v = zap.position;
-					Vector3 f = zap.up*(last?2:1);
-					line.SetPosition(0,v);
-					for(int i = 1; i<9; i++)
-					{
-						v+=f;
-						line.SetPosition(i,v+new Vector3(Random.value/2-0.5f,Random.value/10-0.1f));
-					}
-					line.SetPosition(9,v+f);
-				}
+				zap.gameObject.SetActive(true);
+				energy.sprite=Bullet.blink ? SpriteBase.I.zapper[3] : SpriteBase.I.zapper[4];
+				zap.sprite=Bullet.blink ? SpriteBase.I.zapper[1] : SpriteBase.I.zapper[2];
 			}
 			else
 			{
 				timer=last?1:3;
-				line.gameObject.SetActive(false);
 				zap.gameObject.SetActive(false);
+				energy.gameObject.SetActive(false);
 				state=State.waiting;
 			}
 		}
@@ -257,7 +247,7 @@ public class Boss4 : EnemyBase {
 		{
 			if(final.position.y==Scaler.sizeY+5)
 			{
-				//EXPLOSIONS
+				ParticleManager.Emit(10,(Vector3)Random.insideUnitCircle*2+transform.position,1);
 				screenren.sprite=screens[4];
 				if(timer<=0)
 				{
@@ -295,20 +285,30 @@ public class Boss4 : EnemyBase {
 					state=State.waiting;
 					last=true;
 					timer=2;
-					hp=500;
+					hp=1000;
 				}
+			}
+		}
+		else if(state==State.dead)
+		{
+			ParticleManager.Emit(10,(Vector3)Random.insideUnitCircle*4+transform.position,1);
+			if(timer<0)
+			{
+				EnemySpawner.boss=false;
 			}
 		}
 	}
 	void Shoot()
 	{
 		GameObject go = new GameObject("enemybullet");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.invader[1];
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bullets[14];
 		go.AddComponent<BoxCollider2D>();
-		go.AddComponent<Bullet>().owner=name;
+		Bullet b = go.AddComponent<Bullet>();
+		b.owner=name;
+		b.spriteID=14;
 		go.transform.position=transform.position+vec*(left ? 1 : -1)+mod;
 		go.transform.up=-transform.up;
-		go.transform.localScale=Vector3.one*4f;
+		go.transform.localScale=Vector3.one*2f;
 		left=!left;
 		Screen(5,0.8f);
 
@@ -316,9 +316,9 @@ public class Boss4 : EnemyBase {
 	void Slash()
 	{
 		GameObject go = new GameObject("enemy");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.slasher[1];
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bullets[16];
 		go.AddComponent<BoxCollider2D>();
-		go.AddComponent<Slash>();
+		go.AddComponent<Slash>().spriteID=16;
 		Rigidbody2D r = go.AddComponent<Rigidbody2D>();
 		r.isKinematic=true;
 		r.useFullKinematicContacts=true;

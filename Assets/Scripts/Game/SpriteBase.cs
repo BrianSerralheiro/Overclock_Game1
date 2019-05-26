@@ -7,7 +7,7 @@ public class SpriteBase : MonoBehaviour {
 	public Sprite bullet;
 	public Sprite[] bullets;
 	public Sprite[] shooter;
-	public Sprite diver;
+	public Sprite[] diver;
 	public Sprite[] carrier;
 	public Sprite[] round;
 	public Sprite[] Lasor;
@@ -21,11 +21,6 @@ public class SpriteBase : MonoBehaviour {
 	public Sprite[] bomber;
 	public Sprite[] zapper;
 	public Sprite[] item;
-	public Sprite[] legs;
-	public Sprite[] mouth;
-	public Sprite[] shooterarms;
-	public Sprite[] shooterlegs;
-	public Sprite[] carrierlegs;
 	public Sprite[] drone;
 	public Sprite[] boss1;
 	public Sprite[] boss2;

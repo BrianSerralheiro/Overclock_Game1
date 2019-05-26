@@ -52,11 +52,11 @@ public class Shooter : EnemyBase
 		position=i;
 		if(i<8)
 		{
-			finalpoint=new Vector3((i/7f*Scaler.sizeX-Scaler.sizeX/2f)*0.9f,Scaler.sizeY*0.9f,0);
+			finalpoint=new Vector3((i/7f*Scaler.sizeX-Scaler.sizeX/2f)*0.9f,Scaler.sizeY/2,0);
 		}
 		else
 		{
-			finalpoint=new Vector3(i==8 ? -Scaler.sizeX/2f*0.9f : Scaler.sizeX/2f*0.9f,Scaler.sizeY*0.6f,0);
+			finalpoint=new Vector3(i==8 ? -Scaler.sizeX/2f*0.9f : Scaler.sizeX/2f*0.9f,Scaler.sizeY/4,0);
 		}
 	}
 	new void Update()
@@ -64,7 +64,7 @@ public class Shooter : EnemyBase
 		if(Ship.paused) return;
 		if(position>=0)
 		{
-			transform.Translate((finalpoint-transform.position).normalized*Time.deltaTime,Space.World);
+			transform.Translate((finalpoint-transform.position).normalized*4*Time.deltaTime,Space.World);
 			transform.up=finalpoint-transform.position;
 			if((finalpoint-transform.position).sqrMagnitude<0.005f)
 			{

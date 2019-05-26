@@ -79,7 +79,7 @@ public class Carrier : EnemyBase {
 	void Spawn()
 	{
 		GameObject go=new GameObject("enemy");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.diver;
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.diver[0];
 		go.AddComponent<BoxCollider2D>();
 		Rigidbody2D r = go.AddComponent<Rigidbody2D>();
 		r.isKinematic=true;

@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Core : MonoBehaviour {
 	private SpriteRenderer render;
 	public Color color;
 	public Color white=Color.white;
 	private float value;
+	public void Start()
+	{
+		render=gameObject.GetComponent<SpriteRenderer>();
+		render.color=color;
+	}
 	public Core Set(Sprite s,Color c)
 	{
 		render=gameObject.AddComponent<SpriteRenderer>();

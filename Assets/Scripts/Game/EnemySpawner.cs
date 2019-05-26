@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour {
-	public Transform player;
+//	public Transform player;
 	public Material bg;
 	[TextArea]
 	public string wave;
@@ -17,7 +18,7 @@ public class EnemySpawner : MonoBehaviour {
 	{
 		SoundManager.Play(1);
 		points=0;
-		EnemyBase.player=player;
+		//EnemyBase.player=player;
 	}
 
 	void OnDestroy()
@@ -31,14 +32,14 @@ public class EnemySpawner : MonoBehaviour {
 		if(Ship.paused) return;
 		do
 		{
-			if(timer<=0 && counter<wave.Length)
+			if(timer<=0 && counter<wave.Length && !boss)
 			{
 				Chose(wave.Substring(counter,2));
 				counter+=2;
 			}
 		}
-		while(timer<=0 && counter<wave.Length);
-		if(counter==wave.Length) Application.Quit();
+		while(timer<=0 && counter<wave.Length && !boss);
+		if(counter>=wave.Length)SceneManager.LoadScene(0);
 		if(timer>0 && !boss) timer-=Time.deltaTime;
 		Vector2 v= bg.mainTextureOffset;
 		v.y+=Time.deltaTime;
@@ -56,7 +57,7 @@ public class EnemySpawner : MonoBehaviour {
 				en=Spawn<Shooter>(SpriteBase.I.shooter[0]);
 				break;
 			case 'B':
-				en=Spawn<Diver>(SpriteBase.I.diver);
+				en=Spawn<Diver>(SpriteBase.I.diver[0]);
 				break;
 			case 'C':
 				en=Spawn<Carrier>(SpriteBase.I.carrier[0]);

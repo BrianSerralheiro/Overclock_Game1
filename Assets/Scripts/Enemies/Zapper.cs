@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Zapper : EnemyBase {
-	private Transform zap;
-	private LineRenderer line;
+	private SpriteRenderer energy;
+	private SpriteRenderer zap;
 	private float timer = 5;
 	private Vector3 rot = new Vector3();
 	private Vector3 scale = Vector3.one;
@@ -13,22 +13,21 @@ public class Zapper : EnemyBase {
 		explosionID = 10;
 		hp=80;
 		GameObject go=new GameObject("zap");
-		line=go.AddComponent<LineRenderer>();
-		line.useWorldSpace=true;
-		line.positionCount=5;
-		line.widthMultiplier=0.1f;
-		BoxCollider2D col= go.AddComponent<BoxCollider2D>();
-		col.size=new Vector2(1,12);
-		col.offset=new Vector2(0,6f);
+		zap=go.AddComponent<SpriteRenderer>();
+		zap.sprite=SpriteBase.I.zapper[1];
+		BoxCollider2D col = go.AddComponent<BoxCollider2D>();
+		col.size=new Vector2(0.7f,4);
+		col.offset=new Vector2(0,2.2f);
 		go.transform.parent=transform;
 		go.transform.localPosition=new Vector3(0,1,0.1f);
+		go.transform.localScale=new Vector3(1,2);
 		go.SetActive(false);
 		go=new GameObject("energy");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.zapper[1];
-		zap=go.transform;
-		zap.parent=transform;
-		zap.localPosition=new Vector3(0,1,-0.1f);
-		zap.gameObject.SetActive(false);
+		energy=go.AddComponent<SpriteRenderer>();
+		energy.sprite=SpriteBase.I.zapper[3];
+		energy.transform.parent=transform;
+		energy.transform.localPosition=new Vector3(0,1,-0.1f);
+		energy.gameObject.SetActive(false);
 	}
 	new void OnCollisionEnter2D(Collision2D col)
 	{
@@ -39,36 +38,28 @@ public class Zapper : EnemyBase {
 		if(Ship.paused) return;
 		base.Update();
 		timer-=Time.deltaTime;
+		if(transform.position.y<-Scaler.sizeY-2)Die();
 		if(timer>1){
-			transform.Translate(0,-Time.deltaTime/2,0,Space.World);
+			transform.Translate(0,-Time.deltaTime,0,Space.World);
 			rot.Set(0,0,Mathf.Atan2(transform.position.x-player.position.x,player.position.y-transform.position.y)*Mathf.Rad2Deg);
 			transform.eulerAngles=rot;
 		}else if(timer >0.1f)
 		{
-			zap.gameObject.SetActive(true);
+			energy.sprite=Bullet.blink? SpriteBase.I.zapper[3]:SpriteBase.I.zapper[4];
+			energy.gameObject.SetActive(true);
 			scale.x=scale.y=0.9f-timer;
-			zap.localScale=scale;
+			energy.transform.localScale=scale;
 		}else if(timer >0)
 		{
-			if(!line.gameObject.activeSelf){
-				line.gameObject.SetActive(true);
-				Vector3 v=zap.position;
-				Vector3 f=transform.up*3;
-				line.SetPosition(0,v);
-				for(int i = 1; i<4; i++)
-				{
-					v+=f;
-					line.SetPosition(i,v+new Vector3(Random.value/2-0.5f,Random.value/10-0.1f));
-				}
-				line.SetPosition(4,v+f);
-
-			}
+			zap.gameObject.SetActive(true);
+			energy.sprite=Bullet.blink ? SpriteBase.I.zapper[3] : SpriteBase.I.zapper[4];
+			zap.sprite=Bullet.blink ? SpriteBase.I.zapper[1] : SpriteBase.I.zapper[2];
 		}
 		else
 		{
-			timer=3;
-			line.gameObject.SetActive(false);
+			timer=5;
 			zap.gameObject.SetActive(false);
+			energy.gameObject.SetActive(false);
 		}
 	}
 }

@@ -11,8 +11,6 @@ public class Boss3 : EnemyBase {
 	private Core slash;
 	private Core dark;
 	private BoxCollider2D slashcod;
-	private Color slashcol=Color.white;
-	private Color darkcol=Color.black;
 	private Vector3 slashscl=new Vector3(2000,0,0);
 	private Vector3 slashrot=new Vector3(0,0,0);
 	private float timer=1.5f;

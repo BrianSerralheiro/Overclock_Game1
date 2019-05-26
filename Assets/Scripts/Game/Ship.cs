@@ -23,7 +23,9 @@ public class Ship : MonoBehaviour {
 	[SerializeField]
 	private float speed=5f;
 	public static bool paused;
-	private GameObject shield;
+	[SerializeField]
+	private Core shield;
+	private bool shielded;
 
 	private float damageTimer;
 
@@ -59,9 +61,9 @@ public class Ship : MonoBehaviour {
 		if(immuneTime > 0) return;
 		if(col.gameObject.name=="playerbullet") return;
 		if(col.otherCollider.name=="laser") return;
-		if(shield)
+		if(shielded)
 		{
-			Destroy(shield);
+			shielded=false;
 			return;
 		}
 		if(--hp<=0)
@@ -82,12 +84,7 @@ public class Ship : MonoBehaviour {
 	}
 	public void Shield()
 	{
-		if(shield)return;
-		GameObject go=new GameObject("shield");
-		shield=go;
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.shield;
-		go.transform.parent=transform;
-		go.transform.localPosition=new Vector3(0,0,-0.1f);
+		shielded=true;
 	}
 	void Update()
 	{
@@ -101,7 +98,7 @@ public class Ship : MonoBehaviour {
 		}
 		if(Bullet.bulletTime<=0)
 		{
-			Bullet.bulletTime=0.3f;
+			Bullet.bulletTime=0.1f;
 			Bullet.blink=!Bullet.blink;
 		}
 		Bullet.bulletTime-=Time.deltaTime;
@@ -114,7 +111,8 @@ public class Ship : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Alpha2))OnLevel(2);
 		if(Input.GetKeyDown(KeyCode.Alpha3))OnLevel(3);
 		moveto.Set(Input.mousePosition.x/width*Scaler.sizeX-Scaler.x,Input.mousePosition.y/height*Scaler.sizeY*2f-Scaler.sizeY,-0.1f);
-
+		if(shielded)shield.Add(Time.deltaTime);
+		else shield.Min(Time.deltaTime);
 		if(Input.GetMouseButtonDown(0))
 		{
 			if(Mathf.Abs(moveto.x-transform.position.x)>1 || Mathf.Abs(moveto.y-transform.position.y)>1)

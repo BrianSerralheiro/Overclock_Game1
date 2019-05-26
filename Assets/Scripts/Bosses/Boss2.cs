@@ -22,7 +22,7 @@ public class Boss2 : EnemyBase {
 	private float timer;
 	private float time;
 	private Transform moving;
-	private Core light;
+	new private Core light;
 	private Vector3 vectorB=new Vector3(0,-0.6f,0.1f);
 	private Vector3 vectorT=new Vector3(0,-0.1f,0.1f);
 	private Vector3 left=new Vector3(1.1f,-1,0);

@@ -16,9 +16,11 @@ public class Invader : EnemyBase {
 	void Shoot()
 	{
 		GameObject go = new GameObject("enemybullet");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.invader[1];
+		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bullets[14];
 		go.AddComponent<BoxCollider2D>();
-		go.AddComponent<Bullet>().owner=name;
+		Bullet b= go.AddComponent<Bullet>();
+		b.owner=name;
+		b.spriteID=14;
 		go.transform.position=transform.position+vec*(left?1:-1)+mod;
 		go.transform.up=-transform.up;
 		left=!left;
@@ -34,6 +36,6 @@ public class Invader : EnemyBase {
 		}
 		if(player.position.x<transform.position.x)transform.Translate(-Time.deltaTime*2,0,0);
 		else transform.Translate(Time.deltaTime*2,0,0);
-		if(transform.position.y>Scaler.sizeY*0.8f)transform.Translate(0,-Time.deltaTime,0);
+		if(transform.position.y>Scaler.sizeY/2)transform.Translate(0,-Time.deltaTime,0);
 	}
 }
