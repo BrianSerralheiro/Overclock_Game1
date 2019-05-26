@@ -17,10 +17,26 @@ public class EnemySpawner : MonoBehaviour {
 	
 	/*
 	Level Design
-	World 1: T4A1A6T2B2T1B2T1B2T1B2T2C8T9T5A2A5A8A9T9B1T1B0T1B0T1B0T1B0T2B7T1B7T1B7T1B7T1B7T4C6A0A7T9T9D0T1T1
+	World 1: 
+	Stage 1:T4A1A6T2B2T1B2T1B2T1B2T2C8T9T5A2A5A8A9T3B1T1B0T1B0T1B0T1B0T2A0A3T1B7T1B7T1B7T1B7T4C6A0A7T5A0A3T9C9T9T9
+	Stage 2:
+	Stage 3:
+
 	World 2:
+	Stage 1:
+	Stage 2:
+	Stage 3:
+
 	World 3:
+	Stage 1:
+	Stage 2:
+	Stage 3:
+
 	World 4:
+	Stage 1:
+	Stage 2:
+	Stage 3:
+	Final Stage:
 	 */
 	void Start()
 	{
@@ -117,6 +133,10 @@ public class EnemySpawner : MonoBehaviour {
 				break;
 			case 'S':
 				en=Spawn<Drone>(SpriteBase.I.drone[SuaperTest.id]);
+				break;
+			 case 'U':
+				Transition.Timer = 5;
+				Transition.worldID = s[1]-48;
 				break;
 			default :
 				timer=s[1]-48;
