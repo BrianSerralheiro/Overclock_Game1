@@ -25,7 +25,7 @@ public class Transition : MonoBehaviour
 		if(Timer > 0)
 		{
 			Timer -= Time.deltaTime;
-			Stage.text = "World "+ (worldID / 4 + 1) + " Stage " + (worldID % 3 + 1);
+			Stage.text = "World "+ (worldID / 3 + 1) + " Stage " + (worldID % 3 + 1);
 			Stage.color = Color.Lerp(Transparent, textColor, Mathf.PingPong(Timer,1));
 		}
 	}

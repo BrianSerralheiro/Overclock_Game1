@@ -53,7 +53,7 @@ public class EnemyBase : MonoBehaviour {
 			InGame_HUD._special += 0.01f;
 			//ParticleManager.InstantiatePrefab(explosionID, transform.position,1);
 			ParticleManager.Emit(explosionID, transform.position,1);
-			if(Random.value <= 0.5)
+			if(Random.value <= 0.05)
 			{
 				GameObject go = new GameObject("ItemDrop");
 				go.AddComponent<SpriteRenderer>();
