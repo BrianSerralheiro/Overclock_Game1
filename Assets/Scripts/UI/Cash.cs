@@ -9,14 +9,12 @@ public class Cash : MonoBehaviour
 	private Text cash;
 
 	public static int totalCash;
-
-	// Use this for initialization
+	
 	void Start () 
 	{
 		totalCash = PlayerPrefs.GetInt("cash");
 	}
 	
-	// Update is called once per frame
 	void Update () 
 	{
 		cash.text = totalCash.ToString();
