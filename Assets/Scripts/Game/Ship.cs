@@ -22,6 +22,8 @@ public class Ship : MonoBehaviour {
 	private Vector3 offset;
 	[SerializeField]
 	private float speed=5f;
+	[SerializeField]
+	private Sprite[] skins;
 	public static bool paused;
 	[SerializeField]
 	private Core shield;
@@ -38,6 +40,7 @@ public class Ship : MonoBehaviour {
 	[SerializeField]
 	private int id;
 	public static int playerID;
+	public static int skinID;
 
 	public float immuneTime;
 
@@ -47,14 +50,14 @@ public class Ship : MonoBehaviour {
 		InGame_HUD._special = 0;
 		//speed=5f;
 		//OnLevel(1);
+		hp=maxhp;
+		_renderer = GetComponent<SpriteRenderer>();
 		if(playerID != id)
 		{
 			gameObject.SetActive(false);
 			return;
 		}
 		EnemyBase.player=transform;
-		hp=maxhp;
-		_renderer = GetComponent<SpriteRenderer>();
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
