@@ -66,7 +66,7 @@ public class EnemySpawner : MonoBehaviour {
 		if(counter>=wave.Length)SceneManager.LoadScene(0);
 		if(timer>0 && !boss) timer-=Time.deltaTime;
 		Vector2 v= bg.mainTextureOffset;
-		v.y+=Time.deltaTime;
+		v.y+=Time.deltaTime/60;
 		if(v.y>1) v.y-=1;
 		bg.mainTextureOffset=v;
 
