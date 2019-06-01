@@ -45,7 +45,6 @@ public class Ship : MonoBehaviour {
 	private int id;
 	public static int playerID;
 	public static int skinID=-1;
-	public int _skinID=-1;
 
 	public float immuneTime;
 
@@ -54,7 +53,6 @@ public class Ship : MonoBehaviour {
 		InGame_HUD.shipHealth = 1;
 		InGame_HUD._special = 0;
 		hp=maxhp;
-		skinID =_skinID;
 		_renderer = GetComponent<SpriteRenderer>();
 		if(playerID != id)
 		{
