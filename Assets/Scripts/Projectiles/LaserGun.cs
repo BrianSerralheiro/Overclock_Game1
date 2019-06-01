@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class LaserGun : Gun {
 	[SerializeField]
-	private Sprite[] lasersprite;
+	private Sprite[] lasersprites;
+	private Sprite[] lasersprite=new Sprite[4];
 	private bool blink;
 	private Transform laser;
 	private Vector3 scale;
 	private float timer;
 	private Collider2D col;
 	private SpriteRenderer ren;
-
-	[SerializeField]
-	private Transform particles;
+	
 
 	void Start () {
+		int f=0;
+		if(Ship.skinID!=-1 && Locks.Skin(6+Ship.skinID))f=(Ship.skinID+1)*4;
+		for(int i = 0; i<lasersprite.Length; i++)
+		{
+			lasersprite[i]=lasersprites[f+i];
+		}
+		lasersprites=null;
 		GameObject go=new GameObject("laser");
 		laser=go.transform;
 		laser.position=transform.position;
@@ -41,7 +47,7 @@ public class LaserGun : Gun {
 	}
 	public override void Level(int i)
 	{
-		if(i<4) laser.localScale+=Vector3.right;
+		if(i<4) laser.localScale=Vector3.up*7 +Vector3.right*i;
 	}
 	void Update () {
 		//particles.localScale=scale;

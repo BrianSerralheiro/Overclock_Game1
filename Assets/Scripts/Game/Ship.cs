@@ -24,6 +24,10 @@ public class Ship : MonoBehaviour {
 	private float speed=5f;
 	[SerializeField]
 	private Sprite[] skins;
+	[SerializeField]
+	private int[] ids;
+	[SerializeField]
+	private Sprite[] shotSkins;
 	public static bool paused;
 	[SerializeField]
 	private Core shield;
@@ -40,7 +44,8 @@ public class Ship : MonoBehaviour {
 	[SerializeField]
 	private int id;
 	public static int playerID;
-	public static int skinID;
+	public static int skinID=-1;
+	public int _skinID=-1;
 
 	public float immuneTime;
 
@@ -48,14 +53,23 @@ public class Ship : MonoBehaviour {
 	{
 		InGame_HUD.shipHealth = 1;
 		InGame_HUD._special = 0;
-		//speed=5f;
-		//OnLevel(1);
 		hp=maxhp;
+		skinID =_skinID;
 		_renderer = GetComponent<SpriteRenderer>();
 		if(playerID != id)
 		{
 			gameObject.SetActive(false);
 			return;
+		}
+		if(skinID!=-1 && Locks.Skin(id+3+skinID))
+		{
+			_renderer.sprite=skins[skinID];
+			for(int i = 0; i<ids.Length; i++)
+			{
+				SpriteBase.I.bullets[ids[i]]=shotSkins[skinID*ids.Length+i];
+			}
+			shotSkins=null;
+			skins=null;
 		}
 		EnemyBase.player=transform;
 	}
@@ -77,6 +91,7 @@ public class Ship : MonoBehaviour {
 		} 
 		InGame_HUD.shipHealth = (float)hp / (float)maxhp;
 		damageTimer = 1;
+		immuneTime=0.1f;
 	}
 	public void Heal()
 	{

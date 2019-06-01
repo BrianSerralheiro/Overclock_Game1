@@ -62,6 +62,7 @@ public class Shooter : EnemyBase
 	new void Update()
 	{
 		if(Ship.paused) return;
+		base.Update();
 		if(position>=0)
 		{
 			transform.Translate((finalpoint-transform.position).normalized*4*Time.deltaTime,Space.World);

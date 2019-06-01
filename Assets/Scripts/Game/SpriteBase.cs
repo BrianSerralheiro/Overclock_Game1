@@ -30,7 +30,7 @@ public class SpriteBase : MonoBehaviour {
 	public Sprite shield;
 	public Material shock;
 	public GameObject explosion;
-	void Start () {
+	void Awake () {
 		I=this;
 		Destroy(this);
 	}

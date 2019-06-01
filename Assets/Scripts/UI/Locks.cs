@@ -20,7 +20,7 @@ public static class Locks {
 	}
 	public static bool Skin(int i)
 	{
-		return skins[i]!='0';
+		return skins[i]!='0' || true;
 	}
 	public static void Skin(int i,bool b)
 	{
