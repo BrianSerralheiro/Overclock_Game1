@@ -10,12 +10,14 @@ public class SkinSwitch : MonoBehaviour {
 	{
 		id++;
 		if(id>2)id=-1;
+		SoundManager.PlayEffects(0);
 		Set();
 	}
 	public void Prev()
 	{
 		id--;
 		if(id<-1) id=2;
+		SoundManager.PlayEffects(0);
 		Set();
 	}
 	void OnEnable()
