@@ -59,7 +59,8 @@ public class Ship : MonoBehaviour {
 			gameObject.SetActive(false);
 			return;
 		}
-		if(skinID!=-1 && Locks.Skin(id+3+skinID))
+		Debug.Log(skinID);
+		if(skinID!=-1 && Locks.Skin(id*3+skinID))
 		{
 			_renderer.sprite=skins[skinID];
 			for(int i = 0; i<ids.Length; i++)
