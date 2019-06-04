@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour {
 
 	[SerializeField]
 	private PopUp pop;
+	[SerializeField]
+	private Text warn;
 	[SerializeField]
 	private int[] skinPrices;
 	[SerializeField]
@@ -27,8 +30,12 @@ public class ShopManager : MonoBehaviour {
 			price=skinPrices[i];
 			cha=false;
 			id=i;
-			pop.Open("Buy skin "+skinNames[i]+" for "+price,Confirm);
-			Debug.Log("Waiting buy "+ id+" "+price+" stars");
+			pop.Open("Buy skin "+skinNames[i]+" for "+price+" stars",Confirm);
+		}
+		else
+		{
+			warn.text="You need "+price+" stars to buy this skin";
+			warn.transform.parent.gameObject.SetActive(true);
 		}
 	}
 	public void BuyChar(int i)
@@ -39,7 +46,11 @@ public class ShopManager : MonoBehaviour {
 			cha=true;
 			id=i;
 			pop.Open("Buy pilot "+charNames[i]+" for "+price+" stars",Confirm);
-			Debug.Log("Waiting buy "+ id+" "+price);
+		}
+		else
+		{
+			warn.text="You need "+price+" stars to buy this pilot";
+			warn.transform.parent.gameObject.SetActive(true);
 		}
 	}
 	public void Confirm()
@@ -47,10 +58,6 @@ public class ShopManager : MonoBehaviour {
 		Cash.totalCash-=price;
 		if(cha)Locks.Char(id,true);
 		else Locks.Skin(id,true);
-		Debug.Log("Confirming buy "+ id+" "+price);
-		//gameObject.SetActive(false);
-		//gameObject.SetActive(true);
 		gameObject.BroadcastMessage("OnEnable");
-		pop.Close();
 	}
 }
