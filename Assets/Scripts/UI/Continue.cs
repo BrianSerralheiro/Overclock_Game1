@@ -65,6 +65,10 @@ public class Continue : MonoBehaviour
 		Timer = 10;
 	}
 
+	public void reduceTimer()
+	{
+		Timer -= 1;
+	}
 
 
 }
