@@ -15,6 +15,8 @@ public class DialogBox : MonoBehaviour {
 	private static UnityAction on;
 	private Text text;
 	private Image image;
+	[SerializeField]
+	private Sprite[] charFaces;
 	void Start () {
 		text=GetComponentInChildren<Text>();
 		image=GetComponentInChildren<Image>();
@@ -38,18 +40,23 @@ public class DialogBox : MonoBehaviour {
 		gameObject.SetActive(true);
 		text.text="";
 		chars=0;
+		text.fontSize = Screen.height / 30;
 	}
 	public void Close()
 	{
-		if(chars>texts[id].Length){
+		if(chars>=texts[id].Length){
 			Ship.paused=false;
 			gameObject.SetActive(false);
 		}
-		else chars=texts[id].Length;
+		else
+		{
+			chars=texts[id].Length;
+			text.text=texts[id].Substring(0,Mathf.FloorToInt(chars));
+		}
 	}
 	void Update () {
 		if(chars<texts[id].Length){
-			chars+=Time.deltaTime;
+			chars+=Time.deltaTime * cps;
 			if(text.text.Length<Mathf.FloorToInt(chars))text.text=texts[id].Substring(0,Mathf.FloorToInt(chars));
 		}
 
