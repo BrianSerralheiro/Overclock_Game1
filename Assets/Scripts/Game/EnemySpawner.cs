@@ -132,7 +132,7 @@ public class EnemySpawner : MonoBehaviour {
 				en=Spawn<Boss4>(SpriteBase.I.boss4[0]);
 				break;
 			case 'S':
-				en=Spawn<Drone>(SpriteBase.I.drone[SuaperTest.id]);
+				en=Spawn<Drone>(SpriteBase.I.drone[Ship.playerID]);
 				break;
 			 case 'U':
 				Transition.Timer = 5;

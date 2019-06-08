@@ -31,15 +31,19 @@ public class Ship : MonoBehaviour {
 	public static bool paused;
 	[SerializeField]
 	private Core shield;
+	[SerializeField]
+	private Material specialMat;
+	[SerializeField]
+	private Texture2D[] specials;
 	private bool shielded;
 
 	private float damageTimer;
+	private float freezeTimer;
 
 	private SpriteRenderer _renderer;
 
 	private int Level = 1;
-
-	private bool playerSpecial;
+	
 
 	[SerializeField]
 	private int id;
@@ -59,7 +63,7 @@ public class Ship : MonoBehaviour {
 			gameObject.SetActive(false);
 			return;
 		}
-		Debug.Log(skinID);
+		specialMat.mainTexture=specials[0];
 		if(skinID!=-1 && Locks.Skin(id*3+skinID))
 		{
 			_renderer.sprite=skins[skinID];
@@ -67,6 +71,9 @@ public class Ship : MonoBehaviour {
 			{
 				SpriteBase.I.bullets[ids[i]]=shotSkins[skinID*ids.Length+i];
 			}
+			specialMat.mainTexture=specials[skinID+1];
+			specialMat=null;
+			specials=null;
 			shotSkins=null;
 			skins=null;
 		}
@@ -109,9 +116,26 @@ public class Ship : MonoBehaviour {
 		{
 			return;
 		}
+		
 		if(immuneTime > 0)
-		{
+			{
 			immuneTime -= Time.deltaTime;
+		}
+		if(freezeTimer > 0)
+		{
+			freezeTimer -= Time.deltaTime;
+			if(freezeTimer<=0)
+			{
+				GameObject go = new GameObject("playerbullet");
+				go.AddComponent<BoxCollider2D>().size=new Vector2(10,20);
+				Bullet bu= go.AddComponent<Bullet>();
+				bu.damage=200;
+				bu.pierce=true;
+				bu.owner=name;
+				bu.enabled=false;
+				Destroy(go,0.1f);
+			}
+			return;
 		}
 		if(Bullet.bulletTime<=0)
 		{
@@ -124,6 +148,7 @@ public class Ship : MonoBehaviour {
 			damageTimer -= Time.deltaTime;
 			_renderer.color = Color.Lerp(Color.white,Color.red,damageTimer);
 		}
+		if(Input.GetKeyDown(KeyCode.Space))Special();
 		if(Input.GetKeyDown(KeyCode.Alpha1))OnLevel(1);
 		if(Input.GetKeyDown(KeyCode.Alpha2))OnLevel(2);
 		if(Input.GetKeyDown(KeyCode.Alpha3))OnLevel(3);
@@ -180,6 +205,26 @@ public class Ship : MonoBehaviour {
 
 	public void Special()
 	{
-		playerSpecial = true;
+		switch(id)
+		{
+			case 0:
+				ParticleManager.Emit(12,Vector3.up*-10,20);
+				immuneTime=4;
+				freezeTimer=3;
+				break;
+			case 1:
+				ParticleManager.Emit(13,transform.position,250);
+				immuneTime=5;
+				freezeTimer=3;
+				break;
+			case 2:
+				ParticleManager.Emit(14,Vector3.zero,15);
+				immuneTime=freezeTimer=3;
+				break;
+			case 3:
+				ParticleManager.Emit(15,Vector3.zero,20);
+				immuneTime=freezeTimer=3;
+				break;
+		}
 	}
 }
