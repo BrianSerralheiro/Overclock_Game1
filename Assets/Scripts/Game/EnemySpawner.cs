@@ -134,9 +134,12 @@ public class EnemySpawner : MonoBehaviour {
 			case 'S':
 				en=Spawn<Drone>(SpriteBase.I.drone[Ship.playerID]);
 				break;
-			 case 'U':
+			case 'U':
 				Transition.Timer = 5;
 				Transition.worldID = s[1]-48;
+				break;
+			case 'V':
+				DialogBox.Text(s[1]-48);
 				break;
 			default :
 				timer=s[1]-48;

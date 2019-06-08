@@ -19,6 +19,8 @@ public class Ship : MonoBehaviour {
 	[SerializeField]
 	private Vector3 moveto;
 	[SerializeField]
+	private string[] falas;
+	[SerializeField]
 	private Vector3 offset;
 	[SerializeField]
 	private float speed=5f;
@@ -64,6 +66,8 @@ public class Ship : MonoBehaviour {
 			return;
 		}
 		specialMat.mainTexture=specials[0];
+		DialogBox.Texts(falas);
+		falas=null;
 		if(skinID!=-1 && Locks.Skin(id*3+skinID))
 		{
 			_renderer.sprite=skins[skinID];
