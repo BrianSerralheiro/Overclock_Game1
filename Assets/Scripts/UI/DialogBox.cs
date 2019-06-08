@@ -9,21 +9,27 @@ public class DialogBox : MonoBehaviour {
 	[SerializeField]
 	private Sprite[] box;
 	[SerializeField]
+	private Image portrait;
+	[SerializeField]
 	private float cps;
 	private static string[] texts;
+	private static Sprite[] charPics;
 	private static int id;
 	private static UnityAction on;
 	private Text text;
 	private Image image;
-	[SerializeField]
-	private Sprite[] charFaces;
 	void Start () {
 		text=GetComponentInChildren<Text>();
 		image=GetComponentInChildren<Image>();
-		if(!text || !image)Debug.LogError("Dialog bx needs both image and text components in children");
+		if(!text || !image)Debug.LogError("Dialog box needs both image and text components in children");
 		if(text)image.sprite=box[Ship.playerID];
 		box=null;
 		on=On;
+		gameObject.SetActive(false);
+	}
+	public static void Chars(Sprite[] s)
+	{
+		charPics=s;
 	}
 	public static void Texts(string[] s)
 	{
@@ -39,6 +45,7 @@ public class DialogBox : MonoBehaviour {
 		Ship.paused=true;
 		gameObject.SetActive(true);
 		text.text="";
+		portrait.sprite=charPics[id];
 		chars=0;
 		text.fontSize = Screen.height / 30;
 	}
