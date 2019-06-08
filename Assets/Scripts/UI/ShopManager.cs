@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopManager : MonoBehaviour {
+public class ShopManager : MonoBehaviour 
+{
 
 	[SerializeField]
 	private PopUp pop;
@@ -20,7 +21,8 @@ public class ShopManager : MonoBehaviour {
 	private int price;
 	private int id;
 	private bool cha;
-	void Start () {
+	void Start () 
+	{
 		
 	}
 	public void BuySkin(int i)
@@ -30,11 +32,11 @@ public class ShopManager : MonoBehaviour {
 			price=skinPrices[i];
 			cha=false;
 			id=i;
-			pop.Open("Buy skin "+skinNames[i]+" for "+price+" stars",Confirm);
+			pop.Open("Buy skin "+skinNames[i]+", for "+price+" stars?",Confirm);
 		}
 		else
 		{
-			warn.text="You need "+price+" stars to buy this skin";
+			warn.text="You need "+skinPrices[i]+" stars, to buy this skin!";
 			warn.transform.parent.gameObject.SetActive(true);
 		}
 	}
@@ -45,11 +47,11 @@ public class ShopManager : MonoBehaviour {
 			price=charPrices[i];
 			cha=true;
 			id=i;
-			pop.Open("Buy pilot "+charNames[i]+" for "+price+" stars",Confirm);
+			pop.Open("Buy pilot "+charNames[i]+", for "+price+" stars?",Confirm);
 		}
 		else
 		{
-			warn.text="You need "+price+" stars to buy this pilot";
+			warn.text="You need "+charPrices[i]+" stars, to buy this pilot!";
 			warn.transform.parent.gameObject.SetActive(true);
 		}
 	}
