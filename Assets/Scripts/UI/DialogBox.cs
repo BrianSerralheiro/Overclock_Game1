@@ -8,7 +8,6 @@ public class DialogBox : MonoBehaviour {
 	private float chars;
 	[SerializeField]
 	private Sprite[] box;
-	[SerializeField]
 	private Image portrait;
 	[SerializeField]
 	private float cps;
@@ -20,9 +19,10 @@ public class DialogBox : MonoBehaviour {
 	private Image image;
 	void Start () {
 		text=GetComponentInChildren<Text>();
-		image=GetComponentInChildren<Image>();
+		portrait=GetComponentsInChildren<Image>()[0];
+		image=GetComponentsInChildren<Image>()[1];
 		if(!text || !image)Debug.LogError("Dialog box needs both image and text components in children");
-		if(text)image.sprite=box[Ship.playerID];
+		image.sprite=box[Ship.playerID];
 		box=null;
 		on=On;
 		gameObject.SetActive(false);
@@ -47,7 +47,7 @@ public class DialogBox : MonoBehaviour {
 		text.text="";
 		portrait.sprite=charPics[id];
 		chars=0;
-		text.fontSize = Screen.height / 30;
+		text.fontSize = Screen.height / 37;
 	}
 	public void Close()
 	{

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e143e59ee30a4244db7e8b1b58ef0062
-timeCreated: 1557179779
+timeCreated: 1560026480
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -82,10 +82,10 @@ TextureImporter:
       name: Prot_2_azul_Puta_0
       rect:
         serializedVersion: 2
-        x: 157
+        x: 574
         y: 0
-        width: 157
-        height: 491
+        width: 571
+        height: 1794
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

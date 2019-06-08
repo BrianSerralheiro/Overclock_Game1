@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 3840518bb1dbef44080b185e9b4da0c5
-timeCreated: 1557179794
+timeCreated: 1560026562
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -82,10 +82,10 @@ TextureImporter:
       name: Prot_4_Amarelo_Triste_0
       rect:
         serializedVersion: 2
-        x: 33
+        x: 123
         y: 0
-        width: 281
-        height: 545
+        width: 1021
+        height: 1989
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
