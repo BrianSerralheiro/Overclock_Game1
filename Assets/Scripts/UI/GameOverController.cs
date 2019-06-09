@@ -27,6 +27,7 @@ public class GameOverController : MonoBehaviour
 		int cashStars = EnemySpawner.points /200;
 		Stars.text = cashStars.ToString();
 		Cash.totalCash += cashStars;
+		ADManager.RequestBanner();
 	}
 
 	public void ReturnMenu()
