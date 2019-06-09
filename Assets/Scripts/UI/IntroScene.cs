@@ -30,6 +30,7 @@ public class IntroScene : MonoBehaviour
 		loading.allowSceneActivation = false;
 		introColor = studioLogo.color;
 		Timer = 5f;
+		ADManager.Initialize();
 	}
 	
 	// Update is called once per frame

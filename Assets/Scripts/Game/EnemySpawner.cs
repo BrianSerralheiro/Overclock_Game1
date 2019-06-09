@@ -40,6 +40,7 @@ public class EnemySpawner : MonoBehaviour {
 	 */
 	void Start()
 	{
+		boss = false;
 		SoundManager.Play(1);
 		points=0;
 		//EnemyBase.player=player;

@@ -52,4 +52,9 @@ public static class ADManager
         Banner.Show();
 		Debug.Log("Ta funfando");
     }
+
+	public static void Initialize()
+	{
+		MobileAds.Initialize(appID);
+	}
 }
