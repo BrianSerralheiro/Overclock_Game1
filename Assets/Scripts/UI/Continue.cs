@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class Continue : MonoBehaviour 
 {
 	[SerializeField]
+	private Button button;
+	[SerializeField]
 	private Text countDown; 
 
 	private static float Timer;
@@ -29,6 +31,7 @@ public class Continue : MonoBehaviour
 	{	
 		Timer -= Time.deltaTime;
 		countDown.text = Mathf.Ceil(Timer).ToString();
+		button.interactable=ADManager.LoadedVideo();
 		if(Timer <= 0)
 		{
 			Ship.paused = false;
@@ -38,23 +41,13 @@ public class Continue : MonoBehaviour
 
 	public void WatchAd()
 	{
-		ADManager.RequestVideo();
 		ADManager.ShowAd(ship.Heal);
 		gameObject.SetActive(false);
-		/* if(ad advertisment.isReady)
-		{
-			
-		}
-		
-		
-		
-		 */
 	}
 
 	public void buyContinue()
 	{
 		gameObject.SetActive(false);
-		Ship.paused = false;
 		ship.Heal();
 	}
 

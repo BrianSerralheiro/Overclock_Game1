@@ -11,7 +11,7 @@ public static class Locks {
 	public static void Load()
 	{
 		if(PlayerPrefs.HasKey("skins"))skins=PlayerPrefs.GetString("skins");
-		if(PlayerPrefs.HasKey("chars"))skins=PlayerPrefs.GetString("chars");
+		if(PlayerPrefs.HasKey("chars"))chars=PlayerPrefs.GetString("chars");
 		Debug.Log("Loading " + skins);
 		Debug.Log("Loading " + chars);
 	}

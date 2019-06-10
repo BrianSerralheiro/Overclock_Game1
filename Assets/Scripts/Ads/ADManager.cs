@@ -32,16 +32,22 @@ public static class ADManager
 		Banner.OnAdLoaded += OnLoaded;
 		Banner.LoadAd(request);
 	}
+	public static bool LoadedVideo()
+	{
+		return video!=null && video.IsLoaded();
+	}
 	public static void ShowAd(Dele d)
 	{
 		if(video.IsLoaded()){
 			video.Show();
 			OnReward=d;
 		}
+		Debug.Log("Showing");
 	}
 	public static void HandleReward(object sender,Reward args)
 	{
 		//reward here!!!
+		Debug.Log("rewarding");
 		if(OnReward!=null)OnReward();
 	}
 
