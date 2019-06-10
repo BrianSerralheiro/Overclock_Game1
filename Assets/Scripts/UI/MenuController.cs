@@ -42,9 +42,9 @@ public class MenuController : MonoBehaviour
 			if(Mathf.Abs(MainMenuUI.position.x - MenuPositionX)< 0.01f)
 			{
 			EventSystem.SetActive(true);
-			MainMenuUI.gameObject.SetActive(MenuPositionX == 0);
+			//MainMenuUI.gameObject.SetActive(MenuPositionX == 0);
 			SettingsMenuUI.gameObject.SetActive(MenuPositionX == -ratio);
-			ShopMenuUI.gameObject.SetActive(SocialMenuUI.gameObject.activeSelf || (!SettingsMenuUI.gameObject.activeSelf && MenuPositionX == ratio));
+			ShopMenuUI.gameObject.SetActive(MenuPositionX == ratio ||(MenuPositionX == ratio * 2 && !SocialMenuUI.gameObject.activeSelf));
 			SocialMenuUI.gameObject.SetActive(MenuPositionX == ratio * 2);
 			pos.x=MenuPositionX;
 		    MainMenuUI.position = pos;
@@ -77,6 +77,7 @@ public class MenuController : MonoBehaviour
 		SoundManager.PlayEffects(0);
 		if(i == 0)
 		{
+			if(MenuPositionX == ratio *2)ShopMenuUI.gameObject.SetActive(true);	
 			MenuPositionX = 0;
 			MainMenuUI.gameObject.SetActive(true);
 			EventSystem.SetActive(false);

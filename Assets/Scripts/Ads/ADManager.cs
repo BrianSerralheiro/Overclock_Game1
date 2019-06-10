@@ -53,10 +53,9 @@ public static class ADManager
 	public static void CloseBanner()
 	{
 		Banner.Destroy();
-		RequestBanner();
 	}
 	public static void Initialize()
 	{
-		//MobileAds.Initialize(appID);
+		MobileAds.Initialize(appID);
 	}
 }
