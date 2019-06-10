@@ -20,6 +20,7 @@ public class IntroScene : MonoBehaviour
 
 	void Start () 
 	{
+		Locks.Load();
 		ADManager.Initialize();
 	}
 	
@@ -27,19 +28,16 @@ public class IntroScene : MonoBehaviour
 	{
 		if(loading != null)
 		{
-			tapStart.text = (loading.progress * 100) + "%";
+			tapStart.text = Mathf.Round((loading.progress + 0.1f) * 1000) / 10f + "%";
 			tapStartOutline.text = tapStart.text;
 			audioHandler.volume = 1f - loading.progress;
 		}
-		else
-		{
 		  introColor = tapStart.color;
 		  introColor.a = Mathf.Abs(Mathf.Cos(Time.time * 2));
 		  tapStart.color = introColor;
 		  introColor = tapStartOutline.color;
 		  introColor.a = Mathf.Abs(Mathf.Cos(Time.time * 2));
 		  tapStartOutline.color = introColor;
-		}
 	}
 
 	public void OnTap()

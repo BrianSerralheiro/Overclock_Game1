@@ -7,12 +7,18 @@ public class CharLock : MonoBehaviour {
 
 	[SerializeField]
 	private int charId;
-	void OnEnable()
+
+	private Button button;
+
+	void Start()
 	{
-		Button b = GetComponent<Button>();
-		if(b)
+		button = GetComponent<Button>();
+	}
+	void Update()
+	{
+		if(button)
 		{
-			 b.interactable=Locks.Char(charId);
+			 button.interactable=Locks.Char(charId);
 		}
 		else Debug.LogError("CharLock needs a button to work");
 	}

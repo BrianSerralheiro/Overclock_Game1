@@ -12,12 +12,16 @@ public static class Locks {
 	{
 		if(PlayerPrefs.HasKey("skins"))skins=PlayerPrefs.GetString("skins");
 		if(PlayerPrefs.HasKey("chars"))skins=PlayerPrefs.GetString("chars");
-
+		Debug.Log("Loading " + skins);
+		Debug.Log("Loading " + chars);
 	}
 	public static void Save()
 	{
+		Debug.Log("Saving " + skins);
 		PlayerPrefs.SetString("skins",skins);
 		PlayerPrefs.SetString("chars",chars);
+		Debug.Log("Saving " + chars);
+
 	}
 	public static bool Skin(int i)
 	{
