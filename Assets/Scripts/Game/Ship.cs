@@ -113,6 +113,7 @@ public class Ship : MonoBehaviour {
 		immuneTime = 3;
 		hp=maxhp;
 		InGame_HUD.shipHealth =1;
+		paused=false;
 	}
 	public void Shield()
 	{

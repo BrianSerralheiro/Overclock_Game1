@@ -39,9 +39,7 @@ public class Continue : MonoBehaviour
 	public void WatchAd()
 	{
 		ADManager.RequestVideo();
-		ADManager.ShowAd();
-		ship.Heal();
-		Ship.paused = false;
+		ADManager.ShowAd(ship.Heal);
 		gameObject.SetActive(false);
 		/* if(ad advertisment.isReady)
 		{

@@ -30,7 +30,8 @@ public class MenuController : MonoBehaviour
 	void Start () 
 	{
 		ratio = (float)Screen.width / (float)Screen.height * 10;
-		SoundManager.Play(0);		
+		SoundManager.Play(0);
+		ADManager.RequestVideo();
 	}
 	
 	// Update is called once per frame

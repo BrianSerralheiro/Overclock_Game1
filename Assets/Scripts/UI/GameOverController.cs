@@ -14,8 +14,7 @@ public class GameOverController : MonoBehaviour
 	private Text Stars;
     [SerializeField]
 	private int shipID;
-
-	// Use this for initialization
+	
 	void Start () 
 	{
 		if(shipID != Ship.playerID)
@@ -32,6 +31,7 @@ public class GameOverController : MonoBehaviour
 
 	public void ReturnMenu()
 	{
+		ADManager.CloseBanner();
 		SceneManager.LoadScene("MainMenu");
 	}
 }
