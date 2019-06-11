@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour {
-//	public Transform player;
 	public Material bg;
 	[TextArea]
 	public string wave;
@@ -12,6 +11,10 @@ public class EnemySpawner : MonoBehaviour {
 	public static bool boss;
 	private int counter;
 	public float timer;
+	[SerializeField]
+	private Texture[] mundos;
+	private int worldID;
+	private float transfer=1;
 
 	//A3T1A4T2A0T1A7T3B3T1B4T5A0A1A2A3A4A5A6A7T1B0B7T2B3T1B4T2C0T3C8A1A3A4A6T9T9T9D0T2E3E4T2G0T3F0F2F5F7T9F1F3F4F6T9E8E9T3G1T2H7T9T9I0T5J0J7T3J8J9T2J3T1J4T5K0T3L7T1L3T1L4T5J1J3J4J6T9T9M0T5N0N7T3N3N4T5P8T5Q0T5Q7P0T5O3T1O4T2N2N3N4N5T9T9R0
 	
@@ -42,6 +45,9 @@ public class EnemySpawner : MonoBehaviour {
 	{
 		boss = false;
 		SoundManager.Play(1);
+		bg.mainTexture=mundos[worldID];
+		bg.mainTextureOffset=bg.mainTextureOffset=Vector2.one;
+		bg.color=Color.white;
 		points=0;
 		//EnemyBase.player=player;
 	}
@@ -64,13 +70,20 @@ public class EnemySpawner : MonoBehaviour {
 			}
 		}
 		while(timer<=0 && counter<wave.Length && !boss);
-		if(counter>=wave.Length)SceneManager.LoadScene(0);
+		//if(counter>=wave.Length)SceneManager.LoadScene(1);
 		if(timer>0 && !boss) timer-=Time.deltaTime;
 		Vector2 v= bg.mainTextureOffset;
 		v.y+=Time.deltaTime/60;
 		if(v.y>1) v.y-=1;
 		bg.mainTextureOffset=v;
-
+		if(transfer<1)
+		{
+			transfer-=Time.deltaTime*2;
+			float t=Mathf.Abs(transfer);
+			bg.color=new Color(t,t,t);
+			if(transfer<0 && bg.mainTexture!=mundos[worldID]) bg.mainTexture= mundos[worldID];
+			if(transfer<-1)transfer=1;
+		}
 	}
 
 	void Chose(string s)
@@ -138,6 +151,10 @@ public class EnemySpawner : MonoBehaviour {
 			case 'U':
 				Transition.Timer = 5;
 				Transition.worldID = s[1]-48;
+				if(worldID!=Transition.worldID/3){
+					worldID=Transition.worldID/3;
+					transfer-=Time.deltaTime;
+				}
 				break;
 			case 'V':
 				DialogBox.Text(s[1]-48);

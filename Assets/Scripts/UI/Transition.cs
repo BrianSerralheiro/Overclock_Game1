@@ -12,14 +12,12 @@ public class Transition : MonoBehaviour
 	private Color textColor;
 	private Color Transparent;
 	public static int worldID;
-
-	// Use this for initialization
+	
 	void Start () 
 	{
 		Transparent = new Color(0,0,0,0);
 	}
 	
-	// Update is called once per frame
 	void Update () 
 	{
 		if(Timer > 0)
