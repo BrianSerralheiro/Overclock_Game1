@@ -1,39 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour 
 {
 
 	[SerializeField]
+	private Text text;
+	[SerializeField]
 	private GameObject eventSystem;
 
 	private float Timer;
-
-	// Use this for initialization
+	private AsyncOperation loading;
+	
 	void Start () 
 	{
 	
 	}
 	
-	// Update is called once per frame
 	void Update () 
 	{
-		if(Timer > 0)
+		if(loading!=null)
 		{
-			Timer -= Time.deltaTime;
-		}
-		if(Timer < 0)
-		{
-			SceneManager.LoadScene("cen");
+			text.text=Mathf.Round((loading.progress+0.1f)*100)+"%";
 		}
 	}
 
 	public void StartButton()
 	{
-		Timer = 2;
 		eventSystem.SetActive(false);
+		loading = SceneManager.LoadSceneAsync("cen");
 		SoundManager.PlayEffects(1);
 	}
 
