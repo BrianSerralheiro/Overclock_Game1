@@ -81,7 +81,10 @@ public class EnemySpawner : MonoBehaviour {
 			transfer-=Time.deltaTime*2;
 			float t=Mathf.Abs(transfer);
 			bg.color=new Color(t,t,t);
-			if(transfer<0 && bg.mainTexture!=mundos[worldID]) bg.mainTexture= mundos[worldID];
+			if(transfer<0 && bg.mainTexture!=mundos[worldID]){
+				bg.mainTexture= mundos[worldID];
+				bg.mainTextureOffset=Vector2.zero;
+			}
 			if(transfer<-1)transfer=1;
 		}
 	}
