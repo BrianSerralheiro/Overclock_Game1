@@ -23,10 +23,10 @@ public class Boss2 : EnemyBase {
 	private float time;
 	private Transform moving;
 	new private Core light;
-	private Vector3 vectorB=new Vector3(0,-0.6f,0.1f);
-	private Vector3 vectorT=new Vector3(0,-0.1f,0.1f);
-	private Vector3 left=new Vector3(1.1f,-1,0);
-	private Vector3 right = new Vector3(-1.1f,-1,0);
+	private Vector3 vectorB=new Vector3(0,-0.82f,0.1f);
+	private Vector3 vectorT=new Vector3(0,-0.17f,0.1f);
+	private Vector3 left=new Vector3(1.8f,-1.5f,0);
+	private Vector3 right = new Vector3(-1.8f,-1.5f,0);
 	enum State
 	{
 		intro,
@@ -56,7 +56,7 @@ public class Boss2 : EnemyBase {
 		go=new GameObject("lightL");
 		lightL=go.AddComponent<Core>().Set(SpriteBase.I.boss2[7],new Color(0.5f,0.5f,0.5f));
 		go.transform.parent=clawL.transform;
-		go.transform.localPosition=new Vector3(0.17f,0.06f);
+		go.transform.localPosition=new Vector3(0.25f,0.1f);
 		go = new GameObject("elbowL");
 		lineelbowL=go.AddComponent<LineRenderer>();
 		Config(lineelbowL);
@@ -77,7 +77,7 @@ public class Boss2 : EnemyBase {
 		go=new GameObject("lightR");
 		lightR=go.AddComponent<Core>().Set(SpriteBase.I.boss2[7],new Color(0.5f,0.5f,0.5f)).Flip();
 		go.transform.parent=clawR.transform;
-		go.transform.localPosition=new Vector3(-0.17f,0.06f);
+		go.transform.localPosition=new Vector3(-0.25f,0.1f);
 		go = new GameObject("elbowR");
 		lineelbowR=go.AddComponent<LineRenderer>();
 		Config(lineelbowR);
@@ -99,14 +99,13 @@ public class Boss2 : EnemyBase {
 		go = new GameObject("eye");
 		eye=go.AddComponent<Core>().Set(SpriteBase.I.boss2[5],new Color(0.5f,0.5f,0.5f));
 		go.transform.parent=transform;
-		go.transform.localPosition=new Vector3(0,-0.3f,0.2f);
+		go.transform.localPosition=new Vector3(0,-0.47f,0.2f);
 		go = new GameObject("eyes");
 		eyes=go.AddComponent<Core>().Set(SpriteBase.I.boss2[6],new Color(0.5f,0.1f,0.05f));
 		go.transform.parent=transform;
-		go.transform.localPosition=new Vector3(0,0.46f,0);
+		go.transform.localPosition=new Vector3(0,0.7f,0);
 	}
-
-	// Update is called once per frame
+	
 	protected new void Update(){
 		if(Ship.paused) return;
 		base.Update();
@@ -127,10 +126,10 @@ public class Boss2 : EnemyBase {
 		}
 		else if(state==State.waiting)
 		{
-			if(vectorB.y<-0.6f) vectorB.y+=Time.deltaTime/10;
+			if(vectorB.y<-0.82f) vectorB.y+=Time.deltaTime/5;
 			if(light)light.Min(Time.deltaTime/2);
-			if(clawL)clawL.transform.position=Vector3.MoveTowards(clawL.transform.position,transform.position+left,5*Time.deltaTime);
-			if(clawR) clawR.transform.position=Vector3.MoveTowards(clawR.transform.position,transform.position+right,5*Time.deltaTime);
+			if(clawL)clawL.transform.position=Vector3.MoveTowards(clawL.transform.position,transform.position+left*1.5f,5*Time.deltaTime);
+			if(clawR) clawR.transform.position=Vector3.MoveTowards(clawR.transform.position,transform.position+right*1.5f,5*Time.deltaTime);
 			if(timer<0){
 				if(clawL || clawR){
 					if(Random.value<=0.3f){
@@ -167,7 +166,7 @@ public class Boss2 : EnemyBase {
 		}
 		else if(state==State.shooting)
 		{
-			if(vectorB.y>=-1f)vectorB.y-=Time.deltaTime/10;
+			if(vectorB.y>=-1.5f)vectorB.y-=Time.deltaTime/5;
 			if(!clawL && !clawR){
 				transform.Translate(Mathf.Cos(time)*Time.deltaTime*4,0,0);
 				time+=Time.deltaTime;
@@ -220,7 +219,7 @@ public class Boss2 : EnemyBase {
 		}
 		eyes.Min(Time.deltaTime*2);
 		lidB.localPosition=vectorB;
-		vectorT.y=-(lidB.localPosition.y+0.7f);
+		vectorT.y=-(lidB.localPosition.y+0.99f);
 		lidT.localPosition=vectorT;
 		eye.Set(1-damageTimer);
 		if(clawL){
@@ -317,7 +316,7 @@ public class Boss2 : EnemyBase {
 	private new void OnCollisionEnter2D(Collision2D col)
 	{
 		if(state==State.dead) return;
-		if(vectorB.y<-0.7f) base.OnCollisionEnter2D(col);
+		if(vectorB.y<-1.3f) base.OnCollisionEnter2D(col);
 	}
 	public override void Position(int i)
 	{
