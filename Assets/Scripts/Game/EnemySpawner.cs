@@ -14,6 +14,7 @@ public class EnemySpawner : MonoBehaviour {
 	[SerializeField]
 	private Texture[] mundos;
 	private int worldID;
+	private int scroll=60;
 	private float transfer=1;
 
 	//A3T1A4T2A0T1A7T3B3T1B4T5A0A1A2A3A4A5A6A7T1B0B7T2B3T1B4T2C0T3C8A1A3A4A6T9T9T9D0T2E3E4T2G0T3F0F2F5F7T9F1F3F4F6T9E8E9T3G1T2H7T9T9I0T5J0J7T3J8J9T2J3T1J4T5K0T3L7T1L3T1L4T5J1J3J4J6T9T9M0T5N0N7T3N3N4T5P8T5Q0T5Q7P0T5O3T1O4T2N2N3N4N5T9T9R0
@@ -73,8 +74,11 @@ public class EnemySpawner : MonoBehaviour {
 		//if(counter>=wave.Length)SceneManager.LoadScene(1);
 		if(timer>0 && !boss) timer-=Time.deltaTime;
 		Vector2 v= bg.mainTextureOffset;
-		v.y+=Time.deltaTime/60;
-		if(v.y>1) v.y-=1;
+		v.y+=Time.deltaTime/scroll;
+		if(worldID==2)
+			{if(v.y>0.7f) v.y=0.7f;}
+		else
+			if(v.y>1) v.y-=1;
 		bg.mainTextureOffset=v;
 		if(transfer<1)
 		{
@@ -157,6 +161,7 @@ public class EnemySpawner : MonoBehaviour {
 				if(worldID!=Transition.worldID/3){
 					worldID=Transition.worldID/3;
 					transfer-=Time.deltaTime;
+					scroll=worldID==2?scroll=600:60;
 				}
 				break;
 			case 'V':
