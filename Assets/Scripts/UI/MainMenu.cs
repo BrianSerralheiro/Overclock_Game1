@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
 	
 	void Start () 
 	{
-	
+		//PlayerPrefs.DeleteAll();
 	}
 	
 	void Update () 
