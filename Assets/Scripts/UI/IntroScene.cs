@@ -20,7 +20,6 @@ public class IntroScene : MonoBehaviour
 
 	void Start () 
 	{
-		Locks.Load();
 		ADManager.Initialize();
 	}
 	

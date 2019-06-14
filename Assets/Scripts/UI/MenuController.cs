@@ -25,16 +25,14 @@ public class MenuController : MonoBehaviour
 
 	//Help positioning
 	Vector3 pos;
-
-	// Use this for initialization
-	void Start () 
+	
+	void Start ()
 	{
+		Locks.Load();
 		ratio = (float)Screen.width / (float)Screen.height * 10;
 		SoundManager.Play(0);
 		ADManager.RequestVideo();
 	}
-	
-	// Update is called once per frame
 	void Update () 
 	{
 		if(MainMenuUI.position.x != MenuPositionX)
