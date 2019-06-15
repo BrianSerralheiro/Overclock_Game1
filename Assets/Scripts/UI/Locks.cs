@@ -45,8 +45,8 @@ public static class Locks {
 	{
 		for(int i = 0; i<skins.Length; i++)
 		{
-			if(i<chars.Length)Char(i);
-			Skin(i);
+			if(i<chars.Length)Char(i,true);
+			Skin(i,true);
 		}
 		premium=true;
 	}
