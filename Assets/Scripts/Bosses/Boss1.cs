@@ -142,8 +142,9 @@ public class Boss1 : EnemyBase {
 	}
 	private new void OnCollisionEnter2D(Collision2D col)
 	{
-		if(state==State.dead)return;
-		if(vector.z>5)base.OnCollisionEnter2D(col);
+		if(vector.z>5 && state!=State.dead) base.OnCollisionEnter2D(col);
+		else
+			ParticleManager.Emit(16,col.collider.transform.position,1);
 		speed=hp<200 ? 12 : 8;
 	}
 }

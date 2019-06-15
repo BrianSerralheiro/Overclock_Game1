@@ -18,6 +18,7 @@ public class Gun : MonoBehaviour {
 	public virtual void Shoot()
 	{
 		if(!gameObject.activeSelf)return;
+		ParticleManager.Emit(17,transform.position,1);
 		GameObject go=new GameObject("playerbullet");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bullets[spriteID+(Bullet.blink ? 0 : 1)];
 		go.AddComponent<BoxCollider2D>();
