@@ -55,6 +55,11 @@ public class ShopManager : MonoBehaviour
 			warn.transform.parent.gameObject.SetActive(true);
 		}
 	}
+	public void Premium()
+	{
+		Locks.UnlockAll();
+		gameObject.BroadcastMessage("OnEnable");
+	}
 	public void Confirm()
 	{
 		Cash.totalCash-=price;
