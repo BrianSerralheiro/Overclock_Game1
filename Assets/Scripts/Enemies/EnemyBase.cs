@@ -37,6 +37,7 @@ public class EnemyBase : MonoBehaviour {
 		int i=1;
 		Bullet bull=col.gameObject.GetComponent<Bullet>();
 		if(bull)i=bull.damage;
+		ParticleManager.Emit(1,col.collider.transform,5);
 		hp-=i;
 		if(hp<=0)Die();
 		if(!damageEffect || damageTimer <= 0)

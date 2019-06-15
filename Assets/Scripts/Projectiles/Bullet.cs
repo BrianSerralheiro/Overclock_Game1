@@ -31,7 +31,6 @@ public class Bullet : MonoBehaviour {
 	{
 		if(col.gameObject.name!=owner && !pierce){
 			Destroy(gameObject);
-			ParticleManager.Emit(1,transform,5);
 		}
 	}
 	
