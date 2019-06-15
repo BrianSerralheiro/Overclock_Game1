@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 public class Ship : MonoBehaviour {
 	float shoottimer;
 	[SerializeField]
+	private ParticleSystem trail;
+	[SerializeField]
+	private Color[] colors;
+	[SerializeField]
 	private Gun[] guns;
 	[SerializeField]
 	Transform burst;
@@ -75,6 +79,8 @@ public class Ship : MonoBehaviour {
 		if(skinID!=-1 && Locks.Skin(id*3+skinID))
 		{
 			_renderer.sprite=skins[skinID];
+			ParticleSystem.MainModule main = trail.main;
+			main.startColor=colors[skinID];
 			for(int i = 0; i<ids.Length; i++)
 			{
 				SpriteBase.I.bullets[ids[i]]=shotSkins[skinID*ids.Length+i];
@@ -84,6 +90,7 @@ public class Ship : MonoBehaviour {
 			specials=null;
 			shotSkins=null;
 			skins=null;
+			colors=null;
 		}
 		EnemyBase.player=transform;
 	}
