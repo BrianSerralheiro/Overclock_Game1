@@ -9,7 +9,7 @@ public class storeManager : MonoBehaviour
 	// Use this for initialization
 	void OnEnable () 
 	{
-		facebookManager.Initialize();
+
 	}
 	
 	// Update is called once per frame
@@ -25,12 +25,12 @@ public class storeManager : MonoBehaviour
 
 	public void inviteFriends()
 	{
-		facebookManager.inviteFriends();
+
 	}
 
 	public void share()
 	{
-		facebookManager.shareGame();
+
 	}
 
 	public void playAD()
@@ -41,5 +41,10 @@ public class storeManager : MonoBehaviour
 	private void adcallBack()
 	{
 
+	}
+
+	public void facebookPage()
+	{
+		Application.OpenURL("https://www.facebook.com/OverclockEntretenimento/");
 	}
 }

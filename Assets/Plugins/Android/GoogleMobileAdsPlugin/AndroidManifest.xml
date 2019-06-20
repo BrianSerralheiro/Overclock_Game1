@@ -8,16 +8,13 @@ required for displaying ads.
     package="com.google.unity.ads"
     android:versionName="1.0"
     android:versionCode="1">
-  <uses-sdk android:minSdkVersion="14"
-      android:targetSdkVersion="19" />
+  <uses-sdk android:minSdkVersion="21"
+      android:targetSdkVersion="27" />
   <application>
-
-
-
     <uses-library android:required="false" android:name="org.apache.http.legacy"/>
     <!-- Your AdMob App ID will look similar to this sample ID: ca-app-pub-3940256099942544~3347511713 -->
     <meta-data
     android:name="com.google.android.gms.ads.APPLICATION_ID"
-    android:value="ca-app-pub-1044537920504306~1035225471"/>
+    android:value="[ADMOB APPLICATION ID]"/>
   </application>
 </manifest>
