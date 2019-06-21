@@ -30,7 +30,7 @@ public class storeManager : MonoBehaviour
 
 	public void share()
 	{
-
+		Application.OpenURL("https://www.facebook.com/sharer/sharer?u=www.facebook.com/OverclockEntretenimento");
 	}
 
 	public void playAD()
