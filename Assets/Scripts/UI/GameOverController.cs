@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using ADs;
 
 public class GameOverController : MonoBehaviour 
 {
@@ -33,5 +34,9 @@ public class GameOverController : MonoBehaviour
 	{
 		adsManager.CloseBanner();
 		SceneManager.LoadScene("MainMenu");
+	}
+	public void QuitGame()
+	{
+		Application.Quit();
 	}
 }

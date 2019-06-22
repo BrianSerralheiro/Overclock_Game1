@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using ADs;
 
 public class Continue : MonoBehaviour 
 {
@@ -53,7 +54,7 @@ public class Continue : MonoBehaviour
 
 	public static void Open(Ship s)
 	{
-		adsManager.RequestVideo();
+		//adsManager.RequestVideo();
 		ship = s;
 		menu.SetActive(true);
 		Timer = 10;

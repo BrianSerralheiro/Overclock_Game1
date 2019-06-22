@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using GoogleMobileAds.Api;
 using UnityEngine;
+namespace ADs{
 public static class adsManager 
 {
 	private static string appID="ca-app-pub-1044537920504306~1035225471";
-	private static RewardBasedVideoAd video = RewardBasedVideoAd.Instance;
+	private static RewardBasedVideoAd video;
 	private static BannerView Banner;
 	public delegate void Dele();
 	private static Dele OnReward;
@@ -17,8 +18,8 @@ public static class adsManager
 		//ONLY FOR RELEASE
 		AdRequest request=new AdRequest.Builder().Build();
 		//AdRequest request = new AdRequest.Builder().AddTestDevice("2077ef9a63d2b398840261c8221a0c9b").Build();
-		video.OnAdRewarded +=HandleReward;
-		//video.LoadAd(request,id);
+		//video.OnAdRewarded +=HandleReward;
+		video.LoadAd(request,id);
 	}
 
 	public static void RequestBanner()
@@ -27,8 +28,8 @@ public static class adsManager
 		string id ="ca-app-pub-3940256099942544/6300978111";
 		Banner= new BannerView(id, AdSize.SmartBanner, AdPosition.Top);
 		//ONLY FOR RELEASE
-		//AdRequest request=new AdRequest.Builder().Build();
-		AdRequest request =new AdRequest.Builder().AddTestDevice("2077ef9a63d2b398840261c8221a0c9b").Build();
+		AdRequest request=new AdRequest.Builder().Build();
+		//AdRequest request =new AdRequest.Builder().AddTestDevice("2077ef9a63d2b398840261c8221a0c9b").Build();
 		Banner.OnAdLoaded += OnLoaded;
 		Banner.LoadAd(request);
 	}
@@ -41,8 +42,8 @@ public static class adsManager
 		if(video.IsLoaded()){
 			video.Show();
 			OnReward=d;
+			Debug.Log("Showing");
 		}
-		Debug.Log("Showing");
 	}
 	public static void HandleReward(object sender,Reward args)
 	{
@@ -63,5 +64,7 @@ public static class adsManager
 	public static void Initialize()
 	{
 		MobileAds.Initialize(appID);
+		video=RewardBasedVideoAd.Instance;
+		video.OnAdRewarded +=HandleReward;
 	}
-}
+	} }

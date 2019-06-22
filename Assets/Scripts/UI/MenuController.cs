@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ADs;
 
 public class MenuController : MonoBehaviour 
 {
@@ -31,7 +32,7 @@ public class MenuController : MonoBehaviour
 		Locks.Load();
 		ratio = (float)Screen.width / (float)Screen.height * 10;
 		SoundManager.Play(0);
-		//adsManager.RequestVideo();
+		adsManager.RequestVideo();
 	}
 	void Update () 
 	{
