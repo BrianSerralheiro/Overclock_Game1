@@ -31,7 +31,7 @@ public class MenuController : MonoBehaviour
 		Locks.Load();
 		ratio = (float)Screen.width / (float)Screen.height * 10;
 		SoundManager.Play(0);
-		ADManager.RequestVideo();
+		//adsManager.RequestVideo();
 	}
 	void Update () 
 	{
@@ -58,7 +58,7 @@ public class MenuController : MonoBehaviour
 			{
 			pos = MainMenuUI.position;
 			//Move x position based on the menu position
-			pos.x +=(MenuPositionX - pos.x) * Time.deltaTime * 5;
+			pos.x +=(MenuPositionX - pos.x) * Time.deltaTime * 4;
 			MainMenuUI.position = pos;
 			pos.x += ratio;
 			SettingsMenuUI.position = pos;

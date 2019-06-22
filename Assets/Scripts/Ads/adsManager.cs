@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using GoogleMobileAds.Api;
 using UnityEngine;
-public static class ADManager 
+public static class adsManager 
 {
 	private static string appID="ca-app-pub-1044537920504306~1035225471";
-	private static RewardBasedVideoAd video;
+	private static RewardBasedVideoAd video = RewardBasedVideoAd.Instance;
 	private static BannerView Banner;
 	public delegate void Dele();
 	private static Dele OnReward;
@@ -13,12 +13,12 @@ public static class ADManager
 	{
 		//ID REAL: ca-app-pub-1044537920504306/7358635834
 		string id ="ca-app-pub-3940256099942544/5224354917";
-		video=RewardBasedVideoAd.Instance;
+		//video=RewardBasedVideoAd.Instance;
 		//ONLY FOR RELEASE
-		//AdRequest request=new AdRequest.Builder().Build();
-		AdRequest request =new AdRequest.Builder().AddTestDevice("2077ef9a63d2b398840261c8221a0c9b").Build();
+		AdRequest request=new AdRequest.Builder().Build();
+		//AdRequest request = new AdRequest.Builder().AddTestDevice("2077ef9a63d2b398840261c8221a0c9b").Build();
 		video.OnAdRewarded +=HandleReward;
-		video.LoadAd(request,id);
+		//video.LoadAd(request,id);
 	}
 
 	public static void RequestBanner()

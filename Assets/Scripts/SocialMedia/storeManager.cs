@@ -35,7 +35,7 @@ public class storeManager : MonoBehaviour
 
 	public void playAD()
 	{
-		ADManager.ShowAd(adcallBack);
+		adsManager.ShowAd(adcallBack);
 	}
 
 	private void adcallBack()

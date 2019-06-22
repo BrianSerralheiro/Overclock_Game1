@@ -20,7 +20,7 @@ public class IntroScene : MonoBehaviour
 
 	void Start () 
 	{
-		ADManager.Initialize();
+		adsManager.Initialize();
 	}
 	
 	void Update () 
@@ -41,6 +41,9 @@ public class IntroScene : MonoBehaviour
 
 	public void OnTap()
 	{
-		loading = SceneManager.LoadSceneAsync("MainMenu");
+		if(loading == null)
+		{
+			loading = SceneManager.LoadSceneAsync("MainMenu");
+		} 
 	}
 }

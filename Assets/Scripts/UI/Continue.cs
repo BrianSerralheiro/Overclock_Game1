@@ -31,7 +31,7 @@ public class Continue : MonoBehaviour
 	{	
 		Timer -= Time.deltaTime;
 		countDown.text = Mathf.Ceil(Timer).ToString();
-		button.interactable=ADManager.LoadedVideo();
+		button.interactable=adsManager.LoadedVideo();
 		if(Timer <= 0)
 		{
 			Ship.paused = false;
@@ -41,7 +41,7 @@ public class Continue : MonoBehaviour
 
 	public void WatchAd()
 	{
-		ADManager.ShowAd(ship.Heal);
+		adsManager.ShowAd(ship.Heal);
 		gameObject.SetActive(false);
 	}
 
@@ -53,6 +53,7 @@ public class Continue : MonoBehaviour
 
 	public static void Open(Ship s)
 	{
+		adsManager.RequestVideo();
 		ship = s;
 		menu.SetActive(true);
 		Timer = 10;
