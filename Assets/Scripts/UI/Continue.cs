@@ -7,21 +7,25 @@ using ADs;
 
 public class Continue : MonoBehaviour 
 {
+	public delegate void Del(bool b);
+	public Del Active; 
 	[SerializeField]
 	private Button button;
-	private static Ship ship;
+	public Ship ship;
 
-	private static GameObject menu;
+	
 
 	public void WatchAd()
 	{
 		adsManager.ShowAd(ship.Heal);
 		gameObject.SetActive(false);
+		Active(false);
 	}
 
 	public void buyContinue()
 	{
 		gameObject.SetActive(false);
+		Active(false);
 		ship.Heal();
 	}
 

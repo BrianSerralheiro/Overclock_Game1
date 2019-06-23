@@ -8,15 +8,21 @@ using ADs;
 public class GameOverController : MonoBehaviour 
 {
 	[SerializeField]
+	private Image panel;
+	[SerializeField]
+	private Image image;
+	[SerializeField]
+	private Text counter;
+	[SerializeField]
 	private Text LevelCleared;
 	[SerializeField]
 	private Text Score;
 	[SerializeField]
 	private Text Stars;
-    [SerializeField]
-	private int shipID;
 	[SerializeField]
 	private Continue cont;
+	public Sprite[] chars;
+	public Sprite[] panels;
 
 	private static float Timer;
 
@@ -24,7 +30,7 @@ public class GameOverController : MonoBehaviour
 
 	private static GameObject menu;
 	
-		void Start () 
+	void Start () 
 	{			
 		menu = gameObject;
 		gameObject.SetActive(false);
@@ -33,13 +39,11 @@ public class GameOverController : MonoBehaviour
 	
 	void OnEnable () 
 	{
-		if(shipID != Ship.playerID)
-		{
-			gameObject.SetActive(false);
-			return;
-		}
+		panel.sprite=panels[Ship.playerID];
+		image.sprite=chars[Ship.playerID];
 		Score.text = EnemySpawner.points.ToString();
 		int cashStars = EnemySpawner.points /200;
+		EnemySpawner.points=0;
 		Stars.text = cashStars.ToString();
 		Cash.totalCash += cashStars;
 		adsManager.RequestBanner();
@@ -55,6 +59,8 @@ public class GameOverController : MonoBehaviour
 
 	public void RevivePopUp()
 	{
+		cont.ship=ship;
+		cont.Active=gameObject.SetActive;
 		cont.gameObject.SetActive(true);
 		adsManager.CloseBanner();
 	}
