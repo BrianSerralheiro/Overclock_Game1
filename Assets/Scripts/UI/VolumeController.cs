@@ -19,10 +19,6 @@ public class VolumeController : MonoBehaviour
 	private Sprite ON;
 	[SerializeField]
 	private Sprite OFF;
-	private void Awake()
-	{
-		SoundManager.Load();
-	}
 	private void OnDestroy()
 	{
 		SoundManager.Save();

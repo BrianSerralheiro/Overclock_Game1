@@ -33,6 +33,7 @@ public class MenuController : MonoBehaviour
 		ratio = (float)Screen.width / (float)Screen.height * 10;
 		SoundManager.Play(0);
 		adsManager.RequestVideo();
+		SoundManager.Load();
 	}
 	void Update () 
 	{

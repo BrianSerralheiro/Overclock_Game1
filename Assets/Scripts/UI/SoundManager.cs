@@ -13,11 +13,12 @@ public class SoundManager : MonoBehaviour
 	private AudioSource songPlayer;
 
 	private static SoundManager _soundManager;
-
+	private static float weight;
 	private static float volumeSNG = 1;
 	private static float volumeSFX = 1;
 	private void Update()
 	{
+		if(weight>0)weight-=Time.deltaTime;
 		if(_soundManager.songPlayer.volume<volumeSNG)
 		{
 			_soundManager.songPlayer.volume+=Time.deltaTime/3f;
@@ -31,14 +32,11 @@ public class SoundManager : MonoBehaviour
 			Destroy(gameObject);
 			return;
 		}
-		//GameObject go = new GameObject("AudioSource");
 		songPlayer = gameObject.AddComponent<AudioSource>();
 		soundPlayer = gameObject.AddComponent<AudioSource>();
 		songPlayer.loop = true;
-		//DontDestroyOnLoad(go);
 		DontDestroyOnLoad(gameObject);
 		_soundManager = this;
-		//Destroy(this);
 	}
 
 	public static void Play (int i)
@@ -55,12 +53,19 @@ public class SoundManager : MonoBehaviour
 
 	public static void PlayEffects (int i)
 	{
+		PlayEffects(i,0,0);
+	}
+	public static void PlayEffects (int i,float w, float l)
+	{
 		if(_soundManager == null)
 		{
 			Debug.LogWarning("SoundEffects nao inicializado");
 			return;
 		}
-		_soundManager.soundPlayer.PlayOneShot(_soundManager._sounds[i],volumeSFX);
+		if(l==0 || weight<l){
+			_soundManager.soundPlayer.PlayOneShot(_soundManager._sounds[i],volumeSFX);
+			weight+=w;
+		}
 
 	}
 
