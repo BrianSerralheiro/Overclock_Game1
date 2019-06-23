@@ -55,7 +55,7 @@ public class Carrier : EnemyBase {
 		if(timer>=1 && !diver)Spawn();
 		if(diver && timer<2)
 		{
-			diver.transform.localPosition=Vector3.up*4.5f*(timer-1)+Vector3.forward*0.1f;
+			diver.transform.localPosition=Vector3.up+Vector3.up*4f*(timer-1)+Vector3.forward*0.1f;
 			crystal.Set(Mathf.Clamp(timer-1,0,1));
 		}
 		if(timer>2)
@@ -96,7 +96,7 @@ public class Carrier : EnemyBase {
 		base.Die();
 		for(int i = 0; i<10; i++)
 		{
-			ParticleManager.Emit(8,(Vector3)Random.insideUnitCircle*1.5f+transform.position,1);
+			ParticleManager.Emit(8,(Vector3)Random.insideUnitCircle*1.5f+transform.position+transform.up*Random.value*2,1);
 		}
 	}
 }
