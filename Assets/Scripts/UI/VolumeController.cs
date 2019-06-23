@@ -19,14 +19,20 @@ public class VolumeController : MonoBehaviour
 	private Sprite ON;
 	[SerializeField]
 	private Sprite OFF;
-
-	// Use this for initialization
+	private void Awake()
+	{
+		SoundManager.Load();
+	}
+	private void OnDestroy()
+	{
+		SoundManager.Save();
+	}
 	void Start () 
 	{
-		
+		musicSlider.value=SoundManager.GetVolumeSNG();
+		sfxSlider.value=SoundManager.GetVolumeSFX();
 	}
 	
-	// Update is called once per frame
 	void Update () 
 	{
 		if(musicSlider.value > 0)

@@ -10,12 +10,20 @@ public class SoundManager : MonoBehaviour
 	private AudioClip[] _sounds;
 	
 	private AudioSource soundPlayer;
+	private AudioSource songPlayer;
 
 	private static SoundManager _soundManager;
 
+	private static float volumeSNG = 1;
 	private static float volumeSFX = 1;
-
-	// Use this for initialization
+	private void Update()
+	{
+		if(_soundManager.songPlayer.volume<volumeSNG)
+		{
+			_soundManager.songPlayer.volume+=Time.deltaTime/3f;
+			if(_soundManager.songPlayer.volume>volumeSNG) _soundManager.songPlayer.volume=volumeSNG;
+		}
+	}
 	void Awake() 
 	{
 		if(_soundManager)
@@ -23,10 +31,11 @@ public class SoundManager : MonoBehaviour
 			Destroy(gameObject);
 			return;
 		}
-		GameObject go = new GameObject("AudioSource");
-		soundPlayer = go.AddComponent<AudioSource>();
-		soundPlayer.loop = true;
-		DontDestroyOnLoad(go);
+		//GameObject go = new GameObject("AudioSource");
+		songPlayer = gameObject.AddComponent<AudioSource>();
+		soundPlayer = gameObject.AddComponent<AudioSource>();
+		songPlayer.loop = true;
+		//DontDestroyOnLoad(go);
 		DontDestroyOnLoad(gameObject);
 		_soundManager = this;
 		//Destroy(this);
@@ -39,8 +48,9 @@ public class SoundManager : MonoBehaviour
 			Debug.LogWarning("SoundManager nao inicializado");
 			return;
 		}
-		_soundManager.soundPlayer.clip = _soundManager._songs[i%_soundManager._songs.Length];
-		_soundManager.soundPlayer.Play();
+		_soundManager.songPlayer.clip = _soundManager._songs[i%_soundManager._songs.Length];
+		_soundManager.songPlayer.volume=0f;
+		_soundManager.songPlayer.Play();
 	}
 
 	public static void PlayEffects (int i)
@@ -50,16 +60,14 @@ public class SoundManager : MonoBehaviour
 			Debug.LogWarning("SoundEffects nao inicializado");
 			return;
 		}
-		float f = _soundManager.soundPlayer.volume;
-		_soundManager.soundPlayer.volume = 1;
 		_soundManager.soundPlayer.PlayOneShot(_soundManager._sounds[i],volumeSFX);
-		_soundManager.soundPlayer.volume = f;
 
 	}
 
 	public static void VolumeMusic(float i)
 	{
-		_soundManager.soundPlayer.volume = i;
+		volumeSNG = i;
+		_soundManager.songPlayer.volume=i;
 	}
 
 	public static void VolumeSFX(float i)
@@ -67,5 +75,23 @@ public class SoundManager : MonoBehaviour
 
 		volumeSFX = i;
 	}
+	public static float GetVolumeSFX()
+	{
+		return volumeSFX;
+	}
 
+	public static float GetVolumeSNG()
+	{
+		return volumeSNG;
+	}
+	public static void Save()
+	{
+		PlayerPrefs.SetFloat("volumeSFX",volumeSFX);
+		PlayerPrefs.SetFloat("volumeSNG",volumeSNG);
+	}
+	public static void Load()
+	{
+		if(PlayerPrefs.HasKey("volumeSFX"))volumeSFX =PlayerPrefs.GetFloat("volumeSFX");
+		if(PlayerPrefs.HasKey("volumeSNG")) volumeSNG=PlayerPrefs.GetFloat("volumeSNG");
+	}
 }
