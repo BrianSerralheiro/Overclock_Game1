@@ -108,7 +108,7 @@ public class Ship : MonoBehaviour {
 		{
 			paused = true;
 			gameObject.SetActive(false);
-			Continue.Open(this);
+			GameOverController.Open(this);
 		} 
 		InGame_HUD.shipHealth = (float)hp / (float)maxhp;
 		damageTimer = 1;

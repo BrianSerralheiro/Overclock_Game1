@@ -15,8 +15,23 @@ public class GameOverController : MonoBehaviour
 	private Text Stars;
     [SerializeField]
 	private int shipID;
+	[SerializeField]
+	private Continue cont;
+
+	private static float Timer;
+
+	private static Ship ship;
+
+	private static GameObject menu;
 	
-	void Start () 
+		void Start () 
+	{			
+		menu = gameObject;
+		gameObject.SetActive(false);
+
+	}
+	
+	void OnEnable () 
 	{
 		if(shipID != Ship.playerID)
 		{
@@ -29,11 +44,19 @@ public class GameOverController : MonoBehaviour
 		Cash.totalCash += cashStars;
 		adsManager.RequestBanner();
 	}
-
-	public void ReturnMenu()
+	
+	public static void Open(Ship s)
 	{
+		//adsManager.RequestVideo();
+		ship = s;
+		menu.SetActive(true);
+		Timer = 10;
+	}
+
+	public void RevivePopUp()
+	{
+		cont.gameObject.SetActive(true);
 		adsManager.CloseBanner();
-		SceneManager.LoadScene("MainMenu");
 	}
 	public void QuitGame()
 	{
