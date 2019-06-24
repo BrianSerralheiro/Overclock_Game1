@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f243b9af12c064041853863f58418e54
-timeCreated: 1560026433
+timeCreated: 1561393721
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -80,28 +80,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Prot_1_Vermelha_Feliz_0
-      rect:
-        serializedVersion: 2
-        x: 189
-        y: 1950
-        width: 11
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: Prot_1_Vermelha_Feliz_1
       rect:
         serializedVersion: 2
-        x: 528
-        y: 0
-        width: 681
-        height: 2001
+        x: 360
+        y: 10
+        width: 1021
+        height: 1989
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

@@ -16,7 +16,7 @@ public class DialogBox : MonoBehaviour {
 	private static int id;
 	private static UnityAction on;
 	private Text text;
-	private Image image;
+	private static Image image;
 	void Start () {
 		text=GetComponentInChildren<Text>();
 		portrait=GetComponentsInChildren<Image>()[0];
@@ -51,7 +51,8 @@ public class DialogBox : MonoBehaviour {
 	}
 	public void Close()
 	{
-		if(chars>=texts[id].Length){
+		if(chars>=texts[id].Length)
+		{
 			Ship.paused=false;
 			gameObject.SetActive(false);
 		}
@@ -62,10 +63,29 @@ public class DialogBox : MonoBehaviour {
 		}
 	}
 	void Update () {
-		if(chars<texts[id].Length){
+		if(chars<texts[id].Length)
+		{
 			chars+=Time.deltaTime * cps;
 			if(text.text.Length<Mathf.FloorToInt(chars))text.text=texts[id].Substring(0,Mathf.FloorToInt(chars));
 		}
 
+	}
+
+	public static string GetText(int i)
+	{
+		if(texts != null)
+		{
+			return texts[i];
+		}
+		return"";
+	}
+
+	public static Sprite getBox()
+	{
+		if(image != null)
+		{
+			return image.sprite;
+		}
+		return null;
 	}
 }

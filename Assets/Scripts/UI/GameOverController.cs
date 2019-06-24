@@ -29,24 +29,72 @@ public class GameOverController : MonoBehaviour
 	private static Ship ship;
 
 	private static GameObject menu;
+
+	private bool highscore;
+
+	[SerializeField]
+	private Text gameoverTEXT;
 	
+	[SerializeField]
+	private Image gameoverDialog;
+
+	private string fullText;
+
+	private float charCount;
 	void Start () 
 	{			
 		menu = gameObject;
 		gameObject.SetActive(false);
 
 	}
+
+	void Update ()
+	{
+		if(charCount<fullText.Length)
+		{
+			charCount+=Time.deltaTime * 14;
+			if(gameoverTEXT.text.Length<Mathf.FloorToInt(charCount))gameoverTEXT.text=fullText.Substring(0,Mathf.FloorToInt(charCount));
+		}
+
+	}
 	
 	void OnEnable () 
 	{
+		if(PlayerPrefs.GetInt("highscore") <= EnemySpawner.points)
+		{
+			highscore = true;
+			PlayerPrefs.SetInt("highscore", EnemySpawner.points);
+		}
+		else
+		{
+			highscore = false;
+		}
+		charCount = 0;
+		gameoverTEXT.text = "";
+		fullText = highscore ? DialogBox.GetText(5):DialogBox.GetText(6);
 		panel.sprite=panels[Ship.playerID];
-		image.sprite=chars[Ship.playerID];
+		image.sprite=chars[Ship.playerID * 2 + (highscore ? 1:0)];
 		Score.text = EnemySpawner.points.ToString();
 		int cashStars = EnemySpawner.points /200;
 		EnemySpawner.points=0;
 		Stars.text = cashStars.ToString();
 		Cash.totalCash += cashStars;
 		adsManager.RequestBanner();
+		gameoverDialog.sprite = DialogBox.getBox();
+		gameoverTEXT.fontSize = Screen.height / 39;
+	}
+
+		public void Close()
+	{
+		if(charCount>=fullText.Length)
+		{
+			gameoverDialog.gameObject.SetActive(false);
+		}
+		else
+		{
+			charCount=fullText.Length;
+			gameoverTEXT.text=fullText.Substring(0,Mathf.FloorToInt(charCount));
+		}
 	}
 	
 	public static void Open(Ship s)
