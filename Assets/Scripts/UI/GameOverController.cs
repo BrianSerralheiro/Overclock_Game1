@@ -114,6 +114,7 @@ public class GameOverController : MonoBehaviour
 	}
 	public void QuitGame()
 	{
-		Application.Quit();
+		Ship.paused = false;
+		SceneManager.LoadScene("MainMenu");
 	}
 }
