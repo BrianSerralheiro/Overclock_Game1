@@ -19,7 +19,11 @@ public class SoundManager : MonoBehaviour
 	private void Update()
 	{
 		if(weight>0)weight-=Time.deltaTime;
-		if(_soundManager.songPlayer.volume<volumeSNG)
+		if(Ship.paused)
+		{
+			songPlayer.volume -= Time.deltaTime;
+		}
+		else if(_soundManager.songPlayer.volume<volumeSNG)
 		{
 			_soundManager.songPlayer.volume+=Time.deltaTime/3f;
 			if(_soundManager.songPlayer.volume>volumeSNG) _soundManager.songPlayer.volume=volumeSNG;

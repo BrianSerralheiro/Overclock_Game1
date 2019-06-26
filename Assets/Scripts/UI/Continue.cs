@@ -22,10 +22,11 @@ public class Continue : MonoBehaviour
 	}
 	private void OnEnable()
 	{
-		continueLog.text="Continues: "+continues;
+		continueLog.text="Continues Left: "+continues;
 	}
 	public void WatchAd()
 	{
+		SoundManager.PlayEffects(0);
 		continues--;
 		adsManager.ShowAd(ship.Heal);
 		gameObject.SetActive(false);
@@ -37,6 +38,7 @@ public class Continue : MonoBehaviour
 	}
 	public void buyContinue()
 	{
+		SoundManager.PlayEffects(0);
 		continues--;
 		gameObject.SetActive(false);
 		Active(false);

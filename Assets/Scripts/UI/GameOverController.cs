@@ -57,7 +57,7 @@ public class GameOverController : MonoBehaviour
 		if(Timer>0)
 		{
 			Timer-=Time.deltaTime;
-			color.a=(5f-Timer)/5f;
+			color.a=(2f-Timer)/2f;
 			foreach(Graphic g in graphics)
 			{
 				g.color=color;
@@ -116,12 +116,13 @@ public class GameOverController : MonoBehaviour
 		//adsManager.RequestVideo();
 		ship = s;
 		menu.SetActive(true);
-		Timer = 5f;
+		Timer = 2f;
 	}
 
 	public void RevivePopUp()
 	{
 		if(cont.HasContinue()){
+			SoundManager.PlayEffects(0);
 			cont.ship=ship;
 			cont.Active=gameObject.SetActive;
 			cont.gameObject.SetActive(true);
@@ -130,11 +131,13 @@ public class GameOverController : MonoBehaviour
 		else
 		{
 			//show warning;
+			SoundManager.PlayEffects(11);
 			noContinues.SetActive(true);
 		}
 	}
 	public void QuitGame()
 	{
+		SoundManager.PlayEffects(0);
 		Ship.paused = false;
 		SceneManager.LoadScene("MainMenu");
 	}
