@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: eba91734201969249bb3184dd540f5fd
-timeCreated: 1560026245
+timeCreated: 1561391746
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -82,12 +82,12 @@ TextureImporter:
       name: Prot_1_Vermelha_Triste_0
       rect:
         serializedVersion: 2
-        x: 528
+        x: 360
         y: 10
-        width: 681
-        height: 2001
+        width: 1021
+        height: 1989
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

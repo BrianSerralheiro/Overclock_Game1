@@ -39,7 +39,8 @@ public static class adsManager
 	}
 	public static void ShowAd(Dele d)
 	{
-		if(video.IsLoaded()){
+		if(video != null && video.IsLoaded())
+		{
 			video.Show();
 			OnReward=d;
 			Debug.Log("Showing");
