@@ -10,6 +10,7 @@ public static class Locks {
 
 	public static void Load()
 	{
+		premium=PlayerPrefs.HasKey("premium");
 		if(PlayerPrefs.HasKey("skins"))skins=PlayerPrefs.GetString("skins");
 		if(PlayerPrefs.HasKey("chars"))chars=PlayerPrefs.GetString("chars");
 	}
@@ -17,7 +18,7 @@ public static class Locks {
 	{
 		PlayerPrefs.SetString("skins",skins);
 		PlayerPrefs.SetString("chars",chars);
-
+		if(premium)PlayerPrefs.SetInt("premium",0);
 	}
 	public static bool Skin(int i)
 	{
@@ -39,12 +40,12 @@ public static class Locks {
 	}
 	public static void UnlockAll()
 	{
+		premium=true;
 		for(int i = 0; i<skins.Length; i++)
 		{
 			if(i<chars.Length)Char(i,true);
 			Skin(i,true);
 		}
-		premium=true;
 	}
 	public static bool IsPremium()
 	{

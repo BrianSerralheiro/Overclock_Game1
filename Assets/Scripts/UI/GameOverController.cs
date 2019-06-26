@@ -23,7 +23,8 @@ public class GameOverController : MonoBehaviour
 	private Continue cont;
 	public Sprite[] chars;
 	public Sprite[] panels;
-
+	[SerializeField]
+	public Graphic[] graphics;
 	private static float Timer;
 
 	private static Ship ship;
@@ -36,21 +37,34 @@ public class GameOverController : MonoBehaviour
 	private Text gameoverTEXT;
 	
 	[SerializeField]
+	private GameObject noContinues;
+	[SerializeField]
 	private Image gameoverDialog;
 
 	private string fullText;
 
 	private float charCount;
+	private Color color=Color.white;
 	void Start () 
 	{			
 		menu = gameObject;
 		gameObject.SetActive(false);
-
+		cont.Continues(Locks.IsPremium() ? 4 : 2);
 	}
 
 	void Update ()
 	{
-		if(charCount<fullText.Length)
+		if(Timer>0)
+		{
+			Timer-=Time.deltaTime;
+			color.a=(5f-Timer)/5f;
+			foreach(Graphic g in graphics)
+			{
+				g.color=color;
+			}
+			if(Timer<=0)gameoverDialog.gameObject.SetActive(true);
+		}
+		else if(charCount<fullText.Length)
 		{
 			charCount+=Time.deltaTime * 14;
 			if(gameoverTEXT.text.Length<Mathf.FloorToInt(charCount))gameoverTEXT.text=fullText.Substring(0,Mathf.FloorToInt(charCount));
@@ -84,7 +98,7 @@ public class GameOverController : MonoBehaviour
 		gameoverTEXT.fontSize = Screen.height / 39;
 	}
 
-		public void Close()
+	public void Close()
 	{
 		if(charCount>=fullText.Length)
 		{
@@ -102,15 +116,22 @@ public class GameOverController : MonoBehaviour
 		//adsManager.RequestVideo();
 		ship = s;
 		menu.SetActive(true);
-		Timer = 10;
+		Timer = 5f;
 	}
 
 	public void RevivePopUp()
 	{
-		cont.ship=ship;
-		cont.Active=gameObject.SetActive;
-		cont.gameObject.SetActive(true);
-		adsManager.CloseBanner();
+		if(cont.HasContinue()){
+			cont.ship=ship;
+			cont.Active=gameObject.SetActive;
+			cont.gameObject.SetActive(true);
+			adsManager.CloseBanner();
+		}
+		else
+		{
+			//show warning;
+			noContinues.SetActive(true);
+		}
 	}
 	public void QuitGame()
 	{

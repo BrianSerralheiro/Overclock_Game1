@@ -10,20 +10,34 @@ public class Continue : MonoBehaviour
 	public delegate void Del(bool b);
 	public Del Active; 
 	[SerializeField]
+	private Text continueLog;
+	[SerializeField]
 	private Button button;
 	public Ship ship;
+	private int continues;
 
-	
-
+	public void Continues(int i)
+	{
+		continues=i;
+	}
+	private void OnEnable()
+	{
+		continueLog.text="Continues: "+continues;
+	}
 	public void WatchAd()
 	{
+		continues--;
 		adsManager.ShowAd(ship.Heal);
 		gameObject.SetActive(false);
 		Active(false);
 	}
-
+	public bool HasContinue()
+	{
+		return continues>0;
+	}
 	public void buyContinue()
 	{
+		continues--;
 		gameObject.SetActive(false);
 		Active(false);
 		ship.Heal();
