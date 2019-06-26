@@ -29,6 +29,7 @@ public class Round : EnemyBase
 		transform.eulerAngles=vector;
 		if(shoottimer<=0)
 		{
+			SoundManager.PlayEffects(12, 0.1f, 0.5f);
 			shoottimer=0.2f;
 			for(int i=0;i<4;i++){
 				Shoot(i);

@@ -47,9 +47,11 @@ public class EnemyBase : MonoBehaviour {
 	}
 	protected virtual void Die()
 	{
+		
 		Destroy(gameObject);
 		if(hp<=0)
 		{
+			SoundManager.PlayEffects(15, 0.8f, 1.2f);
 			EnemySpawner.points+=points;
 			InGame_HUD._special += 0.01f;
 			//ParticleManager.InstantiatePrefab(explosionID, transform.position,1);

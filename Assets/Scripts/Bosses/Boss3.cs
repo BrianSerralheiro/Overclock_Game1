@@ -28,7 +28,9 @@ public class Boss3 : EnemyBase {
 	}
 	[SerializeField]
 	State state;
-	new void Start () {
+	new void Start () 
+	{
+		SoundManager.Play(7);
 		damageEffect = true;
 		base.Start();
 		EnemySpawner.boss=true;
@@ -126,6 +128,7 @@ public class Boss3 : EnemyBase {
 			}
 			else if(timer>0.5f)
 			{
+				SoundManager.PlayEffects(16, 5, 2);
 				slashscl.y=(1-timer)*200;
 			}
 			else if(timer>0)

@@ -23,6 +23,7 @@ public class Boss1 : EnemyBase {
 	private Vector3 vector = new Vector3();
 	public new void Start()
 	{
+		SoundManager.Play(5);
 		damageEffect = true;
 		base.Start();
 		EnemySpawner.boss=true;
@@ -83,8 +84,10 @@ public class Boss1 : EnemyBase {
 			transform.Translate(dir*Time.deltaTime*(speed/4));
 			crystal.Min(Time.deltaTime);
 			rot.Set(0,0,Mathf.PingPong(Time.time*50,45f));
-			if(transform.position.y<-Scaler.sizeY+2){
+			if(transform.position.y<-Scaler.sizeY+2)
+			{
 				state=State.charging;
+				SoundManager.PlayEffects(16);
 				rot.Set(0,0,0);
 			}
 		}

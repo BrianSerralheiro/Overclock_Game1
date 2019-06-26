@@ -106,10 +106,15 @@ public class Ship : MonoBehaviour {
 		}
 		if(--hp<=0)
 		{
+			SoundManager.PlayEffects(10, 1, 0);
 			paused = true;
 			gameObject.SetActive(false);
 			GameOverController.Open(this);
-		} 
+		}
+		else
+		{
+			SoundManager.PlayEffects(9, 1, 0);
+		}
 		InGame_HUD.shipHealth = (float)hp / (float)maxhp;
 		damageTimer = 1;
 		immuneTime=0.1f;
@@ -182,6 +187,7 @@ public class Ship : MonoBehaviour {
 		{
 			if(shoottimer<=0)
 			{
+				SoundManager.PlayEffects(2 + id, 0.1f, 0.5f);
 				shoottimer=firerate;
 				foreach(Gun gun in guns)
 				{
@@ -221,6 +227,7 @@ public class Ship : MonoBehaviour {
 
 	public void Special()
 	{
+		SoundManager.PlayEffects(6 + id, 1f, 2f);
 		switch(id)
 		{
 			case 0:

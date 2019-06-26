@@ -45,6 +45,7 @@ public class Header : EnemyBase {
 	}
 	void Shoot()
 	{
+		SoundManager.PlayEffects(12, 0.5f, 0.8f);
 		GameObject go = new GameObject("enemybullet");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bullets[12];
 		go.AddComponent<BoxCollider2D>();

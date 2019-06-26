@@ -36,7 +36,9 @@ public class Boss4 : EnemyBase {
 	private SpriteRenderer screenren;
 	private SpriteRenderer overlay;
 	private float screentimer;
-	new void Start(){
+	new void Start()
+	{
+		SoundManager.Play(4);
 		damageEffect = true;
 		base.Start();
 		EnemySpawner.boss=true;
@@ -76,10 +78,12 @@ public class Boss4 : EnemyBase {
 	}
 	protected override void Die()
 	{
-		if(last){
+		if(last)
+		{
 			state=State.dead;
 			return;
 		}
+		SoundManager.PlayEffects(19);
 		state=State.evolve;
 		timer=5;
 		local.Set(5f,-2,-0.1f);
@@ -300,6 +304,7 @@ public class Boss4 : EnemyBase {
 	}
 	void Shoot()
 	{
+		SoundManager.PlayEffects(12, 0.1f, 0.5f);
 		GameObject go = new GameObject("enemybullet");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bullets[14];
 		go.AddComponent<BoxCollider2D>();
@@ -315,6 +320,7 @@ public class Boss4 : EnemyBase {
 	}
 	void Slash()
 	{
+		SoundManager.PlayEffects(16, 0.1f, 0.5f);
 		GameObject go = new GameObject("enemy");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bullets[16];
 		go.AddComponent<BoxCollider2D>();

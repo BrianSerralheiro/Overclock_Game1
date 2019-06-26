@@ -15,6 +15,7 @@ public class Invader : EnemyBase {
 	}
 	void Shoot()
 	{
+		SoundManager.PlayEffects(12, 0.1f, 0.5f);
 		GameObject go = new GameObject("enemybullet");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bullets[14];
 		go.AddComponent<BoxCollider2D>();
