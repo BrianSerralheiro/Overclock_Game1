@@ -187,7 +187,8 @@ public class Ship : MonoBehaviour {
 		{
 			if(shoottimer<=0)
 			{
-				SoundManager.PlayEffects(2 + id, 0.1f, 0.5f);
+				if(id==2)SoundManager.PlayEffects(4, 10f, Mathf.Epsilon);
+				else SoundManager.PlayEffects(2 + id, 0.1f, 0.5f);
 				shoottimer=firerate;
 				foreach(Gun gun in guns)
 				{

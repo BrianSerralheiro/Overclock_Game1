@@ -287,7 +287,7 @@ public class Boss2 : EnemyBase {
 		bu.owner=name;
 		bu.spriteID=10;
 		go.transform.position=eyes.transform.position+pos[i]+Vector3.back*0.5f;
-		go.transform.up=Vector3.down;
+		go.transform.up=(pos[i]+Vector3.down).normalized;
 	}
 	protected override void Die()
 	{
