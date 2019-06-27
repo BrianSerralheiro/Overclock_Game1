@@ -81,9 +81,9 @@ public class Boss4 : EnemyBase {
 		if(last)
 		{
 			state=State.dead;
+			timer=5;
 			return;
 		}
-		SoundManager.PlayEffects(19);
 		state=State.evolve;
 		timer=5;
 		local.Set(5f,-2,-0.1f);
@@ -255,6 +255,7 @@ public class Boss4 : EnemyBase {
 				screenren.sprite=screens[4];
 				if(timer<=0)
 				{
+					SoundManager.PlayEffects(19);
 					final.Translate(0,-Time.deltaTime,0);
 				}
 			}
