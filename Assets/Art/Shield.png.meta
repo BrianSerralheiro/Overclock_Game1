@@ -1,10 +1,10 @@
 fileFormatVersion: 2
 guid: c990a5a8aa808ca40b01700631ea8268
-timeCreated: 1559151914
+timeCreated: 1561663237
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Shield_0
+    21300000: Shield
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -41,7 +41,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 300
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -79,15 +79,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Shield_0
+      name: Shield
       rect:
         serializedVersion: 2
-        x: 557
-        y: 1797
-        width: 435
-        height: 444
+        x: 0
+        y: 0
+        width: 416
+        height: 413
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

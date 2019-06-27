@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
-		if(col.gameObject.name!=owner && !pierce){
+		if(col.collider.name!="laser" && col.gameObject.name!=owner && !pierce){
 			Destroy(gameObject);
 		}
 	}
