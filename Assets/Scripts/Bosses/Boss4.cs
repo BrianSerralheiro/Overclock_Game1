@@ -44,7 +44,7 @@ public class Boss4 : EnemyBase {
 		damageEffect = true;
 		base.Start();
 		EnemySpawner.boss=true;
-		hp=1000;
+		hp=100;
 		screens=SpriteBase.I.screens;
 		GameObject go=new GameObject("screen");
 		screenren=go.AddComponent<SpriteRenderer>();
@@ -97,6 +97,7 @@ public class Boss4 : EnemyBase {
 	{
 		if(col.otherCollider.name=="zap") return;
 		if(state!=State.intro && state!=State.flee) base.OnCollisionEnter2D(col);
+		else ParticleManager.Emit(16,col.collider.transform.position,1);
 		if(damageTimer>0)Screen(1,0.5f);
 	}
 	public override void Position(int i)
@@ -365,7 +366,7 @@ public class Boss4 : EnemyBase {
 	}
 	private void Screen(int i,float f)
 	{
-		if(screentimer>0)return;
+		if(screentimer>0 || last)return;
 		screen=screens[i];
 		screentimer=f;
 		screenren.sprite=screen;
