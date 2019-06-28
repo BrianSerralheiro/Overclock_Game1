@@ -30,6 +30,7 @@ public class Boss3 : EnemyBase {
 	State state;
 	new void Start () 
 	{
+		BossWarning.Show();
 		SoundManager.Play(7);
 		damageEffect = true;
 		base.Start();

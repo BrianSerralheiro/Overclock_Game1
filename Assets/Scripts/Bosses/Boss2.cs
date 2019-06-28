@@ -39,6 +39,7 @@ public class Boss2 : EnemyBase {
 	State state;
 	new void Start () 
 	{
+		BossWarning.Show();
 		SoundManager.Play(6);
 		damageEffect = true;
 		base.Start();

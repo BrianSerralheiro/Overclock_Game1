@@ -45,6 +45,7 @@ public class EnemySpawner : MonoBehaviour {
 	void Start()
 	{
 		boss = false;
+		Boss4.last=false;
 		SoundManager.Play(1);
 		bg.mainTexture=mundos[worldID];
 		bg.mainTextureOffset=bg.mainTextureOffset=Vector2.one;

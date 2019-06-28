@@ -23,6 +23,7 @@ public class Boss1 : EnemyBase {
 	private Vector3 vector = new Vector3();
 	public new void Start()
 	{
+		BossWarning.Show();
 		SoundManager.Play(5);
 		damageEffect = true;
 		base.Start();

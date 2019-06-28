@@ -11,7 +11,7 @@ public class Boss4 : EnemyBase {
 		slash=3,
 		bomb=4,	
 		zap=5,
-		evolve=6,
+		flee=6,
 		dead
 	}
 	[SerializeField]
@@ -21,7 +21,6 @@ public class Boss4 : EnemyBase {
 	private float ap=1f;
 	private State prev;
 	private bool left;
-	private bool last;
 	private Vector3 vec = Vector3.left;
 	private Vector3 mod = Vector3.forward/10;
 	private Vector3 pos = new Vector3();
@@ -36,13 +35,16 @@ public class Boss4 : EnemyBase {
 	private SpriteRenderer screenren;
 	private SpriteRenderer overlay;
 	private float screentimer;
+
+	public static bool last;
 	new void Start()
 	{
-		SoundManager.Play(4);
+		SoundManager.Play(last?9:8);
+		BossWarning.Show();
 		damageEffect = true;
 		base.Start();
 		EnemySpawner.boss=true;
-		hp=500;
+		hp=1000;
 		screens=SpriteBase.I.screens;
 		GameObject go=new GameObject("screen");
 		screenren=go.AddComponent<SpriteRenderer>();
@@ -65,11 +67,36 @@ public class Boss4 : EnemyBase {
 		go.transform.localPosition=new Vector3();
 		go.SetActive(false);
 		//Screen(1,2.5f);
+		if(last)
+		{
+			hp=2000;
+			local.Set(5f,-2,-0.1f);
+			screenren.sprite=screens[4];
+			screen=null;
+			go = new GameObject("enemy");
+			go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss4[1];
+			BoxCollider2D c = go.AddComponent<BoxCollider2D>();
+			c.size=new Vector2(11,2);
+			c.offset=new Vector2(0,-1f);
+			final=go.transform;
+			final.position=new Vector3(0,Scaler.sizeY+5,0.1f);
+			go=new GameObject("overlay");
+			overlay=go.AddComponent<SpriteRenderer>();
+			overlay.sprite=SpriteBase.I.boss4[2];
+			go.transform.parent=final;
+			go.transform.localPosition=new Vector3(0,0,-0.12f);
+			go=new GameObject("fill");
+			go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss4[3];
+			go.transform.parent=final;
+			go.transform.localPosition=new Vector3(0,-1.5f);
+			energy.transform.localScale=Vector3.zero;
+			timer=4;
+		}
 	}
 	new void OnCollisionEnter2D(Collision2D col)
 	{
 		if(col.otherCollider.name=="zap") return;
-		if(state!=State.intro && state!=State.evolve) base.OnCollisionEnter2D(col);
+		if(state!=State.intro && state!=State.flee) base.OnCollisionEnter2D(col);
 		if(damageTimer>0)Screen(1,0.5f);
 	}
 	public override void Position(int i)
@@ -84,28 +111,10 @@ public class Boss4 : EnemyBase {
 			timer=5;
 			return;
 		}
-		state=State.evolve;
+		//last=true;
+		state=State.flee;
 		timer=5;
-		local.Set(5f,-2,-0.1f);
-		screenren.sprite=screens[4];
-		screen=null;
-		GameObject go=new GameObject("enemy");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss4[1];
-		BoxCollider2D c=go.AddComponent<BoxCollider2D>();
-		c.size=new Vector2(11,2);
-		c.offset=new Vector2(0,-1f);
-		final=go.transform;
-		final.position=new Vector3(0,Scaler.sizeY+5,0.1f);
-		go=new GameObject("overlay");
-		overlay=go.AddComponent<SpriteRenderer>();
-		overlay.sprite=SpriteBase.I.boss4[2];
-		go.transform.parent=final;
-		go.transform.localPosition=new Vector3(0,0,-0.12f);
-		go=new GameObject("fill");
-		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss4[3];
-		go.transform.parent=final;
-		go.transform.localPosition=new Vector3(0,-1.5f);
-		energy.transform.localScale=Vector3.zero;
+		
 	}
 	new void Update () {
 		if(Ship.paused) return;
@@ -124,10 +133,46 @@ public class Boss4 : EnemyBase {
 		{
 			if(last)
 			{
-				if(timer<=0)
+				if(final.position.y==Scaler.sizeY+5 && timer>0)
 				{
-					timer=1;
-					state=State.waiting;
+					transform.Translate(0,-Time.deltaTime*2,0);
+				}
+				else
+				{
+					if(final.position.y>Scaler.sizeY)
+					{
+						if(final.position.y==Scaler.sizeY+5)
+						SoundManager.PlayEffects(19);
+						//transform.Translate(0,Time.deltaTime,0);
+						//transform.Translate(-transform.position.x*Time.deltaTime,0,0);
+						final.Translate(0,-Time.deltaTime,0);
+						if(timer<=0)
+						{
+							timer=0.2f;
+							screenren.sprite=screenren.sprite==screens[3] ? screens[2] : screens[3];
+						}
+
+					}
+					else
+					{
+						final.Translate(0,Scaler.sizeY-final.position.y,0);
+						if(timer<=0)
+						{
+							timer=0.2f;
+							screenren.sprite=screenren.sprite==screens[3] ? screens[2] : screens[3];
+						}
+						if(transform.position.y<Scaler.sizeY) transform.Translate(0,Time.deltaTime,0);
+						else
+						{
+							transform.position=final.position;
+							transform.Translate(0,0,-transform.position.z);
+							final.parent=transform;
+							screenren=_renderer;
+							_renderer=final.GetComponent<SpriteRenderer>();
+							state=State.waiting;
+							timer=2;
+						}
+					}
 				}
 			}
 			else{
@@ -247,51 +292,16 @@ public class Boss4 : EnemyBase {
 				state=State.waiting;
 			}
 		}
-		else if(state==State.evolve)
+		else if(state==State.flee)
 		{
-			if(final.position.y==Scaler.sizeY+5)
+			ParticleManager.Emit(10,(Vector3)Random.insideUnitCircle*2+transform.position,1);
+			screenren.sprite=screens[4];
+			transform.Translate(Random.value*2*Time.deltaTime,Random.value*3*Time.deltaTime,0);
+			if(transform.position.y>Scaler.sizeY+2 || transform.position.x>Scaler.sizeX+3)
 			{
-				ParticleManager.Emit(10,(Vector3)Random.insideUnitCircle*2+transform.position,1);
-				screenren.sprite=screens[4];
-				if(timer<=0)
-				{
-					SoundManager.PlayEffects(19);
-					final.Translate(0,-Time.deltaTime,0);
-				}
-			}
-			else if(final.position.y>Scaler.sizeY)
-			{
-				//transform.Translate(0,Time.deltaTime,0);
-				transform.Translate(-transform.position.x*Time.deltaTime,0,0);
-				final.Translate(0,-Time.deltaTime,0);
-				if(timer<=0)
-				{
-					timer=0.2f;
-					screenren.sprite=screenren.sprite==screens[3] ? screens[2] : screens[3];
-				}
-
-			}
-			else
-			{
-				final.Translate(0,Scaler.sizeY-final.position.y,0);
-				if(timer<=0)
-				{
-					timer=0.2f;
-					screenren.sprite=screenren.sprite==screens[3] ? screens[2] : screens[3];
-				}
-				if(transform.position.y<Scaler.sizeY)transform.Translate(0,Time.deltaTime,0);
-				else
-				{
-					transform.position=final.position;
-					transform.Translate(0,0,-transform.position.z);
-					final.parent=transform;
-					screenren=_renderer;
-					_renderer=final.GetComponent<SpriteRenderer>();
-					state=State.waiting;
-					last=true;
-					timer=2;
-					hp=1000;
-				}
+				Destroy(gameObject);
+				last=true;
+				EnemySpawner.boss=false;
 			}
 		}
 		else if(state==State.dead)
@@ -299,6 +309,7 @@ public class Boss4 : EnemyBase {
 			ParticleManager.Emit(10,(Vector3)Random.insideUnitCircle*4+transform.position,1);
 			if(timer<0)
 			{
+				Destroy(gameObject);
 				EnemySpawner.boss=false;
 			}
 		}
