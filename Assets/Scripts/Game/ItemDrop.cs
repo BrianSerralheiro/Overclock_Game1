@@ -31,6 +31,7 @@ public class ItemDrop : MonoBehaviour
 		Ship s = other.GetComponent<Ship>();
 		if (s != null)
 		{
+			SoundManager.PlayEffects(21);
 			if(id == 0)
 			{
 				s.Shield();
