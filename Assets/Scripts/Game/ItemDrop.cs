@@ -42,7 +42,7 @@ public class ItemDrop : MonoBehaviour
 			}
 			else if(id == 2)
 			{
-				s.Special();
+				InGame_HUD._special=1;
 			}
 			Destroy(gameObject);
 		}
