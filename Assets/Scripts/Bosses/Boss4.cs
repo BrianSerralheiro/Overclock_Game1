@@ -62,15 +62,16 @@ public class Boss4 : EnemyBase {
 		BoxCollider2D col = go.AddComponent<BoxCollider2D>();
 		col.size=new Vector2(0.7f,4);
 		col.offset=new Vector2(0,2.2f);
-		go.transform.localScale=new Vector3(1,2);
+		go.transform.localScale=new Vector3(2,2);
 		go.transform.parent=energy.transform;
 		go.transform.localPosition=new Vector3();
 		go.SetActive(false);
 		//Screen(1,2.5f);
 		if(last)
 		{
+			go.transform.localScale+=Vector3.up;
 			hp=2000;
-			local.Set(5f,-2,-0.1f);
+			local.Set(4.4f,-1.7f,-0.1f);
 			screenren.sprite=screens[4];
 			screen=null;
 			go = new GameObject("enemy");
@@ -88,7 +89,7 @@ public class Boss4 : EnemyBase {
 			go=new GameObject("fill");
 			go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss4[3];
 			go.transform.parent=final;
-			go.transform.localPosition=new Vector3(0,-1.5f);
+			go.transform.localPosition=new Vector3(0,-1.3f);
 			energy.transform.localScale=Vector3.zero;
 			timer=4;
 		}
@@ -96,7 +97,7 @@ public class Boss4 : EnemyBase {
 	new void OnCollisionEnter2D(Collision2D col)
 	{
 		if(col.otherCollider.name=="zap") return;
-		if(state!=State.intro && state!=State.flee) base.OnCollisionEnter2D(col);
+		if(state!=State.intro && state!=State.flee && state!=State.dead) base.OnCollisionEnter2D(col);
 		else ParticleManager.Emit(16,col.collider.transform.position,1);
 		if(damageTimer>0)Screen(1,0.5f);
 	}
@@ -137,6 +138,7 @@ public class Boss4 : EnemyBase {
 				if(final.position.y==Scaler.sizeY+5 && timer>0)
 				{
 					transform.Translate(0,-Time.deltaTime*2,0);
+					screenren.sprite=screens[5];
 				}
 				else
 				{
@@ -275,7 +277,7 @@ public class Boss4 : EnemyBase {
 			{
 				energy.gameObject.SetActive(true);
 				energy.sprite=Bullet.blink ? SpriteBase.I.zapper[3] : SpriteBase.I.zapper[4];
-				scale.x=scale.y=0.9f-timer;
+				scale.x=scale.y=1.1f-timer;
 				energy.transform.localScale=scale;
 				Screen(5,1);
 			}
@@ -290,6 +292,7 @@ public class Boss4 : EnemyBase {
 				timer=last?1:3;
 				zap.gameObject.SetActive(false);
 				energy.gameObject.SetActive(false);
+				local.x*=-1;
 				state=State.waiting;
 			}
 		}

@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 using ADs;
-
+using IAP;
 public class MenuController : MonoBehaviour 
 {
 	[SerializeField]
@@ -22,6 +23,10 @@ public class MenuController : MonoBehaviour
 	private float MenuPositionX;
 	[SerializeField]
 	GameObject[] characterIDButton;
+	[SerializeField]
+	VideoPlayer video;
+	[SerializeField]
+	VideoClip[] characterVideos;
 	private float ratio;
 
 	//Help positioning
@@ -30,6 +35,7 @@ public class MenuController : MonoBehaviour
 	void Start ()
 	{
 		Locks.Load();
+		//characterVideos=video.GetComponents<VideoPlayer>();
 		ratio = (float)Screen.width / (float)Screen.height * 10;
 		SoundManager.Play(0);
 		adsManager.RequestVideo();
@@ -77,6 +83,7 @@ public class MenuController : MonoBehaviour
 		SoundManager.PlayEffects(0);
 		if(i == 0)
 		{
+			IAPManager.Denitialize();
 			if(MenuPositionX == ratio *2)ShopMenuUI.gameObject.SetActive(true);	
 			MenuPositionX = 0;
 			MainMenuUI.gameObject.SetActive(true);
@@ -111,7 +118,8 @@ public class MenuController : MonoBehaviour
 
 	public void SwitchCharacter(int i)
 	{
-		for (int j = 0;j < 12; j++)
+		video.clip=characterVideos[i];
+		for (int j = 0;j < 8; j++)
 		{
 			characterIDButton[j].SetActive(i == j%4);
 		}

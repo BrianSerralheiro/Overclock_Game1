@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using IAP;
 public class ShopManager : MonoBehaviour 
 {
 
 	[SerializeField]
+	private IAPManager manager;
+	[SerializeField]
 	private PopUp pop;
+	[SerializeField]
+	private PopUp ppop;
 	[SerializeField]
 	private Text warn;
 	[SerializeField]
@@ -57,8 +61,8 @@ public class ShopManager : MonoBehaviour
 	}
 	public void Premium()
 	{
-		Locks.UnlockAll();
-		gameObject.BroadcastMessage("OnEnable");
+		manager.InitializePurchasing();
+		ppop.Open("Buy all 4 characters, all 15+ skins, remove all ads and add 2 extra continues, all for only $4,99!",IAPManager.Premium);
 	}
 	public void Confirm()
 	{

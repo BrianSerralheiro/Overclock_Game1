@@ -83,7 +83,9 @@ public class Boss3 : EnemyBase {
 	new void Update () {
 		if(Ship.paused) return;
 		base.Update();
-		if(head)henderer.color=_renderer.color;
+		if(head){
+			henderer.color=_renderer.color;
+		}
 		timer-=Time.deltaTime;
 		if(state==State.intro)
 		{
@@ -101,16 +103,23 @@ public class Boss3 : EnemyBase {
 		{
 			time+=Time.deltaTime;
 			transform.Translate(Mathf.Cos(time)*Time.deltaTime*2,0,0);
+			head.Translate(0,Mathf.Cos(time/2)*Time.deltaTime/10,0);
+			wingR.Translate(0,Mathf.Cos(time*5)*Time.deltaTime/5,0);
+			wingL.Translate(0,Mathf.Cos(time*5)*Time.deltaTime/5,0);
 			if(timer<=0)
 			{
+				timer=1.5f;
 				float f=Random.value;
 				if(f>0.5f)state=State.shooting;
 				else if(f>0.2f)state=State.calling;
-				else state=State.slashing;
-				timer=1.5f;
-				slash.transform.position=player.position;
-				slashrot.z=Random.Range(-45f,45f);
-				slash.transform.eulerAngles=slashrot;
+				else {
+					state=State.slashing;
+					slash.transform.position=player.position;
+					slashrot.z=Random.Range(-45f,45f);
+					if(slashrot.z>0)wingR.eulerAngles=Vector3.forward*45f;
+					else wingL.eulerAngles=Vector3.forward*-45f;
+					slash.transform.eulerAngles=slashrot;
+				}
 			}
 		}
 		else if(state==State.shooting)
@@ -145,6 +154,7 @@ public class Boss3 : EnemyBase {
 				dark.Set(0);
 				slashscl.y=0;
 				slashcod.enabled=false;
+				wingL.rotation=wingR.rotation=Quaternion.identity;
 			}
 			slash.transform.localScale=slashscl;
 		}

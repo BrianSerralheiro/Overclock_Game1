@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7a320699bbfeec7449884128bc0631c3
-timeCreated: 1556815472
+timeCreated: 1561845364
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -26,6 +26,7 @@ TextureImporter:
     21300038: 56248046_818265655201724_5374516714648109056_n_19
     21300040: 56248046_818265655201724_5374516714648109056_n_20
     21300042: 56248046_818265655201724_5374516714648109056_n_21
+    21300044: drone_yellow
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -367,6 +368,19 @@ TextureImporter:
         y: 1193
         width: 74
         height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: drone_yellow
+      rect:
+        serializedVersion: 2
+        x: 1181
+        y: 1962
+        width: 282
+        height: 147
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Purchasing;
 
-namespace CompleteProject
+namespace IAP
 {
 	public class IAPManager :MonoBehaviour, IStoreListener
 	{
+		private delegate void Dele(int i);
+		private static Dele _premium;
 		private static IStoreController storeController;
 		private static IExtensionProvider storeExtensionProvider;
 		
@@ -20,9 +22,18 @@ namespace CompleteProject
 				InitializePurchasing();
 			}
 		}
-
-		void InitializePurchasing()
+		public static void Denitialize()
 		{
+			storeController=null;
+			storeExtensionProvider=null;
+		}
+		public static void Premium()
+		{
+			_premium(products.Length-1);
+		}
+		public void InitializePurchasing()
+		{
+			_premium=BuyProduct;
 			if(IsInitialized())
 			{
 				return;

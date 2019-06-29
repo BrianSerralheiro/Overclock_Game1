@@ -47,6 +47,7 @@ public class Ship : MonoBehaviour {
 
 	private float damageTimer;
 	private float freezeTimer;
+	private float clickTime=-1;
 
 	private SpriteRenderer _renderer;
 
@@ -147,6 +148,7 @@ public class Ship : MonoBehaviour {
 			freezeTimer -= Time.deltaTime;
 			if(freezeTimer<=0)
 			{
+				_renderer.enabled=true;
 				GameObject go = new GameObject("playerbullet");
 				go.AddComponent<BoxCollider2D>().size=new Vector2(10,20);
 				Bullet bu= go.AddComponent<Bullet>();
@@ -178,6 +180,12 @@ public class Ship : MonoBehaviour {
 		else shield.Min(Time.deltaTime);
 		if(Input.GetMouseButtonDown(0))
 		{
+			if(Time.time<clickTime+0.5f && InGame_HUD._special==1)
+			{
+				InGame_HUD._special=0;
+				Special();
+			}
+			clickTime=Time.time;
 			if(Mathf.Abs(moveto.x-transform.position.x)>1 || Mathf.Abs(moveto.y-transform.position.y)>1)
 				offset.Set(0,0,0);
 			else offset=transform.position-moveto;
@@ -233,21 +241,22 @@ public class Ship : MonoBehaviour {
 		{
 			case 0:
 				ParticleManager.Emit(12,Vector3.up*-10,20);
-				immuneTime=4;
-				freezeTimer=3;
+				immuneTime=3;
+				freezeTimer=2;
 				break;
 			case 1:
 				ParticleManager.Emit(13,transform.position,250);
-				immuneTime=5;
+				immuneTime=4;
 				freezeTimer=3;
 				break;
 			case 2:
 				ParticleManager.Emit(14,Vector3.zero,15);
-				immuneTime=freezeTimer=3;
+				immuneTime=freezeTimer=1;
 				break;
 			case 3:
 				ParticleManager.Emit(15,Vector3.zero,20);
-				immuneTime=freezeTimer=3;
+				immuneTime=freezeTimer=1;
+				_renderer.enabled=false;
 				break;
 		}
 	}

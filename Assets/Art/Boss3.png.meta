@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 213434d36bfd7b14a84f865a6fcad07e
-timeCreated: 1558366018
+timeCreated: 1561840680
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -99,19 +99,6 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: laser_boss
-      rect:
-        serializedVersion: 2
-        x: 57
-        y: 108
-        width: 49
-        height: 313
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: iron_throne
       rect:
         serializedVersion: 2
@@ -138,26 +125,13 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shot_boss
-      rect:
-        serializedVersion: 2
-        x: 260
-        y: 297
-        width: 54
-        height: 55
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: eyes
       rect:
         serializedVersion: 2
-        x: 3624
-        y: 1646
-        width: 99
-        height: 51
+        x: 3651
+        y: 1601
+        width: 98
+        height: 41
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
