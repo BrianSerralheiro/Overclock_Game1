@@ -35,7 +35,6 @@ public class Boss2 : EnemyBase {
 		shooting,
 		dead
 	}
-	[SerializeField]
 	State state;
 	new void Start () 
 	{
@@ -45,7 +44,6 @@ public class Boss2 : EnemyBase {
 		base.Start();
 		EnemySpawner.boss=true;
 		hp=500;
-		points = 1000;
 		GameObject go = new GameObject("enemy");
 		clawL=go.AddComponent<EnemyBase>();
 		clawL.SetHP(150);
@@ -319,8 +317,8 @@ public class Boss2 : EnemyBase {
 	}
 	private new void OnCollisionEnter2D(Collision2D col)
 	{
-		if(state==State.dead) return;
-		if(vectorB.y<-1.3f) base.OnCollisionEnter2D(col);
+		if(vectorB.y<-1.3f && state!=State.dead) base.OnCollisionEnter2D(col);
+		else ParticleManager.Emit(16,col.collider.transform.position,1);
 	}
 	public override void Position(int i)
 	{

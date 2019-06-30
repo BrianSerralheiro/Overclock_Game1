@@ -26,7 +26,6 @@ public class Boss3 : EnemyBase {
 		slashing,
 		dead
 	}
-	[SerializeField]
 	State state;
 	new void Start () 
 	{
@@ -35,7 +34,7 @@ public class Boss3 : EnemyBase {
 		damageEffect = true;
 		base.Start();
 		EnemySpawner.boss=true;
-		hp=100;
+		hp=1000;
 		GameObject go=new GameObject("body");
 		_renderer=go.AddComponent<SpriteRenderer>();
 		_renderer.sprite=SpriteBase.I.boss3[1];
@@ -214,12 +213,13 @@ public class Boss3 : EnemyBase {
 		b.spriteID=12;
 		go.transform.position=transform.position+v;
 		go.transform.up=-transform.up;
-		go.transform.localScale=Vector3.one*2;
+		//go.transform.localScale=Vector3.one*2;
 	}
 
 	private new void OnCollisionEnter2D(Collision2D col)
 	{
 		if(state!=State.slashing && state!=State.dead && state!=State.intro) base.OnCollisionEnter2D(col);
+		else ParticleManager.Emit(16,col.collider.transform.position,1);
 	}
 	void Bat()
 	{

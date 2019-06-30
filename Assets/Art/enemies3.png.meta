@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: cac3a3a1c55e38e46a15ed372a4f1be9
-timeCreated: 1558297443
+timeCreated: 1561915313
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -325,12 +325,12 @@ TextureImporter:
       name: shot_1
       rect:
         serializedVersion: 2
-        x: 744
-        y: 1908
-        width: 55
-        height: 55
+        x: 711
+        y: 1910
+        width: 86
+        height: 88
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -338,12 +338,12 @@ TextureImporter:
       name: shot_2
       rect:
         serializedVersion: 2
-        x: 834
-        y: 1890
-        width: 55
-        height: 55
+        x: 843
+        y: 1894
+        width: 84
+        height: 85
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 134ec9a13cabf974faa8d6ff8f515f7c
-timeCreated: 1557625874
+timeCreated: 1561917671
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -249,58 +249,6 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: boss1_12
-      rect:
-        serializedVersion: 2
-        x: 862
-        y: 1242
-        width: 281
-        height: 473
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: boss1_13
-      rect:
-        serializedVersion: 2
-        x: 1174
-        y: 1237
-        width: 285
-        height: 473
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: boss1_14
-      rect:
-        serializedVersion: 2
-        x: 67
-        y: 765
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: boss1_15
-      rect:
-        serializedVersion: 2
-        x: 154
-        y: 292
-        width: 662
-        height: 751
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: wingR
       rect:
         serializedVersion: 2
@@ -323,97 +271,6 @@ TextureImporter:
         height: 524
       alignment: 9
       pivot: {x: 0.5, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: boss1_18
-      rect:
-        serializedVersion: 2
-        x: 863
-        y: 227
-        width: 184
-        height: 514
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: boss1_19
-      rect:
-        serializedVersion: 2
-        x: 1060
-        y: 231
-        width: 188
-        height: 514
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: boss1_21
-      rect:
-        serializedVersion: 2
-        x: 694
-        y: 213
-        width: 14
-        height: 59
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: boss1_22
-      rect:
-        serializedVersion: 2
-        x: 744
-        y: 113
-        width: 54
-        height: 145
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: boss1_23
-      rect:
-        serializedVersion: 2
-        x: 861
-        y: 198
-        width: 13
-        height: 63
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: boss1_26
-      rect:
-        serializedVersion: 2
-        x: 678
-        y: 53
-        width: 33
-        height: 82
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: boss1_27
-      rect:
-        serializedVersion: 2
-        x: 850
-        y: 43
-        width: 32
-        height: 82
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

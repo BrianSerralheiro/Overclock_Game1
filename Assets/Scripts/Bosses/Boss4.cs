@@ -14,7 +14,6 @@ public class Boss4 : EnemyBase {
 		flee=6,
 		dead
 	}
-	[SerializeField]
 	State state;
 	private float timer=0.2f;
 	private float time=0;
@@ -107,6 +106,7 @@ public class Boss4 : EnemyBase {
 	}
 	protected override void Die()
 	{
+		EnemySpawner.points+=1000;
 		if(last)
 		{
 			state=State.dead;

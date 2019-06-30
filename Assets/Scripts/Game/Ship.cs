@@ -240,22 +240,24 @@ public class Ship : MonoBehaviour {
 		switch(id)
 		{
 			case 0:
-				ParticleManager.Emit(12,Vector3.up*-10,20);
+				ParticleManager.Emit(12,Vector3.up*-10,20,2f);
 				immuneTime=3;
 				freezeTimer=2;
 				break;
 			case 1:
-				ParticleManager.Emit(13,transform.position,250);
+				ParticleManager.Emit(13,transform.position,200);
 				immuneTime=4;
 				freezeTimer=3;
 				break;
 			case 2:
-				ParticleManager.Emit(14,Vector3.zero,15);
-				immuneTime=freezeTimer=1;
+				ParticleManager.Emit(14,Vector3.zero,5,1f);
+				immuneTime=2;
+				freezeTimer=1;
 				break;
 			case 3:
-				ParticleManager.Emit(15,Vector3.zero,20);
-				immuneTime=freezeTimer=1;
+				ParticleManager.Emit(15,Vector3.zero,20,2f);
+				immuneTime=3;
+				freezeTimer=2;
 				_renderer.enabled=false;
 				break;
 		}

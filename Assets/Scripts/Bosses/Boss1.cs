@@ -18,7 +18,6 @@ public class Boss1 : EnemyBase {
 		charging,
 		dead
 	}
-	[SerializeField]
 	State state;
 	private Vector3 vector = new Vector3();
 	public new void Start()
@@ -29,7 +28,6 @@ public class Boss1 : EnemyBase {
 		base.Start();
 		EnemySpawner.boss=true;
 		hp=600;
-		points = 1000;
 		GameObject go = new GameObject("wingL");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss1[1];
 		go.AddComponent<BoxCollider2D>();
@@ -138,7 +136,6 @@ public class Boss1 : EnemyBase {
 	{
 		state=State.dead;
 		EnemySpawner.points+=1000;
-		ParticleManager.Emit(0,transform,50);
 	}
 	public override void Position(int i)
 	{
