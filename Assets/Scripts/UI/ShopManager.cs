@@ -13,8 +13,6 @@ public class ShopManager : MonoBehaviour
 	[SerializeField]
 	private PopUp ppop;
 	[SerializeField]
-	private Text warn;
-	[SerializeField]
 	private int[] skinPrices;
 	[SerializeField]
 	private string[] skinNames;
@@ -25,9 +23,10 @@ public class ShopManager : MonoBehaviour
 	private int price;
 	private int id;
 	private bool cha;
-	void Start () 
+	void OnEnable() 
 	{
-		
+		if(Locks.IsPremium())Warning.Open("You are  premuim user, you already have everything in the store!");
+
 	}
 	public void BuySkin(int i)
 	{
@@ -40,8 +39,7 @@ public class ShopManager : MonoBehaviour
 		}
 		else
 		{
-			warn.text="You need "+skinPrices[i]+" stars, to buy this skin!";
-			warn.transform.parent.gameObject.SetActive(true);
+			Warning.Open("You need "+skinPrices[i]+" stars, to buy this skin!");
 		}
 	}
 	public void BuyChar(int i)
@@ -55,8 +53,7 @@ public class ShopManager : MonoBehaviour
 		}
 		else
 		{
-			warn.text="You need "+charPrices[i]+" stars, to buy this pilot!";
-			warn.transform.parent.gameObject.SetActive(true);
+			Warning.Open("You need "+charPrices[i]+" stars, to buy this pilot!");
 		}
 	}
 	public void Premium()

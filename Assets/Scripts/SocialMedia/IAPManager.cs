@@ -34,7 +34,7 @@ namespace IAP
 		public void InitializePurchasing()
 		{
 			_premium=BuyProduct;
-			if(IsInitialized())
+			if(IsInitialized() || Locks.IsPremium())
 			{
 				return;
 			}

@@ -11,7 +11,6 @@ public class timetest : MonoBehaviour {
 
 	}
 	
-	// Update is called once per frame
 	void Update () {
 
 		string netTime = myHttpWebRequest.GetResponseHeader("date");
