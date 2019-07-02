@@ -21,7 +21,7 @@ public static class adsManager
 		//ONLY FOR RELEASE
 		AdRequest request=new AdRequest.Builder().Build();
 		//AdRequest request = new AdRequest.Builder().AddTestDevice("2077ef9a63d2b398840261c8221a0c9b").Build();
-		//video.OnAdRewarded +=HandleReward;
+		video.OnAdRewarded +=HandleReward;
 		video.LoadAd(request,id);
 	}
 
@@ -31,34 +31,35 @@ public static class adsManager
 		string id ="ca-app-pub-3940256099942544/6300978111";
 		Banner= new BannerView(id, AdSize.SmartBanner, AdPosition.Top);
 		//ONLY FOR RELEASE
-		AdRequest request=new AdRequest.Builder().Build();
-		//AdRequest request =new AdRequest.Builder().AddTestDevice("2077ef9a63d2b398840261c8221a0c9b").Build();
+		//AdRequest request=new AdRequest.Builder().Build();
+		AdRequest request =new AdRequest.Builder().AddTestDevice("2077ef9a63d2b398840261c8221a0c9b").Build();
 		Banner.LoadAd(request);
 	}
 	public static bool LoadedVideo()
 	{
 		return video!=null && video.IsLoaded();
 	}
-	public static void ShowAd(Dele d)
+	public static bool ShowAd(Dele d)
 	{
-		if(video != null && video.IsLoaded())
+		if(video != null)
 		{
 			video.Show();
 			OnReward=d;
 			Debug.Log("Showing");
+			return true;
 		}
+		return false;
 	}
 	public static void HandleReward(object sender,Reward args)
 	{
 		//reward here!!!
-		Debug.Log("rewarding");
+		SoundManager.PlayEffects(1);
 		if(OnReward!=null)OnReward();
 	}
 
-	public static void OnLoaded(object sender, EventArgs args)
+	public static void ShowBanner()
     {
         Banner.Show();
-		Debug.Log("Ta funfando");
     }
 	public static void CloseBanner()
 	{

@@ -95,6 +95,7 @@ public class GameOverController : MonoBehaviour
 		Cash.totalCash += cashStars;
 		gameoverDialog.sprite = DialogBox.getBox();
 		gameoverTEXT.fontSize = Screen.height / 39;
+		adsManager.ShowBanner();
 	}
 
 	public void Close()
@@ -129,7 +130,6 @@ public class GameOverController : MonoBehaviour
 		}
 		else
 		{
-			//show warning;
 			SoundManager.PlayEffects(11);
 			noContinues.SetActive(true);
 		}

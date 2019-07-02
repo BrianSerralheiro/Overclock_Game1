@@ -15,7 +15,10 @@ public class Continue : MonoBehaviour
 	private Button button;
 	public Ship ship;
 	private int continues;
-
+	private void Update()
+	{
+		button.interactable=adsManager.LoadedVideo();
+	}
 	public void Continues(int i)
 	{
 		continues=i;
@@ -28,9 +31,11 @@ public class Continue : MonoBehaviour
 	{
 		SoundManager.PlayEffects(0);
 		continues--;
-		adsManager.ShowAd(ship.Heal);
-		gameObject.SetActive(false);
-		Active(false);
+		if(adsManager.ShowAd(ship.Heal))
+		{
+			gameObject.SetActive(false);
+			Active(false);
+		}
 	}
 	public bool HasContinue()
 	{
