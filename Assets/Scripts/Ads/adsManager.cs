@@ -12,6 +12,9 @@ public static class adsManager
 	private static Dele OnReward;
 	public static void RequestVideo()
 	{
+		video=RewardBasedVideoAd.Instance;
+		video.OnAdRewarded +=HandleReward;
+		video.OnAdLoaded += OnLoadVideo;
 		//ID REAL: ca-app-pub-1044537920504306/7358635834
 		string id ="ca-app-pub-3940256099942544/5224354917";
 		//video=RewardBasedVideoAd.Instance;
@@ -30,7 +33,6 @@ public static class adsManager
 		//ONLY FOR RELEASE
 		AdRequest request=new AdRequest.Builder().Build();
 		//AdRequest request =new AdRequest.Builder().AddTestDevice("2077ef9a63d2b398840261c8221a0c9b").Build();
-		Banner.OnAdLoaded += OnLoaded;
 		Banner.LoadAd(request);
 	}
 	public static bool LoadedVideo()
@@ -65,7 +67,10 @@ public static class adsManager
 	public static void Initialize()
 	{
 		MobileAds.Initialize(appID);
-		video=RewardBasedVideoAd.Instance;
-		video.OnAdRewarded +=HandleReward;
 	}
+	private static void OnLoadVideo (object o, EventArgs a)
+	{
+		SoundManager.PlayEffects(1);
+	}
+
 	} }

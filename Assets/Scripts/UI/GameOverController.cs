@@ -93,7 +93,6 @@ public class GameOverController : MonoBehaviour
 		EnemySpawner.points=0;
 		Stars.text = cashStars.ToString();
 		Cash.totalCash += cashStars;
-		adsManager.RequestBanner();
 		gameoverDialog.sprite = DialogBox.getBox();
 		gameoverTEXT.fontSize = Screen.height / 39;
 	}
@@ -137,6 +136,7 @@ public class GameOverController : MonoBehaviour
 	}
 	public void QuitGame()
 	{
+		adsManager.CloseBanner();
 		SoundManager.PlayEffects(0);
 		Ship.paused = false;
 		SceneManager.LoadScene("MainMenu");

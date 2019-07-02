@@ -21,13 +21,11 @@ VideoClipImporter:
   sourceHasAlpha: 0
   flipVertical: 0
   flipHorizontal: 0
-  importAudio: 1
+  importAudio: 0
   sourceAudioChannelCount: 0200
   sourceAudioSampleRate: 44ac0000
-  targetSettings: {}
-  output:
-    format: 1
-    settings:
+  targetSettings:
+    0:
       enableTranscoding: 0
       codec: 0
       resizeFormat: 0
@@ -36,14 +34,34 @@ VideoClipImporter:
       customHeight: 720
       bitrateMode: 2
       spatialQuality: 2
-    encodedWidth: 1280
-    encodedHeight: 720
+    7:
+      enableTranscoding: 1
+      codec: 2
+      resizeFormat: 0
+      aspectRatio: 0
+      customWidth: 1280
+      customHeight: 720
+      bitrateMode: 0
+      spatialQuality: 0
+  output:
+    format: 4
+    settings:
+      enableTranscoding: 1
+      codec: 2
+      resizeFormat: 0
+      aspectRatio: 0
+      customWidth: 1280
+      customHeight: 720
+      bitrateMode: 0
+      spatialQuality: 0
+    encodedWidth: 640
+    encodedHeight: 360
     encodedStartFrame: 0
     encodedEndFrame: 332
     streamedResource:
-      source: 
+      source: library/metadata/58/5886c4600d9931342a1e663d9b2d6988.resource
       offset: 0
-      size: 3222827
+      size: 2855916
   userData: 
   assetBundleName: 
   assetBundleVariant: 
