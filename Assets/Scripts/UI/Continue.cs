@@ -17,7 +17,7 @@ public class Continue : MonoBehaviour
 	private int continues;
 	private void Update()
 	{
-		button.interactable=adsManager.LoadedVideo();
+		//button.interactable=adsManager.LoadedVideo();
 	}
 	public void Continues(int i)
 	{

@@ -13,15 +13,16 @@ public static class adsManager
 	public static void RequestVideo()
 	{
 		video=RewardBasedVideoAd.Instance;
+		video.OnAdFailedToLoad += OnLoadFailed;
 		video.OnAdRewarded +=HandleReward;
 		video.OnAdLoaded += OnLoadVideo;
 		//ID REAL: ca-app-pub-1044537920504306/7358635834
 		string id ="ca-app-pub-3940256099942544/5224354917";
 		//video=RewardBasedVideoAd.Instance;
 		//ONLY FOR RELEASE
-		AdRequest request=new AdRequest.Builder().Build();
-		//AdRequest request = new AdRequest.Builder().AddTestDevice("2077ef9a63d2b398840261c8221a0c9b").Build();
-		video.OnAdRewarded +=HandleReward;
+		//AdRequest request=new AdRequest.Builder().Build();
+		AdRequest request = new AdRequest.Builder().AddTestDevice("351862082077759").Build();
+		//video.OnAdRewarded +=HandleReward;
 		video.LoadAd(request,id);
 	}
 
@@ -32,7 +33,7 @@ public static class adsManager
 		Banner= new BannerView(id, AdSize.SmartBanner, AdPosition.Top);
 		//ONLY FOR RELEASE
 		//AdRequest request=new AdRequest.Builder().Build();
-		AdRequest request =new AdRequest.Builder().AddTestDevice("2077ef9a63d2b398840261c8221a0c9b").Build();
+		AdRequest request =new AdRequest.Builder().AddTestDevice("351862082077759").Build();
 		Banner.LoadAd(request);
 	}
 	public static bool LoadedVideo()
@@ -71,7 +72,12 @@ public static class adsManager
 	}
 	private static void OnLoadVideo (object o, EventArgs a)
 	{
-		SoundManager.PlayEffects(1);
+		Warning.Open("blablabla");
+	}
+
+	private static void OnLoadFailed(object o, AdFailedToLoadEventArgs a)
+	{
+		Warning.Open(a.Message);
 	}
 
 	} }

@@ -34,6 +34,7 @@ public class MenuController : MonoBehaviour
 	
 	void Start ()
 	{
+		adsManager.RequestVideo();
 		Locks.Load();
 		//characterVideos=video.GetComponents<VideoPlayer>();
 		ratio = (float)Screen.width / (float)Screen.height * 10;

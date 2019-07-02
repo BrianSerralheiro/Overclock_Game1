@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using ADs;
 
 public class EnemySpawner : MonoBehaviour {
 	public Material bg;
@@ -44,6 +45,8 @@ public class EnemySpawner : MonoBehaviour {
 	 */
 	void Start()
 	{
+		adsManager.RequestVideo();
+		adsManager.RequestBanner();
 		boss = false;
 		Boss4.last=false;
 		SoundManager.Play(1);
