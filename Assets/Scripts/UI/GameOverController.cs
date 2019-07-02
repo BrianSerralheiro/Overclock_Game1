@@ -32,7 +32,8 @@ public class GameOverController : MonoBehaviour
 	private static GameObject menu;
 
 	private bool highscore;
-
+	public delegate void Dele();
+	private static Dele enable;
 	[SerializeField]
 	private Text gameoverTEXT;
 	
@@ -46,7 +47,9 @@ public class GameOverController : MonoBehaviour
 	private float charCount;
 	private Color color=Color.white;
 	void Start () 
-	{			
+	{
+		adsManager.RequestBanner();
+		enable=Enable;
 		menu = gameObject;
 		gameObject.SetActive(false);
 		cont.Continues(Locks.IsPremium() ? 4 : 2);
@@ -72,7 +75,7 @@ public class GameOverController : MonoBehaviour
 
 	}
 	
-	void OnEnable () 
+	void Enable () 
 	{
 		if(PlayerPrefs.GetInt("highscore") <= EnemySpawner.points)
 		{
@@ -115,6 +118,7 @@ public class GameOverController : MonoBehaviour
 	{
 		//adsManager.RequestVideo();
 		ship = s;
+		enable();
 		menu.SetActive(true);
 		Timer = 2f;
 	}

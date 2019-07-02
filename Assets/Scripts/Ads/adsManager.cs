@@ -12,16 +12,16 @@ public static class adsManager
 	private static Dele OnReward;
 	public static void RequestVideo()
 	{
-		video=RewardBasedVideoAd.Instance;
+		/*video=RewardBasedVideoAd.Instance;
 		video.OnAdFailedToLoad += OnLoadFailed;
 		video.OnAdRewarded +=HandleReward;
-		video.OnAdLoaded += OnLoadVideo;
+		video.OnAdLoaded += OnLoadVideo;*/
 		//ID REAL: ca-app-pub-1044537920504306/7358635834
 		string id ="ca-app-pub-3940256099942544/5224354917";
 		//video=RewardBasedVideoAd.Instance;
 		//ONLY FOR RELEASE
-		//AdRequest request=new AdRequest.Builder().Build();
-		AdRequest request = new AdRequest.Builder().AddTestDevice("351862082077759").Build();
+		AdRequest request=new AdRequest.Builder().Build();
+		//AdRequest request = new AdRequest.Builder().AddTestDevice("351862082077759").Build();
 		//video.OnAdRewarded +=HandleReward;
 		video.LoadAd(request,id);
 	}
@@ -32,8 +32,8 @@ public static class adsManager
 		string id ="ca-app-pub-3940256099942544/6300978111";
 		Banner= new BannerView(id, AdSize.SmartBanner, AdPosition.Top);
 		//ONLY FOR RELEASE
-		//AdRequest request=new AdRequest.Builder().Build();
-		AdRequest request =new AdRequest.Builder().AddTestDevice("351862082077759").Build();
+		AdRequest request=new AdRequest.Builder().Build();
+		//AdRequest request =new AdRequest.Builder().AddTestDevice("351862082077759").Build();
 		Banner.LoadAd(request);
 	}
 	public static bool LoadedVideo()
@@ -42,11 +42,11 @@ public static class adsManager
 	}
 	public static bool ShowAd(Dele d)
 	{
-		if(video != null)
+		if(LoadedVideo())
 		{
 			video.Show();
 			OnReward=d;
-			Debug.Log("Showing");
+			Warning.Open("Showing");
 			return true;
 		}
 		return false;
@@ -55,7 +55,11 @@ public static class adsManager
 	{
 		//reward here!!!
 		SoundManager.PlayEffects(1);
-		if(OnReward!=null)OnReward();
+		if(OnReward!=null){
+			OnReward();
+				Warning.Open("reward given");
+		}
+		else Warning.Open("reward empty");
 	}
 
 	public static void ShowBanner()
@@ -69,15 +73,19 @@ public static class adsManager
 	public static void Initialize()
 	{
 		MobileAds.Initialize(appID);
+		video=RewardBasedVideoAd.Instance;
+		video.OnAdFailedToLoad += OnLoadFailed;
+		video.OnAdRewarded +=HandleReward;
+		video.OnAdLoaded += OnLoadVideo;
 	}
 	private static void OnLoadVideo (object o, EventArgs a)
 	{
-		Warning.Open("blablabla");
+		Warning.Open("video loaded");
 	}
 
 	private static void OnLoadFailed(object o, AdFailedToLoadEventArgs a)
 	{
-		Warning.Open(a.Message);
+		Warning.Open(o.ToString()+":"+a.Message);
 	}
 
 	} }
