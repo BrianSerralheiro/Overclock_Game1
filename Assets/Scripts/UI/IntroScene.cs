@@ -22,6 +22,8 @@ public class IntroScene : MonoBehaviour
 	void Start () 
 	{
 		adsManager.Initialize();
+		adsManager.RequestVideo();
+		adsManager.RequestBanner();
 	}
 	
 	void Update () 

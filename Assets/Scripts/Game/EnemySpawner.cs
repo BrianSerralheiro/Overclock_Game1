@@ -45,8 +45,6 @@ public class EnemySpawner : MonoBehaviour {
 	 */
 	void Start()
 	{
-		adsManager.RequestVideo();
-		adsManager.RequestBanner();
 		boss = false;
 		Boss4.last=false;
 		SoundManager.Play(1);

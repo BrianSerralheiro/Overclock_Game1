@@ -28,6 +28,10 @@ public static class adsManager
 
 	public static void RequestBanner()
 	{
+		if(Banner != null)
+		{
+			Banner.Destroy();
+		}
 		//ID REAL: ca-app-pub-1044537920504306/4423806149
 		string id ="ca-app-pub-3940256099942544/6300978111";
 		Banner= new BannerView(id, AdSize.SmartBanner, AdPosition.Top);
