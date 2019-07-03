@@ -25,7 +25,7 @@ public class ShopManager : MonoBehaviour
 	private bool cha;
 	void OnEnable() 
 	{
-		if(Locks.IsPremium())Warning.Open("You are  premuim user, you already have everything in the store!");
+		//if(Locks.IsPremium())Warning.Open("You are  premuim user, you already have everything in the store!");
 
 	}
 	public void BuySkin(int i)

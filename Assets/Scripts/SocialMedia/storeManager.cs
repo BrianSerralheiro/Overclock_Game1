@@ -31,12 +31,12 @@ public class storeManager : MonoBehaviour
 	}
 	void OnEnable()
 	{
-		if(Locks.IsPremium())Warning.Open("You are  premuim user, you already have everything in the store!");
-		else {
+		//if(Locks.IsPremium())Warning.Open("You are  premuim user, you already have everything in the store!");
+		//else {
 			webRequest = UnityWebRequest.Get("https://www.worldtimeserver.com");
 			webRequest.Send();
 			Enable();
-		}
+		//}
 	} 
 	void Enable ()
 	{

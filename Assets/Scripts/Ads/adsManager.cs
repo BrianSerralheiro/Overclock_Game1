@@ -50,7 +50,6 @@
 			{
 				video.Show();
 				OnReward=d;
-				testWarning.Open("Showing");
 				return true;
 			}
 			return false;
@@ -58,7 +57,7 @@
 		public static void HandleReward(object sender,Reward args)
 		{
 			//reward here!!!
-			SoundManager.PlayEffects(1);
+			SoundManager.PlayEffects(20);
 			if(OnReward!=null){
 				OnReward();
 					testWarning.Open("reward given");
