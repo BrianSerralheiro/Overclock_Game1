@@ -9,7 +9,7 @@
 		private static RewardBasedVideoAd video;
 		private static BannerView Banner;
 		public delegate void Dele();
-		private static Dele OnReward;
+		private static bool revive;
 		public static void RequestVideo()
 		{
 			/*video=RewardBasedVideoAd.Instance;
@@ -39,30 +39,26 @@
 			//AdRequest request=new AdRequest.Builder().Build();
 			AdRequest request =new AdRequest.Builder().AddTestDevice("351862082077759").Build();
 			Banner.LoadAd(request);
+			Banner.Hide();
 		}
 		public static bool LoadedVideo()
 		{
 			return video!=null && video.IsLoaded();
 		}
-		public static bool ShowAd(Dele d)
+		public static bool ShowAd(bool d)
 		{
 			if(LoadedVideo())
 			{
 				video.Show();
-				OnReward=d;
+				revive=d;
 				return true;
 			}
 			return false;
 		}
-		public static void HandleReward(object sender,Reward args)
+		public static void HandleReward(object sender,Reward reward)
 		{
 			//reward here!!!
 			SoundManager.PlayEffects(20);
-			if(OnReward!=null){
-				OnReward();
-					testWarning.Open("reward given");
-			}
-			else testWarning.Open("reward empty");
 			Application.Quit();
 		}
 
@@ -80,7 +76,7 @@
 			video=RewardBasedVideoAd.Instance;
 			video.OnAdCompleted += OnAdCompleted;
 			video.OnAdFailedToLoad += OnLoadFailed;
-			video.OnAdRewarded +=HandleReward;
+			video.OnAdRewarded += HandleReward;
 			video.OnAdLoaded += OnLoadVideo;
 		}
 		private static void OnLoadVideo (object o, EventArgs a)
@@ -90,7 +86,14 @@
 
 		private static void OnAdCompleted (object o, EventArgs a)
 		{
-			testWarning.Open("video ended");
+			testWarning.Open("video completed");
+			if(revive)
+			{
+				EnemyBase.player.GetComponent<Ship>().Heal();
+				testWarning.Open("reward given");
+			}
+			else Cash.totalCash += 20;
+			RequestVideo();
 		}
 
 		private static void OnLoadFailed(object o, AdFailedToLoadEventArgs a)

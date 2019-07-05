@@ -65,7 +65,7 @@ public class storeManager : MonoBehaviour
 	{
 		webRequest = UnityWebRequest.Get("https://www.worldtimeserver.com");
 		webRequest.Send();
-		adsManager.ShowAd(adcallBack);
+		adsManager.ShowAd(false);
 	}
 
 	private void adcallBack()

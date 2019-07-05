@@ -93,7 +93,6 @@ namespace GoogleMobileAds.Api
 
             this.client.OnAdRewarded += (sender, args) =>
             {
-				/*REMOVER*/testWarning.Open("internal reward");
                 if (this.OnAdRewarded != null)
                 {
                     this.OnAdRewarded(this, args);

@@ -31,7 +31,7 @@ public class Continue : MonoBehaviour
 	{
 		SoundManager.PlayEffects(0);
 		continues--;
-		if(adsManager.ShowAd(ship.Heal))
+		if(adsManager.ShowAd(true))
 		{
 			gameObject.SetActive(false);
 			Active(false);
