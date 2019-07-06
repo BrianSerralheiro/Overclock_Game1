@@ -14,7 +14,10 @@ public class Warning : MonoBehaviour {
 	
 	public static void Open(string s)
 	{
-		text.text=s;
-		go.SetActive(true);
+		if(go)
+		{
+			text.text=s;
+			go.SetActive(true);
+		}
 	}
 }

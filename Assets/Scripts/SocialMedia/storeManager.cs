@@ -22,8 +22,8 @@ public class storeManager : MonoBehaviour
 		if(webRequest!=null  && webRequest.GetResponseHeader("date")!=null)
 		{
 			ad.interactable=PlayerPrefs.GetString("adday")!=webRequest.GetResponseHeader("date").Substring(0,10);
-			//REMOVE LATER
-			Debug.Log(webRequest.GetResponseHeader("date"));
+			webRequest = UnityWebRequest.Get("https://www.worldtimeserver.com");
+			webRequest.Send();
 			//Enable();
 			//webRequest=null;
 		}
@@ -33,9 +33,9 @@ public class storeManager : MonoBehaviour
 	{
 		//if(Locks.IsPremium())Warning.Open("You are  premuim user, you already have everything in the store!");
 		//else {
-			webRequest = UnityWebRequest.Get("https://www.worldtimeserver.com");
-			webRequest.Send();
-			Enable();
+		webRequest = UnityWebRequest.Get("https://www.worldtimeserver.com");
+		webRequest.Send();
+		Enable();
 		//}
 	} 
 	void Enable ()
@@ -66,11 +66,6 @@ public class storeManager : MonoBehaviour
 		webRequest = UnityWebRequest.Get("https://www.worldtimeserver.com");
 		webRequest.Send();
 		adsManager.ShowAd(false);
-	}
-
-	private void adcallBack()
-	{
-		//give stars here
 		PlayerPrefs.SetString("adday",webRequest.GetResponseHeader("date").Substring(0,10));
 	}
 

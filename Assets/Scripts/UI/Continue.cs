@@ -18,6 +18,11 @@ public class Continue : MonoBehaviour
 	private void Update()
 	{
 		button.interactable=adsManager.LoadedVideo();
+		if(!Ship.paused)
+		{
+			gameObject.SetActive(false);
+			Active(false);
+		}
 	}
 	public void Continues(int i)
 	{
@@ -31,11 +36,7 @@ public class Continue : MonoBehaviour
 	{
 		SoundManager.PlayEffects(0);
 		continues--;
-		if(adsManager.ShowAd(true))
-		{
-			gameObject.SetActive(false);
-			Active(false);
-		}
+		adsManager.ShowAd(true);
 	}
 	public bool HasContinue()
 	{
@@ -47,7 +48,7 @@ public class Continue : MonoBehaviour
 		continues--;
 		gameObject.SetActive(false);
 		Active(false);
-		ship.Heal();
+		ship.Revive();
 	}
 
 }

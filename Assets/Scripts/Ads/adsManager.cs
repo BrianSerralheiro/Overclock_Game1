@@ -10,6 +10,7 @@
 		private static BannerView Banner;
 		public delegate void Dele();
 		private static bool revive;
+		private static float time;
 		public static void RequestVideo()
 		{
 			/*video=RewardBasedVideoAd.Instance;
@@ -45,21 +46,19 @@
 		{
 			return video!=null && video.IsLoaded();
 		}
-		public static bool ShowAd(bool d)
+		public static void ShowAd(bool d)
 		{
 			if(LoadedVideo())
 			{
 				video.Show();
 				revive=d;
-				return true;
+				time=Time.time;
 			}
-			return false;
 		}
 		public static void HandleReward(object sender,Reward reward)
 		{
 			//reward here!!!
-			SoundManager.PlayEffects(20);
-			Application.Quit();
+			testWarning.Open("firing reward");
 		}
 
 		public static void ShowBanner()
@@ -81,24 +80,28 @@
 		}
 		private static void OnLoadVideo (object o, EventArgs a)
 		{
-			testWarning.Open("video loaded");
 		}
 
 		private static void OnAdCompleted (object o, EventArgs a)
 		{
-			testWarning.Open("video completed");
+			RequestVideo();
+			if(Time.time<time+5){
+				Warning.Open("Reward not given, try again and watch the whole ad!");
+				return;
+			}
 			if(revive)
 			{
-				EnemyBase.player.GetComponent<Ship>().Heal();
-				testWarning.Open("reward given");
+				EnemyBase.player.GetComponent<Ship>().Revive();
 			}
-			else Cash.totalCash += 20;
-			RequestVideo();
+			else {
+				Cash.totalCash += 20;
+				Warning.Open("Received 20 stars!");
+			}
 		}
 
 		private static void OnLoadFailed(object o, AdFailedToLoadEventArgs a)
 		{
-			testWarning.Open(o.ToString()+":"+a.Message);
+			Warning.Open(o.ToString()+":"+a.Message);
 		}
 
 		} }

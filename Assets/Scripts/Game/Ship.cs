@@ -120,7 +120,7 @@ public class Ship : MonoBehaviour {
 		damageTimer = 1;
 		immuneTime=0.1f;
 	}
-	public void Heal()
+	public void Revive()
 	{
 		gameObject.SetActive(true);
 		immuneTime = 3;
