@@ -17,10 +17,16 @@ public class storeManager : MonoBehaviour
 	[SerializeField]
 	private Button ad;
 	private UnityWebRequest webRequest;
+	private bool watched;
 	void Update()
 	{
 		if(webRequest!=null  && webRequest.GetResponseHeader("date")!=null)
 		{
+			if(watched)
+			{
+				PlayerPrefs.SetString("adday",webRequest.GetResponseHeader("date").Substring(0,10));
+				watched = false;
+			}
 			ad.interactable=PlayerPrefs.GetString("adday")!=webRequest.GetResponseHeader("date").Substring(0,10);
 			webRequest = UnityWebRequest.Get("https://www.worldtimeserver.com");
 			webRequest.Send();
@@ -63,10 +69,10 @@ public class storeManager : MonoBehaviour
 
 	public void playAD()
 	{
+		watched = true;
 		webRequest = UnityWebRequest.Get("https://www.worldtimeserver.com");
 		webRequest.Send();
 		adsManager.ShowAd(false);
-		PlayerPrefs.SetString("adday",webRequest.GetResponseHeader("date").Substring(0,10));
 	}
 
 	public void facebookPage()

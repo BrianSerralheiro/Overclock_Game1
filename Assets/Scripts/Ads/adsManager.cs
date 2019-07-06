@@ -7,10 +7,9 @@
 	{
 		private static string appID="ca-app-pub-1044537920504306~1035225471";
 		private static RewardBasedVideoAd video;
-		private static BannerView Banner;
+
 		public delegate void Dele();
 		private static bool revive;
-		private static float time;
 		public static void RequestVideo()
 		{
 			/*video=RewardBasedVideoAd.Instance;
@@ -27,21 +26,6 @@
 			video.LoadAd(request,id);
 		}
 
-		public static void RequestBanner()
-		{
-			if(Banner != null)
-			{
-				Banner.Destroy();
-			}
-			//ID REAL: ca-app-pub-1044537920504306/4423806149
-			string id ="ca-app-pub-3940256099942544/6300978111";
-			Banner= new BannerView(id, AdSize.SmartBanner, AdPosition.Top);
-			//ONLY FOR RELEASE
-			//AdRequest request=new AdRequest.Builder().Build();
-			AdRequest request =new AdRequest.Builder().AddTestDevice("351862082077759").Build();
-			Banner.LoadAd(request);
-			Banner.Hide();
-		}
 		public static bool LoadedVideo()
 		{
 			return video!=null && video.IsLoaded();
@@ -52,23 +36,21 @@
 			{
 				video.Show();
 				revive=d;
-				time=Time.time;
 			}
 		}
 		public static void HandleReward(object sender,Reward reward)
 		{
-			//reward here!!!
-			testWarning.Open("firing reward");
+			RequestVideo();
+			if(revive)
+			{
+				EnemyBase.player.GetComponent<Ship>().Revive();
+			}
+			else {
+				Cash.totalCash += 20;
+				Warning.Open("Received 20 stars!");
+			}
 		}
 
-		public static void ShowBanner()
-		{
-			Banner.Show();
-		}
-		public static void CloseBanner()
-		{
-			Banner.Destroy();
-		}
 		public static void Initialize()
 		{
 			MobileAds.Initialize(appID);
@@ -84,19 +66,7 @@
 
 		private static void OnAdCompleted (object o, EventArgs a)
 		{
-			RequestVideo();
-			if(Time.time<time+5){
-				Warning.Open("Reward not given, try again and watch the whole ad!");
-				return;
-			}
-			if(revive)
-			{
-				EnemyBase.player.GetComponent<Ship>().Revive();
-			}
-			else {
-				Cash.totalCash += 20;
-				Warning.Open("Received 20 stars!");
-			}
+
 		}
 
 		private static void OnLoadFailed(object o, AdFailedToLoadEventArgs a)

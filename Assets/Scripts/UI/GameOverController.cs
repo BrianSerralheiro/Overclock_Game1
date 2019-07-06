@@ -48,7 +48,6 @@ public class GameOverController : MonoBehaviour
 	private Color color=Color.white;
 	void Start () 
 	{
-		adsManager.RequestBanner();
 		enable=Enable;
 		menu = gameObject;
 		gameObject.SetActive(false);
@@ -86,6 +85,7 @@ public class GameOverController : MonoBehaviour
 		{
 			highscore = false;
 		}
+		LevelCleared.text = (Transition.worldID + 1).ToString();
 		charCount = 0;
 		gameoverTEXT.text = "";
 		fullText = highscore ? DialogBox.GetText(5):DialogBox.GetText(6);
@@ -98,7 +98,6 @@ public class GameOverController : MonoBehaviour
 		Cash.totalCash += cashStars;
 		gameoverDialog.sprite = DialogBox.getBox();
 		gameoverTEXT.fontSize = Screen.height / 39;
-		adsManager.ShowBanner();
 	}
 
 	public void Close()
@@ -130,7 +129,6 @@ public class GameOverController : MonoBehaviour
 			cont.ship=ship;
 			cont.Active=gameObject.SetActive;
 			cont.gameObject.SetActive(true);
-			adsManager.CloseBanner();
 		}
 		else
 		{
@@ -140,7 +138,6 @@ public class GameOverController : MonoBehaviour
 	}
 	public void QuitGame()
 	{
-		adsManager.CloseBanner();
 		SoundManager.PlayEffects(0);
 		Ship.paused = false;
 		SceneManager.LoadScene("MainMenu");

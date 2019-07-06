@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour {
 	{
 		if(Ship.paused) return;
 		ParticleManager.Emit(particleID,transform.position,1);
-		transform.Translate(0,Time.deltaTime*14,0);
+		transform.Translate(0,Time.deltaTime*12.5f,0);
 		if(bulletTime<=0)renderer.sprite=SpriteBase.I.bullets[spriteID+(blink?0:1)];
 		timer-=Time.deltaTime;
 		if(timer<=0) Destroy(gameObject);

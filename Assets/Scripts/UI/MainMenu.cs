@@ -31,7 +31,6 @@ public class MainMenu : MonoBehaviour
 
 	public void StartButton()
 	{
-		adsManager.RequestBanner();
 		eventSystem.SetActive(false);
 		loading = SceneManager.LoadSceneAsync("cen");
 		SoundManager.PlayEffects(1);

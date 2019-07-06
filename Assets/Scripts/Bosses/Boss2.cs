@@ -43,7 +43,7 @@ public class Boss2 : EnemyBase {
 		damageEffect = true;
 		base.Start();
 		EnemySpawner.boss=true;
-		hp=500;
+		hp=1200;
 		GameObject go = new GameObject("enemy");
 		clawL=go.AddComponent<EnemyBase>();
 		clawL.SetHP(150);
@@ -116,11 +116,11 @@ public class Boss2 : EnemyBase {
 			transform.Translate(0,-Time.deltaTime*2,0);
 			if(clawL){
 				clawL.transform.position=transform.position+left;
-				clawL.SetHP(150);
+				clawL.SetHP(400);
 			}
 			if(clawR){
 				clawR.transform.position=transform.position+right;
-				clawR.SetHP(150);
+				clawR.SetHP(400);
 			}
 			if(transform.position.y<Scaler.sizeY/2f){state=State.waiting;
 			timer=3;}

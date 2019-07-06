@@ -163,7 +163,7 @@ public class EnemySpawner : MonoBehaviour {
 				if(worldID!=Transition.worldID/3){
 					worldID=Transition.worldID/3;
 					transfer-=Time.deltaTime;
-					scroll=worldID==2?scroll=600:60;
+					scroll=worldID==2?scroll=300:60;
 				}
 				break;
 			case 'V':
