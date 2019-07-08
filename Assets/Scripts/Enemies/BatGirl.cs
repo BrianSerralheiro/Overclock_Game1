@@ -60,7 +60,7 @@ public class BatGirl : EnemyBase {
 			{
 				Bat(i);
 			}
-			timer=10;
+			timer=5;
 		}
 		wingL.localPosition=pos;
 		wingL.localEulerAngles=vector;

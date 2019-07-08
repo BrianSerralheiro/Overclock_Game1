@@ -11,7 +11,7 @@ public class Grabber : EnemyBase {
 	new public void Start()
 	{
 		base.Start();
-		hp=20;
+		hp=40;
 		points = 120;
 		GameObject go = new GameObject("armL");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.grabber[1];

@@ -10,7 +10,7 @@ public class Round : EnemyBase
 	protected new void Start()
 	{
 		base.Start();
-		hp=15;
+		hp=80;
 		points = 150;
 	}
 
@@ -23,7 +23,7 @@ public class Round : EnemyBase
 		if(Ship.paused) return;
 		base.Update();
 		shoottimer-=Time.deltaTime;
-		transform.Translate(0,-Time.deltaTime/2,0,Space.World);
+		transform.Translate(0,-Time.deltaTime * 2,0,Space.World);
 		if(transform.position.y<-Scaler.sizeY-1)Destroy(gameObject);
 		vector.z=shoottimer/0.2f*90f;
 		transform.eulerAngles=vector;

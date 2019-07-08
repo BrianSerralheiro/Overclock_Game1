@@ -245,7 +245,7 @@ public class Ship : MonoBehaviour {
 				freezeTimer=2;
 				break;
 			case 1:
-				ParticleManager.Emit(13,transform.position,200);
+				ParticleManager.Emit(13,Vector3.zero,200);
 				immuneTime=4;
 				freezeTimer=3;
 				break;
