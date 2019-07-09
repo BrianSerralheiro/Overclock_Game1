@@ -117,8 +117,8 @@ public class Ship : MonoBehaviour {
 			SoundManager.PlayEffects(9, 1, 0);
 		}
 		InGame_HUD.shipHealth = (float)hp / (float)maxhp;
-		damageTimer = 1;
-		immuneTime=0.1f;
+		damageTimer=1;
+		immuneTime=1f;
 	}
 	public void Revive()
 	{
