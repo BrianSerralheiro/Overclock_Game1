@@ -54,7 +54,6 @@ public class EnemyBase : MonoBehaviour {
 			SoundManager.PlayEffects(15, 0.8f, 1.2f);
 			EnemySpawner.points+=points;
 			InGame_HUD._special += 0.01f;
-			//ParticleManager.InstantiatePrefab(explosionID, transform.position,1);
 			ParticleManager.Emit(explosionID, transform.position,1);
 		}
 	}
@@ -62,11 +61,12 @@ public class EnemyBase : MonoBehaviour {
 	{
 		if(i<8)
 		{
-			transform.position=new Vector3(i-3.5f,Scaler.sizeY+2,0);
+			float f= Scaler.sizeX/10f;
+			transform.position=new Vector3(i*f-f*3.5f,Scaler.sizeY+2,0);
 		}
 		else
 		{
-			transform.position=new Vector3(i==8 ? -Scaler.sizeX/2f-1 : Scaler.sizeX/2+1,Scaler.sizeY-2,0);
+			transform.position=new Vector3(i==8?-Scaler.sizeX/2f-1:Scaler.sizeX/2+1,Scaler.sizeY-2,0);
 		}
 	}
 	private void OnDestroy()
