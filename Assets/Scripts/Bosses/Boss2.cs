@@ -208,6 +208,7 @@ public class Boss2 : EnemyBase {
 			{
 				EnemySpawner.boss=false;
 				Destroy(gameObject);
+				SoundManager.Play(3);
 				if(clawL){
 					Destroy(elbowL.gameObject);
 					Destroy(clawL.gameObject);

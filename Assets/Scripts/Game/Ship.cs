@@ -182,7 +182,7 @@ public class Ship : MonoBehaviour {
 		else shield.Min(Time.deltaTime);
 		if(Input.GetMouseButtonDown(0))
 		{
-			if(Time.time<clickTime+0.5f && InGame_HUD._special==1)
+			if(Time.time<clickTime+0.5f && InGame_HUD._special >= 0)
 			{
 				InGame_HUD._special=0;
 				Special();

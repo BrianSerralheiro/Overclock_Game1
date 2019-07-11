@@ -184,6 +184,7 @@ public class Boss3 : EnemyBase {
 				transform.Rotate(0,0,Time.deltaTime*4);
 				if(transform.position.y<-Scaler.sizeY-2)
 				{
+					SoundManager.Play(4);
 					Destroy(gameObject);
 					EnemySpawner.boss=false;
 				}

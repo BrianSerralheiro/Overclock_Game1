@@ -8,17 +8,30 @@ public class SoundManager : MonoBehaviour
 	private AudioClip[] _songs;
 	[SerializeField]
 	private AudioClip[] _sounds;
-	
+	[SerializeField]
+	private string[] _names;
+
 	private AudioSource soundPlayer;
 	private AudioSource songPlayer;
 
 	private static SoundManager _soundManager;
+	private static ResourceRequest request;
 	private static float weight;
 	private static float volumeSNG = 1;
 	private static float volumeSFX = 1;
 	private void Update()
 	{
 		if(weight>0)weight-=Time.deltaTime;
+		if(request!=null)
+		{
+			if(request.isDone){
+				songPlayer.clip =request.asset as AudioClip;
+				_soundManager.songPlayer.volume=0f;
+				_soundManager.songPlayer.Play();
+				request=null;
+			}else
+				_soundManager.songPlayer.volume=1f-request.progress;
+		}
 		if(Ship.paused)
 		{
 			songPlayer.volume -= Time.deltaTime;
@@ -50,9 +63,7 @@ public class SoundManager : MonoBehaviour
 			Debug.LogWarning("SoundManager nao inicializado");
 			return;
 		}
-		_soundManager.songPlayer.clip = _soundManager._songs[i%_soundManager._songs.Length];
-		_soundManager.songPlayer.volume=0f;
-		_soundManager.songPlayer.Play();
+		request=	Resources.LoadAsync<AudioClip>("Audio/"+ _soundManager._names[i%_soundManager._names.Length]);
 	}
 
 	public static void PlayEffects (int i)

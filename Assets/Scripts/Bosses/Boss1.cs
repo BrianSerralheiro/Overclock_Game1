@@ -110,6 +110,7 @@ public class Boss1 : EnemyBase {
 			if(transform.position.y<-Scaler.sizeY-4){
 				Destroy(gameObject);
 				EnemySpawner.boss=false;
+				SoundManager.Play(2);
 			}
 		}
 		if(state==State.charging && vector.z<45)vector.z+=Time.deltaTime*90;

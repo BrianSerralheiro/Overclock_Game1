@@ -38,7 +38,7 @@ public class LaserGun : Gun {
 		col.enabled=!col.enabled;
 		if(scale.x<level)scale.x+=1f;
 		if(scale.x>level)scale.x=level;
-		if(timer<1)timer+=0.05f;
+		if(timer<1)timer+=0.5f;
 		if(timer>1)timer=1;
 		if(timer<0)timer=0;
 		blink=!blink;
@@ -55,7 +55,7 @@ public class LaserGun : Gun {
 		//timer=col.enabled?1:0;
 		ren.enabled=timer>0;
 		ren.sprite=lasersprite[Mathf.RoundToInt(timer)*2+(Bullet.blink ? 0 : 1)];
-		if(timer>0)timer-=Time.deltaTime*2;
+		if(timer>0)timer-=Time.deltaTime;
 		if(scale.x>0)scale.x-=Time.deltaTime*10;
 		if(scale.x<0)scale.x=0;
 	}
