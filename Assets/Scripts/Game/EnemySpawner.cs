@@ -77,9 +77,8 @@ public class EnemySpawner : MonoBehaviour {
 		if(timer>0 && !boss) timer-=Time.deltaTime;
 		Vector2 v= bg.mainTextureOffset;
 		v.y+=Time.deltaTime/scroll;
-		if(worldID==2)
-			{if(v.y>0.7f) v.y=0.7f;
-			ParticleManager.Emit(18,Vector3.up*10+Vector3.back*2,1);}
+		if(worldID==2)	
+		if(v.y>0.7f) v.y=0.7f;
 		else
 			if(v.y>1) v.y-=1;
 		bg.mainTextureOffset=v;
@@ -159,9 +158,11 @@ public class EnemySpawner : MonoBehaviour {
 				en=Spawn<Drone>(SpriteBase.I.drone[Ship.playerID]);
 				break;
 			case 'U':
+				SoundManager.PlayEffects(22);
 				Transition.Timer = 5;
 				Transition.worldID = s[1]-48;
-				if(worldID!=Transition.worldID/3){
+				if(worldID!=Transition.worldID/3)
+				{
 					worldID=Transition.worldID/3;
 					transfer-=Time.deltaTime;
 					scroll=worldID==2?scroll=300:60;
