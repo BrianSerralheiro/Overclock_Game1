@@ -5,20 +5,24 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour 
 {
 	[SerializeField]
-	private AudioClip[] _songs;
+	private AudioClip menu;
 	[SerializeField]
 	private AudioClip[] _sounds;
 	[SerializeField]
 	private string[] _names;
+	[SerializeField]
+	private string[] fx_names;
 
 	private AudioSource soundPlayer;
 	private AudioSource songPlayer;
 
 	private static SoundManager _soundManager;
 	private static ResourceRequest request;
+	private static ResourceRequest autorequest;
 	private static float weight;
 	private static float volumeSNG = 1;
 	private static float volumeSFX = 1;
+	private static int loadId=1;
 	private void Update()
 	{
 		if(weight>0)weight-=Time.deltaTime;
@@ -31,6 +35,12 @@ public class SoundManager : MonoBehaviour
 				request=null;
 			}else
 				_soundManager.songPlayer.volume=1f-request.progress;
+		}
+		if(loadId<_sounds.Length && autorequest.isDone)
+		{
+			_sounds[loadId]=autorequest.asset as AudioClip;
+			if(++loadId<_sounds.Length) autorequest=Resources.LoadAsync<AudioClip>("Audio/"+ fx_names[loadId]);
+			else autorequest=null;
 		}
 		if(Ship.paused)
 		{
@@ -54,6 +64,8 @@ public class SoundManager : MonoBehaviour
 		songPlayer.loop = true;
 		DontDestroyOnLoad(gameObject);
 		_soundManager = this;
+		
+		autorequest=Resources.LoadAsync<AudioClip>("Audio/"+ fx_names[loadId]);
 	}
 
 	public static void Play (int i)
@@ -63,7 +75,14 @@ public class SoundManager : MonoBehaviour
 			Debug.LogWarning("SoundManager nao inicializado");
 			return;
 		}
-		request=	Resources.LoadAsync<AudioClip>("Audio/"+ _soundManager._names[i%_soundManager._names.Length]);
+		if(i==0)
+		{
+			_soundManager.songPlayer.clip =_soundManager.menu;
+			_soundManager.songPlayer.volume=0f;
+			_soundManager.songPlayer.Play();
+		}
+		else
+		request=Resources.LoadAsync<AudioClip>("Audio/"+ _soundManager._names[i%_soundManager._names.Length]);
 	}
 
 	public static void PlayEffects (int i)
