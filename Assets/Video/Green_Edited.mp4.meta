@@ -12,18 +12,18 @@ VideoClipImporter:
   frameRange: 0
   startFrame: -1
   endFrame: -1
-  frameCount: 906
-  frameRate: 59.940059661865234
+  frameCount: 395
+  frameRate: 25
   colorSpace: 0
   deinterlace: 0
-  sourceFileSize: 32544129
+  sourceFileSize: 33660367
   encodeAlpha: 0
   sourceHasAlpha: 0
   flipVertical: 0
   flipHorizontal: 0
   importAudio: 1
   sourceAudioChannelCount: 0200
-  sourceAudioSampleRate: 44ac0000
+  sourceAudioSampleRate: 80bb0000
   targetSettings:
     0:
       enableTranscoding: 0
@@ -57,11 +57,11 @@ VideoClipImporter:
     encodedWidth: 960
     encodedHeight: 540
     encodedStartFrame: 0
-    encodedEndFrame: 906
+    encodedEndFrame: 395
     streamedResource:
       source: library/metadata/db/db78fff9606b1bd499f42e153b8c5466.resource
       offset: 0
-      size: 2791451
+      size: 2833658
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -38,11 +38,11 @@ public class LaserGun : Gun {
 		col.enabled=!col.enabled;
 		if(scale.x<level)scale.x+=1f;
 		if(scale.x>level)scale.x=level;
-		if(timer<1)timer+=0.5f;
-		if(timer>1)timer=1;
+		timer+=Time.deltaTime*5;
+		if(timer>2)timer=2;
 		if(timer<0)timer=0;
 		blink=!blink;
-		ren.sprite=lasersprite[Mathf.RoundToInt(timer)*2+(Bullet.blink ? 0 : 1)];
+		ren.sprite=lasersprite[(timer>1?2:0)+(Bullet.blink ? 0 : 1)];
 		ParticleManager.Emit(6, transform.position, 1);
 	}
 	public override void Level(int i)
@@ -54,8 +54,8 @@ public class LaserGun : Gun {
 		//laser.localScale=scale;
 		//timer=col.enabled?1:0;
 		ren.enabled=timer>0;
-		ren.sprite=lasersprite[Mathf.RoundToInt(timer)*2+(Bullet.blink ? 0 : 1)];
-		if(timer>0)timer-=Time.deltaTime;
+		ren.sprite=lasersprite[(timer>1 ? 2 : 0)+(Bullet.blink ? 0 : 1)];
+		if(timer>0)timer-=Time.deltaTime*2;
 		if(scale.x>0)scale.x-=Time.deltaTime*10;
 		if(scale.x<0)scale.x=0;
 	}
