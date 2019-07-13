@@ -6,9 +6,7 @@ public class LaserGun : Gun {
 	[SerializeField]
 	private Sprite[] lasersprites;
 	private Sprite[] lasersprite=new Sprite[4];
-	private bool blink;
 	private Transform laser;
-	private Vector3 scale;
 	private float timer;
 	private Collider2D col;
 	private SpriteRenderer ren;
@@ -31,17 +29,13 @@ public class LaserGun : Gun {
 		ren.sprite=lasersprite[(Bullet.blink ? 0 : 1)];
 		col=go.AddComponent<BoxCollider2D>();
 		ren.enabled=false;
-		scale=Vector3.up*7 + Vector3.forward;
 	}
 	public override void Shoot()
 	{
 		col.enabled=!col.enabled;
-		if(scale.x<level)scale.x+=1f;
-		if(scale.x>level)scale.x=level;
-		timer+=Time.deltaTime*5;
+		timer+=Time.deltaTime*10;
 		if(timer>2)timer=2;
 		if(timer<0)timer=0;
-		blink=!blink;
 		ren.sprite=lasersprite[(timer>1?2:0)+(Bullet.blink ? 0 : 1)];
 		ParticleManager.Emit(6, transform.position, 1);
 	}
@@ -49,14 +43,9 @@ public class LaserGun : Gun {
 	{
 		if(i<4) laser.localScale=Vector3.up*7 +Vector3.right*i;
 	}
-	void Update () {
-		//particles.localScale=scale;
-		//laser.localScale=scale;
-		//timer=col.enabled?1:0;
+	void Update(){
 		ren.enabled=timer>0;
 		ren.sprite=lasersprite[(timer>1 ? 2 : 0)+(Bullet.blink ? 0 : 1)];
-		if(timer>0)timer-=Time.deltaTime*2;
-		if(scale.x>0)scale.x-=Time.deltaTime*10;
-		if(scale.x<0)scale.x=0;
+		if(timer>0)timer-=Time.deltaTime*5f;
 	}
 }
