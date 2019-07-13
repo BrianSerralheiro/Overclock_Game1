@@ -171,6 +171,9 @@ public class EnemySpawner : MonoBehaviour {
 			case 'V':
 				DialogBox.Text(s[1]-48);
 				break;
+			case 'a':
+				en=Spawn<MFBat>(SpriteBase.I.MFBat[0]);
+				break;
 			default :
 				timer=s[1]-48;
 				break;

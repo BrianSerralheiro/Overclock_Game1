@@ -19,6 +19,6 @@ public class Slash : MonoBehaviour {
 	}
 	public void OnCollisionEnter2D(Collision2D col)
 	{
-		if(col.gameObject.name.Contains("Ship") && col.collider.name!="laserbody")Destroy(gameObject);
+		//if(col.gameObject.name.Contains("Ship") && col.collider.name!="laserbody")Destroy(gameObject);
 	}
 }
