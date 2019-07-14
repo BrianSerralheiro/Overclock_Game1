@@ -12,7 +12,7 @@ public class GameOverController : MonoBehaviour
 	[SerializeField]
 	private Image image;
 	[SerializeField]
-	private Text counter;
+	private Text gameover;
 	[SerializeField]
 	private Text LevelCleared;
 	[SerializeField]
@@ -24,7 +24,8 @@ public class GameOverController : MonoBehaviour
 	public Sprite[] chars;
 	public Sprite[] panels;
 	[SerializeField]
-	public Graphic[] graphics;
+	private Graphic[] graphics;
+	private Color[] colors=new Color[]{Color.red,Color.blue,Color.green,Color.yellow};
 	private static float Timer;
 
 	private static Ship ship;
@@ -60,10 +61,12 @@ public class GameOverController : MonoBehaviour
 		{
 			Timer-=Time.deltaTime;
 			color.a=(2f-Timer)/2f;
+			colors[Ship.playerID].a=color.a;
 			foreach(Graphic g in graphics)
 			{
 				g.color=color;
 			}
+			gameover.color=colors[Ship.playerID];
 			if(Timer<=0)gameoverDialog.gameObject.SetActive(true);
 		}
 		else if(charCount<fullText.Length)
