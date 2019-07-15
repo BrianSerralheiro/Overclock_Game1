@@ -31,7 +31,6 @@ public class ParticleManager : MonoBehaviour {
 		id=i;
 		timer=marker=t;
 		fraction=t/(float)c;
-		Debug.Log("t:"+t+" f:"+fraction);
 	}
 	/*public static void Emit(int i,Transform t,int c)
 	{

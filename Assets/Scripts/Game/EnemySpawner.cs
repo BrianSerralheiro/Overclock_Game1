@@ -11,9 +11,11 @@ public class EnemySpawner : MonoBehaviour {
 	public static int points;
 	public static bool boss;
 	private int counter;
-	public float timer;
+	public static float timer;
 	[SerializeField]
 	private Texture[] mundos;
+	[SerializeField]
+	private GameObject merc;
 	private int worldID;
 	private int scroll=60;
 	private float transfer=1;
@@ -64,6 +66,7 @@ public class EnemySpawner : MonoBehaviour {
 	void Update()
 	{
 		if(Ship.paused) return;
+		if(merc && points>0 && timer>5)merc.SetActive(true);
 		do
 		{
 			if(timer<=0 && counter<wave.Length && !boss)

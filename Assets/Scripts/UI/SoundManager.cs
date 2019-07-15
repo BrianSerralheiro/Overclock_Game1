@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour 
+public class SoundManager : MonoBehaviour
 {
 	[SerializeField]
 	private AudioClip menu;
+	[SerializeField]
+	private AudioClip preloaded;
 	[SerializeField]
 	private AudioClip[] _sounds;
 	[SerializeField]
@@ -29,9 +31,7 @@ public class SoundManager : MonoBehaviour
 		if(request!=null)
 		{
 			if(request.isDone){
-				songPlayer.clip =request.asset as AudioClip;
-				_soundManager.songPlayer.volume=0f;
-				_soundManager.songPlayer.Play();
+				preloaded =request.asset as AudioClip;
 				request=null;
 			}else
 				_soundManager.songPlayer.volume=1f-request.progress;
@@ -78,11 +78,13 @@ public class SoundManager : MonoBehaviour
 		if(i==0)
 		{
 			_soundManager.songPlayer.clip =_soundManager.menu;
-			_soundManager.songPlayer.volume=0f;
-			_soundManager.songPlayer.Play();
 		}
 		else
-		request=Resources.LoadAsync<AudioClip>("Audio/"+ _soundManager._names[i%_soundManager._names.Length]);
+			_soundManager.songPlayer.clip =_soundManager.preloaded;
+
+		_soundManager.songPlayer.volume=0f;
+		_soundManager.songPlayer.Play();
+		request=Resources.LoadAsync<AudioClip>("Audio/"+ _soundManager._names[(i+1)%_soundManager._names.Length]);
 	}
 
 	public static void PlayEffects (int i)
