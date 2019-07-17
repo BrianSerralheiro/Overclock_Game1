@@ -100,7 +100,7 @@ public class GameOverController : MonoBehaviour
 		Stars.text = cashStars.ToString();
 		Cash.totalCash += cashStars;
 		gameoverDialog.sprite = DialogBox.getBox();
-		gameoverTEXT.fontSize = Screen.height / 39;
+		gameoverTEXT.fontSize = Mathf.CeilToInt(Screen.height/10/DialogBox.getSize(highscore?5:6));
 	}
 
 	public void Close()

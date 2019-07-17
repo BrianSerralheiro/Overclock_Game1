@@ -13,6 +13,7 @@ public class DialogBox : MonoBehaviour {
 	private float cps;
 	private static string[] texts;
 	private static Sprite[] charPics;
+	private static float[] sizes;
 	private static int id;
 	private static UnityAction on;
 	private Text text;
@@ -31,9 +32,10 @@ public class DialogBox : MonoBehaviour {
 	{
 		charPics=s;
 	}
-	public static void Texts(string[] s)
+	public static void Texts(string[] s,float[] f)
 	{
 		texts=s;
+		sizes=f;
 	}
 	public static void Text(int i)
 	{
@@ -47,7 +49,7 @@ public class DialogBox : MonoBehaviour {
 		text.text="";
 		portrait.sprite=charPics[id];
 		chars=0;
-		text.fontSize = Screen.height / 37;
+		text.fontSize = Mathf.CeilToInt(Screen.height/10/sizes[id]);
 	}
 	public void Close()
 	{
@@ -80,6 +82,11 @@ public class DialogBox : MonoBehaviour {
 		return"";
 	}
 
+	public static float getSize(int i)
+	{
+		if(sizes==null)return 2;
+		return sizes[i];
+	}
 	public static Sprite getBox()
 	{
 		if(image != null)
