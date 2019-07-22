@@ -48,10 +48,6 @@ public class LaserGun : Gun {
 	}
 	void Update()
 	{
-		if(source.time < 1)
-		{
-			source.time = 1;
-		}
 		ren.enabled=timer>0;
 		if(enabled!=source.isPlaying)
 			if(source.isPlaying)source.Stop();
