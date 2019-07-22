@@ -46,7 +46,12 @@ public class LaserGun : Gun {
 	{
 		if(i<4) laser.localScale=Vector3.up*7 +Vector3.right*i;
 	}
-	void Update(){
+	void Update()
+	{
+		if(source.time < 1)
+		{
+			source.time = 1;
+		}
 		ren.enabled=timer>0;
 		if(enabled!=source.isPlaying)
 			if(source.isPlaying)source.Stop();
