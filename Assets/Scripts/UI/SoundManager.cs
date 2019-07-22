@@ -33,8 +33,7 @@ public class SoundManager : MonoBehaviour
 			if(request.isDone){
 				preloaded =request.asset as AudioClip;
 				request=null;
-			}else
-				_soundManager.songPlayer.volume=1f-request.progress;
+			}
 		}
 		if(loadId<_sounds.Length && autorequest.isDone)
 		{
