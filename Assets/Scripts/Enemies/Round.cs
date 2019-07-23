@@ -10,7 +10,7 @@ public class Round : EnemyBase
 	protected new void Start()
 	{
 		base.Start();
-		hp=80;
+		hp=52;
 		points = 150;
 	}
 
