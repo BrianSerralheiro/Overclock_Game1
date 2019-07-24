@@ -70,6 +70,6 @@ public class Launcher : EnemyBase {
 	protected override void Die()
 	{
 		base.Die();
-		Destroy(rocket.gameObject);
+		if(rocket)Destroy(rocket.gameObject);
 	}
 }
