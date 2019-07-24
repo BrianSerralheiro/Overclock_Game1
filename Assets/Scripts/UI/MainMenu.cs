@@ -36,13 +36,5 @@ public class MainMenu : MonoBehaviour
 		SoundManager.PlayEffects(1);
 	}
 
-	public void Store()
-	{
-		SoundManager.PlayEffects(0);
-	}
 
-	public void Settings()
-	{
-		SoundManager.PlayEffects(0);
-	}
 }

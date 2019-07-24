@@ -35,12 +35,12 @@ public class MenuController : MonoBehaviour
 	void Start ()
 	{
 		Locks.Load();
-		//characterVideos=video.GetComponents<VideoPlayer>();
 		ratio = (float)Screen.width / (float)Screen.height * 10;
 		SoundManager.Play(0);
 		SoundManager.Load();
+		SwitchCharacter(PlayerPrefs.GetInt("char"));
 	}
-	void Update () 
+	void Update ()
 	{
 		if(MainMenuUI.position.x != MenuPositionX)
 		{
@@ -123,6 +123,10 @@ public class MenuController : MonoBehaviour
 			characterIDButton[j].SetActive(i == j%4);
 		}
 		Ship.playerID = i;
+		PlayerPrefs.SetInt("char",i);
+	}
+	public void ButtonSound()
+	{
 		SoundManager.PlayEffects(0);
 	}
 }

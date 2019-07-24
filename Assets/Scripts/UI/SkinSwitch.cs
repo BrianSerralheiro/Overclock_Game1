@@ -6,6 +6,8 @@ public class SkinSwitch : MonoBehaviour {
 	[SerializeField]
 	private GameObject[] skins=new GameObject[4];
 	private int id=-1;
+	[SerializeField]
+	private int charID;
 	public void Next()
 	{
 		id++;
@@ -22,6 +24,7 @@ public class SkinSwitch : MonoBehaviour {
 	}
 	void OnEnable()
 	{
+		id=PlayerPrefs.GetInt("char"+charID)-1;
 		Set();
 	}
 	void Set() {
@@ -30,5 +33,6 @@ public class SkinSwitch : MonoBehaviour {
 		{
 			skins[i].SetActive(i==id+1);
 		}
+		PlayerPrefs.SetInt("char"+charID,id+1);
 	}
 }
