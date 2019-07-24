@@ -10,7 +10,7 @@ public class MFBat : EnemyBase {
 		base.Start();
 		dir=new Vector3(Random.Range(-1f,1f),-0.5f);
 		explosionID = 10;
-		hp=150;
+		hp=300;
 		points=150;
 	}
 	
