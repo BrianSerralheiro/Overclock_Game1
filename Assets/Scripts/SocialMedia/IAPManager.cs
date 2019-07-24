@@ -7,6 +7,8 @@ namespace IAP
 {
 	public class IAPManager :MonoBehaviour, IStoreListener
 	{
+		[SerializeField]
+		private GameObject shop;
 		private delegate void Dele(int i);
 		private static Dele _premium;
 		private static IStoreController storeController;
@@ -34,7 +36,7 @@ namespace IAP
 		public void InitializePurchasing()
 		{
 			_premium=BuyProduct;
-			if(IsInitialized() || Locks.IsPremium())
+			if(IsInitialized())
 			{
 				return;
 			}
@@ -56,7 +58,7 @@ namespace IAP
 		{
 			if(IsInitialized() && id>=0 && id<4)
 			{
-				
+				if(shop)shop.BroadcastMessage("OnEnale");
 				Product product = storeController.products.WithID(products[id]);
 
 				if(product != null && product.availableToPurchase)
