@@ -30,7 +30,7 @@ public class Boss3 : EnemyBase {
 	new void Start () 
 	{
 		BossWarning.Show();
-		SoundManager.Play(7);
+		SoundManager.Play(6);
 		damageEffect = true;
 		base.Start();
 		EnemySpawner.boss=true;
@@ -184,7 +184,7 @@ public class Boss3 : EnemyBase {
 				transform.Rotate(0,0,Time.deltaTime*4);
 				if(transform.position.y<-Scaler.sizeY-2)
 				{
-					SoundManager.Play(4);
+					SoundManager.Play(7);
 					Destroy(gameObject);
 					EnemySpawner.boss=false;
 				}

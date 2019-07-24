@@ -23,11 +23,11 @@ public class Boss1 : EnemyBase {
 	public new void Start()
 	{
 		BossWarning.Show();
-		SoundManager.Play(5);
+		SoundManager.Play(2);
 		damageEffect = true;
 		base.Start();
 		EnemySpawner.boss=true;
-		hp=600;
+		hp=1000;
 		GameObject go = new GameObject("wingL");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss1[1];
 		go.AddComponent<BoxCollider2D>();
@@ -110,7 +110,7 @@ public class Boss1 : EnemyBase {
 			if(transform.position.y<-Scaler.sizeY-4){
 				Destroy(gameObject);
 				EnemySpawner.boss=false;
-				SoundManager.Play(2);
+				SoundManager.Play(3);
 			}
 		}
 		if(state==State.charging && vector.z<45)vector.z+=Time.deltaTime*90;
@@ -147,6 +147,6 @@ public class Boss1 : EnemyBase {
 		if(vector.z>5 && state!=State.dead) base.OnCollisionEnter2D(col);
 		else
 			ParticleManager.Emit(16,col.collider.transform.position,1);
-		speed=hp<200 ? 12 : 8;
+		speed=hp<350 ? 12 : 8;
 	}
 }

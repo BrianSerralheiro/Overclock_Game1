@@ -39,7 +39,7 @@ public class Boss2 : EnemyBase {
 	new void Start () 
 	{
 		BossWarning.Show();
-		SoundManager.Play(6);
+		SoundManager.Play(4);
 		damageEffect = true;
 		base.Start();
 		EnemySpawner.boss=true;
@@ -208,7 +208,7 @@ public class Boss2 : EnemyBase {
 			{
 				EnemySpawner.boss=false;
 				Destroy(gameObject);
-				SoundManager.Play(3);
+				SoundManager.Play(5);
 				if(clawL){
 					Destroy(elbowL.gameObject);
 					Destroy(clawL.gameObject);
