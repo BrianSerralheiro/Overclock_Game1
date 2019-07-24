@@ -65,7 +65,6 @@ public class Ship : MonoBehaviour {
 
 	void Start()
 	{
-		
 		InGame_HUD.shipHealth = 1;
 		InGame_HUD._special = 0;
 		hp=maxhp;
