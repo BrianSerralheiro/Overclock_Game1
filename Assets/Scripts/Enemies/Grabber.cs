@@ -42,7 +42,7 @@ public class Grabber : EnemyBase {
 		{
 			vector.Set(0,0,-30f);
 			transform.parent.Translate(transform.localPosition*Time.deltaTime);
-			if(transform.localPosition.y<0) transform.parent=null;
+			if(transform.localPosition.y<0.2f)transform.parent=null;
 			core.Set(1);
 		}
 		armL.localEulerAngles=vector;

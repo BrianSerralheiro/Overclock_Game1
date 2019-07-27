@@ -55,7 +55,7 @@ public class Mercenary : EnemyBase {
 
 	void Shoot()
 	{
-		timer=low?0.8f:1.5f;
+		timer=low?1f:2.5f;
 		int j=low?3:1;
 		for(int i=0;i<j;i++){
 			GameObject go = new GameObject("enemy");
