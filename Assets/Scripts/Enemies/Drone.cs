@@ -6,6 +6,8 @@ public class Drone : EnemyBase {
 	private int id;
 	private Vector3 dir=Vector3.right;
 
+	private bool dropped;
+
 	private bool _right;
 	new void Start () {
 		base.Start();
@@ -30,8 +32,9 @@ public class Drone : EnemyBase {
 	protected override void Die()
 	{
 		Destroy(gameObject);
-		if(hp<=0)
+		if(hp<=0 && !dropped)
 		{
+			dropped = true;
 			EnemySpawner.points+=points;
 			GameObject go = new GameObject("ItemDrop");
 			go.AddComponent<SpriteRenderer>();
