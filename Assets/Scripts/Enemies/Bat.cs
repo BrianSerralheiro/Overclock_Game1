@@ -11,7 +11,8 @@ public class Bat : EnemyBase {
 	new void Start () {
 		base.Start();
 		explosionID = 9;
-		hp=20;
+		hp=10;
+		points=10;
 		GameObject go=new GameObject("wingL");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bat[1];
 		wingL=go.transform;

@@ -12,7 +12,7 @@ public class Header : EnemyBase {
 	new void Start () {
 		base.Start();
 		explosionID = 9;
-		hp=100;
+		hp=70;
 		points=180;
 		GameObject go=new GameObject("eyes");
 		eyes=go.AddComponent<Core>().Set(SpriteBase.I.header[1],new Color(0.4f,0f,0f));
