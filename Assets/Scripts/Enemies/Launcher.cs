@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Launcher : EnemyBase {
 	private float timer=5;
+	private float spd;
 	private Transform rocket;
 	private Transform burst;
 	private Vector3 rot;
@@ -23,6 +24,7 @@ public class Launcher : EnemyBase {
 	private void Create()
 	{
 		timer=3;
+		spd=0;
 		GameObject go = new GameObject("enemy");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.launcher[1];
 		go.AddComponent<Missile>().SetHP(30);
@@ -57,11 +59,15 @@ public class Launcher : EnemyBase {
 			core.Add(Time.deltaTime*2);
 			if(rocket)
 			{
-				scale.y=1;
+				spd+=Time.deltaTime/2;
+				if(spd>1)spd=1;
+				scale.y=spd*5;
 				burst.localScale=scale;
-				rot.z=(Mathf.Atan2(rocket.position.x-player.position.x,player.position.y-rocket.position.y)*Mathf.Rad2Deg);
-				rocket.eulerAngles=rot;
-				rocket.Translate(0,Time.deltaTime*4,0);
+				Vector3 v=rocket.position-player.position;
+				v.z=0;
+				v.Normalize();
+				rocket.Rotate(Vector3.Cross(v,rocket.up)*Time.deltaTime*270f*spd);
+				rocket.Translate(0,Time.deltaTime*8*spd,0);
 			}
 			else Create();
 		}
