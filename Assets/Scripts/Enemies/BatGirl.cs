@@ -16,7 +16,7 @@ public class BatGirl : EnemyBase {
 	new void Start () {
 		base.Start();
 		explosionID = 9;
-		hp=220;
+		hp=180;
 		points=150;
 		GameObject go = new GameObject("wingL");
 		render=go.AddComponent<SpriteRenderer>();

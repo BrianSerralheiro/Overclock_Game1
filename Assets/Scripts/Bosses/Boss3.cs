@@ -203,6 +203,7 @@ public class Boss3 : EnemyBase {
 		state=State.dead;
 		EnemySpawner.points+=1000;
 		timer=1;
+		GetComponent<BoxCollider2D>().enabled = false;
 	}
 	void Shoot(Vector3 v)
 	{
