@@ -34,7 +34,7 @@ public class Boss3 : EnemyBase {
 		damageEffect = true;
 		base.Start();
 		EnemySpawner.boss=true;
-		hp=2000;
+		hp=1800;
 		GameObject go=new GameObject("body");
 		_renderer=go.AddComponent<SpriteRenderer>();
 		_renderer.sprite=SpriteBase.I.boss3[1];

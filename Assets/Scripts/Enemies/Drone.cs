@@ -11,7 +11,7 @@ public class Drone : EnemyBase {
 	private bool _right;
 	new void Start () {
 		base.Start();
-		hp=80;
+		hp=40;
 	}
 	
 	// Update is called once per frame
