@@ -9,7 +9,7 @@ public class Slasher : EnemyBase {
 	new void Start () {
 		base.Start();
 		explosionID = 10;
-		hp=40;
+		hp=90;
 	}
 
 	new void Update()
@@ -24,7 +24,7 @@ public class Slasher : EnemyBase {
 		if(transform.position.y>Scaler.sizeY/3) transform.Translate(0,-Time.deltaTime,0);
 		if(timer<=0)
 		{
-			timer=1.5f;
+			timer=2;
 			Shoot();
 		}
 	}
