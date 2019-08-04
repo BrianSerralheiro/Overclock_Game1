@@ -59,7 +59,7 @@ public class Boss4 : EnemyBase {
 		zap=go.AddComponent<SpriteRenderer>();
 		zap.sprite=SpriteBase.I.zapper[1];
 		BoxCollider2D col = go.AddComponent<BoxCollider2D>();
-		col.size=new Vector2(0.7f,4);
+		col.size=new Vector2(0.7f,8);
 		col.offset=new Vector2(0,2.2f);
 		go.transform.localScale=new Vector3(2,2);
 		go.transform.parent=energy.transform;
@@ -146,8 +146,6 @@ public class Boss4 : EnemyBase {
 					{
 						if(final.position.y==Scaler.sizeY+5)
 						SoundManager.PlayEffects(19);
-						//transform.Translate(0,Time.deltaTime,0);
-						//transform.Translate(-transform.position.x*Time.deltaTime,0,0);
 						final.Translate(0,-Time.deltaTime,0);
 						if(timer<=0)
 						{
@@ -357,10 +355,6 @@ public class Boss4 : EnemyBase {
 	{
 		GameObject go = new GameObject("enemy");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bomber[1];
-		go.AddComponent<BoxCollider2D>();
-		Rigidbody2D r = go.AddComponent<Rigidbody2D>();
-		r.isKinematic=true;
-		r.useFullKinematicContacts=true;
 		go.AddComponent<Bomb>();
 		go.transform.position=transform.position+vec*(left ? 1 : -1)+mod;
 		left=!left;

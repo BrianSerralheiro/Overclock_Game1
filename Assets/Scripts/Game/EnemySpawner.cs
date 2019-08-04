@@ -80,12 +80,12 @@ public class EnemySpawner : MonoBehaviour {
 			}
 		}
 		while(timer<=0 && counter<wave.Length && !boss);
-		if(counter>=wave.Length)credits.SetActive(true);
+		if(counter>=wave.Length && !boss)credits.SetActive(true);
 		if(timer>0 && !boss) timer-=Time.deltaTime;
 		Vector2 v= bg.mainTextureOffset;
 		v.y+=Time.deltaTime/scroll;
-		if(worldID==2)	
-		if(v.y>0.7f) v.y=0.7f;
+		if(worldID==2)
+			if(v.y>0.7f) v.y=0.7f;
 		else
 			if(v.y>1) v.y-=1;
 		bg.mainTextureOffset=v;
