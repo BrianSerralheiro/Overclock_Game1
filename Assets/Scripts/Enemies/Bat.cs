@@ -12,7 +12,7 @@ public class Bat : EnemyBase {
 		base.Start();
 		explosionID = 9;
 		hp=10;
-		points=10;
+		points=20;
 		GameObject go=new GameObject("wingL");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bat[1];
 		wingL=go.transform;

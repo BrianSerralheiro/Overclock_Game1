@@ -43,7 +43,7 @@ public class Boss4 : EnemyBase {
 		damageEffect = true;
 		base.Start();
 		EnemySpawner.boss=true;
-		hp=1400;
+		hp=1600;
 		screens=SpriteBase.I.screens;
 		GameObject go=new GameObject("screen");
 		screenren=go.AddComponent<SpriteRenderer>();
@@ -69,7 +69,7 @@ public class Boss4 : EnemyBase {
 		if(last)
 		{
 			go.transform.localScale+=Vector3.up;
-			hp=2000;
+			hp=3200;
 			local.Set(4.4f,-1.7f,-0.1f);
 			screenren.sprite=screens[4];
 			screen=null;

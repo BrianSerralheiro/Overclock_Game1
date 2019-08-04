@@ -14,6 +14,7 @@ public class Lasor : EnemyBase
 	{
 		base.Start();
 		hp=40;
+		points = 120;
 		GameObject go = new GameObject("charge");
 		go.transform.localScale=new Vector3();
 		charge=go.AddComponent<SpriteRenderer>();

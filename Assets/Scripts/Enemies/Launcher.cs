@@ -13,6 +13,7 @@ public class Launcher : EnemyBase {
 	private Core core;
 	new void Start () {
 		base.Start();
+		points = 100;
 		hp=40;
 		Create();
 		timer=5;

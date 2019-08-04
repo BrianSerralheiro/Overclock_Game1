@@ -10,6 +10,7 @@ public class Zapper : EnemyBase {
 	private Vector3 scale = Vector3.one;
 	new void Start () {
 		base.Start();
+		points = 150;
 		explosionID = 10;
 		hp=80;
 		GameObject go=new GameObject("zap");

@@ -19,6 +19,9 @@ public class EnemySpawner : MonoBehaviour {
 	private int worldID;
 	private int scroll=60;
 	private float transfer=1;
+	
+	[SerializeField]
+	private GameObject credits;
 
 	
 	
@@ -43,7 +46,7 @@ public class EnemySpawner : MonoBehaviour {
 	Stage 1 ID9  : U9S0T1S1T4N1T1N1T1N2N4T4O1O8T4P2T5P7T9T1Q0Q6T9T1S0T1N1T1N2T1N3T1N4T1N5T1N6T4O2O5T5P4T5
 	Stage 2 ID10 : U:S1T4P0T1P4T7O1T1T4T1O5T5N1T1N2T1N3T1N4T1N5T1N6T1N7T1N8T1N9T6S0T4Q1T1Q4T7O2T1N2T1N4T1N6T1O6T1S0T4N1T1N2T1N3T1N4T1N5T1N6T5  
 	Stage 3 ID11 : U;S0S1T4P0T1P8T1P9T9T4N1T1N4T1N4T1N1T1N7T1N7T4Q2T1Q3T1Q4T6O1T1O3T1O6T6S0S1T9V4T1R0T5 
-	Stage 4 ID12 : U<S0S1T4P9T2P8T5P9T9N1T1N3T1N3T1N3T1N1T1N4T1N6T1N6T4S0T4O2T1O3T1O4T1O5T9T2N1T1N2T3Q2T1Q4T1Q6T9S0S1T5R0	
+	Stage 4 ID12 : U<S0S1T4P9T2P8T5P9T9N1T1N3T1N3T1N3T1N1T1N4T1N6T1N6T4S0T4O2T1O3T1O4T1O5T9T2N1T1N2T3Q2T1Q4T1Q6T9S0S1S2T5R0	
 	Final Stage:
 	 */
 	void Start()
@@ -77,7 +80,7 @@ public class EnemySpawner : MonoBehaviour {
 			}
 		}
 		while(timer<=0 && counter<wave.Length && !boss);
-		//if(counter>=wave.Length)SceneManager.LoadScene(1);
+		if(counter>=wave.Length)credits.SetActive(true);
 		if(timer>0 && !boss) timer-=Time.deltaTime;
 		Vector2 v= bg.mainTextureOffset;
 		v.y+=Time.deltaTime/scroll;
@@ -97,6 +100,7 @@ public class EnemySpawner : MonoBehaviour {
 			}
 			if(transfer<-1)transfer=1;
 		}
+		
 	}
 
 	void Chose(string s)
