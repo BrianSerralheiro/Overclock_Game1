@@ -39,10 +39,6 @@ public class Bomber : EnemyBase {
 		timer=2;
 		GameObject go = new GameObject("enemy");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.bomber[1];
-		go.AddComponent<BoxCollider2D>();
-		Rigidbody2D r = go.AddComponent<Rigidbody2D>();
-		r.isKinematic=true;
-		r.useFullKinematicContacts=true;
 		go.AddComponent<Bomb>();
 		go.transform.parent=transform;
 		go.transform.localPosition=local;

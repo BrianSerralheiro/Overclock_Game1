@@ -32,12 +32,13 @@ public class ParticleManager : MonoBehaviour {
 		timer=marker=t;
 		fraction=t/(float)c;
 	}
-	/*public static void Emit(int i,Transform t,int c)
+	public static void Emit(int i,Transform t,int c)
 	{
 		sys[i].transform.forward=-t.up;
 		sys[i].transform.position=t.position+mod;
+		sys[i].transform.rotation=t.rotation;
 		sys[i].Emit(c);
-	}*/
+	}
 	public static void Emit(int i,Vector3 p,int c)
 	{
 		sys[i].transform.up=up;

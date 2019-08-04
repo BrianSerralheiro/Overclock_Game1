@@ -101,8 +101,8 @@ public class Ship : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col)
 	{
 		if(immuneTime > 0) return;
-		if(col.gameObject.name=="playerbullet") return;
-		if(col.otherCollider.name=="laser") return;
+		if(col!=null && col.gameObject.name=="playerbullet") return;
+		if(col!=null && col.otherCollider.name=="laser") return;
 		if(shielded)
 		{
 			shielded=false;
