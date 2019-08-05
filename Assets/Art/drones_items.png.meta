@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7a320699bbfeec7449884128bc0631c3
-timeCreated: 1561845364
+timeCreated: 1565014406
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -9,11 +9,11 @@ TextureImporter:
     21300004: drone_green
     21300006: 56248046_818265655201724_5374516714648109056_n_3
     21300008: 56248046_818265655201724_5374516714648109056_n_4
-    21300010: 56248046_818265655201724_5374516714648109056_n_5
-    21300012: 56248046_818265655201724_5374516714648109056_n_6
-    21300014: 56248046_818265655201724_5374516714648109056_n_7
-    21300016: 56248046_818265655201724_5374516714648109056_n_8
-    21300018: 56248046_818265655201724_5374516714648109056_n_9
+    21300010: shield
+    21300012: thunder
+    21300014: special
+    21300016: ice
+    21300018: fire
     21300020: 56248046_818265655201724_5374516714648109056_n_10
     21300022: 56248046_818265655201724_5374516714648109056_n_11
     21300024: 56248046_818265655201724_5374516714648109056_n_12
@@ -27,6 +27,13 @@ TextureImporter:
     21300040: 56248046_818265655201724_5374516714648109056_n_20
     21300042: 56248046_818265655201724_5374516714648109056_n_21
     21300044: drone_yellow
+    21300046: slash
+    21300048: shield2
+    21300050: thunder2
+    21300052: special2
+    21300054: ice2
+    21300056: fire2
+    21300058: slash2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -166,7 +173,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 56248046_818265655201724_5374516714648109056_n_5
+      name: shield
       rect:
         serializedVersion: 2
         x: 408
@@ -179,7 +186,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 56248046_818265655201724_5374516714648109056_n_6
+      name: thunder
       rect:
         serializedVersion: 2
         x: 547
@@ -192,7 +199,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 56248046_818265655201724_5374516714648109056_n_7
+      name: special
       rect:
         serializedVersion: 2
         x: 686
@@ -205,7 +212,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 56248046_818265655201724_5374516714648109056_n_8
+      name: ice
       rect:
         serializedVersion: 2
         x: 824
@@ -218,7 +225,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: 56248046_818265655201724_5374516714648109056_n_9
+      name: fire
       rect:
         serializedVersion: 2
         x: 961
@@ -383,6 +390,97 @@ TextureImporter:
         height: 147
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: slash
+      rect:
+        serializedVersion: 2
+        x: 1144
+        y: 1535
+        width: 115
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: shield2
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 1764
+        width: 113
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: thunder2
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 1770
+        width: 116
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: special2
+      rect:
+        serializedVersion: 2
+        x: 689
+        y: 1772
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ice2
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 1769
+        width: 107
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fire2
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 1769
+        width: 109
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: slash2
+      rect:
+        serializedVersion: 2
+        x: 1193
+        y: 1756
+        width: 112
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

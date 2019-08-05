@@ -6,7 +6,8 @@ public class ItemDrop : MonoBehaviour
 {
 	private int id;
 	private bool set;
-
+	private SpriteRenderer _renderer;
+	private Sprite[] sprite=new Sprite[2];
 	private Vector3 dir;
 
 	void Start () 
@@ -19,7 +20,10 @@ public class ItemDrop : MonoBehaviour
 		if(set)return;
 		set=true;
 		id = i;
-		GetComponent<SpriteRenderer>().sprite = SpriteBase.I.item[id];
+		_renderer= GetComponent<SpriteRenderer>();
+		_renderer.sprite = SpriteBase.I.item[id];
+		sprite[0] = SpriteBase.I.item[(id==2?id+Ship.playerID:id)*2];
+		sprite[1] = SpriteBase.I.item[(id==2 ? id+Ship.playerID : id)*2+1];
 		gameObject.AddComponent<BoxCollider2D>().isTrigger = true;
 	}
 	void Update () 
@@ -30,6 +34,7 @@ public class ItemDrop : MonoBehaviour
 		if(transform.position.x<-Scaler.sizeX/2f+2)dir.x=Mathf.Abs(dir.x);
 		transform.Translate(dir * Time.deltaTime * 3);
 		if(transform.position.y<-Scaler.sizeY)dir.Set(Random.value,0.5f + Random.value,0);
+		_renderer.sprite=Bullet.blink ? sprite[0]:sprite[1];
 	}
 
 	void OnTriggerEnter2D (Collider2D other)
@@ -44,11 +49,11 @@ public class ItemDrop : MonoBehaviour
 			}
 			else if(id == 1)
 			{
-				s.OnLevel();
+				InGame_HUD._special=1;
 			}
 			else if(id == 2)
 			{
-				InGame_HUD._special=1;
+				s.OnLevel();
 			}
 			Destroy(gameObject);
 		}
