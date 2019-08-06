@@ -17,6 +17,9 @@ public class RollingCredits : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		rollingCredits.Translate(0, Time.deltaTime * Screen.height / 7, 0);
+		if(!EnemySpawner.boss)
+		{
+			rollingCredits.Translate(0, Time.deltaTime * Screen.height / 7, 0);			
+		}
 	}
 }

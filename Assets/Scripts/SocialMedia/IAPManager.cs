@@ -14,8 +14,8 @@ namespace IAP
 		private static IStoreController storeController;
 		private static IExtensionProvider storeExtensionProvider;
 		
-		private static string[] products={"stars100","stars300","stars1000","premium"};
-		private static int[] values={100,300,1000};
+		private static string[] products={"starpack_1","starpack_2","starpack_3","starpack_4","premium_pack"};
+		private static int[] values={100,230,400,1000};
 
 		void Start()
 		{
@@ -42,8 +42,9 @@ namespace IAP
 			}
 
 			var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
-			for(int i=0;i<4;i++){
-				builder.AddProduct(products[i],i==3? ProductType.NonConsumable : ProductType.Consumable);
+			for(int i=0;i<5;i++)
+			{
+				builder.AddProduct(products[i],i==4? ProductType.NonConsumable : ProductType.Consumable);
 			}
 			UnityPurchasing.Initialize(this,builder);
 		}
@@ -56,7 +57,7 @@ namespace IAP
 		
 		public void BuyProduct(int id)
 		{
-			if(IsInitialized() && id>=0 && id<4)
+			if(IsInitialized() && id>=0 && id<5)
 			{
 				if(shop)shop.BroadcastMessage("OnEnale");
 				Product product = storeController.products.WithID(products[id]);
@@ -99,11 +100,11 @@ namespace IAP
 
 		public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
 		{
-			for(int i=0;i<4;i++){
+			for(int i=0;i<5;i++){
 				if(String.Equals(args.purchasedProduct.definition.id,products[i],StringComparison.Ordinal))
 				{
 					Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'",args.purchasedProduct.definition.id));
-					if(i==3)
+					if(i==4)
 						Locks.UnlockAll();
 					else 
 						Cash.totalCash += values[i];

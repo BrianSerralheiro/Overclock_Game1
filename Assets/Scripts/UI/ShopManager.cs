@@ -59,7 +59,7 @@ public class ShopManager : MonoBehaviour
 	public void Premium()
 	{
 		manager.InitializePurchasing();
-		ppop.Open("Buy the Premium Pack: Get 4 characters, 15+ skins, remove all ads, play with 3 continues!" ,IAPManager.Premium);
+		ppop.Open("Buy the Premium Pack: Unlock all characters, 15+ skins, remove all ads, play with 4 continues!" ,IAPManager.Premium);
 	}
 	public void Confirm()
 	{
