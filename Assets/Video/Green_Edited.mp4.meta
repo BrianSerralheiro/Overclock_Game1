@@ -1,29 +1,20 @@
 fileFormatVersion: 2
 guid: db78fff9606b1bd499f42e153b8c5466
-timeCreated: 1562794367
-licenseType: Free
 VideoClipImporter:
+  externalObjects: {}
   serializedVersion: 2
   useLegacyImporter: 0
   quality: 0.5
   isColorLinear: 0
-  originalWidth: 1920
-  originalHeight: 1080
   frameRange: 0
   startFrame: -1
   endFrame: -1
-  frameCount: 395
-  frameRate: 25
   colorSpace: 0
   deinterlace: 0
-  sourceFileSize: 33660367
   encodeAlpha: 0
-  sourceHasAlpha: 0
   flipVertical: 0
   flipHorizontal: 0
   importAudio: 1
-  sourceAudioChannelCount: 0200
-  sourceAudioSampleRate: 80bb0000
   targetSettings:
     0:
       enableTranscoding: 0
@@ -43,25 +34,6 @@ VideoClipImporter:
       customHeight: 1080
       bitrateMode: 1
       spatialQuality: 0
-  output:
-    format: 1
-    settings:
-      enableTranscoding: 1
-      codec: 0
-      resizeFormat: 0
-      aspectRatio: 0
-      customWidth: 1920
-      customHeight: 1080
-      bitrateMode: 1
-      spatialQuality: 0
-    encodedWidth: 960
-    encodedHeight: 540
-    encodedStartFrame: 0
-    encodedEndFrame: 395
-    streamedResource:
-      source: library/metadata/db/db78fff9606b1bd499f42e153b8c5466.resource
-      offset: 0
-      size: 2833658
   userData: 
   assetBundleName: 
   assetBundleVariant: 
