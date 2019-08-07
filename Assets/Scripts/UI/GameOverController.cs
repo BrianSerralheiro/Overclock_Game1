@@ -99,6 +99,7 @@ public class GameOverController : MonoBehaviour
 		EnemySpawner.points=0;
 		Stars.text = cashStars.ToString();
 		Cash.totalCash += cashStars;
+		Cash.Save();
 		gameoverDialog.sprite = DialogBox.getBox();
 		gameoverTEXT.fontSize = Mathf.CeilToInt(Screen.height/10/DialogBox.getSize(highscore?5:6));
 	}
@@ -118,7 +119,6 @@ public class GameOverController : MonoBehaviour
 	
 	public static void Open(Ship s)
 	{
-		//adsManager.RequestVideo();
 		ship = s;
 		enable();
 		menu.SetActive(true);

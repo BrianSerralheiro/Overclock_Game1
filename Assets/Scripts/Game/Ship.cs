@@ -154,6 +154,7 @@ public class Ship : MonoBehaviour {
 			freezeTimer -= Time.deltaTime;
 			if(freezeTimer<=0)
 			{
+				burst.gameObject.SetActive(true);
 				_renderer.enabled=true;
 				GameObject go = new GameObject("playerbullet");
 				go.AddComponent<BoxCollider2D>().size=new Vector2(10,20);
@@ -177,16 +178,12 @@ public class Ship : MonoBehaviour {
 			damageTimer -= Time.deltaTime;
 			_renderer.color = Color.Lerp(Color.white,Color.red,damageTimer);
 		}
-		if(Input.GetKeyDown(KeyCode.Space))Special();
-		if(Input.GetKeyDown(KeyCode.Alpha1))OnLevel(1);
-		if(Input.GetKeyDown(KeyCode.Alpha2))OnLevel(2);
-		if(Input.GetKeyDown(KeyCode.Alpha3))OnLevel(3);
 		moveto.Set(Input.mousePosition.x/width*Scaler.sizeX-Scaler.x,Input.mousePosition.y/height*Scaler.sizeY*2f-Scaler.sizeY,-0.1f);
 		if(shielded)shield.Add(Time.deltaTime);
 		else shield.Min(Time.deltaTime);
 		if(Input.GetMouseButtonDown(0))
 		{
-			if(Time.time<clickTime+0.5f && InGame_HUD._special >= 0)
+			if(Time.time<clickTime+0.5f && InGame_HUD._special >= 1)
 			{
 				InGame_HUD._special=0;
 				Special();
@@ -264,6 +261,7 @@ public class Ship : MonoBehaviour {
 				immuneTime=3;
 				freezeTimer=2;
 				_renderer.enabled=false;
+				burst.gameObject.SetActive(false);
 				break;
 		}
 	}

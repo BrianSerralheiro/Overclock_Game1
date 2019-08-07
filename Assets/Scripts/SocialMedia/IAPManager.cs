@@ -59,22 +59,20 @@ namespace IAP
 		{
 			if(IsInitialized() && id>=0 && id<5)
 			{
-				if(shop)shop.BroadcastMessage("OnEnale");
 				Product product = storeController.products.WithID(products[id]);
 
 				if(product != null && product.availableToPurchase)
 				{
-					Debug.Log(string.Format("Purchasing product asychronously: '{0}'",product.definition.id));
 					storeController.InitiatePurchase(product);
 				}
 				else
 				{
-					Debug.Log("BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase");
+					Warning.Open("BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase");
 				}
 			}
 			else
 			{
-				Debug.Log("BuyProductID FAIL. Not initialized.");
+				Warning.Open("BuyProductID FAIL. Not initialized.");
 			}
 		}
 
@@ -83,9 +81,7 @@ namespace IAP
 		//
 
 		public void OnInitialized(IStoreController controller,IExtensionProvider extensions)
-		{
-			Debug.Log("OnInitialized: PASS");
-			
+		{	
 			storeController = controller;
 			storeExtensionProvider = extensions;
 		}
@@ -93,8 +89,7 @@ namespace IAP
 
 		public void OnInitializeFailed(InitializationFailureReason error)
 		{
-			//TODO avisar player com um popup
-			Debug.Log("OnInitializeFailed InitializationFailureReason:" + error);
+			Warning.Open("Initialization failed, Reason:" + error);
 		}
 
 
@@ -103,24 +98,24 @@ namespace IAP
 			for(int i=0;i<5;i++){
 				if(String.Equals(args.purchasedProduct.definition.id,products[i],StringComparison.Ordinal))
 				{
-					Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'",args.purchasedProduct.definition.id));
+					Warning.Open("Purchase Succsefull! Thank you for your buy.");
+					if(shop) shop.BroadcastMessage("OnEnale");
 					if(i==4)
 						Locks.UnlockAll();
 					else 
 						Cash.totalCash += values[i];
+					Cash.Save();
 					return PurchaseProcessingResult.Complete;
 				}
 			}
-			//esse erro só deve ocorrer se algum ID estiver errado
-			Debug.Log(string.Format("ProcessPurchase: FAIL. Unrecognized product: '{0}'",args.purchasedProduct.definition.id));
+			Warning.Open(string.Format("ProcessPurchase: FAIL. Unrecognized product: '{0}'",args.purchasedProduct.definition.id));
 			return PurchaseProcessingResult.Complete;
 		}
 
 
 		public void OnPurchaseFailed(Product product,PurchaseFailureReason failureReason)
 		{
-			//TODO avisar ao playr sobre a falhacom um popup
-			Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}",product.definition.storeSpecificId,failureReason));
+			Warning.Open(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}",product.definition.storeSpecificId,failureReason));
 		}
 	}
 }

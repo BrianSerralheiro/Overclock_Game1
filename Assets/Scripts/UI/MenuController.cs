@@ -80,6 +80,11 @@ public class MenuController : MonoBehaviour
 	public void SwitchMenu(int i)
 	{
 		SoundManager.PlayEffects(0);
+		if(Locks.IsPremium() && (i==2 || i==3))
+		{
+			Warning.Open("You are a premuim user, you already have everything in the store!");
+			return;
+		}
 		if(i == 0)
 		{
 			IAPManager.Denitialize();

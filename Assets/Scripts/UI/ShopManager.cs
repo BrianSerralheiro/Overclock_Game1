@@ -23,11 +23,6 @@ public class ShopManager : MonoBehaviour
 	private int price;
 	private int id;
 	private bool cha;
-	void OnEnable() 
-	{
-		//if(Locks.IsPremium())Warning.Open("You are  premuim user, you already have everything in the store!");
-
-	}
 	public void BuySkin(int i)
 	{
 		if(skinPrices[i]<=Cash.totalCash)
@@ -64,6 +59,7 @@ public class ShopManager : MonoBehaviour
 	public void Confirm()
 	{
 		Cash.totalCash-=price;
+		Cash.Save();
 		if(cha)Locks.Char(id,true);
 		else Locks.Skin(id,true);
 		gameObject.BroadcastMessage("OnEnable");

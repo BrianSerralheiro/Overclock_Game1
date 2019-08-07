@@ -12,17 +12,13 @@
 		private static bool revive;
 		public static void RequestVideo()
 		{
-			/*video=RewardBasedVideoAd.Instance;
-			video.OnAdFailedToLoad += OnLoadFailed;
-			video.OnAdRewarded +=HandleReward;
-			video.OnAdLoaded += OnLoadVideo;*/
+			if(Locks.IsPremium())return;
 			//ID REAL: ca-app-pub-1044537920504306/7358635834
 			string id ="ca-app-pub-3940256099942544/5224354917";
 			//video=RewardBasedVideoAd.Instance;
 			//ONLY FOR RELEASE
 			//AdRequest request=new AdRequest.Builder().Build();
 			AdRequest request = new AdRequest.Builder().AddTestDevice("351862082077759").Build();
-			//video.OnAdRewarded +=HandleReward;
 			video.LoadAd(request,id);
 		}
 
@@ -47,6 +43,7 @@
 			}
 			else {
 				Cash.totalCash += 20;
+				Cash.Save();
 				Warning.Open("Received 20 stars!");
 			}
 		}
@@ -55,23 +52,13 @@
 		{
 			MobileAds.Initialize(appID);
 			video=RewardBasedVideoAd.Instance;
-			video.OnAdCompleted += OnAdCompleted;
 			video.OnAdFailedToLoad += OnLoadFailed;
 			video.OnAdRewarded += HandleReward;
-			video.OnAdLoaded += OnLoadVideo;
-		}
-		private static void OnLoadVideo (object o, EventArgs a)
-		{
-		}
-
-		private static void OnAdCompleted (object o, EventArgs a)
-		{
-
 		}
 
 		private static void OnLoadFailed(object o, AdFailedToLoadEventArgs a)
 		{
-			Warning.Open(o.ToString()+":"+a.Message);
+			Warning.Open("Ad failed to load.");
 		}
 
 		} }

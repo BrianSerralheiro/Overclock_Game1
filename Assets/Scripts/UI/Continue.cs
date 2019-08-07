@@ -44,11 +44,19 @@ public class Continue : MonoBehaviour
 	}
 	public void buyContinue()
 	{
-		SoundManager.PlayEffects(0);
-		continues--;
-		gameObject.SetActive(false);
-		Active(false);
-		ship.Revive();
+		if(Cash.totalCash>=5){
+			Cash.totalCash-=5;
+			Cash.Save();
+			SoundManager.PlayEffects(0);
+			continues--;
+			gameObject.SetActive(false);
+			Active(false);
+			ship.Revive();
+		}
+		else
+		{
+			SoundManager.PlayEffects(11);
+		}
 	}
 
 }

@@ -10,12 +10,15 @@ public class Cash : MonoBehaviour
 
 	public static int totalCash;
 	
-	void Start () 
+	void Start()
 	{
 		totalCash = PlayerPrefs.GetInt("cash");
 	}
-	
-	void Update () 
+	public static void Save()
+	{
+		PlayerPrefs.SetInt("cash",totalCash);
+	}
+	void Update()
 	{
 		cash.text = totalCash.ToString();
 	}
