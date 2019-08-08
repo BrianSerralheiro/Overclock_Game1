@@ -95,7 +95,7 @@ public class GameOverController : MonoBehaviour
 		panel.sprite=panels[Ship.playerID];
 		image.sprite=chars[Ship.playerID * 2 + (highscore ? 1:0)];
 		Score.text = EnemySpawner.points.ToString();
-		int cashStars = EnemySpawner.points /200;
+		int cashStars = EnemySpawner.points / 400;
 		EnemySpawner.points=0;
 		Stars.text = cashStars.ToString();
 		Cash.totalCash += cashStars;
