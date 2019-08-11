@@ -189,7 +189,7 @@ public class Ship : MonoBehaviour {
 				Special();
 			}
 			clickTime=Time.time;
-			if(Mathf.Abs(moveto.x-transform.position.x)>1 || Mathf.Abs(moveto.y-transform.position.y)>1)
+			if(Mathf.Abs(moveto.x-transform.position.x)>2 || Mathf.Abs(moveto.y-transform.position.y)>1)
 				offset.Set(0,0,0);
 			else offset=transform.position-moveto;
 		}
@@ -219,6 +219,8 @@ public class Ship : MonoBehaviour {
 				offset=transform.position-moveto;
 			v=transform.position;
 			v.z=-0.1f;
+			v.x=Mathf.Clamp(v.x,-Scaler.sizeX/2+0.5f,Scaler.sizeX/2-0.5f);
+			v.y=Mathf.Clamp(v.y,-Scaler.sizeY+1f,Scaler.sizeY-1f);
 			transform.position=v;
 		}
 	}

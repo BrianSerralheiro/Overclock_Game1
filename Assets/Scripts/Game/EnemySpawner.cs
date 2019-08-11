@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour {
 	public static int points;
 	public static bool boss;
 	private int counter;
-	public static float timer;
+	public float timer;
 	[SerializeField]
 	private Texture[] mundos;
 	[SerializeField]
