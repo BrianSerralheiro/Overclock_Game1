@@ -189,7 +189,7 @@ public class Ship : MonoBehaviour {
 				Special();
 			}
 			clickTime=Time.time;
-			if(Mathf.Abs(moveto.x-transform.position.x)>2 || Mathf.Abs(moveto.y-transform.position.y)>1)
+			if(Mathf.Abs(moveto.x-transform.position.x)>1 || Mathf.Abs(moveto.y+2-transform.position.y)>1)
 				offset.Set(0,0,0);
 			else offset=transform.position-moveto;
 		}
@@ -213,10 +213,12 @@ public class Ship : MonoBehaviour {
 			v = transform.localEulerAngles;
 			v.Set(0,f>0.5 ? -35f : f<-0.5 ? 35f : 0,0);
 			transform.localEulerAngles=v;
-			if(Mathf.Abs(moveto.x+offset.x-transform.position.x)>0.1f || Mathf.Abs(moveto.y+offset.y-transform.position.y)>0.1f)
-			 transform.Translate((moveto+offset-transform.position).normalized*speed*Time.deltaTime);
-			if(offset==Vector3.zero && !(Mathf.Abs(moveto.x-transform.position.x)>1 || Mathf.Abs(moveto.y-transform.position.y)>1))
+			if(offset==Vector3.zero && !(Mathf.Abs(moveto.x-transform.position.x)>1 || Mathf.Abs(moveto.y+2-transform.position.y)>1))
 				offset=transform.position-moveto;
+			if(Mathf.Abs(moveto.x+offset.x-transform.position.x)>0.5f || Mathf.Abs(moveto.y+offset.y-transform.position.y)>0.5f)
+				transform.Translate((moveto+offset-transform.position).normalized*speed*Time.deltaTime);
+			else
+				transform.position=moveto+offset;
 			v=transform.position;
 			v.z=-0.1f;
 			v.x=Mathf.Clamp(v.x,-Scaler.sizeX/2+0.5f,Scaler.sizeX/2-0.5f);
