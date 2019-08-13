@@ -215,7 +215,7 @@ public class Ship : MonoBehaviour {
 			transform.localEulerAngles=v;
 			if(offset==Vector3.zero && !(Mathf.Abs(moveto.x-transform.position.x)>1 || Mathf.Abs(moveto.y+2-transform.position.y)>1))
 				offset=transform.position-moveto;
-			if(Mathf.Abs(moveto.x+offset.x-transform.position.x)>0.5f || Mathf.Abs(moveto.y+offset.y-transform.position.y)>0.5f)
+			if(Mathf.Abs(moveto.x+offset.x-transform.position.x)>0.8f || Mathf.Abs(moveto.y+offset.y-transform.position.y)>0.8f)
 				transform.Translate((moveto+offset-transform.position).normalized*speed*Time.deltaTime);
 			else
 				transform.position=moveto+offset;
