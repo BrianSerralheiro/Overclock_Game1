@@ -82,7 +82,7 @@ public class MenuController : MonoBehaviour
 		SoundManager.PlayEffects(0);
 		if(Locks.IsPremium() && (i==2 || i==3))
 		{
-			Warning.Open("You are a premuim user, you already have everything in the store!");
+			Warning.Open("You are a premium user, you already owns everything!");
 			return;
 		}
 		if(i == 0)

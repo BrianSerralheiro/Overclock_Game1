@@ -67,7 +67,7 @@ namespace IAP
 				}
 				else
 				{
-					Warning.Open("BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase");
+					Warning.Open("BuyProductID: FAIL. product not purchased, either is not found or is not available for purchase");
 				}
 			}
 			else
@@ -98,7 +98,7 @@ namespace IAP
 			for(int i=0;i<5;i++){
 				if(String.Equals(args.purchasedProduct.definition.id,products[i],StringComparison.Ordinal))
 				{
-					Warning.Open("Purchase Succsefull! Thank you for your buy.");
+					Warning.Open("Purchase Succsefull! Thank you for supporting us.");
 					if(shop) shop.BroadcastMessage("OnEnale");
 					if(i==4)
 						Locks.UnlockAll();

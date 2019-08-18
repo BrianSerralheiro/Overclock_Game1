@@ -28,8 +28,7 @@ public class Ship : MonoBehaviour {
 	private float[] sizes;
 	[SerializeField]
 	private Sprite[] charPics;
-	[SerializeField]
-	private Vector3 offset;
+	private Vector3 offset = Vector3.up;
 	[SerializeField]
 	private float speed=5f;
 	[SerializeField]
@@ -189,9 +188,6 @@ public class Ship : MonoBehaviour {
 				Special();
 			}
 			clickTime=Time.time;
-			if(Mathf.Abs(moveto.x-transform.position.x)>1 || Mathf.Abs(moveto.y+2-transform.position.y)>1)
-				offset.Set(0,0,0);
-			else offset=transform.position-moveto;
 		}
 		if(shoottimer>0) shoottimer-=Time.deltaTime;
 		if(Input.GetMouseButton(0))
@@ -209,13 +205,11 @@ public class Ship : MonoBehaviour {
 			Vector3 v= burst.localScale;
 			v.Set(1,f>0.1?5:f<-0.1?1:3,1);
 			burst.localScale=v;
-			f = moveto.x+offset.x-transform.position.x;
+			f = moveto.x-transform.position.x;
 			v = transform.localEulerAngles;
 			v.Set(0,f>0.5 ? -35f : f<-0.5 ? 35f : 0,0);
 			transform.localEulerAngles=v;
-			if(offset==Vector3.zero && !(Mathf.Abs(moveto.x-transform.position.x)>1 || Mathf.Abs(moveto.y+2-transform.position.y)>1))
-				offset=transform.position-moveto;
-			if(Mathf.Abs(moveto.x+offset.x-transform.position.x)>0.8f || Mathf.Abs(moveto.y+offset.y-transform.position.y)>0.8f)
+			if(Mathf.Abs(moveto.x-transform.position.x)>0.8f || Mathf.Abs(moveto.y+offset.y-transform.position.y)>0.8f)
 				transform.Translate((moveto+offset-transform.position).normalized*speed*Time.deltaTime);
 			else
 				transform.position=moveto+offset;
