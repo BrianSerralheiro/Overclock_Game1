@@ -69,7 +69,7 @@ public class EnemySpawner : MonoBehaviour {
 	void Update()
 	{
 		if(Ship.paused) return;
-		if(merc && points>20000 && timer>5)merc.SetActive(true);
+		if(merc && points>15000 && timer>7)merc.SetActive(true);
 		do
 		{
 			if(timer<=0 && counter<wave.Length && !boss)
