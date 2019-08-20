@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bat : EnemyBase {
+public class Bat : EnemyBase 
+{
 	private Transform wingL;
 	private Transform wingR;
 	private Vector3 vector=new Vector3();
 	public Vector3 target=new Vector3();
 
-	new void Start () {
+
+	new void Start () 
+	{
 		base.Start();
 		explosionID = 9;
 		hp=10;
@@ -35,12 +38,13 @@ public class Bat : EnemyBase {
 			target.Set(transform.position.x+(i==8 ? 5: -5),transform.position.y,0);
 		}
 	}
-	new void Update () {
+	new void Update () 
+	{
 		if(Ship.paused) return;
 		base.Update();
-		vector.Set(0,0,Mathf.PingPong(Time.time*300,-45f)+60f);
-		wingL.localEulerAngles=vector;
-		wingR.localEulerAngles=-vector;
+		vector.Set(0,0,Mathf.PingPong(Time.time*300,60f)-60f);
+		wingL.eulerAngles=vector;
+		wingR.eulerAngles=-vector;
 		Vector3 pos=transform.position;
 		pos=Vector3.MoveTowards(pos,target,Time.deltaTime*3);
 		if((target-pos).sqrMagnitude<0.2f)target=pos+(player.position-pos).normalized*8;
