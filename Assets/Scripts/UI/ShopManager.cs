@@ -30,11 +30,11 @@ public class ShopManager : MonoBehaviour
 			price=skinPrices[i];
 			cha=false;
 			id=i;
-			pop.Open("Buy skin "+skinNames[i]+", for "+price+" stars?",Confirm);
+			pop.Open("Buy skin "+skinNames[i]+" for "+price+" stars?",Confirm);
 		}
 		else
 		{
-			Warning.Open("You need "+skinPrices[i]+" stars, to buy this skin!");
+			Warning.Open("You need "+skinPrices[i]+" stars to buy this skin!");
 		}
 	}
 	public void BuyChar(int i)
@@ -44,11 +44,11 @@ public class ShopManager : MonoBehaviour
 			price=charPrices[i];
 			cha=true;
 			id=i;
-			pop.Open("Buy pilot "+charNames[i]+", for "+price+" stars?",Confirm);
+			pop.Open("Buy pilot "+charNames[i]+" for "+price+" stars?",Confirm);
 		}
 		else
 		{
-			Warning.Open("You need "+charPrices[i]+" stars, to buy this pilot!");
+			Warning.Open("You need "+charPrices[i]+" stars to buy this pilot!");
 		}
 	}
 	public void Premium()

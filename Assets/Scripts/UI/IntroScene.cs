@@ -21,8 +21,6 @@ public class IntroScene : MonoBehaviour
 
 	void Start () 
 	{
-		Locks.UnlockAll();
-		//PlayerPrefs.DeleteAll();
 		adsManager.Initialize();
 		adsManager.RequestVideo();
 	}

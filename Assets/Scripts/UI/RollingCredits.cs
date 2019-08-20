@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RollingCredits : MonoBehaviour 
 {
@@ -20,6 +21,10 @@ public class RollingCredits : MonoBehaviour
 		if(!EnemySpawner.boss)
 		{
 			rollingCredits.Translate(0, Time.deltaTime * Screen.height / 7, 0);			
+		}
+		if(rollingCredits.position.y > Scaler.sizeY + 11000)
+		{
+			SceneManager.LoadScene("MainMenu");
 		}
 	}
 }
