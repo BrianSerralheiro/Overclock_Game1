@@ -109,6 +109,10 @@ public class Ship : MonoBehaviour {
 		}
 		if(--hp<=0)
 		{
+			if(Level>1)
+			{
+				OnLevel(--Level);
+			}
 			SoundManager.PlayEffects(10, 1, 0);
 			paused = true;
 			gameObject.SetActive(false);
@@ -147,6 +151,17 @@ public class Ship : MonoBehaviour {
 		if(immuneTime > 0)
 			{
 			immuneTime -= Time.deltaTime;
+			Color c = _renderer.color;
+			if(immuneTime <= 0)
+			{
+				c.a = 1;
+			}
+			else
+			{
+				c.a = Mathf.Abs(Mathf.Cos(immuneTime * 20));
+			}
+			_renderer.color = c;
+			
 		}
 		if(freezeTimer > 0)
 		{
@@ -230,7 +245,10 @@ public class Ship : MonoBehaviour {
 
 	public void OnLevel()
 	{
-		OnLevel(++Level);
+		if(Level<3)
+		{
+			OnLevel(++Level);
+		}
 	}
 
 

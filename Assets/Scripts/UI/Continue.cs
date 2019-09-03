@@ -17,7 +17,6 @@ public class Continue : MonoBehaviour
 	private int continues;
 	private void Update()
 	{
-		button.interactable=adsManager.LoadedVideo();
 		if(!Ship.paused)
 		{
 			gameObject.SetActive(false);
@@ -36,7 +35,14 @@ public class Continue : MonoBehaviour
 	{
 		SoundManager.PlayEffects(0);
 		continues--;
-		adsManager.ShowAd(true);
+		if(adsManager.LoadedVideo())
+		{
+			adsManager.ShowAd(true);
+		}
+		else
+		{
+			ship.Revive();
+		}		
 	}
 	public bool HasContinue()
 	{

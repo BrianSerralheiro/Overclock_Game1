@@ -52,7 +52,7 @@ public class GameOverController : MonoBehaviour
 		enable=Enable;
 		menu = gameObject;
 		gameObject.SetActive(false);
-		cont.Continues(Locks.IsPremium() ? 4 : 2);
+		cont.Continues(Locks.IsPremium() ? 5 : 3);
 	}
 
 	void Update ()

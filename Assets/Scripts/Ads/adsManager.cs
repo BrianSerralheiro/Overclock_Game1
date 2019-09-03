@@ -1,64 +1,54 @@
 ﻿	using System;
 	using System.Collections.Generic;
-	using GoogleMobileAds.Api;
 	using UnityEngine;
+	using UnityEngine.Advertisements;
+
 	namespace ADs{
 	public static class adsManager 
 	{
-		private static string appID="ca-app-pub-1044537920504306~1035225471";
-		private static RewardBasedVideoAd video;
+		private static string appID="3278506";
 
-		public delegate void Dele();
 		private static bool revive;
-		public static void RequestVideo()
-		{
-			if(Locks.IsPremium())return;
-			//ID REAL: ca-app-pub-1044537920504306/7358635834
-			string id ="ca-app-pub-3940256099942544/5224354917";
-			//video=RewardBasedVideoAd.Instance;
-			//ONLY FOR RELEASE
-			//AdRequest request=new AdRequest.Builder().Build();
-			AdRequest request = new AdRequest.Builder().AddTestDevice("351862082077759").Build();
-			video.LoadAd(request,id);
-		}
+
+		private static ShowOptions options = new ShowOptions{resultCallback = HandleReward};
 
 		public static bool LoadedVideo()
 		{
-			return video!=null && video.IsLoaded();
+			return Advertisement.IsReady();
 		}
 		public static void ShowAd(bool d)
 		{
 			if(LoadedVideo())
 			{
-				video.Show();
+				Advertisement.Show(options);
 				revive=d;
 			}
 		}
-		public static void HandleReward(object sender,Reward reward)
+		public static void HandleReward(ShowResult result)
 		{
-			RequestVideo();
-			if(revive)
+			switch(result)
 			{
+				case ShowResult.Finished:
+				if(revive)
+				{
 				EnemyBase.player.GetComponent<Ship>().Revive();
-			}
-			else {
+				}
+				else 
+				{
 				Cash.totalCash += 20;
 				Cash.Save();
 				Warning.Open("Received 20 stars!");
+				}
+				break;
+				case ShowResult.Failed:
+				Warning.Open("Ad failed to load.");
+				break;
 			}
 		}
 
 		public static void Initialize()
 		{
-			MobileAds.Initialize(appID);
-			video=RewardBasedVideoAd.Instance;
-			video.OnAdFailedToLoad += OnLoadFailed;
-			video.OnAdRewarded += HandleReward;
-		}
-
-		private static void OnLoadFailed(object o, AdFailedToLoadEventArgs a)
-		{
-			Warning.Open("Ad failed to load.");
+			Advertisement.Initialize(appID, true);
 		}
 
 		} }

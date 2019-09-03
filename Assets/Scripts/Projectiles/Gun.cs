@@ -15,6 +15,8 @@ public class Gun : MonoBehaviour {
 	[SerializeField]
 	private int particleID;
 
+	public bool minusPower;
+
 	public virtual void Shoot()
 	{
 		if(!gameObject.activeSelf)return;
@@ -33,6 +35,13 @@ public class Gun : MonoBehaviour {
 	}
 	public virtual void Level(int i)
 	{
-		gameObject.SetActive(level<=i);
+		if(minusPower && i==1)
+		{
+			gameObject.SetActive(true);
+		}
+		else
+		{
+			gameObject.SetActive(level<=i);
+		}
 	}
 }

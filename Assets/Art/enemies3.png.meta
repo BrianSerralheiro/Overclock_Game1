@@ -212,8 +212,8 @@ TextureImporter:
       name: header_eyes
       rect:
         serializedVersion: 2
-        x: 1397
-        y: 1632
+        x: 1421
+        y: 1646
         width: 170
         height: 76
       alignment: 0
@@ -527,10 +527,10 @@ TextureImporter:
       name: shot_1
       rect:
         serializedVersion: 2
-        x: 711
-        y: 1910
-        width: 86
-        height: 88
+        x: 740
+        y: 1906
+        width: 63
+        height: 60
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -548,10 +548,10 @@ TextureImporter:
       name: shot_2
       rect:
         serializedVersion: 2
-        x: 843
-        y: 1894
-        width: 84
-        height: 85
+        x: 835
+        y: 1890
+        width: 57
+        height: 57
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

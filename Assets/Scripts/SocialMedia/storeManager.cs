@@ -27,7 +27,7 @@ public class storeManager : MonoBehaviour
 				PlayerPrefs.SetString("adday",webRequest.GetResponseHeader("date").Substring(0,10));
 				watched = false;
 			}
-			ad.interactable=PlayerPrefs.GetString("adday")!=webRequest.GetResponseHeader("date").Substring(0,10);
+			ad.interactable= adsManager.LoadedVideo() && PlayerPrefs.GetString("adday")!=webRequest.GetResponseHeader("date").Substring(0,10);
 			webRequest = UnityWebRequest.Get("https://www.worldtimeserver.com");
 			webRequest.Send();
 			//Enable();
@@ -56,8 +56,9 @@ public class storeManager : MonoBehaviour
 	{
 		PlayerPrefs.SetInt("invite",0);
 		//precisa mudar o link
-		Application.OpenURL("https://www.facebook.com/sharer/sharer?u=www.facebook.com/OverclockEntretenimento");
+		Application.OpenURL("https://www.facebook.com/sharer/sharer?u=https://youtu.be/iHUDvD6dMAE");
 		Enable();
+		Warning.Open("You got 20 Stars!");
 	}
 
 	public void shareApp()
@@ -65,6 +66,7 @@ public class storeManager : MonoBehaviour
 		PlayerPrefs.SetInt("share",0);
 		Application.OpenURL("https://www.facebook.com/sharer/sharer?u=www.facebook.com/OverclockEntretenimento");
 		Enable();
+		Warning.Open("You got 20 Stars!");
 	}
 
 	public void playAD()
@@ -73,6 +75,7 @@ public class storeManager : MonoBehaviour
 		webRequest = UnityWebRequest.Get("https://www.worldtimeserver.com");
 		webRequest.Send();
 		adsManager.ShowAd(false);
+		Warning.Open("You got 20 Stars!");
 	}
 
 	public void facebookPage()
@@ -80,5 +83,7 @@ public class storeManager : MonoBehaviour
 		PlayerPrefs.SetInt("like",0);
 		Application.OpenURL("https://www.facebook.com/OverclockEntretenimento/");
 		Enable();
+		Cash.totalCash += 20;
+		Warning.Open("You got 20 Stars!");
 	}
 }

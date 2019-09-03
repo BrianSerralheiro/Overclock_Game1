@@ -22,7 +22,7 @@ public class RollingCredits : MonoBehaviour
 		{
 			rollingCredits.Translate(0, Time.deltaTime * Screen.height / 7, 0);			
 		}
-		if(rollingCredits.position.y > Scaler.sizeY + 11000)
+		if(rollingCredits.position.y > Screen.height + 8000)
 		{
 			SceneManager.LoadScene("MainMenu");
 		}

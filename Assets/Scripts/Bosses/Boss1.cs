@@ -30,11 +30,15 @@ public class Boss1 : EnemyBase {
 		hp=1000;
 		GameObject go = new GameObject("wingL");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss1[1];
-		go.AddComponent<BoxCollider2D>();
+		BoxCollider2D box = go.AddComponent<BoxCollider2D>();
+		box.size = new Vector2(1.2f,4);
+		box.offset = new Vector2(0,-2f);
 		wingL=go.transform;
 		go = new GameObject("wingR");
 		go.AddComponent<SpriteRenderer>().sprite=SpriteBase.I.boss1[2];
-		go.AddComponent<BoxCollider2D>();
+		box = go.AddComponent<BoxCollider2D>();
+		box.size = new Vector2(1.2f,4);
+		box.offset = new Vector2(0,-2f);
 		wingR=go.transform;
 		wingL.parent=wingR.parent=transform;
 		wingL.localPosition=new Vector3(0.7f,1.9f,-0.1f);

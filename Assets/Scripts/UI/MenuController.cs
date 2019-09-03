@@ -83,7 +83,7 @@ public class MenuController : MonoBehaviour
 		if(Locks.IsPremium() && (i==2 || i==3))
 		{
 			Warning.Open("You are a premium user, you already owns everything!");
-			return;
+			//return;
 		}
 		if(i == 0)
 		{
