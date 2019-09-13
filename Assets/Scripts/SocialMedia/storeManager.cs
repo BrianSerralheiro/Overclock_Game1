@@ -58,6 +58,8 @@ public class storeManager : MonoBehaviour
 		//precisa mudar o link
 		Application.OpenURL("https://www.facebook.com/sharer/sharer?u=https://youtu.be/iHUDvD6dMAE");
 		Enable();
+		Cash.totalCash += 20;
+		Cash.Save();
 		Warning.Open("You got 20 Stars!");
 	}
 
@@ -66,6 +68,8 @@ public class storeManager : MonoBehaviour
 		PlayerPrefs.SetInt("share",0);
 		Application.OpenURL("https://www.facebook.com/sharer/sharer?u=www.facebook.com/OverclockEntretenimento");
 		Enable();
+		Cash.totalCash += 20;
+		Cash.Save();
 		Warning.Open("You got 20 Stars!");
 	}
 
@@ -84,6 +88,7 @@ public class storeManager : MonoBehaviour
 		Application.OpenURL("https://www.facebook.com/OverclockEntretenimento/");
 		Enable();
 		Cash.totalCash += 20;
+		Cash.Save();
 		Warning.Open("You got 20 Stars!");
 	}
 }

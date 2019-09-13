@@ -14,7 +14,7 @@
 
 		public static bool LoadedVideo()
 		{
-			return Advertisement.IsReady();
+			return !Locks.IsPremium() && Advertisement.IsReady();
 		}
 		public static void ShowAd(bool d)
 		{
@@ -48,7 +48,7 @@
 
 		public static void Initialize()
 		{
-			Advertisement.Initialize(appID, true);
+			Advertisement.Initialize(appID);
 		}
 
 		} }
